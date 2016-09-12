@@ -1,0 +1,17 @@
+{
+  "name": "bigpay-client-js",
+  "version": "0.1.0",
+  "description": "JavaScript client for Bigpay",
+  "main": "lib/index.js",
+  "authors": [
+    "BigCommerce"
+  ],
+  "homepage": "https://github.com/bigcommerce/bigpay-client-js",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test"
+  ]
+}
