@@ -5,8 +5,8 @@ function getWebpackConfig() {
         context: __dirname,
         devtool: 'source-map',
         entry: {
-            'bigpay-client': './src/index.js',
-            'bigpay-client.min': './src/index.js',
+            'bigpay-client': './src/bigpay-client.js',
+            'bigpay-client.min': './src/bigpay-client.js',
         },
         output: {
             filename: '[name].js',

@@ -11,6 +11,7 @@ function configureKarma(config) {
             'PhantomJS',
         ],
         files: [
+            './node_modules/es6-promise/dist/es6-promise.js',
             './test/index.js',
         ],
         frameworks: [
@@ -33,9 +34,6 @@ function configureKarma(config) {
             devtool: 'inline-source-map',
             module: {
                 loaders: getLoaders(),
-            },
-            resolve: {
-                root: __dirname + '/src',
             },
         },
         webpackMiddleware: {
