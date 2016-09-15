@@ -1,6 +1,8 @@
 import { getPaymentUrl } from './urls';
 import { postRequest } from '../common/http-request';
+import { isValid } from '../common/validation';
 import { mapToHeaders, mapToPayment } from './mappers';
+import { validatePayment } from './validators';
 
 /**
  * @typedef {Object} PaymentInputData
@@ -23,6 +25,12 @@ import { mapToHeaders, mapToPayment } from './mappers';
  * @returns {Promise}
  */
 export default function submitPayment(inputData, options = {}) {
+    const validation = validatePayment(inputData);
+
+    if (!isValid(validation)) {
+        return Promise.reject(new Error({ validation }));
+    }
+
     const paymentData = mapToPayment(inputData);
     const requestOptions = {
         headers: mapToHeaders(inputData),
