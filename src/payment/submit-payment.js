@@ -2,7 +2,7 @@ import { getPaymentUrl } from './urls';
 import { postRequest } from '../common/http-request';
 import { isValid } from '../common/validation';
 import { mapToHeaders, mapToPayment } from './mappers';
-import { validatePayment } from './validators';
+import { validatePaymentRequest } from './validators';
 
 /**
  * Submit payment
@@ -12,7 +12,7 @@ import { validatePayment } from './validators';
  * @returns {Promise}
  */
 export default function submitPayment(data, options = {}) {
-    const validation = validatePayment(data);
+    const validation = validatePaymentRequest(data);
 
     if (!isValid(validation)) {
         return Promise.reject(new Error({ validation }));

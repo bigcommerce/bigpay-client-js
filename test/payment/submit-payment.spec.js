@@ -27,7 +27,7 @@ describe('submitPayment', () => {
         spyOn(mappersModule, 'mapToPayment').and.returnValue(transformedData);
         spyOn(commonValidationModule, 'isValid').and.returnValue(true);
         spyOn(urlsModule, 'getPaymentUrl').and.returnValue(`${options.host}/api/public/v1/payments/payment`);
-        spyOn(validatorsModule, 'validatePayment').and.returnValue(validation);
+        spyOn(validatorsModule, 'validatePaymentRequest').and.returnValue(validation);
     });
 
     it('should transform input data', () => {
@@ -39,11 +39,11 @@ describe('submitPayment', () => {
     });
 
     it('should validate payment data', () => {
-        const { validatePayment } = validatorsModule;
+        const { validatePaymentRequest } = validatorsModule;
 
         submitPayment(data, options);
 
-        expect(validatePayment).toHaveBeenCalled();
+        expect(validatePaymentRequest).toHaveBeenCalled();
     });
 
     it('should post payment data to server', () => {

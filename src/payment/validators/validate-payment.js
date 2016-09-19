@@ -1,29 +1,17 @@
-import deepAssign from 'deep-assign';
-import validateCreditCard from './validate-credit-card';
 import { validate } from '../../common/validation';
 
 /**
- * Validate payment
- * @param {Object} data
+ * Validate payment data
+ * @param {PaymentData} data
  * @returns {Object}
  */
-export default function validatePayment(data) {
-    const result = validate(data, {
-        authToken: ['required'],
-        cart: {
-            currency: ['required'],
-            grandTotal: {
-                integerAmount: ['required'],
-            },
-            id: ['required'],
-        },
-        order: {
-            orderId: ['required'],
-        },
-        store: {
-            storeId: ['required'],
+export default function validatePayment(paymentData) {
+    return validate(paymentData, {
+        ccName: ['required'],
+        ccNumber: ['required'],
+        ccExpiry: {
+            month: ['required'],
+            year: ['required'],
         },
     });
-
-    return deepAssign(validateCreditCard(data), result);
 }

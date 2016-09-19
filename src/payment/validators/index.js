@@ -1,7 +1,5 @@
-import validateCreditCard from './validate-credit-card';
-import validatePayment from './validate-payment';
+import validatePaymentRequest from './validate-payment-request';
 
 export {
-    validateCreditCard,
-    validatePayment,
+    validatePaymentRequest,
 };
