@@ -1,65 +1,33 @@
 import mapToOptions from '../../../src/payment/mappers/map-to-options';
+import paymentRequestDataMock from '../../mocks/payment-request-data';
 
 describe('mapToOptions', () => {
     let data;
 
     beforeEach(() => {
-        data = {
-            cart: {
-                handling: {
-                    amount: 'cart.handling.amount',
-                },
-                items: [
-                    {
-                        id: 'cart.items[0].id',
-                        name: 'cart.items[0].name',
-                        quantity: 'cart.items[0].quantity',
-                        sku: 'cart.items[0].sku',
-                        amount: 'cart.items[0].amount',
-                    },
-                ],
-                shipping: {
-                    amount: 'cart.shipping.amount',
-                },
-                subTotal: {
-                    amount: 'cart.subTotal.amount',
-                },
-                taxTotal: {
-                    amount: 'cart.taxTotal.amount',
-                },
-            },
-            customer: {
-                customerId: 'customer.customerId',
-            },
-            store: {
-                storeName: 'store.storeName',
-            },
-            payment: {
-                deviceData: 'payment.deviceData',
-            },
-        };
+        data = paymentRequestDataMock;
     });
 
     it('should map to meta', () => {
         const output = mapToOptions(data);
 
         expect(output).toEqual({
-            customer_id: 'customer.customerId',
-            handling: 'cart.handling.amount',
+            customer_id: data.customer.customerId,
+            handling: data.cart.handling.amount,
             items: [
                 {
-                    code: 'cart.items[0].id',
-                    name: 'cart.items[0].name',
-                    quantity: 'cart.items[0].quantity',
-                    sku: 'cart.items[0].sku',
-                    value: 'cart.items[0].amount',
+                    code: data.cart.items[0].id,
+                    name: data.cart.items[0].name,
+                    quantity: data.cart.items[0].quantity,
+                    sku: data.cart.items[0].sku,
+                    value: data.cart.items[0].amount,
                 },
             ],
-            shipping: 'cart.shipping.amount',
-            store_name: 'store.storeName',
-            subtotal: 'cart.subTotal.amount',
-            tax: 'cart.taxTotal.amount',
-            token: 'payment.deviceData',
+            shipping: data.cart.shipping.amount,
+            store_name: data.store.storeName,
+            subtotal: data.cart.subTotal.amount,
+            tax: data.cart.taxTotal.amount,
+            token: data.payment.deviceData,
         });
     });
 });

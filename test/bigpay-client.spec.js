@@ -1,5 +1,6 @@
-import BigpayClient from '../src/bigpay-client';
 import * as paymentModule from '../src/payment';
+import BigpayClient from '../src/bigpay-client';
+import paymentRequestDataMock from './mocks/payment-request-data';
 
 describe('BigpayClient', () => {
     let bigpayClient;
@@ -20,18 +21,19 @@ describe('BigpayClient', () => {
     });
 
     describe('submitPayment', () => {
+        let data;
+
         beforeEach(() => {
             bigpayClient = new BigpayClient(config);
+            data = paymentRequestDataMock;
         });
 
         it('should submit payment', () => {
-            const data = { paymentMethod: { type: 'API' } };
-            const { host } = config;
             const { submitPayment } = paymentModule;
 
             bigpayClient.submitPayment(data);
 
-            expect(submitPayment).toHaveBeenCalledWith(data, { host });
+            expect(submitPayment).toHaveBeenCalledWith(data, { host: config.host });
         });
     });
 });

@@ -1,9 +1,10 @@
-import submitPayment from '../../src/payment/submit-payment';
 import * as commonValidationModule from '../../src/common/validation';
 import * as httpRequestModule from '../../src/common/http-request';
 import * as mappersModule from '../../src/payment/mappers';
 import * as urlsModule from '../../src/payment/urls';
 import * as validatorsModule from '../../src/payment/validators';
+import paymentRequestDataMock from '../mocks/payment-request-data';
+import submitPayment from '../../src/payment/submit-payment';
 
 describe('submitPayment', () => {
     let data;
@@ -14,8 +15,8 @@ describe('submitPayment', () => {
     let validation;
 
     beforeEach(() => {
-        data = { body: 'hello' };
-        transformedData = { body: 'world' };
+        data = paymentRequestDataMock;
+        transformedData = { body: 'hello world' };
         headers = { AUTH_TOKEN: '123' };
         options = { host: 'https://bcapp.dev' };
         promise = Promise.resolve({ ok: true });
