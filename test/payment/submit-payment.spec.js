@@ -24,18 +24,18 @@ describe('submitPayment', () => {
 
         spyOn(httpRequestModule, 'postRequest').and.returnValue(promise);
         spyOn(mappersModule, 'mapToHeaders').and.returnValue(headers);
-        spyOn(mappersModule, 'mapToPayment').and.returnValue(transformedData);
+        spyOn(mappersModule, 'mapToPayload').and.returnValue(transformedData);
         spyOn(commonValidationModule, 'isValid').and.returnValue(true);
         spyOn(urlsModule, 'getPaymentUrl').and.returnValue(`${options.host}/api/public/v1/payments/payment`);
         spyOn(validatorsModule, 'validatePaymentRequest').and.returnValue(validation);
     });
 
     it('should transform input data', () => {
-        const { mapToPayment } = mappersModule;
+        const { mapToPayload } = mappersModule;
 
         submitPayment(data, options);
 
-        expect(mapToPayment).toHaveBeenCalled();
+        expect(mapToPayload).toHaveBeenCalled();
     });
 
     it('should validate payment data', () => {

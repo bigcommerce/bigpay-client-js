@@ -5,7 +5,6 @@
  * @param {CartData} cart
  * @param {CustomerData} customer
  * @param {OrderData} order
- * @param {OrderMetaData} orderMeta
  * @param {PaymentData} payment
  * @param {PaymentMethodData} paymentMethod
  * @param {AddressData} shippingAddress
@@ -34,7 +33,6 @@
  * @param {number} grandTotal.integerAmount
  * @param {Object} handling
  * @param {number} handling.amount
- * @param {string} id
  * @param {ItemData[]} items
  * @param {Object} shipping
  * @param {number} shipping.amount
@@ -47,6 +45,8 @@
 /**
  * @typedef {Object} CustomerData
  * @param {string} customerId
+ * @param {string} geoCountryCode
+ * @param {string} sessionToken
  */
 
 /**
@@ -60,12 +60,9 @@
 
 /**
  * @typedef {Object} OrderData
+ * @param {string} callbackUrl
  * @param {string} orderId
- */
-
-/**
- * @typedef {Object} OrderMetaData
- * @param {string} geoCountryCode
+ * @param {string} orderToken
  */
 
 /**
@@ -76,12 +73,12 @@
  * @param {number} ccExpiry.year
  * @param {string} ccName
  * @param {string} ccNumber
+ * @param {string} deviceData
  */
 
 /**
  * @typedef {Object} PaymentMethodData
  * @param {string} id
- * @param {string} type
  */
 
 /**

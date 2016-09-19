@@ -1,7 +1,7 @@
 import mapToHeaders from './map-to-headers';
-import mapToPayment from './map-to-payment';
+import mapToPayload from './map-to-payload';
 
 export {
     mapToHeaders,
-    mapToPayment,
+    mapToPayload,
 };
