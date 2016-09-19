@@ -1,10 +1,10 @@
 import mapToOptions from '../../../src/payment/mappers/map-to-options';
 
 describe('mapToOptions', () => {
-    let inputData;
+    let data;
 
     beforeEach(() => {
-        inputData = {
+        data = {
             cart: {
                 handling: {
                     amount: 'cart.handling.amount',
@@ -41,9 +41,9 @@ describe('mapToOptions', () => {
     });
 
     it('should map to meta', () => {
-        const data = mapToOptions(inputData);
+        const output = mapToOptions(data);
 
-        expect(data).toEqual({
+        expect(output).toEqual({
             customer_id: 'customer.customerId',
             handling: 'cart.handling.amount',
             items: [

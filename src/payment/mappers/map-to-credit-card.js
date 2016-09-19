@@ -1,10 +1,10 @@
 /**
  * Map to credit card
- * @param {PaymentInputData} inputData
+ * @param {PaymentRequestData} data
  * @returns {Object}
  */
-export default function mapToCreditCard(inputData) {
-    const { payment = {} } = inputData;
+export default function mapToCreditCard(data) {
+    const { payment = {} } = data;
 
     return {
         account_name: payment.ccName,

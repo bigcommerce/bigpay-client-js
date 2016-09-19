@@ -1,10 +1,10 @@
 /**
  * Map to items
- * @param {PaymentInputData} inputData
+ * @param {PaymentRequestData} data
  * @returns {Object}
  */
-export default function mapToItems(inputData) {
-    const { cart = { items: [] } } = inputData;
+export default function mapToItems(data) {
+    const { cart = { items: [] } } = data;
 
     return cart.items.map(itemData => ({
         code: itemData.id,

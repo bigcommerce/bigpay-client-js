@@ -1,10 +1,10 @@
 /**
  * Map to headers
- * @param {PaymentInputData} inputData
+ * @param {PaymentRequestData} data
  * @returns {Object}
  */
-export default function mapToHeaders(inputData) {
-    const { authToken } = inputData;
+export default function mapToHeaders(data) {
+    const { authToken } = data;
 
     return {
         HTTP_AUTHORIZATION: authToken,

@@ -2,9 +2,9 @@ import mapToAddress from './map-to-address';
 
 /**
  * Map to billing address
- * @param {PaymentInputData} inputData
+ * @param {PaymentRequestData} data
  * @returns {Object}
  */
-export default function mapToBillingAddress(inputData) {
-    return mapToAddress(inputData, 'billingAddress');
+export default function mapToBillingAddress(data) {
+    return mapToAddress(data, 'billingAddress');
 }

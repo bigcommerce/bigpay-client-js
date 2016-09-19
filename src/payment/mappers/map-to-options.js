@@ -2,12 +2,12 @@ import mapToItems from './map-to-items';
 
 /**
  * Map to options
- * @param {PaymentInputData} inputData
+ * @param {PaymentRequestData} data
  * @returns {Object}
  */
-export default function mapToOptions(inputData) {
-    const { cart = {}, customer = {}, payment = {}, store = {} } = inputData;
-    const itemsData = mapToItems(inputData);
+export default function mapToOptions(data) {
+    const { cart = {}, customer = {}, payment = {}, store = {} } = data;
+    const itemsData = mapToItems(data);
 
     return {
         customer_id: customer.customerId,

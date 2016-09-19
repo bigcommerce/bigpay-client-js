@@ -6,10 +6,10 @@ import * as mapToOptionsModule from '../../../src/payment/mappers/map-to-options
 import * as mapToShippingAddressModule from '../../../src/payment/mappers/map-to-shipping-address';
 
 describe('mapToPayment', () => {
-    let inputData;
+    let data;
 
     beforeEach(() => {
-        inputData = {
+        data = {
             cart: {
                 currency: 'cart.currency',
                 grandTotal: {
@@ -43,9 +43,9 @@ describe('mapToPayment', () => {
     });
 
     it('should map to payment', () => {
-        const data = mapToPayment(inputData);
+        const output = mapToPayment(data);
 
-        expect(data).toEqual({
+        expect(output).toEqual({
             amount: 'cart.grandTotal.integerAmount',
             billing_address: 'billingAddress',
             cart_id: 'cart.id',

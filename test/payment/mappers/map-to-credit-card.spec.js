@@ -1,10 +1,10 @@
 import mapToCreditCard from '../../../src/payment/mappers/map-to-credit-card';
 
 describe('mapToCreditCard', () => {
-    let inputData;
+    let data;
 
     beforeEach(() => {
-        inputData = {
+        data = {
             payment: {
                 ccCvv: 'payment.ccCvv',
                 ccExpiry: {
@@ -18,9 +18,9 @@ describe('mapToCreditCard', () => {
     });
 
     it('should map to billing address', () => {
-        const data = mapToCreditCard(inputData);
+        const output = mapToCreditCard(data);
 
-        expect(data).toEqual({
+        expect(output).toEqual({
             account_name: 'payment.ccName',
             issue_number: 'payment.ccNumber',
             month: 'payment.ccExpiry.month',

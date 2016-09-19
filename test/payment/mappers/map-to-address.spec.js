@@ -1,10 +1,10 @@
 import mapToAddress from '../../../src/payment/mappers/map-to-address';
 
 describe('mapToAddress', () => {
-    let inputData;
+    let data;
 
     beforeEach(() => {
-        inputData = {
+        data = {
             billingAddress: {
                 addressLine1: 'address.addressLine1',
                 addressLine2: 'address.addressLine2',
@@ -22,9 +22,9 @@ describe('mapToAddress', () => {
     });
 
     it('should map to billing address', () => {
-        const data = mapToAddress(inputData, 'billingAddress');
+        const output = mapToAddress(data, 'billingAddress');
 
-        expect(data).toEqual({
+        expect(output).toEqual({
             city: 'address.city',
             company: 'address.company',
             country_code: 'address.countryCode',

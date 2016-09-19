@@ -1,18 +1,18 @@
 import mapToHeaders from '../../../src/payment/mappers/map-to-headers';
 
 describe('mapToHeaders', () => {
-    let inputData;
+    let data;
 
     beforeEach(() => {
-        inputData = {
+        data = {
             authToken: 'authToken',
         };
     });
 
     it('should map to billing address', () => {
-        const data = mapToHeaders(inputData);
+        const output = mapToHeaders(data);
 
-        expect(data).toEqual({
+        expect(output).toEqual({
             HTTP_AUTHORIZATION: 'authToken',
         });
     });

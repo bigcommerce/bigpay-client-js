@@ -6,16 +6,16 @@ import mapToShippingAddress from './map-to-shipping-address';
 
 /**
  * Map to payment
- * @param {PaymentInputData} inputData
+ * @param {PaymentRequestData} data
  * @returns {Object}
  */
-export default function mapToPayment(inputData) {
-    const { cart = {}, order = {}, payment = {}, paymentMethod = {}, store = {} } = inputData;
-    const billingAddressData = mapToBillingAddress(inputData);
-    const creditCardData = mapToCreditCard(inputData);
-    const metaData = mapToMeta(inputData);
-    const optionsData = mapToOptions(inputData);
-    const shippingAddressData = mapToShippingAddress(inputData);
+export default function mapToPayment(data) {
+    const { cart = {}, order = {}, payment = {}, paymentMethod = {}, store = {} } = data;
+    const billingAddressData = mapToBillingAddress(data);
+    const creditCardData = mapToCreditCard(data);
+    const metaData = mapToMeta(data);
+    const optionsData = mapToOptions(data);
+    const shippingAddressData = mapToShippingAddress(data);
 
     return {
         amount: cart.grandTotal ? cart.grandTotal.integerAmount : undefined,

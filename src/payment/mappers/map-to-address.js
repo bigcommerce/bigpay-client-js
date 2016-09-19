@@ -1,11 +1,11 @@
 /**
  * Map to address
- * @param {PaymentInputData} inputData
+ * @param {PaymentRequestData} data
  * @param {string} addressKey
  * @returns {Object}
  */
-export default function mapToAddress(inputData, addressKey) {
-    const address = inputData[addressKey] || {};
+export default function mapToAddress(data, addressKey) {
+    const address = data[addressKey] || {};
 
     return {
         city: address.city,

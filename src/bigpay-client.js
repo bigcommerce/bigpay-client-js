@@ -12,7 +12,7 @@ export default class BigpayClient {
 
     /**
      * Submit payment
-     * @param {Object} data
+     * @param {PaymentRequestData} data
      * @returns {Promise}
      */
     submitPayment(data) {

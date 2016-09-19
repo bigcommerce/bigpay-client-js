@@ -2,11 +2,11 @@ import { validate } from '../../common/validation';
 
 /**
  * Validate credit card
- * @param {Object} inputData
+ * @param {Object} data
  * @returns {Object}
  */
-export default function validateCreditCard(inputData) {
-    return validate(inputData, {
+export default function validateCreditCard(data) {
+    return validate(data, {
         payment: {
             ccName: ['required'],
             ccNumber: ['required'],

@@ -1,10 +1,10 @@
 import mapToMeta from '../../../src/payment/mappers/map-to-meta';
 
 describe('mapToMeta', () => {
-    let inputData;
+    let data;
 
     beforeEach(() => {
-        inputData = {
+        data = {
             orderMeta: {
                 geoCountryCode: 'orderMeta.geoCountryCode',
             },
@@ -12,9 +12,9 @@ describe('mapToMeta', () => {
     });
 
     it('should map to meta', () => {
-        const data = mapToMeta(inputData);
+        const output = mapToMeta(data);
 
-        expect(data).toEqual({
+        expect(output).toEqual({
             geo_ip_country_code: 'orderMeta.geoCountryCode',
         });
     });
