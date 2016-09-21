@@ -44,11 +44,11 @@ const paymentRequestDataMock = {
     customer: {
         customerId: '123',
         geoCountryCode: 'AU',
-        sessionToken: 'abc123',
+        sessionHash: 'abc123',
     },
     order: {
         orderId: '123',
-        orderToken: 'abc123',
+        token: 'abc123',
     },
     payment: {
         ccCvv: '123',

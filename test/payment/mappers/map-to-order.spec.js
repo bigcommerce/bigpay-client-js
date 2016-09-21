@@ -27,7 +27,7 @@ describe('mapToOrder', () => {
             items: 'items',
             shipping_address: 'shippingAddress',
             totals: 'orderTotals',
-            token: data.order.orderToken,
+            token: data.order.token,
         });
     });
 });

@@ -9,6 +9,6 @@ export default function mapToCustomer(data) {
     return {
         geo_ip_country_code: customer.geoCountryCode,
         id: customer.customerId,
-        session_token: customer.sessionToken,
+        session_token: customer.sessionHash,
     };
 }

@@ -46,7 +46,7 @@
  * @typedef {Object} CustomerData
  * @param {string} customerId
  * @param {string} geoCountryCode
- * @param {string} sessionToken
+ * @param {string} sessionHash
  */
 
 /**
@@ -62,7 +62,7 @@
  * @typedef {Object} OrderData
  * @param {string} callbackUrl
  * @param {string} orderId
- * @param {string} orderToken
+ * @param {string} token
  */
 
 /**

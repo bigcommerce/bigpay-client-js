@@ -17,7 +17,7 @@ export default function mapToOrder(data) {
         id: order.orderId,
         items: mapToItems(data),
         shipping_address: mapToShippingAddress(data),
-        token: order.orderToken,
+        token: order.token,
         totals: mapToOrderTotals(data),
     };
 }
