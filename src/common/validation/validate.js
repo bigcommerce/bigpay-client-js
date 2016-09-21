@@ -3,6 +3,7 @@ import * as validators from './validators';
 
 /**
  * Get validator
+ * @private
  * @param {string} validatorName
  * @returns {Function|void}
  */
@@ -14,6 +15,7 @@ function getValidator(validatorName) {
 
 /**
  * Validate field
+ * @private
  * @param {*} fieldData
  * @param {string[]} fieldRules
  * @returns {Object}
