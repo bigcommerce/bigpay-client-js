@@ -9,7 +9,7 @@ import validateStore from './validate-store';
  * @param {PaymentRequestData} paymentRequestData
  * @returns {Object}
  */
-export default function validatePaymentRequestData(paymentRequestData) {
+export default function validatePaymentRequest(paymentRequestData) {
     const { authToken, cart, order, payment, store } = paymentRequestData;
 
     return {

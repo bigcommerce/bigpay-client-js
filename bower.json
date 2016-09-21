@@ -1,5 +1,5 @@
 {
-  "name": "bigpay-client-js",
+  "name": "bigpay-client",
   "version": "0.1.0",
   "description": "JavaScript client for Bigpay",
   "main": "lib/bigpay-client.js",

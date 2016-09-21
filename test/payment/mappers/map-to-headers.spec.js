@@ -8,11 +8,11 @@ describe('mapToHeaders', () => {
         data = paymentRequestDataMock;
     });
 
-    it('should map to billing address', () => {
+    it('should map to headers', () => {
         const output = mapToHeaders(data);
 
         expect(output).toEqual({
-            HTTP_AUTHORIZATION: data.authToken,
+            AUTHORIZATION: data.authToken,
         });
     });
 });

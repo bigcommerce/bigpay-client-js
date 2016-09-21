@@ -43,12 +43,12 @@ const paymentRequestDataMock = {
     },
     customer: {
         customerId: '123',
+        geoCountryCode: 'AU',
+        sessionHash: 'abc123',
     },
     order: {
         orderId: '123',
-    },
-    orderMeta: {
-        geoCountryCode: 'AU',
+        token: 'abc123',
     },
     payment: {
         ccCvv: '123',

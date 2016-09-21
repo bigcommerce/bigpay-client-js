@@ -2,7 +2,7 @@ import { validate } from '../../common/validation';
 
 /**
  * Validate payment data
- * @param {PaymentData} data
+ * @param {PaymentData} paymentData
  * @returns {Object}
  */
 export default function validatePayment(paymentData) {

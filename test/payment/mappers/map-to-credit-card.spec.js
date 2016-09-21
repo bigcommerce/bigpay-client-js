@@ -8,12 +8,12 @@ describe('mapToCreditCard', () => {
         data = paymentRequestDataMock;
     });
 
-    it('should map to billing address', () => {
+    it('should map to credit card', () => {
         const output = mapToCreditCard(data);
 
         expect(output).toEqual({
             account_name: data.payment.ccName,
-            issue_number: data.payment.ccNumber,
+            number: data.payment.ccNumber,
             month: data.payment.ccExpiry.month,
             verification_value: data.payment.ccCvv,
             year: data.payment.ccExpiry.year,
