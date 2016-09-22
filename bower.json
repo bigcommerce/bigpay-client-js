@@ -2,7 +2,7 @@
   "name": "bigpay-client",
   "version": "0.1.0",
   "description": "JavaScript client for Bigpay",
-  "main": "lib/bigpay-client.js",
+  "main": "dist/bigpay-client.js",
   "authors": [
     "BigCommerce"
   ],
@@ -10,8 +10,11 @@
   "private": true,
   "ignore": [
     "**/.*",
-    "node_modules",
-    "bower_components",
-    "test"
+    "gulpfile.js",
+    "karma.config.js",
+    "package.json",
+    "src",
+    "test",
+    "webpack.config.js"
   ]
 }

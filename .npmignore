@@ -1,4 +1,7 @@
 **/.*
+bower.json
+gulpfile.js
+karma.config.js
 src
 test
 webpack.config.js

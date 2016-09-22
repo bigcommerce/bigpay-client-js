@@ -3,6 +3,7 @@ var karmaMochaReporter = require('karma-mocha-reporter');
 var karmaPhantomJsLauncher = require('karma-phantomjs-launcher');
 var karmaSourcemapLoader = require('karma-sourcemap-loader');
 var karmaWebpack = require('karma-webpack');
+var webpackConfig = require('./webpack.config');
 
 function configureKarma(config) {
     config.set({
@@ -32,27 +33,12 @@ function configureKarma(config) {
         ],
         webpack: {
             devtool: 'inline-source-map',
-            module: {
-                loaders: getLoaders(),
-            },
+            module: webpackConfig.module,
         },
         webpackMiddleware: {
             noInfo: true,
         },
     });
-}
-
-function getLoaders() {
-    return [
-        {
-            exclude: /node_modules/,
-            loader: 'babel',
-            query: {
-                presets: ['es2015'],
-            },
-            test: /\.js$/,
-        },
-    ];
 }
 
 module.exports = configureKarma;
