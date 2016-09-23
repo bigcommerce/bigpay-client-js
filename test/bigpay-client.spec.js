@@ -1,3 +1,4 @@
+import cloneDeep from 'lodash/cloneDeep';
 import * as paymentModule from '../src/payment';
 import BigpayClient from '../src/bigpay-client';
 import paymentRequestDataMock from './mocks/payment-request-data';
@@ -9,6 +10,7 @@ describe('BigpayClient', () => {
     beforeEach(() => {
         config = { host: 'https://bcapp.dev' };
 
+        spyOn(paymentModule, 'initializeOffsitePayment');
         spyOn(paymentModule, 'submitPayment');
     });
 
@@ -17,6 +19,24 @@ describe('BigpayClient', () => {
             bigpayClient = new BigpayClient(config);
 
             expect(bigpayClient.host).toEqual(config.host);
+        });
+    });
+
+    describe('initializeOffsitePayment', () => {
+        let data;
+
+        beforeEach(() => {
+            bigpayClient = new BigpayClient(config);
+            data = cloneDeep(paymentRequestDataMock);
+            data.paymentMethod.type = 'PAYMENT_TYPE_HOSTED';
+        });
+
+        it('should initialize offsite payment', () => {
+            const { initializeOffsitePayment } = paymentModule;
+
+            bigpayClient.initializeOffsitePayment(data);
+
+            expect(initializeOffsitePayment).toHaveBeenCalledWith(data, { host: config.host });
         });
     });
 

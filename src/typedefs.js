@@ -24,6 +24,7 @@
  * @param {string} phone
  * @param {string} postCode
  * @param {string} province
+ * @param {string} provinceCode
  */
 
 /**
@@ -45,7 +46,10 @@
 /**
  * @typedef {Object} CustomerData
  * @param {string} customerId
+ * @param {string} firstName
  * @param {string} geoCountryCode
+ * @param {string} lastName
+ * @param {string} locale
  * @param {string} sessionHash
  */
 
@@ -78,6 +82,9 @@
 
 /**
  * @typedef {Object} PaymentMethodData
+ * @param {Object} config
+ * @param {string} config.redirectUrl
+ * @param {string} gateway
  * @param {string} id
  */
 

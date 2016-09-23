@@ -11,7 +11,7 @@ import { validatePaymentRequest } from './validators';
  * @param {string} [options.host]
  * @returns {Promise}
  */
-export default function submitPayment(data, options = {}) {
+export default function submitPayment(data, { host } = {}) {
     const validation = validatePaymentRequest(data);
 
     if (!isValid(validation)) {
@@ -23,5 +23,5 @@ export default function submitPayment(data, options = {}) {
         headers: mapToHeaders(data),
     };
 
-    return postRequest(getPaymentUrl(options.host), payload, requestOptions);
+    return postRequest(getPaymentUrl(host), payload, requestOptions);
 }
