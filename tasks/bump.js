@@ -50,16 +50,26 @@ function promptVersionTask() {
         }));
 }
 
-function tagVersionTask() {
+function commintVersionTask() {
     var files = ['./bower.json', './package.json', './dist'];
 
     return gulp.src(files)
         .pipe(git.add())
-        .pipe(git.commit('Releasing ' + version))
-        .pipe(git.tag(version, version));
+        .pipe(git.commit('Releasing ' + version));
+}
+
+function tagVersionTask(done) {
+    git.tag(version, version, function (err) {
+        if (err) {
+            throw err;
+        }
+
+        done();
+    })
 }
 
 module.exports = gulp.series(
     promptVersionTask,
+    commintVersionTask,
     tagVersionTask
 );
