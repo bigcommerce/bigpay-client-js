@@ -1,4 +1,5 @@
 import cloneDeep from 'lodash/cloneDeep';
+import { HOSTED } from '../src/payment/payment-types';
 import * as paymentModule from '../src/payment';
 import BigpayClient from '../src/bigpay-client';
 import paymentRequestDataMock from './mocks/payment-request-data';
@@ -28,7 +29,7 @@ describe('BigpayClient', () => {
         beforeEach(() => {
             bigpayClient = new BigpayClient(config);
             data = cloneDeep(paymentRequestDataMock);
-            data.paymentMethod.type = 'PAYMENT_TYPE_HOSTED';
+            data.paymentMethod.type = HOSTED;
         });
 
         it('should initialize offsite payment', () => {

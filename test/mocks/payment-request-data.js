@@ -1,3 +1,5 @@
+import { API } from '../../src/payment/payment-types';
+
 const paymentRequestDataMock = {
     authToken: 'aaa.bbb.ccc',
     billingAddress: {
@@ -68,7 +70,7 @@ const paymentRequestDataMock = {
             redirectUrl: '/checkout',
         },
         id: 'paypalprous',
-        type: 'PAYMENT_TYPE_API',
+        type: API,
     },
     shippingAddress: {
         addressLine1: '685 Market St',
