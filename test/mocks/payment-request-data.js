@@ -1,3 +1,5 @@
+import { API } from '../../src/payment/payment-types';
+
 const paymentRequestDataMock = {
     authToken: 'aaa.bbb.ccc',
     billingAddress: {
@@ -11,7 +13,8 @@ const paymentRequestDataMock = {
         lastName: 'Bar',
         phone: '98765432',
         postCode: '2007',
-        province: 'NSW',
+        provinceCode: 'NSW',
+        province: 'New South Wales',
     },
     cart: {
         currency: 'AUD',
@@ -43,7 +46,10 @@ const paymentRequestDataMock = {
     },
     customer: {
         customerId: '123',
+        firstName: 'Foo',
         geoCountryCode: 'AU',
+        lastName: 'Bar',
+        locale: 'en-AU',
         sessionHash: 'abc123',
     },
     order: {
@@ -60,8 +66,11 @@ const paymentRequestDataMock = {
         ccNumber: '4007000000027',
     },
     paymentMethod: {
+        config: {
+            redirectUrl: '/checkout',
+        },
         id: 'paypalprous',
-        type: 'credit_card',
+        type: API,
     },
     shippingAddress: {
         addressLine1: '685 Market St',
@@ -74,8 +83,10 @@ const paymentRequestDataMock = {
         lastName: 'Bar',
         phone: '98765432',
         postCode: '94105',
-        province: 'CA',
+        provinceCode: 'CA',
+        province: 'California',
     },
+    source: 'bcapp-checkout-uco',
     store: {
         storeHash: 's123456789',
         storeName: 'Test Store',

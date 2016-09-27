@@ -32,7 +32,8 @@ export default function getPaymentData() {
             lastName: 'Bar',
             phone: '98765432',
             postCode: '2007',
-            province: 'NSW',
+            provinceCode: 'NSW',
+            province: 'New South Wales',
         },
         cart: {
             currency: 'AUD',
@@ -64,7 +65,10 @@ export default function getPaymentData() {
         },
         customer: {
             customerId: '123',
+            firstName: 'Foo',
             geoCountryCode: 'AU',
+            lastName: 'Bar',
+            locale: 'en-AU',
             sessionHash: 'abc123',
         },
         order: {
@@ -81,8 +85,11 @@ export default function getPaymentData() {
             ccNumber: '4007000000027',
         },
         paymentMethod: {
+            config: {
+                redirectUrl: '/checkout',
+            },
             id: 'paypalprous',
-            type: 'credit_card',
+            type: 'PAYMENT_TYPE_API',
         },
         shippingAddress: {
             addressLine1: '685 Market St',
@@ -95,8 +102,10 @@ export default function getPaymentData() {
             lastName: 'Bar',
             phone: '98765432',
             postCode: '94105',
-            province: 'CA',
+            provinceCode: 'CA',
+            province: 'California',
         },
+        source: 'bcapp-checkout-uco',
         store: {
             storeHash: 's123456789',
             storeName: 'Test Store',

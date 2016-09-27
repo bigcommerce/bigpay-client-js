@@ -1,4 +1,4 @@
-import { PAYMENT_TYPES, submitPayment } from './payment';
+import { PAYMENT_TYPES, initializeOffsitePayment, submitPayment } from './payment';
 
 export default class BigpayClient {
     /**
@@ -11,6 +11,23 @@ export default class BigpayClient {
     }
 
     /**
+     * Initialize offsite payment
+     * @param {PaymentRequestData} data
+     * @returns {Promise}
+     */
+    initializeOffsitePayment(data) {
+        const { paymentMethod = {} } = data;
+
+        if (paymentMethod.type !== PAYMENT_TYPES.HOSTED) {
+            const error = new Error(`${data.type} is not supported.`);
+
+            return Promise.reject(error);
+        }
+
+        return initializeOffsitePayment(data, { host: this.host });
+    }
+
+    /**
      * Submit payment
      * @param {PaymentRequestData} data
      * @returns {Promise}
@@ -18,15 +35,12 @@ export default class BigpayClient {
     submitPayment(data) {
         const { paymentMethod = {} } = data;
 
-        if (paymentMethod.type === PAYMENT_TYPES.HOSTED ||
-            paymentMethod.type === PAYMENT_TYPES.OFFLINE) {
+        if (paymentMethod.type !== PAYMENT_TYPES.API) {
             const error = new Error(`${data.type} is not supported.`);
 
             return Promise.reject(error);
         }
 
-        const options = { host: this.host };
-
-        return submitPayment(data, options);
+        return submitPayment(data, { host: this.host });
     }
 }
