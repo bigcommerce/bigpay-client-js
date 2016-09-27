@@ -1,4 +1,5 @@
-import { validate } from '../../common/validation';
+import objectAssign from 'object-assign';
+import { isValid, validate } from '../../common/validation';
 
 /**
  * Validate payment data
@@ -6,7 +7,11 @@ import { validate } from '../../common/validation';
  * @returns {Object}
  */
 export default function validatePayment(paymentData) {
-    return validate(paymentData, {
+    const nouceValidation = validate(paymentData, {
+        nouce: ['required'],
+    });
+
+    const creditCardValidation = validate(paymentData, {
         ccName: ['required'],
         ccNumber: ['required'],
         ccExpiry: {
@@ -14,4 +19,14 @@ export default function validatePayment(paymentData) {
             year: ['required'],
         },
     });
+
+    if (isValid(nouceValidation)) {
+        return nouceValidation;
+    }
+
+    if (isValid(creditCardValidation)) {
+        return nouceValidation;
+    }
+
+    return objectAssign({}, nouceValidation, creditCardValidation);
 }
