@@ -1,10 +1,10 @@
 import cloneDeep from 'lodash/cloneDeep';
-import { HOSTED } from '../src/payment/payment-types';
-import * as paymentModule from '../src/payment';
-import BigpayClient from '../src/bigpay-client';
-import paymentRequestDataMock from './mocks/payment-request-data';
+import { HOSTED } from '../../src/payment/payment-types';
+import * as paymentModule from '../../src/payment';
+import Client from '../../src/client/client';
+import paymentRequestDataMock from '../mocks/payment-request-data';
 
-describe('BigpayClient', () => {
+describe('Client', () => {
     let bigpayClient;
     let config;
 
@@ -17,7 +17,7 @@ describe('BigpayClient', () => {
 
     describe('construct', () => {
         it('should set host', () => {
-            bigpayClient = new BigpayClient(config);
+            bigpayClient = new Client(config);
 
             expect(bigpayClient.host).toEqual(config.host);
         });
@@ -27,7 +27,7 @@ describe('BigpayClient', () => {
         let data;
 
         beforeEach(() => {
-            bigpayClient = new BigpayClient(config);
+            bigpayClient = new Client(config);
             data = cloneDeep(paymentRequestDataMock);
             data.paymentMethod.type = HOSTED;
         });
@@ -45,7 +45,7 @@ describe('BigpayClient', () => {
         let data;
 
         beforeEach(() => {
-            bigpayClient = new BigpayClient(config);
+            bigpayClient = new Client(config);
             data = paymentRequestDataMock;
         });
 

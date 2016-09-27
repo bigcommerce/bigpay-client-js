@@ -1,6 +1,6 @@
-import { PAYMENT_TYPES, initializeOffsitePayment, submitPayment } from './payment';
+import { PAYMENT_TYPES, initializeOffsitePayment, submitPayment } from '../payment';
 
-export default class BigpayClient {
+export default class Client {
     /**
      * Construct BigpayClient
      * @param {Object} config

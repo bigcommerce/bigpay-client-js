@@ -5,13 +5,13 @@ function getWebpackConfig() {
         context: __dirname,
         devtool: 'source-map',
         entry: {
-            'bigpay-client': './src/bigpay-client.js',
-            'bigpay-client.min': './src/bigpay-client.js',
+            'bigpay-client': './src/index.js',
+            'bigpay-client.min': './src/index.js',
         },
         output: {
             filename: '[name].js',
             path: './dist',
-            library: 'BigpayClient',
+            library: 'bigpayClient',
             libraryTarget: 'umd',
         },
         module: {
