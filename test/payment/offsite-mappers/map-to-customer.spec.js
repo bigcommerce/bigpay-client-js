@@ -17,7 +17,7 @@ describe('mapToCustomer', () => {
             customer_first_name: data.customer.firstName,
             customer_geo_country_code: data.customer.geoCountryCode,
             customer_last_name: data.customer.lastName,
-            customer_locale: data.customer.locale,
+            customer_locale: data.store.storeLanguage,
             customer_name: data.customer.name,
             customer_phone: data.customer.phoneNumber,
             customer_reference: data.customer.email,

@@ -49,7 +49,6 @@ const paymentRequestDataMock = {
         firstName: 'Foo',
         geoCountryCode: 'AU',
         lastName: 'Bar',
-        locale: 'en-AU',
         sessionHash: 'abc123',
     },
     order: {
@@ -89,8 +88,9 @@ const paymentRequestDataMock = {
     source: 'bcapp-checkout-uco',
     store: {
         storeHash: 's123456789',
-        storeName: 'Test Store',
         storeId: '100',
+        storeLanguage: 'en-AU',
+        storeName: 'Test Store',
     },
 };
 

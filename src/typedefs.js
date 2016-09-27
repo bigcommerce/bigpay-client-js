@@ -49,7 +49,6 @@
  * @param {string} firstName
  * @param {string} geoCountryCode
  * @param {string} lastName
- * @param {string} locale
  * @param {string} sessionHash
  */
 
@@ -91,6 +90,7 @@
 /**
  * @typedef {Object} StoreData
  * @param {string} storeHash
- * @param {string} storeName
  * @param {string} storeId
+ * @param {string} storeLanguage
+ * @param {string} storeName
  */

@@ -4,7 +4,7 @@
  * @returns {Object}
  */
 export default function mapToCustomer(data) {
-    const { customer = {} } = data;
+    const { customer = {}, store = {} } = data;
 
     return {
         customer_browser_info: navigator.userAgent,
@@ -12,7 +12,7 @@ export default function mapToCustomer(data) {
         customer_first_name: customer.firstName,
         customer_geo_country_code: customer.geoCountryCode,
         customer_last_name: customer.lastName,
-        customer_locale: customer.locale,
+        customer_locale: store.storeLanguage,
         customer_name: customer.name,
         customer_phone: customer.phoneNumber,
         customer_reference: customer.email,
