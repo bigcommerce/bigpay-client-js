@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
 	else if(typeof exports === 'object')
-		exports["BigpayClient"] = factory();
+		exports["bigpayClient"] = factory();
 	else
-		root["BigpayClient"] = factory();
+		root["bigpayClient"] = factory();
 })(this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -50,7 +50,30 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ([
+/******/ ((function(modules) {
+	// Check all modules for deduplicated modules
+	for(var i in modules) {
+		if(Object.prototype.hasOwnProperty.call(modules, i)) {
+			switch(typeof modules[i]) {
+			case "function": break;
+			case "object":
+				// Module can be created from a template
+				modules[i] = (function(_m) {
+					var args = _m.slice(1), fn = modules[_m[0]];
+					return function (a,b,c) {
+						fn.apply(this, [a,b,c].concat(args));
+					};
+				}(modules[i]));
+				break;
+			default:
+				// Module is a copy of another module
+				modules[i] = modules[modules[i]];
+				break;
+			}
+		}
+	}
+	return modules;
+}([
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -59,57 +82,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+	exports.createClient = undefined;
 	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	var _client = __webpack_require__(1);
 	
-	var _payment = __webpack_require__(1);
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	var BigpayClient = function () {
-	    /**
-	     * Construct BigpayClient
-	     * @param {Object} config
-	     * @param {string} config.host
-	     */
-	    function BigpayClient(_ref) {
-	        var host = _ref.host;
-	
-	        _classCallCheck(this, BigpayClient);
-	
-	        this.host = host;
-	    }
-	
-	    /**
-	     * Submit payment
-	     * @param {PaymentRequestData} data
-	     * @returns {Promise}
-	     */
-	
-	
-	    _createClass(BigpayClient, [{
-	        key: 'submitPayment',
-	        value: function submitPayment(data) {
-	            var _data$paymentMethod = data.paymentMethod;
-	            var paymentMethod = _data$paymentMethod === undefined ? {} : _data$paymentMethod;
-	
-	
-	            if (paymentMethod.type === _payment.PAYMENT_TYPES.HOSTED || paymentMethod.type === _payment.PAYMENT_TYPES.OFFLINE) {
-	                var error = new Error(data.type + ' is not supported.');
-	
-	                return Promise.reject(error);
-	            }
-	
-	            var options = { host: this.host };
-	
-	            return (0, _payment.submitPayment)(data, options);
-	        }
-	    }]);
-	
-	    return BigpayClient;
-	}();
-	
-	exports.default = BigpayClient;
+	exports.createClient = _client.createClient;
 
 /***/ },
 /* 1 */
@@ -120,13 +97,143 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.submitPayment = exports.PAYMENT_TYPES = undefined;
+	exports.createClient = undefined;
 	
-	var _paymentTypes = __webpack_require__(2);
+	var _createClient = __webpack_require__(2);
+	
+	var _createClient2 = _interopRequireDefault(_createClient);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.createClient = _createClient2.default;
+
+/***/ },
+/* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = createClient;
+	
+	var _client = __webpack_require__(3);
+	
+	var _client2 = _interopRequireDefault(_client);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	/**
+	 * Create client
+	 * @param {Object} config
+	 * @returns {Client}
+	 */
+	function createClient(config) {
+	  return new _client2.default(config);
+	}
+
+/***/ },
+/* 3 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _payment = __webpack_require__(4);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var Client = function () {
+	    /**
+	     * Construct BigpayClient
+	     * @param {Object} config
+	     * @param {string} config.host
+	     */
+	    function Client(_ref) {
+	        var host = _ref.host;
+	
+	        _classCallCheck(this, Client);
+	
+	        this.host = host;
+	    }
+	
+	    /**
+	     * Initialize offsite payment
+	     * @param {PaymentRequestData} data
+	     * @returns {Promise}
+	     */
+	
+	
+	    _createClass(Client, [{
+	        key: 'initializeOffsitePayment',
+	        value: function initializeOffsitePayment(data) {
+	            var _data$paymentMethod = data.paymentMethod;
+	            var paymentMethod = _data$paymentMethod === undefined ? {} : _data$paymentMethod;
+	
+	
+	            if (paymentMethod.type !== _payment.PAYMENT_TYPES.HOSTED) {
+	                var error = new Error(data.type + ' is not supported.');
+	
+	                return Promise.reject(error);
+	            }
+	
+	            return (0, _payment.initializeOffsitePayment)(data, { host: this.host });
+	        }
+	
+	        /**
+	         * Submit payment
+	         * @param {PaymentRequestData} data
+	         * @returns {Promise}
+	         */
+	
+	    }, {
+	        key: 'submitPayment',
+	        value: function submitPayment(data) {
+	            var _data$paymentMethod2 = data.paymentMethod;
+	            var paymentMethod = _data$paymentMethod2 === undefined ? {} : _data$paymentMethod2;
+	
+	
+	            if (paymentMethod.type !== _payment.PAYMENT_TYPES.API) {
+	                var error = new Error(data.type + ' is not supported.');
+	
+	                return Promise.reject(error);
+	            }
+	
+	            return (0, _payment.submitPayment)(data, { host: this.host });
+	        }
+	    }]);
+	
+	    return Client;
+	}();
+	
+	exports.default = Client;
+
+/***/ },
+/* 4 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.submitPayment = exports.initializeOffsitePayment = exports.PAYMENT_TYPES = undefined;
+	
+	var _paymentTypes = __webpack_require__(5);
 	
 	var PAYMENT_TYPES = _interopRequireWildcard(_paymentTypes);
 	
-	var _submitPayment = __webpack_require__(3);
+	var _initializeOffsitePayment = __webpack_require__(6);
+	
+	var _initializeOffsitePayment2 = _interopRequireDefault(_initializeOffsitePayment);
+	
+	var _submitPayment = __webpack_require__(36);
 	
 	var _submitPayment2 = _interopRequireDefault(_submitPayment);
 	
@@ -135,10 +242,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 	
 	exports.PAYMENT_TYPES = PAYMENT_TYPES;
+	exports.initializeOffsitePayment = _initializeOffsitePayment2.default;
 	exports.submitPayment = _submitPayment2.default;
 
 /***/ },
-/* 2 */
+/* 5 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -151,7 +259,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var OFFLINE = exports.OFFLINE = 'PAYMENT_TYPE_OFFLINE';
 
 /***/ },
-/* 3 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -159,44 +267,43 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.default = submitPayment;
+	exports.default = initializeOffsitePayment;
 	
-	var _urls = __webpack_require__(4);
+	var _urls = __webpack_require__(7);
 	
-	var _httpRequest = __webpack_require__(5);
+	var _validation = __webpack_require__(8);
 	
-	var _validation = __webpack_require__(18);
+	var _offsiteMappers = __webpack_require__(18);
 	
-	var _mappers = __webpack_require__(23);
+	var _formRequest = __webpack_require__(27);
 	
-	var _validators = __webpack_require__(36);
+	var _offsiteValidators = __webpack_require__(30);
 	
 	/**
-	 * Submit payment
+	 * Initialize offsite payment
 	 * @param {PaymentRequestData} data
 	 * @param {Object} [options = {}]
 	 * @param {string} [options.host]
 	 * @returns {Promise}
 	 */
-	function submitPayment(data) {
-	    var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+	function initializeOffsitePayment(data) {
+	    var _ref = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 	
-	    var validation = (0, _validators.validatePaymentRequest)(data);
+	    var host = _ref.host;
+	
+	    var validation = (0, _offsiteValidators.validatePaymentRequest)(data);
 	
 	    if (!(0, _validation.isValid)(validation)) {
 	        return Promise.reject(new Error({ validation: validation }));
 	    }
 	
-	    var payload = (0, _mappers.mapToPayload)(data);
-	    var requestOptions = {
-	        headers: (0, _mappers.mapToHeaders)(data)
-	    };
+	    var payload = (0, _offsiteMappers.mapToPayload)(data);
 	
-	    return (0, _httpRequest.postRequest)((0, _urls.getPaymentUrl)(options.host), payload, requestOptions);
+	    return (0, _formRequest.postForm)((0, _urls.getOffsitePaymentUrl)(host), payload);
 	}
 
 /***/ },
-/* 4 */
+/* 7 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -204,7 +311,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.getOffsitePaymentUrl = getOffsitePaymentUrl;
 	exports.getPaymentUrl = getPaymentUrl;
+	/**
+	 * Get offsite payment URL
+	 * @param {string} host
+	 * @returns {string}
+	 */
+	function getOffsitePaymentUrl(host) {
+	  return host + "/pay/initialize";
+	}
+	
 	/**
 	 * Payment URL
 	 * @param {string} host
@@ -215,7 +332,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 5 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -223,23 +340,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.sendRequest = exports.postRequest = undefined;
+	exports.validate = exports.isValid = undefined;
 	
-	var _postRequest = __webpack_require__(6);
+	var _isValid = __webpack_require__(9);
 	
-	var _postRequest2 = _interopRequireDefault(_postRequest);
+	var _isValid2 = _interopRequireDefault(_isValid);
 	
-	var _sendRequest = __webpack_require__(12);
+	var _validate = __webpack_require__(15);
 	
-	var _sendRequest2 = _interopRequireDefault(_sendRequest);
+	var _validate2 = _interopRequireDefault(_validate);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	exports.postRequest = _postRequest2.default;
-	exports.sendRequest = _sendRequest2.default;
+	exports.isValid = _isValid2.default;
+	exports.validate = _validate2.default;
 
 /***/ },
-/* 6 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -247,37 +364,359 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.default = postRequest;
+	exports.default = isValid;
 	
-	var _objectAssign = __webpack_require__(7);
+	var _utils = __webpack_require__(10);
+	
+	/**
+	 * Is valid result
+	 * @param {Object} validation
+	 * @returns {Boolean}
+	 */
+	function isValid(validation) {
+	    var keys = Object.keys(validation);
+	
+	    while (keys.length > 0) {
+	        var key = keys.shift();
+	
+	        if (validation[key] === false) {
+	            return false;
+	        }
+	
+	        if ((0, _utils.isObject)(validation[key]) && !isValid(validation[key])) {
+	            return false;
+	        }
+	    }
+	
+	    return true;
+	}
+
+/***/ },
+/* 10 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.toSnakeCase = exports.isObject = exports.includes = exports.capitalize = undefined;
+	
+	var _capitalize = __webpack_require__(11);
+	
+	var _capitalize2 = _interopRequireDefault(_capitalize);
+	
+	var _includes = __webpack_require__(12);
+	
+	var _includes2 = _interopRequireDefault(_includes);
+	
+	var _isObject = __webpack_require__(13);
+	
+	var _isObject2 = _interopRequireDefault(_isObject);
+	
+	var _toSnakeCase = __webpack_require__(14);
+	
+	var _toSnakeCase2 = _interopRequireDefault(_toSnakeCase);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.capitalize = _capitalize2.default;
+	exports.includes = _includes2.default;
+	exports.isObject = _isObject2.default;
+	exports.toSnakeCase = _toSnakeCase2.default;
+
+/***/ },
+/* 11 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = capitalize;
+	/**
+	 * Capitalize
+	 * @param {string} string
+	 * @returns {string}
+	 */
+	function capitalize(string) {
+	    if (!string) {
+	        return string;
+	    }
+	
+	    return string.charAt(0).toUpperCase() + string.slice(1);
+	}
+
+/***/ },
+/* 12 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = includes;
+	/**
+	 * Includes item
+	 * @param {array|string} items
+	 * @param {array|string} item
+	 * @returns {boolean}
+	 */
+	function includes(items, item) {
+	    if (!Array.isArray(items) && typeof items !== 'string') {
+	        return false;
+	    }
+	
+	    return items.indexOf(item) !== -1;
+	}
+
+/***/ },
+/* 13 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+	
+	exports.default = isObject;
+	/**
+	 * Is object
+	 * @param {*} value
+	 * @returns {boolean}
+	 */
+	function isObject(value) {
+	  var type = typeof value === 'undefined' ? 'undefined' : _typeof(value);
+	
+	  return value !== null && (type === 'object' || type === 'function');
+	}
+
+/***/ },
+/* 14 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = toSnakeCase;
+	/**
+	 * To snake case
+	 * @param {string} string
+	 * @returns {string}
+	 */
+	function toSnakeCase(string) {
+	    if (!string) {
+	        return string;
+	    }
+	
+	    return string.replace(/([a-z\d])([A-Z]+)/g, '$1_$2').replace(/[-\s]+/g, '_').toLowerCase();
+	}
+
+/***/ },
+/* 15 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = validate;
+	
+	var _utils = __webpack_require__(10);
+	
+	var _validators = __webpack_require__(16);
+	
+	var validators = _interopRequireWildcard(_validators);
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	
+	/**
+	 * Get validator
+	 * @private
+	 * @param {string} validatorName
+	 * @returns {Function|void}
+	 */
+	function getValidator(validatorName) {
+	    var validateFunctionName = 'validate' + (0, _utils.capitalize)(validatorName);
+	
+	    return validators[validateFunctionName];
+	}
+	
+	/**
+	 * Validate field
+	 * @private
+	 * @param {*} fieldData
+	 * @param {string[]} fieldRules
+	 * @returns {Object}
+	 */
+	function validateField(fieldData, fieldRules) {
+	    return fieldRules.reduce(function (result, validatorName) {
+	        var validator = getValidator(validatorName);
+	
+	        if (validator) {
+	            result[validatorName] = validator(fieldData);
+	        }
+	
+	        return result;
+	    }, {});
+	}
+	
+	/**
+	 * Validate
+	 * @param {Object} data
+	 * @param {Object|string[]} rules
+	 * @returns {Object}
+	 */
+	function validate(data, rules) {
+	    var result = {};
+	
+	    Object.keys(rules).forEach(function (key) {
+	        var fieldData = data[key];
+	        var fieldRules = rules[key];
+	
+	        if (Array.isArray(fieldRules)) {
+	            result[key] = validateField(fieldData, fieldRules);
+	        } else {
+	            result[key] = validate(fieldData, fieldRules);
+	        }
+	    });
+	
+	    return result;
+	}
+
+/***/ },
+/* 16 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.validateRequired = undefined;
+	
+	var _validateRequired = __webpack_require__(17);
+	
+	var _validateRequired2 = _interopRequireDefault(_validateRequired);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.validateRequired = _validateRequired2.default;
+
+/***/ },
+/* 17 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = validateRequired;
+	/**
+	 * Is required value valid
+	 * @param {*} value
+	 * @returns {boolean}
+	 */
+	function validateRequired(value) {
+	  return value !== undefined && value !== null && value !== '';
+	}
+
+/***/ },
+/* 18 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.mapToPayload = undefined;
+	
+	var _mapToPayload = __webpack_require__(19);
+	
+	var _mapToPayload2 = _interopRequireDefault(_mapToPayload);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.mapToPayload = _mapToPayload2.default;
+
+/***/ },
+/* 19 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = mapToPayload;
+	
+	var _objectAssign = __webpack_require__(20);
 	
 	var _objectAssign2 = _interopRequireDefault(_objectAssign);
 	
-	var _constants = __webpack_require__(8);
+	var _mapToBillingAddress = __webpack_require__(21);
 	
-	var _sendRequest = __webpack_require__(12);
+	var _mapToBillingAddress2 = _interopRequireDefault(_mapToBillingAddress);
 	
-	var _sendRequest2 = _interopRequireDefault(_sendRequest);
+	var _mapToCustomer = __webpack_require__(23);
+	
+	var _mapToCustomer2 = _interopRequireDefault(_mapToCustomer);
+	
+	var _mapToMeta = __webpack_require__(24);
+	
+	var _mapToMeta2 = _interopRequireDefault(_mapToMeta);
+	
+	var _mapToShippingAddress = __webpack_require__(25);
+	
+	var _mapToShippingAddress2 = _interopRequireDefault(_mapToShippingAddress);
+	
+	var _mapToStore = __webpack_require__(26);
+	
+	var _mapToStore2 = _interopRequireDefault(_mapToStore);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	/**
-	 * Post request
-	 * @param {string} url
-	 * @param {Object} data
-	 * @param {Object} [options]
-	 * @returns {Promise}
+	 * Map to payload
+	 * @param {PaymentRequestData} data
+	 * @returns {Object}
 	 */
-	function postRequest(url, data, options) {
-	    var mergedOptions = (0, _objectAssign2.default)({}, options, {
-	        method: _constants.METHOD_TYPES.POST
-	    });
+	function mapToPayload(data) {
+	    var authToken = data.authToken;
+	    var _data$cart = data.cart;
+	    var cart = _data$cart === undefined ? {} : _data$cart;
+	    var _data$order = data.order;
+	    var order = _data$order === undefined ? {} : _data$order;
+	    var _data$paymentMethod = data.paymentMethod;
+	    var paymentMethod = _data$paymentMethod === undefined ? {} : _data$paymentMethod;
 	
-	    return (0, _sendRequest2.default)(url, data, mergedOptions);
+	
+	    return (0, _objectAssign2.default)({
+	        amount: cart.grandTotal ? cart.grandTotal.integerAmount : undefined,
+	        bc_auth_token: authToken,
+	        currency: cart.currency,
+	        gateway: paymentMethod.gateway,
+	        notify_url: order.callbackUrl,
+	        order_id: order.id,
+	        page_title: document.title,
+	        payment_method_id: paymentMethod.id,
+	        reference_id: order.id,
+	        return_url: paymentMethod.config ? paymentMethod.config.redirectUrl : undefined
+	    }, (0, _mapToBillingAddress2.default)(data), (0, _mapToCustomer2.default)(data), (0, _mapToMeta2.default)(data), (0, _mapToShippingAddress2.default)(data), (0, _mapToStore2.default)(data));
 	}
 
 /***/ },
-/* 7 */
+/* 20 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -366,7 +805,500 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 8 */
+/* 21 */
+[64, 22],
+/* 22 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = mapToAddress;
+	
+	var _utils = __webpack_require__(10);
+	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
+	/**
+	 * Map to address
+	 * @param {PaymentRequestData} data
+	 * @param {string} addressKey
+	 * @returns {Object}
+	 */
+	function mapToAddress(data, addressKey) {
+	    var _ref;
+	
+	    var address = data[addressKey] || {};
+	    var formattedAddressKey = (0, _utils.toSnakeCase)(addressKey);
+	
+	    return _ref = {}, _defineProperty(_ref, formattedAddressKey + '_city', address.city), _defineProperty(_ref, formattedAddressKey + '_company', address.company), _defineProperty(_ref, formattedAddressKey + '_country_code', address.countryCode), _defineProperty(_ref, formattedAddressKey + '_country', address.country), _defineProperty(_ref, formattedAddressKey + '_first_name', address.firstName), _defineProperty(_ref, formattedAddressKey + '_last_name', address.lastName), _defineProperty(_ref, formattedAddressKey + '_phone', address.phone), _defineProperty(_ref, formattedAddressKey + '_state_code', address.provinceCode), _defineProperty(_ref, formattedAddressKey + '_state', address.province), _defineProperty(_ref, formattedAddressKey + '_street_1', address.addressLine1), _defineProperty(_ref, formattedAddressKey + '_street_2', address.addressLine2), _defineProperty(_ref, formattedAddressKey + '_zip', address.postCode), _ref;
+	}
+
+/***/ },
+/* 23 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = mapToCustomer;
+	/**
+	 * Map to customer
+	 * @param {PaymentRequestData} data
+	 * @returns {Object}
+	 */
+	function mapToCustomer(data) {
+	    var _data$customer = data.customer;
+	    var customer = _data$customer === undefined ? {} : _data$customer;
+	    var _data$store = data.store;
+	    var store = _data$store === undefined ? {} : _data$store;
+	
+	
+	    return {
+	        customer_browser_info: navigator.userAgent,
+	        customer_email: customer.email,
+	        customer_first_name: customer.firstName,
+	        customer_geo_country_code: customer.geoCountryCode,
+	        customer_last_name: customer.lastName,
+	        customer_locale: store.storeLanguage,
+	        customer_name: customer.name,
+	        customer_phone: customer.phoneNumber,
+	        customer_reference: customer.email
+	    };
+	}
+
+/***/ },
+/* 24 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = mapToMeta;
+	/**
+	 * Map to meta
+	 * @param {PaymentRequestData} data
+	 * @returns {Object}
+	 */
+	function mapToMeta(data) {
+	    var source = data.source;
+	
+	
+	    return {
+	        meta_referrer: document.referrer,
+	        meta_source: source,
+	        meta_user_agent: navigator.userAgent
+	    };
+	}
+
+/***/ },
+/* 25 */
+[65, 22],
+/* 26 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = mapToStore;
+	/**
+	 * Map to store
+	 * @param {PaymentRequestData} data
+	 * @returns {Object}
+	 */
+	function mapToStore(data) {
+	    var _data$store = data.store;
+	    var store = _data$store === undefined ? {} : _data$store;
+	
+	
+	    return {
+	        store_hash: store.storeHash,
+	        store_id: store.storeId
+	    };
+	}
+
+/***/ },
+/* 27 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.postForm = undefined;
+	
+	var _postForm = __webpack_require__(28);
+	
+	var _postForm2 = _interopRequireDefault(_postForm);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.postForm = _postForm2.default;
+
+/***/ },
+/* 28 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = postForm;
+	
+	var _createForm = __webpack_require__(29);
+	
+	var _createForm2 = _interopRequireDefault(_createForm);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	/**
+	 * Post form
+	 * @param {string} url
+	 * @param {Object} data
+	 * @returns {Promise}
+	 */
+	function postForm(url, data) {
+	    var form = (0, _createForm2.default)(url, data);
+	
+	    form.submit();
+	
+	    return new Promise(function (resolve) {
+	        window.addEventListener('beforeunload', function handleBeforeUnload() {
+	            window.removeEventListener('beforeunload', handleBeforeUnload);
+	
+	            resolve();
+	        });
+	    });
+	}
+
+/***/ },
+/* 29 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = createForm;
+	/**
+	 * Create input
+	 * @param {string} value
+	 * @param {string} key
+	 * @returns {HTMLInputElement}
+	 */
+	function createInput(value, key) {
+	    var input = document.createElement('input');
+	
+	    input.setAttribute('name', key);
+	    input.setAttribute('value', value);
+	
+	    return input;
+	}
+	
+	/**
+	 * Create form
+	 * @param {string} url
+	 * @param {Object} data
+	 * @returns {HTMLFormElement}
+	 */
+	function createForm(url, data) {
+	    var form = document.createElement('form');
+	
+	    form.setAttribute('action', url);
+	    form.setAttribute('method', 'POST');
+	    form.setAttribute('target', '_top');
+	
+	    Object.keys(data).forEach(function (key) {
+	        var value = data[key];
+	
+	        form.appendChild(createInput(value, key));
+	    });
+	
+	    return form;
+	}
+
+/***/ },
+/* 30 */
+[66, 31],
+/* 31 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = validatePaymentRequest;
+	
+	var _validators = __webpack_require__(16);
+	
+	var _validateCart = __webpack_require__(32);
+	
+	var _validateCart2 = _interopRequireDefault(_validateCart);
+	
+	var _validatePaymentMethod = __webpack_require__(33);
+	
+	var _validatePaymentMethod2 = _interopRequireDefault(_validatePaymentMethod);
+	
+	var _validateOrder = __webpack_require__(34);
+	
+	var _validateOrder2 = _interopRequireDefault(_validateOrder);
+	
+	var _validateStore = __webpack_require__(35);
+	
+	var _validateStore2 = _interopRequireDefault(_validateStore);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	/**
+	 * Validate payment request data
+	 * @param {PaymentRequestData} paymentRequestData
+	 * @returns {Object}
+	 */
+	function validatePaymentRequest(paymentRequestData) {
+	    var authToken = paymentRequestData.authToken;
+	    var cart = paymentRequestData.cart;
+	    var order = paymentRequestData.order;
+	    var paymentMethod = paymentRequestData.paymentMethod;
+	    var store = paymentRequestData.store;
+	
+	
+	    return {
+	        authToken: (0, _validators.validateRequired)(authToken),
+	        cart: (0, _validateCart2.default)(cart),
+	        order: (0, _validateOrder2.default)(order),
+	        paymentMethod: (0, _validatePaymentMethod2.default)(paymentMethod),
+	        store: (0, _validateStore2.default)(store)
+	    };
+	}
+
+/***/ },
+/* 32 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = validateCart;
+	
+	var _validation = __webpack_require__(8);
+	
+	/**
+	 * Validate cart data
+	 * @param {CartData} cartData
+	 * @returns {Object}
+	 */
+	function validateCart(cartData) {
+	    return (0, _validation.validate)(cartData, {
+	        currency: ['required'],
+	        grandTotal: {
+	            integerAmount: ['required']
+	        }
+	    });
+	}
+
+/***/ },
+/* 33 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = validatePaymentMethod;
+	
+	var _validation = __webpack_require__(8);
+	
+	/**
+	 * Validate payment method
+	 * @param {CartData} paymentMethod
+	 * @returns {Object}
+	 */
+	function validatePaymentMethod(paymentMethod) {
+	    return (0, _validation.validate)(paymentMethod, {
+	        config: {
+	            redirectUrl: ['required']
+	        },
+	        gateway: ['required'],
+	        id: ['required']
+	    });
+	}
+
+/***/ },
+/* 34 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = validateOrder;
+	
+	var _validation = __webpack_require__(8);
+	
+	/**
+	 * Validate order data
+	 * @param {OrderData} orderData
+	 * @returns {Object}
+	 */
+	function validateOrder(orderData) {
+	    return (0, _validation.validate)(orderData, {
+	        callbackUrl: ['required'],
+	        orderId: ['required']
+	    });
+	}
+
+/***/ },
+/* 35 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = validateOrder;
+	
+	var _validation = __webpack_require__(8);
+	
+	/**
+	 * Validate store data
+	 * @param {StoreData} storeData
+	 * @returns {Object}
+	 */
+	function validateOrder(storeData) {
+	    return (0, _validation.validate)(storeData, {
+	        storeHash: ['required'],
+	        storeId: ['required']
+	    });
+	}
+
+/***/ },
+/* 36 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = submitPayment;
+	
+	var _urls = __webpack_require__(7);
+	
+	var _httpRequest = __webpack_require__(37);
+	
+	var _validation = __webpack_require__(8);
+	
+	var _mappers = __webpack_require__(45);
+	
+	var _validators = __webpack_require__(58);
+	
+	/**
+	 * Submit payment
+	 * @param {PaymentRequestData} data
+	 * @param {Object} [options = {}]
+	 * @param {string} [options.host]
+	 * @returns {Promise}
+	 */
+	function submitPayment(data) {
+	    var _ref = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+	
+	    var host = _ref.host;
+	
+	    var validation = (0, _validators.validatePaymentRequest)(data);
+	
+	    if (!(0, _validation.isValid)(validation)) {
+	        return Promise.reject(new Error({ validation: validation }));
+	    }
+	
+	    var payload = (0, _mappers.mapToPayload)(data);
+	    var requestOptions = {
+	        headers: (0, _mappers.mapToHeaders)(data)
+	    };
+	
+	    return (0, _httpRequest.postRequest)((0, _urls.getPaymentUrl)(host), payload, requestOptions);
+	}
+
+/***/ },
+/* 37 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.sendRequest = exports.postRequest = undefined;
+	
+	var _postRequest = __webpack_require__(38);
+	
+	var _postRequest2 = _interopRequireDefault(_postRequest);
+	
+	var _sendRequest = __webpack_require__(43);
+	
+	var _sendRequest2 = _interopRequireDefault(_sendRequest);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.postRequest = _postRequest2.default;
+	exports.sendRequest = _sendRequest2.default;
+
+/***/ },
+/* 38 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = postRequest;
+	
+	var _objectAssign = __webpack_require__(20);
+	
+	var _objectAssign2 = _interopRequireDefault(_objectAssign);
+	
+	var _constants = __webpack_require__(39);
+	
+	var _sendRequest = __webpack_require__(43);
+	
+	var _sendRequest2 = _interopRequireDefault(_sendRequest);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	/**
+	 * Post request
+	 * @param {string} url
+	 * @param {Object} data
+	 * @param {Object} [options]
+	 * @returns {Promise}
+	 */
+	function postRequest(url, data, options) {
+	    var mergedOptions = (0, _objectAssign2.default)({}, options, {
+	        method: _constants.METHOD_TYPES.POST
+	    });
+	
+	    return (0, _sendRequest2.default)(url, data, mergedOptions);
+	}
+
+/***/ },
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -376,15 +1308,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.METHOD_TYPES = exports.DEFAULT_OPTIONS = exports.CONTENT_TYPES = undefined;
 	
-	var _contentTypes = __webpack_require__(9);
+	var _contentTypes = __webpack_require__(40);
 	
 	var CONTENT_TYPES = _interopRequireWildcard(_contentTypes);
 	
-	var _methodTypes = __webpack_require__(10);
+	var _methodTypes = __webpack_require__(41);
 	
 	var METHOD_TYPES = _interopRequireWildcard(_methodTypes);
 	
-	var _defaultOptions = __webpack_require__(11);
+	var _defaultOptions = __webpack_require__(42);
 	
 	var _defaultOptions2 = _interopRequireDefault(_defaultOptions);
 	
@@ -397,7 +1329,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.METHOD_TYPES = METHOD_TYPES;
 
 /***/ },
-/* 9 */
+/* 40 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -408,7 +1340,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var APPLICATION_JSON = exports.APPLICATION_JSON = 'application/json';
 
 /***/ },
-/* 10 */
+/* 41 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -420,7 +1352,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var POST = exports.POST = 'POST';
 
 /***/ },
-/* 11 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -429,9 +1361,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: true
 	});
 	
-	var _contentTypes = __webpack_require__(9);
+	var _contentTypes = __webpack_require__(40);
 	
-	var _methodTypes = __webpack_require__(10);
+	var _methodTypes = __webpack_require__(41);
 	
 	var DEFAULT_OPTIONS = {
 	    headers: {
@@ -444,7 +1376,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = DEFAULT_OPTIONS;
 
 /***/ },
-/* 12 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -454,15 +1386,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.default = sendRequest;
 	
-	var _objectAssign = __webpack_require__(7);
+	var _objectAssign = __webpack_require__(20);
 	
 	var _objectAssign2 = _interopRequireDefault(_objectAssign);
 	
-	var _constants = __webpack_require__(8);
+	var _constants = __webpack_require__(39);
 	
-	var _utils = __webpack_require__(13);
+	var _utils = __webpack_require__(10);
 	
-	var _createRequest = __webpack_require__(17);
+	var _createRequest = __webpack_require__(44);
 	
 	var _createRequest2 = _interopRequireDefault(_createRequest);
 	
@@ -559,107 +1491,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 13 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.isObject = exports.includes = exports.capitalize = undefined;
-	
-	var _capitalize = __webpack_require__(14);
-	
-	var _capitalize2 = _interopRequireDefault(_capitalize);
-	
-	var _includes = __webpack_require__(15);
-	
-	var _includes2 = _interopRequireDefault(_includes);
-	
-	var _isObject = __webpack_require__(16);
-	
-	var _isObject2 = _interopRequireDefault(_isObject);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.capitalize = _capitalize2.default;
-	exports.includes = _includes2.default;
-	exports.isObject = _isObject2.default;
-
-/***/ },
-/* 14 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.default = capitalize;
-	/**
-	 * Capitalize
-	 * @param {string} string
-	 * @returns {string}
-	 */
-	function capitalize(string) {
-	    if (!string) {
-	        return string;
-	    }
-	
-	    return string.charAt(0).toUpperCase() + string.slice(1);
-	}
-
-/***/ },
-/* 15 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.default = includes;
-	/**
-	 * Includes item
-	 * @param {array|string} items
-	 * @param {array|string} item
-	 * @returns {boolean}
-	 */
-	function includes(items, item) {
-	    if (!Array.isArray(items) && typeof items !== 'string') {
-	        return false;
-	    }
-	
-	    return items.indexOf(item) !== -1;
-	}
-
-/***/ },
-/* 16 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
-	
-	exports.default = isObject;
-	/**
-	 * Is object
-	 * @param {*} value
-	 * @returns {boolean}
-	 */
-	function isObject(value) {
-	  var type = typeof value === 'undefined' ? 'undefined' : _typeof(value);
-	
-	  return value !== null && (type === 'object' || type === 'function');
-	}
-
-/***/ },
-/* 17 */
+/* 44 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -736,178 +1568,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 18 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.validate = exports.isValid = undefined;
-	
-	var _isValid = __webpack_require__(19);
-	
-	var _isValid2 = _interopRequireDefault(_isValid);
-	
-	var _validate = __webpack_require__(20);
-	
-	var _validate2 = _interopRequireDefault(_validate);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.isValid = _isValid2.default;
-	exports.validate = _validate2.default;
-
-/***/ },
-/* 19 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.default = isValid;
-	
-	var _utils = __webpack_require__(13);
-	
-	/**
-	 * Is valid result
-	 * @param {Object} validation
-	 * @returns {Boolean}
-	 */
-	function isValid(validation) {
-	    var keys = Object.keys(validation);
-	
-	    while (keys.length > 0) {
-	        var key = keys.shift();
-	
-	        if (validation[key] === false) {
-	            return false;
-	        }
-	
-	        if ((0, _utils.isObject)(validation[key]) && !isValid(validation[key])) {
-	            return false;
-	        }
-	    }
-	
-	    return true;
-	}
-
-/***/ },
-/* 20 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.default = validate;
-	
-	var _utils = __webpack_require__(13);
-	
-	var _validators = __webpack_require__(21);
-	
-	var validators = _interopRequireWildcard(_validators);
-	
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-	
-	/**
-	 * Get validator
-	 * @private
-	 * @param {string} validatorName
-	 * @returns {Function|void}
-	 */
-	function getValidator(validatorName) {
-	    var validateFunctionName = 'validate' + (0, _utils.capitalize)(validatorName);
-	
-	    return validators[validateFunctionName];
-	}
-	
-	/**
-	 * Validate field
-	 * @private
-	 * @param {*} fieldData
-	 * @param {string[]} fieldRules
-	 * @returns {Object}
-	 */
-	function validateField(fieldData, fieldRules) {
-	    return fieldRules.reduce(function (result, validatorName) {
-	        var validator = getValidator(validatorName);
-	
-	        if (validator) {
-	            result[validatorName] = validator(fieldData);
-	        }
-	
-	        return result;
-	    }, {});
-	}
-	
-	/**
-	 * Validate
-	 * @param {Object} data
-	 * @param {Object|string[]} rules
-	 * @returns {Object}
-	 */
-	function validate(data, rules) {
-	    var result = {};
-	
-	    Object.keys(rules).forEach(function (key) {
-	        var fieldData = data[key];
-	        var fieldRules = rules[key];
-	
-	        if (Array.isArray(fieldRules)) {
-	            result[key] = validateField(fieldData, fieldRules);
-	        } else {
-	            result[key] = validate(fieldData, fieldRules);
-	        }
-	    });
-	
-	    return result;
-	}
-
-/***/ },
-/* 21 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.validateRequired = undefined;
-	
-	var _validateRequired = __webpack_require__(22);
-	
-	var _validateRequired2 = _interopRequireDefault(_validateRequired);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.validateRequired = _validateRequired2.default;
-
-/***/ },
-/* 22 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = validateRequired;
-	/**
-	 * Is required value valid
-	 * @param {*} value
-	 * @returns {boolean}
-	 */
-	function validateRequired(value) {
-	  return value !== undefined && value !== null && value !== '';
-	}
-
-/***/ },
-/* 23 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -917,11 +1578,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.mapToPayload = exports.mapToHeaders = undefined;
 	
-	var _mapToHeaders = __webpack_require__(24);
+	var _mapToHeaders = __webpack_require__(46);
 	
 	var _mapToHeaders2 = _interopRequireDefault(_mapToHeaders);
 	
-	var _mapToPayload = __webpack_require__(25);
+	var _mapToPayload = __webpack_require__(47);
 	
 	var _mapToPayload2 = _interopRequireDefault(_mapToPayload);
 	
@@ -931,7 +1592,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.mapToPayload = _mapToPayload2.default;
 
 /***/ },
-/* 24 */
+/* 46 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -955,7 +1616,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 25 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -965,19 +1626,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.default = mapToPayload;
 	
-	var _mapToCustomer = __webpack_require__(26);
+	var _mapToCustomer = __webpack_require__(48);
 	
 	var _mapToCustomer2 = _interopRequireDefault(_mapToCustomer);
 	
-	var _mapToOrder = __webpack_require__(27);
+	var _mapToOrder = __webpack_require__(49);
 	
 	var _mapToOrder2 = _interopRequireDefault(_mapToOrder);
 	
-	var _mapToPayment = __webpack_require__(33);
+	var _mapToPayment = __webpack_require__(55);
 	
 	var _mapToPayment2 = _interopRequireDefault(_mapToPayment);
 	
-	var _mapToStore = __webpack_require__(35);
+	var _mapToStore = __webpack_require__(57);
 	
 	var _mapToStore2 = _interopRequireDefault(_mapToStore);
 	
@@ -1003,7 +1664,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 26 */
+/* 48 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1030,7 +1691,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 27 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1040,19 +1701,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.default = mapToOrder;
 	
-	var _mapToBillingAddress = __webpack_require__(28);
+	var _mapToBillingAddress = __webpack_require__(50);
 	
 	var _mapToBillingAddress2 = _interopRequireDefault(_mapToBillingAddress);
 	
-	var _mapToItems = __webpack_require__(30);
+	var _mapToItems = __webpack_require__(52);
 	
 	var _mapToItems2 = _interopRequireDefault(_mapToItems);
 	
-	var _mapToOrderTotals = __webpack_require__(31);
+	var _mapToOrderTotals = __webpack_require__(53);
 	
 	var _mapToOrderTotals2 = _interopRequireDefault(_mapToOrderTotals);
 	
-	var _mapToShippingAddress = __webpack_require__(32);
+	var _mapToShippingAddress = __webpack_require__(54);
 	
 	var _mapToShippingAddress2 = _interopRequireDefault(_mapToShippingAddress);
 	
@@ -1080,33 +1741,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 28 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = mapToBillingAddress;
-	
-	var _mapToAddress = __webpack_require__(29);
-	
-	var _mapToAddress2 = _interopRequireDefault(_mapToAddress);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	/**
-	 * Map to billing address
-	 * @param {PaymentRequestData} data
-	 * @returns {Object}
-	 */
-	function mapToBillingAddress(data) {
-	  return (0, _mapToAddress2.default)(data, 'billingAddress');
-	}
-
-/***/ },
-/* 29 */
+/* 50 */
+[64, 51],
+/* 51 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1132,6 +1769,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        first_name: address.firstName,
 	        last_name: address.lastName,
 	        phone: address.phone,
+	        state_code: address.provinceCode,
 	        state: address.province,
 	        street_1: address.addressLine1,
 	        street_2: address.addressLine2,
@@ -1140,7 +1778,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 30 */
+/* 52 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1163,15 +1801,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return {
 	            code: itemData.id,
 	            name: itemData.name,
+	            price: itemData.amount,
 	            quantity: itemData.quantity,
-	            sku: itemData.sku,
-	            value: itemData.amount
+	            sku: itemData.sku
 	        };
 	    });
 	}
 
 /***/ },
-/* 31 */
+/* 53 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1199,33 +1837,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 32 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = mapToShippingAddress;
-	
-	var _mapToAddress = __webpack_require__(29);
-	
-	var _mapToAddress2 = _interopRequireDefault(_mapToAddress);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	/**
-	 * Map to shipping address
-	 * @param {PaymentRequestData} data
-	 * @returns {Object}
-	 */
-	function mapToShippingAddress(data) {
-	  return (0, _mapToAddress2.default)(data, 'shippingAddress');
-	}
-
-/***/ },
-/* 33 */
+/* 54 */
+[65, 51],
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1235,7 +1849,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.default = mapToPayment;
 	
-	var _mapToCreditCard = __webpack_require__(34);
+	var _mapToCreditCard = __webpack_require__(56);
 	
 	var _mapToCreditCard2 = _interopRequireDefault(_mapToCreditCard);
 	
@@ -1267,7 +1881,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 34 */
+/* 56 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1296,7 +1910,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 35 */
+/* 57 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1323,26 +1937,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 36 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.validatePaymentRequest = undefined;
-	
-	var _validatePaymentRequest = __webpack_require__(37);
-	
-	var _validatePaymentRequest2 = _interopRequireDefault(_validatePaymentRequest);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.validatePaymentRequest = _validatePaymentRequest2.default;
-
-/***/ },
-/* 37 */
+/* 58 */
+[66, 59],
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1352,21 +1949,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.default = validatePaymentRequest;
 	
-	var _validators = __webpack_require__(21);
+	var _validators = __webpack_require__(16);
 	
-	var _validateCart = __webpack_require__(38);
+	var _validateCart = __webpack_require__(60);
 	
 	var _validateCart2 = _interopRequireDefault(_validateCart);
 	
-	var _validateOrder = __webpack_require__(39);
+	var _validateOrder = __webpack_require__(61);
 	
 	var _validateOrder2 = _interopRequireDefault(_validateOrder);
 	
-	var _validatePayment = __webpack_require__(40);
+	var _validatePayment = __webpack_require__(62);
 	
 	var _validatePayment2 = _interopRequireDefault(_validatePayment);
 	
-	var _validateStore = __webpack_require__(41);
+	var _validateStore = __webpack_require__(63);
 	
 	var _validateStore2 = _interopRequireDefault(_validateStore);
 	
@@ -1395,35 +1992,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 38 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.default = validateCart;
-	
-	var _validation = __webpack_require__(18);
-	
-	/**
-	 * Validate cart data
-	 * @param {CartData} cartData
-	 * @returns {Object}
-	 */
-	function validateCart(cartData) {
-	    return (0, _validation.validate)(cartData, {
-	        currency: ['required'],
-	        grandTotal: {
-	            integerAmount: ['required']
-	        },
-	        id: ['required']
-	    });
-	}
-
-/***/ },
-/* 39 */
+/* 60 */
+32,
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1433,7 +2004,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.default = validateOrder;
 	
-	var _validation = __webpack_require__(18);
+	var _validation = __webpack_require__(8);
 	
 	/**
 	 * Validate order data
@@ -1447,7 +2018,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 40 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1457,7 +2028,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.default = validatePayment;
 	
-	var _validation = __webpack_require__(18);
+	var _objectAssign = __webpack_require__(20);
+	
+	var _objectAssign2 = _interopRequireDefault(_objectAssign);
+	
+	var _validation = __webpack_require__(8);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	/**
 	 * Validate payment data
@@ -1465,7 +2042,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @returns {Object}
 	 */
 	function validatePayment(paymentData) {
-	    return (0, _validation.validate)(paymentData, {
+	    var nouceValidation = (0, _validation.validate)(paymentData, {
+	        nouce: ['required']
+	    });
+	
+	    var creditCardValidation = (0, _validation.validate)(paymentData, {
 	        ccName: ['required'],
 	        ccNumber: ['required'],
 	        ccExpiry: {
@@ -1473,10 +2054,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	            year: ['required']
 	        }
 	    });
+	
+	    if ((0, _validation.isValid)(nouceValidation)) {
+	        return nouceValidation;
+	    }
+	
+	    if ((0, _validation.isValid)(creditCardValidation)) {
+	        return nouceValidation;
+	    }
+	
+	    return (0, _objectAssign2.default)({}, nouceValidation, creditCardValidation);
 	}
 
 /***/ },
-/* 41 */
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1486,7 +2077,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.default = validateOrder;
 	
-	var _validation = __webpack_require__(18);
+	var _validation = __webpack_require__(8);
 	
 	/**
 	 * Validate store data
@@ -1499,8 +2090,79 @@ return /******/ (function(modules) { // webpackBootstrap
 	    });
 	}
 
+/***/ },
+/* 64 */
+/***/ function(module, exports, __webpack_require__, __webpack_module_template_argument_0__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = mapToBillingAddress;
+	
+	var _mapToAddress = __webpack_require__(__webpack_module_template_argument_0__);
+	
+	var _mapToAddress2 = _interopRequireDefault(_mapToAddress);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	/**
+	 * Map to billing address
+	 * @param {PaymentRequestData} data
+	 * @returns {Object}
+	 */
+	function mapToBillingAddress(data) {
+	  return (0, _mapToAddress2.default)(data, 'billingAddress');
+	}
+
+/***/ },
+/* 65 */
+/***/ function(module, exports, __webpack_require__, __webpack_module_template_argument_0__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = mapToShippingAddress;
+	
+	var _mapToAddress = __webpack_require__(__webpack_module_template_argument_0__);
+	
+	var _mapToAddress2 = _interopRequireDefault(_mapToAddress);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	/**
+	 * Map to shipping address
+	 * @param {PaymentRequestData} data
+	 * @returns {Object}
+	 */
+	function mapToShippingAddress(data) {
+	  return (0, _mapToAddress2.default)(data, 'shippingAddress');
+	}
+
+/***/ },
+/* 66 */
+/***/ function(module, exports, __webpack_require__, __webpack_module_template_argument_0__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.validatePaymentRequest = undefined;
+	
+	var _validatePaymentRequest = __webpack_require__(__webpack_module_template_argument_0__);
+	
+	var _validatePaymentRequest2 = _interopRequireDefault(_validatePaymentRequest);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.validatePaymentRequest = _validatePaymentRequest2.default;
+
 /***/ }
-/******/ ])
+/******/ ])))
 });
 ;
 //# sourceMappingURL=bigpay-client.js.map
