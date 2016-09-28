@@ -5,6 +5,6 @@ import Client from './client';
  * @param {Object} config
  * @returns {Client}
  */
-export function createClient(config) {
+export default function createClient(config) {
     return new Client(config);
 }
