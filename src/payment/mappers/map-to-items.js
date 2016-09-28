@@ -9,8 +9,8 @@ export default function mapToItems(data) {
     return cart.items.map(itemData => ({
         code: itemData.id,
         name: itemData.name,
+        price: itemData.amount,
         quantity: itemData.quantity,
         sku: itemData.sku,
-        value: itemData.amount,
     }));
 }
