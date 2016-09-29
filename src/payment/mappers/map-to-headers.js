@@ -1,3 +1,5 @@
+import { omitEmpty } from '../../common/utils';
+
 /**
  * Map to headers
  * @param {PaymentRequestData} data
@@ -6,7 +8,7 @@
 export default function mapToHeaders(data) {
     const { authToken } = data;
 
-    return {
+    return omitEmpty({
         Authorization: authToken,
-    };
+    });
 }

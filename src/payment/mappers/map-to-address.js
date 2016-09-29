@@ -1,3 +1,5 @@
+import { omitEmpty } from '../../common/utils';
+
 /**
  * Map to address
  * @param {PaymentRequestData} data
@@ -7,7 +9,7 @@
 export default function mapToAddress(data, addressKey) {
     const address = data[addressKey] || {};
 
-    return {
+    return omitEmpty({
         city: address.city,
         company: address.company,
         country_code: address.countryCode,
@@ -20,5 +22,5 @@ export default function mapToAddress(data, addressKey) {
         street_1: address.addressLine1,
         street_2: address.addressLine2,
         zip: address.postCode,
-    };
+    });
 }

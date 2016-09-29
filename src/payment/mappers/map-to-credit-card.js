@@ -1,4 +1,4 @@
-import { toNumber } from '../../common/utils';
+import { omitEmpty, toNumber } from '../../common/utils';
 
 /**
  * Map to credit card
@@ -8,11 +8,11 @@ import { toNumber } from '../../common/utils';
 export default function mapToCreditCard(data) {
     const { payment = {} } = data;
 
-    return {
+    return omitEmpty({
         account_name: payment.ccName,
-        number: payment.ccNumber,
         month: payment.ccExpiry ? toNumber(payment.ccExpiry.month) : null,
+        number: payment.ccNumber,
         verification_value: payment.ccCvv,
         year: payment.ccExpiry ? toNumber(payment.ccExpiry.year) : null,
-    };
+    });
 }

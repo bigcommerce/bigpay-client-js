@@ -1,4 +1,4 @@
-import { toString } from '../../common/utils';
+import { omitEmpty, toString } from '../../common/utils';
 import mapToBillingAddress from './map-to-billing-address';
 import mapToItems from './map-to-items';
 import mapToOrderTotals from './map-to-order-totals';
@@ -12,7 +12,7 @@ import mapToShippingAddress from './map-to-shipping-address';
 export default function mapToOrder(data) {
     const { cart, order } = data;
 
-    return {
+    return omitEmpty({
         billing_address: mapToBillingAddress(data),
         currency: cart.currency,
         id: toString(order.orderId),
@@ -20,5 +20,5 @@ export default function mapToOrder(data) {
         shipping_address: mapToShippingAddress(data),
         token: order.token,
         totals: mapToOrderTotals(data),
-    };
+    });
 }

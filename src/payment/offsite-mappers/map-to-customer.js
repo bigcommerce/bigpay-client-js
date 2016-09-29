@@ -1,3 +1,5 @@
+import { omitEmpty } from '../../common/utils';
+
 /**
  * Map to customer
  * @param {PaymentRequestData} data
@@ -6,7 +8,7 @@
 export default function mapToCustomer(data) {
     const { customer = {}, store = {} } = data;
 
-    return {
+    return omitEmpty({
         customer_browser_info: navigator.userAgent,
         customer_email: customer.email,
         customer_first_name: customer.firstName,
@@ -16,5 +18,5 @@ export default function mapToCustomer(data) {
         customer_name: customer.name,
         customer_phone: customer.phoneNumber,
         customer_reference: customer.email,
-    };
+    });
 }

@@ -1,4 +1,5 @@
 import objectAssign from 'object-assign';
+import { omitEmpty } from '../../common/utils';
 import mapToCreditCard from './map-to-credit-card';
 
 /**
@@ -27,5 +28,5 @@ export default function mapToPayment(data) {
         });
     }
 
-    return payload;
+    return omitEmpty(payload);
 }
