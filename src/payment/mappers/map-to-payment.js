@@ -1,3 +1,4 @@
+import objectAssign from 'object-assign';
 import mapToCreditCard from './map-to-credit-card';
 
 /**
@@ -8,13 +9,23 @@ import mapToCreditCard from './map-to-credit-card';
 export default function mapToPayment(data) {
     const { order = {}, payment = {}, paymentMethod = {} } = data;
 
-    return {
-        credit_card_token: {
-            token: payment.nouce,
-        },
-        credit_card: mapToCreditCard(data),
+    const payload = {
         device_info: payment.deviceData,
         gateway: paymentMethod.id,
         notify_url: order.callbackUrl,
     };
+
+    if (payment.nouce) {
+        objectAssign(payload, {
+            credit_card_token: {
+                token: payment.nouce,
+            },
+        });
+    } else {
+        objectAssign(payload, {
+            credit_card: mapToCreditCard(data),
+        });
+    }
+
+    return payload;
 }
