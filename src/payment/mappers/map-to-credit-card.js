@@ -1,3 +1,5 @@
+import { toNumber } from '../../common/utils';
+
 /**
  * Map to credit card
  * @param {PaymentRequestData} data
@@ -9,8 +11,8 @@ export default function mapToCreditCard(data) {
     return {
         account_name: payment.ccName,
         number: payment.ccNumber,
-        month: payment.ccExpiry ? payment.ccExpiry.month : undefined,
+        month: payment.ccExpiry ? toNumber(payment.ccExpiry.month) : null,
         verification_value: payment.ccCvv,
-        year: payment.ccExpiry ? payment.ccExpiry.year : undefined,
+        year: payment.ccExpiry ? toNumber(payment.ccExpiry.year) : null,
     };
 }

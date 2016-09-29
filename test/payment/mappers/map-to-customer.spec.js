@@ -13,7 +13,7 @@ describe('mapToCustomer', () => {
 
         expect(output).toEqual({
             geo_ip_country_code: data.customer.geoCountryCode,
-            id: data.customer.customerId,
+            id: `${data.customer.customerId}`,
             session_token: data.customer.sessionHash,
         });
     });

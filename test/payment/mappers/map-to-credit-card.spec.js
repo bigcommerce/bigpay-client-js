@@ -14,9 +14,9 @@ describe('mapToCreditCard', () => {
         expect(output).toEqual({
             account_name: data.payment.ccName,
             number: data.payment.ccNumber,
-            month: data.payment.ccExpiry.month,
+            month: parseInt(data.payment.ccExpiry.month, 10),
             verification_value: data.payment.ccCvv,
-            year: data.payment.ccExpiry.year,
+            year: parseInt(data.payment.ccExpiry.year, 10),
         });
     });
 });

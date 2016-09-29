@@ -1,3 +1,5 @@
+import { toString } from '../../common/utils';
+
 /**
  * Map to customer
  * @param {PaymentRequestData} data
@@ -8,7 +10,7 @@ export default function mapToCustomer(data) {
 
     return {
         geo_ip_country_code: customer.geoCountryCode,
-        id: customer.customerId,
+        id: toString(customer.customerId),
         session_token: customer.sessionHash,
     };
 }

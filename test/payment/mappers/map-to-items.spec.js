@@ -15,7 +15,7 @@ describe('mapToItems', () => {
             {
                 code: data.cart.items[0].id,
                 name: data.cart.items[0].name,
-                price: data.cart.items[0].amount,
+                price: data.cart.items[0].integerAmount,
                 quantity: data.cart.items[0].quantity,
                 sku: data.cart.items[0].sku,
             },
