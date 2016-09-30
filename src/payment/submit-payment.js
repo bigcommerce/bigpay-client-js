@@ -7,14 +7,15 @@ import { mapToHeaders, mapToPayload } from './mappers';
  * @param {PaymentRequestData} data
  * @param {Object} [options = {}]
  * @param {string} [options.host]
- * @returns {Promise}
+ * @param {Function} [callback]
+ * @returns {void}
  */
-export default function submitPayment(data, { host } = {}) {
+export default function submitPayment(data, { host } = {}, callback) {
     const payload = mapToPayload(data);
     const url = getPaymentUrl(host);
     const options = {
         headers: mapToHeaders(data),
     };
 
-    return postRequest(url, payload, options);
+    postRequest(url, payload, options, callback);
 }

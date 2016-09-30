@@ -4,18 +4,17 @@ import createForm from './create-form';
  * Post form
  * @param {string} url
  * @param {Object} data
- * @returns {Promise}
+ * @param {Function} [callback]
+ * @returns {void}
  */
-export default function postForm(url, data) {
+export default function postForm(url, data, callback = () => {}) {
     const form = createForm(url, data);
 
     form.submit();
 
-    return new Promise(resolve => {
-        window.addEventListener('beforeunload', function handleBeforeUnload() {
-            window.removeEventListener('beforeunload', handleBeforeUnload);
+    window.addEventListener('beforeunload', function handleBeforeUnload() {
+        window.removeEventListener('beforeunload', handleBeforeUnload);
 
-            resolve();
-        });
+        callback();
     });
 }

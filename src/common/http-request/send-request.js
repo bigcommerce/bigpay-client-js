@@ -52,27 +52,25 @@ function isSuccessfulRequest(xhr) {
  * @param {string} url
  * @param {Object} data
  * @param {Object} [options]
- * @returns {Promise}
+ * @param {Function} [callback]
+ * @returns {void}
  */
-export default function sendRequest(url, data, options) {
+export default function sendRequest(url, data, options, callback = () => {}) {
     const mergedOptions = deepAssign({}, DEFAULT_OPTIONS, options);
 
-    return new Promise((resolve, reject) => {
-        function onerror(xhr) {
-            reject(getResponse(xhr));
+    const xhr = createRequest(url, mergedOptions, error => {
+        const response = getResponse(xhr);
+
+        if (error || !isSuccessfulRequest(xhr)) {
+            callback(response);
+
+            return;
         }
 
-        function onload(xhr) {
-            if (isSuccessfulRequest(xhr)) {
-                resolve(getResponse(xhr));
-            } else {
-                onerror(xhr);
-            }
-        }
-
-        const xhr = createRequest(url, mergedOptions, { onerror, onload });
-        const payload = getRequestBody(data, mergedOptions.headers['Content-Type']);
-
-        xhr.send(payload);
+        callback(null, response);
     });
+
+    const payload = getRequestBody(data, mergedOptions.headers['Content-Type']);
+
+    xhr.send(payload);
 }

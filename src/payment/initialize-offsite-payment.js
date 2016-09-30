@@ -7,11 +7,12 @@ import { postForm } from '../common/form-request';
  * @param {PaymentRequestData} data
  * @param {Object} [options = {}]
  * @param {string} [options.host]
- * @returns {Promise}
+ * @param {Function} [callback]
+ * @returns {void}
  */
-export default function initializeOffsitePayment(data, { host } = {}) {
+export default function initializeOffsitePayment(data, { host } = {}, callback) {
     const payload = mapToPayload(data);
     const url = getOffsitePaymentUrl(host);
 
-    return postForm(url, payload);
+    postForm(url, payload, callback);
 }

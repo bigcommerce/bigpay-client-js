@@ -23,11 +23,6 @@ describe('sendRequest', () => {
     it('should create XHR', () => {
         const { default: createRequest } = createRequestModule;
 
-        const callbacks = {
-            onerror: jasmine.any(Function),
-            onload: jasmine.any(Function),
-        };
-
         const expectedOptions = {
             headers: {
                 Accept: 'application/json',
@@ -38,7 +33,7 @@ describe('sendRequest', () => {
 
         sendRequest(url, data, options);
 
-        expect(createRequest).toHaveBeenCalledWith(url, expectedOptions, callbacks);
+        expect(createRequest).toHaveBeenCalledWith(url, expectedOptions, jasmine.any(Function));
     });
 
     it('should send XHR with payload', () => {
@@ -51,12 +46,11 @@ describe('sendRequest', () => {
         expect(request.data()).toEqual(data);
     });
 
-    it('should resolve promise if successful', done => {
-        sendRequest(url, data, options)
-            .then(resp => {
-                expect(resp).toBeDefined();
-                done();
-            });
+    it('should return response in callback if successful', done => {
+        sendRequest(url, data, options, (err, resp) => {
+            expect(resp).toBeDefined();
+            done();
+        });
 
         const request = jasmine.Ajax.requests.mostRecent();
 
@@ -66,12 +60,11 @@ describe('sendRequest', () => {
         });
     });
 
-    it('should reject promise if unsuccessful', done => {
-        sendRequest(url, data, options)
-            .catch(err => {
-                expect(err).toBeDefined();
-                done();
-            });
+    it('should return error in callback if unsuccessful', done => {
+        sendRequest(url, data, options, err => {
+            expect(err).toBeDefined();
+            done();
+        });
 
         const request = jasmine.Ajax.requests.mostRecent();
 
@@ -79,15 +72,15 @@ describe('sendRequest', () => {
     });
 
     it('should parse response body as JSON if content type is JSON', done => {
-        sendRequest(url, data, options)
-            .then(resp => {
-                expect(resp).toEqual({
-                    data: { message: 'foobar' },
-                    status: 200,
-                    statusText: 'OK',
-                });
-                done();
+        sendRequest(url, data, options, (err, resp) => {
+            expect(resp).toEqual({
+                data: { message: 'foobar' },
+                status: 200,
+                statusText: 'OK',
             });
+
+            done();
+        });
 
         const request = jasmine.Ajax.requests.mostRecent();
 

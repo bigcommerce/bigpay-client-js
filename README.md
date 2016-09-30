@@ -13,7 +13,15 @@ const client = createClient({
     host: 'https://payments.bigcommerce.com',
 });
 
-client.submitPayment(getPaymentData());
+const data = getPaymentData();
+
+client.submitPayment(data, (error, response) => {
+    if (error) {
+        throw error;
+    }
+
+    console.log(response);
+});
 ```
 
 In `payment.js`
@@ -41,26 +49,26 @@ export default function getPaymentData() {
                 integerAmount: 12000,
             },
             handling: {
-                amount: 0,
+                integerAmount: 0,
             },
             id: '123',
             items: [
                 {
-                    amount: 10000,
                     id: '123',
+                    integerAmount: 10000,
                     name: 'Cheese',
                     quantity: 1,
                     sku: '123456789',
                 },
             ],
             shipping: {
-                amount: 1000,
+                integerAmount: 1000,
             },
             subTotal: {
-                amount: 10000,
+                integerAmount: 10000,
             },
             taxTotal: {
-                amount: 1000,
+                integerAmount: 1000,
             },
         },
         customer: {
