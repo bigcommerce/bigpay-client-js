@@ -7,10 +7,10 @@ export default function mapToOrderTotals(data) {
     const { cart } = data;
 
     return {
-        grand_total: cart.grandTotal ? cart.grandTotal.integerAmount : undefined,
-        handling: cart.handling ? cart.handling.amount : undefined,
-        shipping: cart.shipping ? cart.shipping.amount : undefined,
-        subtotal: cart.subTotal ? cart.subTotal.amount : undefined,
-        tax: cart.taxTotal ? cart.taxTotal.amount : undefined,
+        grand_total: cart.grandTotal ? cart.grandTotal.integerAmount : null,
+        handling: cart.handling ? cart.handling.integerAmount : null,
+        shipping: cart.shipping ? cart.shipping.integerAmount : null,
+        subtotal: cart.subTotal ? cart.subTotal.integerAmount : null,
+        tax: cart.taxTotal ? cart.taxTotal.integerAmount : null,
     };
 }

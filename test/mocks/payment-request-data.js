@@ -22,12 +22,12 @@ const paymentRequestDataMock = {
             integerAmount: 12000,
         },
         handling: {
-            amount: 0,
+            integerAmount: 0,
         },
         id: '123',
         items: [
             {
-                amount: 10000,
+                integerAmount: 10000,
                 id: '123',
                 name: 'Cheese',
                 quantity: 1,
@@ -35,13 +35,13 @@ const paymentRequestDataMock = {
             },
         ],
         shipping: {
-            amount: 1000,
+            integerAmount: 1000,
         },
         subTotal: {
-            amount: 10000,
+            integerAmount: 10000,
         },
         taxTotal: {
-            amount: 1000,
+            integerAmount: 1000,
         },
     },
     customer: {

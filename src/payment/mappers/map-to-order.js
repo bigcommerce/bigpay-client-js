@@ -1,3 +1,4 @@
+import { toString } from '../../common/utils';
 import mapToBillingAddress from './map-to-billing-address';
 import mapToItems from './map-to-items';
 import mapToOrderTotals from './map-to-order-totals';
@@ -14,7 +15,7 @@ export default function mapToOrder(data) {
     return {
         billing_address: mapToBillingAddress(data),
         currency: cart.currency,
-        id: order.orderId,
+        id: toString(order.orderId),
         items: mapToItems(data),
         shipping_address: mapToShippingAddress(data),
         token: order.token,
