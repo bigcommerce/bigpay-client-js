@@ -1,3 +1,5 @@
+import { omitEmpty } from '../../common/utils';
+
 /**
  * Map to store
  * @param {PaymentRequestData} data
@@ -6,8 +8,8 @@
 export default function mapToStore(data) {
     const { store = {} } = data;
 
-    return {
+    return omitEmpty({
         store_hash: store.storeHash,
         store_id: store.storeId,
-    };
+    });
 }

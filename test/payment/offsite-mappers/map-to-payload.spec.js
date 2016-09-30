@@ -1,3 +1,4 @@
+import merge from 'lodash/merge';
 import * as mapToBillingAddressModule from '../../../src/payment/offsite-mappers/map-to-billing-address';
 import * as mapToCustomerModule from '../../../src/payment/offsite-mappers/map-to-customer';
 import * as mapToMetaModule from '../../../src/payment/offsite-mappers/map-to-meta';
@@ -20,6 +21,12 @@ describe('mapToPayload', () => {
     });
 
     it('should map to payload', () => {
+        data = merge({}, data, {
+            paymentMethod: {
+                gateway: 'Adyen',
+            },
+        });
+
         const output = mapToPayload(data);
 
         expect(output).toEqual({
@@ -32,7 +39,6 @@ describe('mapToPayload', () => {
             meta: 'meta',
             notify_url: data.order.callbackUrl,
             order_id: data.order.orderId,
-            page_title: document.title,
             payment_method_id: data.paymentMethod.id,
             reference_id: data.order.orderId,
             return_url: data.paymentMethod.config.redirectUrl,

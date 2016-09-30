@@ -1,4 +1,4 @@
-import { toString } from '../../common/utils';
+import { omitEmpty, toString } from '../../common/utils';
 import objectAssign from 'object-assign';
 import mapToBillingAddress from './map-to-billing-address';
 import mapToCustomer from './map-to-customer';
@@ -14,7 +14,7 @@ import mapToStore from './map-to-store';
 export default function mapToPayload(data) {
     const { authToken, cart = {}, order = {}, paymentMethod = {} } = data;
 
-    return objectAssign(
+    const payload = objectAssign(
         {
             amount: cart.grandTotal ? cart.grandTotal.integerAmount : null,
             bc_auth_token: authToken,
@@ -33,4 +33,6 @@ export default function mapToPayload(data) {
         mapToShippingAddress(data),
         mapToStore(data)
     );
+
+    return omitEmpty(payload);
 }

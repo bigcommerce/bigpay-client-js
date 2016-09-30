@@ -1,3 +1,5 @@
+import { omitEmpty } from '../../common/utils';
+
 /**
  * Map to meta
  * @param {PaymentRequestData} data
@@ -6,9 +8,9 @@
 export default function mapToMeta(data) {
     const { source } = data;
 
-    return {
+    return omitEmpty({
         meta_referrer: document.referrer,
         meta_source: source,
         meta_user_agent: navigator.userAgent,
-    };
+    });
 }

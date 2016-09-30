@@ -22,7 +22,7 @@ const paymentRequestDataMock = {
             integerAmount: 12000,
         },
         handling: {
-            integerAmount: 0,
+            integerAmount: 500,
         },
         id: '123',
         items: [
@@ -46,12 +46,16 @@ const paymentRequestDataMock = {
     },
     customer: {
         customerId: '123',
+        email: 'email@bigcommerce.com',
         firstName: 'Foo',
         geoCountryCode: 'AU',
         lastName: 'Bar',
+        name: 'Foo Bar',
         sessionHash: 'abc123',
+        phoneNumber: '98765432',
     },
     order: {
+        callbackUrl: '/order/123/payment',
         orderId: '123',
         token: 'abc123',
     },
@@ -63,6 +67,7 @@ const paymentRequestDataMock = {
         },
         ccName: 'Foo Bar',
         ccNumber: '4007000000027',
+        deviceData: 'Chrome',
     },
     paymentMethod: {
         config: {
