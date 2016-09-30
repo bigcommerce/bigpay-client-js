@@ -33,14 +33,14 @@
  * @param {Object} grandTotal
  * @param {number} grandTotal.integerAmount
  * @param {Object} handling
- * @param {number} handling.amount
+ * @param {number} handling.integerAmount
  * @param {ItemData[]} items
  * @param {Object} shipping
- * @param {number} shipping.amount
+ * @param {number} shipping.integerAmount
  * @param {Object} subTotal
- * @param {number} subTotal.amount
+ * @param {number} subTotal.integerAmount
  * @param {Object} taxTotal
- * @param {number} taxTotal.amount
+ * @param {number} taxTotal.integerAmount
  */
 
 /**
@@ -54,7 +54,7 @@
 
 /**
  * @typedef {Object} ItemData
- * @param {number} amount
+ * @param {number} integerAmount
  * @param {number} quantity
  * @param {string} id
  * @param {string} name
