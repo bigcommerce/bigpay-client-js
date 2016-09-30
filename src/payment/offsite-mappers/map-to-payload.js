@@ -1,5 +1,5 @@
-import { omitEmpty, toString } from '../../common/utils';
 import objectAssign from 'object-assign';
+import { omitEmpty, toString } from '../../common/utils';
 import mapToBillingAddress from './map-to-billing-address';
 import mapToCustomer from './map-to-customer';
 import mapToMeta from './map-to-meta';
