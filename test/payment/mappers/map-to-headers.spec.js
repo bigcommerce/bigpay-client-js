@@ -12,7 +12,7 @@ describe('mapToHeaders', () => {
         const output = mapToHeaders(data);
 
         expect(output).toEqual({
-            AUTHORIZATION: data.authToken,
+            Authorization: data.authToken,
         });
     });
 });

@@ -1,4 +1,4 @@
-import objectAssign from 'object-assign';
+import deepAssign from 'deep-assign';
 import { CONTENT_TYPES, DEFAULT_OPTIONS } from './constants';
 import { includes } from '../utils';
 import createRequest from './create-request';
@@ -67,7 +67,7 @@ function isSuccessfulRequest(xhr) {
  * @returns {Promise}
  */
 export default function sendRequest(url, data, options) {
-    const mergedOptions = objectAssign({}, DEFAULT_OPTIONS, options);
+    const mergedOptions = deepAssign({}, DEFAULT_OPTIONS, options);
 
     return new Promise((resolve, reject) => {
         function onerror(xhr) {

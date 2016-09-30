@@ -7,6 +7,6 @@ export default function mapToHeaders(data) {
     const { authToken } = data;
 
     return {
-        AUTHORIZATION: authToken,
+        Authorization: authToken,
     };
 }

@@ -25,7 +25,7 @@ export default function validatePayment(paymentData) {
     }
 
     if (isValid(creditCardValidation)) {
-        return nouceValidation;
+        return creditCardValidation;
     }
 
     return objectAssign({}, nouceValidation, creditCardValidation);
