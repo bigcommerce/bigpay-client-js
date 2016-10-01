@@ -19,9 +19,7 @@ export default class Client {
         const { paymentMethod = {} } = data;
 
         if (paymentMethod.type !== PAYMENT_TYPES.HOSTED) {
-            const error = new Error(`${data.type} is not supported.`);
-
-            return Promise.reject(error);
+            throw new Error(`${data.type} is not supported.`);
         }
 
         return initializeOffsitePayment(data, { host: this.host });
@@ -36,9 +34,7 @@ export default class Client {
         const { paymentMethod = {} } = data;
 
         if (paymentMethod.type !== PAYMENT_TYPES.API) {
-            const error = new Error(`${data.type} is not supported.`);
-
-            return Promise.reject(error);
+            throw new Error(`${data.type} is not supported.`);
         }
 
         return submitPayment(data, { host: this.host });
