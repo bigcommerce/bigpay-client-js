@@ -1,97 +1,102 @@
 /**
  * @typedef {Object} PaymentRequestData
- * @param {string} authToken
- * @param {AddressData} billingAddress
- * @param {CartData} cart
- * @param {CustomerData} customer
- * @param {OrderData} order
- * @param {PaymentData} payment
- * @param {PaymentMethodData} paymentMethod
- * @param {AddressData} shippingAddress
- * @param {StoreData} store
+ * @property {string} authToken
+ * @property {AddressData} billingAddress
+ * @property {CartData} cart
+ * @property {CustomerData} customer
+ * @property {OrderData} order
+ * @property {PaymentData|NoucePaymentData} payment
+ * @property {PaymentMethodData} paymentMethod
+ * @property {AddressData} shippingAddress
+ * @property {StoreData} store
  */
 
 /**
  * @typedef {Object} AddressData
- * @param {string} addressLine1
- * @param {string} addressLine2
- * @param {string} city
- * @param {string} company
- * @param {string} country
- * @param {string} countryCode
- * @param {string} firstName
- * @param {string} lastName
- * @param {string} phone
- * @param {string} postCode
- * @param {string} province
- * @param {string} provinceCode
+ * @property {string} addressLine1
+ * @property {string} addressLine2
+ * @property {string} city
+ * @property {string} company
+ * @property {string} country
+ * @property {string} countryCode
+ * @property {string} firstName
+ * @property {string} lastName
+ * @property {string} phone
+ * @property {string} postCode
+ * @property {string} province
+ * @property {string} provinceCode
  */
 
 /**
  * @typedef {Object} CartData
- * @param {string} currency
- * @param {Object} grandTotal
- * @param {number} grandTotal.integerAmount
- * @param {Object} handling
- * @param {number} handling.integerAmount
- * @param {ItemData[]} items
- * @param {Object} shipping
- * @param {number} shipping.integerAmount
- * @param {Object} subTotal
- * @param {number} subTotal.integerAmount
- * @param {Object} taxTotal
- * @param {number} taxTotal.integerAmount
+ * @property {string} currency
+ * @property {Object} grandTotal
+ * @property {number} grandTotal.integerAmount
+ * @property {Object} handling
+ * @property {number} handling.integerAmount
+ * @property {ItemData[]} items
+ * @property {Object} shipping
+ * @property {number} shipping.integerAmount
+ * @property {Object} subTotal
+ * @property {number} subTotal.integerAmount
+ * @property {Object} taxTotal
+ * @property {number} taxTotal.integerAmount
  */
 
 /**
  * @typedef {Object} CustomerData
- * @param {string} customerId
- * @param {string} firstName
- * @param {string} geoCountryCode
- * @param {string} lastName
- * @param {string} sessionHash
+ * @property {string} customerId
+ * @property {string} firstName
+ * @property {string} geoCountryCode
+ * @property {string} lastName
+ * @property {string} sessionHash
  */
 
 /**
  * @typedef {Object} ItemData
- * @param {number} integerAmount
- * @param {number} quantity
- * @param {string} id
- * @param {string} name
- * @param {string} sku
+ * @property {number} integerAmount
+ * @property {number} quantity
+ * @property {string} id
+ * @property {string} name
+ * @property {string} sku
  */
 
 /**
  * @typedef {Object} OrderData
- * @param {string} callbackUrl
- * @param {string} orderId
- * @param {string} token
+ * @property {string} callbackUrl
+ * @property {string} orderId
+ * @property {string} token
  */
 
 /**
  * @typedef {Object} PaymentData
- * @param {string} ccCvv
- * @param {Object} ccExpiry
- * @param {number} ccExpiry.month
- * @param {number} ccExpiry.year
- * @param {string} ccName
- * @param {string} ccNumber
- * @param {string} deviceData
- * @param {string} nouce
+ * @property {string} ccCvv
+ * @property {Object} ccExpiry
+ * @property {number} ccExpiry.month
+ * @property {number} ccExpiry.year
+ * @property {string} ccName
+ * @property {string} ccNumber
+ * @property {string} deviceData
+ */
+
+/**
+ * @typedef {Object} NoucePaymentData
+ * @property {string} deviceData
+ * @property {string} nouce
  */
 
 /**
  * @typedef {Object} PaymentMethodData
- * @param {Object} config
- * @param {string} config.redirectUrl
- * @param {string} gateway
- * @param {string} id
+ * @property {Object} config
+ * @property {string} config.redirectUrl
+ * @property {string} gateway
+ * @property {string} id
  */
 
 /**
  * @typedef {Object} StoreData
- * @param {string} storeHash
- * @param {string} storeId
- * @param {string} storeLanguage
- * @param {string} storeName
+ * @property {string} storeHash
+ * @property {string} storeId
+ * @property {string} storeLanguage
+ * @property {string} storeName
  */
