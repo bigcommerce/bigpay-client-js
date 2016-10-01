@@ -1,4 +1,4 @@
-import { omitEmpty } from '../../common/utils';
+import { omitNil } from '../../common/utils';
 
 /**
  * Map to meta
@@ -8,7 +8,7 @@ import { omitEmpty } from '../../common/utils';
 export default function mapToMeta(data) {
     const { source } = data;
 
-    return omitEmpty({
+    return omitNil({
         meta_referrer: document.referrer,
         meta_source: source,
         meta_user_agent: navigator.userAgent,

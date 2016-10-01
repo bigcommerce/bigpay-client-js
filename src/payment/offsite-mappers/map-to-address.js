@@ -1,4 +1,4 @@
-import { omitEmpty, toSnakeCase } from '../../common/utils';
+import { omitNil, toSnakeCase } from '../../common/utils';
 
 /**
  * Map to address
@@ -10,7 +10,7 @@ export default function mapToAddress(data, addressKey) {
     const address = data[addressKey] || {};
     const formattedAddressKey = toSnakeCase(addressKey);
 
-    return omitEmpty({
+    return omitNil({
         [`${formattedAddressKey}_city`]: address.city,
         [`${formattedAddressKey}_company`]: address.company,
         [`${formattedAddressKey}_country_code`]: address.countryCode,

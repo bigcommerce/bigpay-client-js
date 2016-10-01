@@ -1,4 +1,4 @@
-import { omitEmpty, toNumber } from '../../common/utils';
+import { omitNil, toNumber } from '../../common/utils';
 
 /**
  * Map to credit card
@@ -8,7 +8,7 @@ import { omitEmpty, toNumber } from '../../common/utils';
 export default function mapToCreditCard(data) {
     const { payment = {} } = data;
 
-    return omitEmpty({
+    return omitNil({
         account_name: payment.ccName,
         month: payment.ccExpiry ? toNumber(payment.ccExpiry.month) : null,
         number: payment.ccNumber,

@@ -1,4 +1,4 @@
-import { omitEmpty, toString } from '../../common/utils';
+import { omitNil, toString } from '../../common/utils';
 
 /**
  * Map to customer
@@ -8,7 +8,7 @@ import { omitEmpty, toString } from '../../common/utils';
 export default function mapToCustomer(data) {
     const { customer = {} } = data;
 
-    return omitEmpty({
+    return omitNil({
         geo_ip_country_code: customer.geoCountryCode,
         id: toString(customer.customerId),
         session_token: customer.sessionHash,

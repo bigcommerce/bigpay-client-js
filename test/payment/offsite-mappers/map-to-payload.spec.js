@@ -39,6 +39,7 @@ describe('mapToPayload', () => {
             meta: 'meta',
             notify_url: data.order.callbackUrl,
             order_id: data.order.orderId,
+            page_title: document.title,
             payment_method_id: data.paymentMethod.id,
             reference_id: data.order.orderId,
             return_url: data.paymentMethod.config.redirectUrl,
