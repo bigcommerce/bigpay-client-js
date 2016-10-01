@@ -4,38 +4,20 @@ import * as createRequestModule from '../../../src/common/http-request/create-re
 describe('sendRequest', () => {
     let data;
     let options;
-    let Promise;
-    let PromiseMock;
-    let rejectPromise;
-    let resolvePromise;
     let url;
-    let xhr;
 
     beforeEach(() => {
         data = { body: 'hello world' };
         options = { method: 'POST' };
-        Promise = global.Promise;
-        rejectPromise = jasmine.createSpy('reject');
-        resolvePromise = jasmine.createSpy('resolve');
         url = '/endpoint';
-        xhr = jasmine.createSpyObj('xhr', ['getResponseHeader', 'send']);
 
-        spyOn(createRequestModule, 'default').and.callFake((xhrUrl, xhrOptions, { onload, onerror }) => {
-            xhr.onerror = () => onerror(xhr);
-            xhr.onload = () => onload(xhr);
+        spyOn(createRequestModule, 'default').and.callThrough();
 
-            return xhr;
-        });
-
-        PromiseMock = function PromiseMockConstructor(closure) {
-            closure(resolvePromise, rejectPromise);
-        };
-
-        global.Promise = PromiseMock;
+        jasmine.Ajax.install();
     });
 
     afterEach(() => {
-        global.Promise = Promise;
+        jasmine.Ajax.uninstall();
     });
 
     it('should create XHR', () => {
@@ -62,38 +44,57 @@ describe('sendRequest', () => {
     it('should send XHR with payload', () => {
         sendRequest(url, data, options);
 
-        expect(xhr.send).toHaveBeenCalled();
+        const request = jasmine.Ajax.requests.mostRecent();
+
+        expect(request.url).toEqual(url);
+        expect(request.method).toEqual(options.method);
+        expect(request.data()).toEqual(data);
     });
 
-    it('should resolve promise if successful', () => {
-        sendRequest(url, data, options);
+    it('should resolve promise if successful', done => {
+        sendRequest(url, data, options)
+            .then(resp => {
+                expect(resp).toBeDefined();
+                done();
+            });
 
-        xhr.status = 200;
-        xhr.onload();
+        const request = jasmine.Ajax.requests.mostRecent();
 
-        expect(resolvePromise).toHaveBeenCalled();
-    });
-
-    it('should reject promise if unsuccessful', () => {
-        sendRequest(url, data, options);
-
-        xhr.status = 400;
-        xhr.onload();
-
-        expect(rejectPromise).toHaveBeenCalled();
-    });
-
-    it('should parse response body as JSON if content type is JSON', () => {
-        sendRequest(url, data, options);
-
-        xhr.getResponseHeader.and.returnValue('application/json');
-        xhr.response = '{ "success": true }';
-        xhr.status = 200;
-        xhr.onload();
-
-        expect(resolvePromise).toHaveBeenCalledWith(jasmine.objectContaining({
-            data: { success: true },
+        request.respondWith({
+            responseText: '{ "message": "foobar" }',
             status: 200,
-        }));
+        });
+    });
+
+    it('should reject promise if unsuccessful', done => {
+        sendRequest(url, data, options)
+            .catch(err => {
+                expect(err).toBeDefined();
+                done();
+            });
+
+        const request = jasmine.Ajax.requests.mostRecent();
+
+        request.respondWith({ status: 400 });
+    });
+
+    it('should parse response body as JSON if content type is JSON', done => {
+        sendRequest(url, data, options)
+            .then(resp => {
+                expect(resp).toEqual({
+                    data: { message: 'foobar' },
+                    status: 200,
+                    statusText: 'OK',
+                });
+                done();
+            });
+
+        const request = jasmine.Ajax.requests.mostRecent();
+
+        request.respondWith({
+            responseText: '{ "message": "foobar" }',
+            status: 200,
+            statusText: 'OK',
+        });
     });
 });

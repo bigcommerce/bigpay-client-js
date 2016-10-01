@@ -9,11 +9,11 @@ In `checkout.js`
 import { createClient } from 'bigpay-client';
 import { getPaymentData } from './payment';
 
-const bigpayClient = createClient({
+const client = createClient({
     host: 'https://payments.bigcommerce.com',
 });
 
-bigpayClient.submitPayment(getPaymentData());
+client.submitPayment(getPaymentData());
 ```
 
 In `payment.js`

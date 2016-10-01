@@ -12,6 +12,7 @@ function configureKarma(config) {
             'PhantomJS',
         ],
         files: [
+            './node_modules/jasmine-ajax/lib/mock-ajax.js',
             './node_modules/es6-promise/dist/es6-promise.js',
             './test/index.js',
         ],
