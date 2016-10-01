@@ -19,18 +19,6 @@ function getRequestBody(data, contentType = CONTENT_TYPES.APPLICATION_JSON) {
 }
 
 /**
- * Get error response
- * @private
- * @param {XMLHttpRequest} xhr
- * @returns {Error}
- */
-function getErrorResponse(xhr) {
-    const response = getResponse(xhr);
-
-    return new Error(response);
-}
-
-/**
  * Get response
  * @private
  * @param {XMLHttpRequest} xhr
@@ -71,14 +59,14 @@ export default function sendRequest(url, data, options) {
 
     return new Promise((resolve, reject) => {
         function onerror(xhr) {
-            reject(getErrorResponse(xhr));
+            reject(getResponse(xhr));
         }
 
         function onload(xhr) {
             if (isSuccessfulRequest(xhr)) {
                 resolve(getResponse(xhr));
             } else {
-                reject(getErrorResponse(xhr));
+                onerror(xhr);
             }
         }
 
