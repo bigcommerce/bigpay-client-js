@@ -5,10 +5,12 @@ import Client from '../../src/client/client';
 import paymentRequestDataMock from '../mocks/payment-request-data';
 
 describe('Client', () => {
-    let bigpayClient;
+    let callback;
+    let client;
     let config;
 
     beforeEach(() => {
+        callback = () => {};
         config = { host: 'https://bcapp.dev' };
 
         spyOn(paymentModule, 'initializeOffsitePayment');
@@ -17,9 +19,9 @@ describe('Client', () => {
 
     describe('construct', () => {
         it('should set host', () => {
-            bigpayClient = new Client(config);
+            client = new Client(config);
 
-            expect(bigpayClient.host).toEqual(config.host);
+            expect(client.host).toEqual(config.host);
         });
     });
 
@@ -27,7 +29,7 @@ describe('Client', () => {
         let data;
 
         beforeEach(() => {
-            bigpayClient = new Client(config);
+            client = new Client(config);
             data = cloneDeep(paymentRequestDataMock);
             data.paymentMethod.type = HOSTED;
         });
@@ -35,9 +37,9 @@ describe('Client', () => {
         it('should initialize offsite payment', () => {
             const { initializeOffsitePayment } = paymentModule;
 
-            bigpayClient.initializeOffsitePayment(data);
+            client.initializeOffsitePayment(data, callback);
 
-            expect(initializeOffsitePayment).toHaveBeenCalledWith(data, { host: config.host });
+            expect(initializeOffsitePayment).toHaveBeenCalledWith(data, { host: config.host }, callback);
         });
     });
 
@@ -45,16 +47,16 @@ describe('Client', () => {
         let data;
 
         beforeEach(() => {
-            bigpayClient = new Client(config);
+            client = new Client(config);
             data = paymentRequestDataMock;
         });
 
         it('should submit payment', () => {
             const { submitPayment } = paymentModule;
 
-            bigpayClient.submitPayment(data);
+            client.submitPayment(data, callback);
 
-            expect(submitPayment).toHaveBeenCalledWith(data, { host: config.host });
+            expect(submitPayment).toHaveBeenCalledWith(data, { host: config.host }, callback);
         });
     });
 });

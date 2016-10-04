@@ -13,30 +13,34 @@ export default class Client {
     /**
      * Initialize offsite payment
      * @param {PaymentRequestData} data
-     * @returns {Promise}
+     * @param {Function} [callback]
+     * @returns {void}
      */
-    initializeOffsitePayment(data) {
+    initializeOffsitePayment(data, callback) {
         const { paymentMethod = {} } = data;
+        const options = { host: this.host };
 
         if (paymentMethod.type !== PAYMENT_TYPES.HOSTED) {
             throw new Error(`${data.type} is not supported.`);
         }
 
-        return initializeOffsitePayment(data, { host: this.host });
+        initializeOffsitePayment(data, options, callback);
     }
 
     /**
      * Submit payment
      * @param {PaymentRequestData} data
-     * @returns {Promise}
+     * @param {Function} [callback]
+     * @returns {void}
      */
-    submitPayment(data) {
+    submitPayment(data, callback) {
         const { paymentMethod = {} } = data;
+        const options = { host: this.host };
 
         if (paymentMethod.type !== PAYMENT_TYPES.API) {
             throw new Error(`${data.type} is not supported.`);
         }
 
-        return submitPayment(data, { host: this.host });
+        submitPayment(data, options, callback);
     }
 }

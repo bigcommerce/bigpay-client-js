@@ -7,12 +7,13 @@ import sendRequest from './send-request';
  * @param {string} url
  * @param {Object} data
  * @param {Object} [options]
- * @returns {Promise}
+ * @param {Function} [callback]
+ * @returns {void}
  */
-export default function postRequest(url, data, options) {
+export default function postRequest(url, data, options, callback) {
     const mergedOptions = objectAssign({}, options, {
         method: METHOD_TYPES.POST,
     });
 
-    return sendRequest(url, data, mergedOptions);
+    sendRequest(url, data, mergedOptions, callback);
 }

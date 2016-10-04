@@ -34,21 +34,14 @@ function setOptions(xhr, options) {
  * Create XMLHttpRequest
  * @param {string} url
  * @param {Object} options
- * @param {Object} [callbacks]
- * @param {Function} [callbacks.onload]
- * @param {Function} [callbacks.onerror]
+ * @param {Function} [callback]
  * @returns {XMLHttpRequest}
  */
-export default function createRequest(url, options, { onload, onerror } = {}) {
+export default function createRequest(url, options, callback = () => {}) {
     const xhr = new XMLHttpRequest();
 
-    if (onerror) {
-        xhr.onerror = () => onerror(xhr);
-    }
-
-    if (onload) {
-        xhr.onload = () => onload(xhr);
-    }
+    xhr.onerror = () => callback(new Error(xhr.statusText));
+    xhr.onload = () => callback();
 
     xhr.open(options.method, url, true);
     setOptions(xhr, options);

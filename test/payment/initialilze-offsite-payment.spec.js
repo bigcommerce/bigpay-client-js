@@ -5,18 +5,18 @@ import paymentRequestDataMock from '../mocks/payment-request-data';
 import initializeOffsitePayment from '../../src/payment/initialize-offsite-payment';
 
 describe('initializeOffsitePayment', () => {
+    let callback;
     let data;
     let options;
-    let promise;
     let transformedData;
 
     beforeEach(() => {
+        callback = () => {};
         data = paymentRequestDataMock;
         transformedData = { body: 'hello world' };
         options = { host: 'https://bcapp.dev' };
-        promise = Promise.resolve({ ok: true });
 
-        spyOn(formRequestModule, 'postForm').and.returnValue(promise);
+        spyOn(formRequestModule, 'postForm');
         spyOn(offsiteMappersModule, 'mapToPayload').and.returnValue(transformedData);
         spyOn(urlsModule, 'getOffsitePaymentUrl').and.returnValue(`${options.host}/api/pay/initialize`);
     });
@@ -24,7 +24,7 @@ describe('initializeOffsitePayment', () => {
     it('should transform input data', () => {
         const { mapToPayload } = offsiteMappersModule;
 
-        initializeOffsitePayment(data, options);
+        initializeOffsitePayment(data, options, callback);
 
         expect(mapToPayload).toHaveBeenCalled();
     });
@@ -32,8 +32,8 @@ describe('initializeOffsitePayment', () => {
     it('should post request data to server', () => {
         const url = urlsModule.getOffsitePaymentUrl();
 
-        initializeOffsitePayment(data, options);
+        initializeOffsitePayment(data, options, callback);
 
-        expect(formRequestModule.postForm).toHaveBeenCalledWith(url, transformedData);
+        expect(formRequestModule.postForm).toHaveBeenCalledWith(url, transformedData, callback);
     });
 });
