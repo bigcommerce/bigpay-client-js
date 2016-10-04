@@ -12,4 +12,8 @@ describe('isNil', () => {
     it('should return false if value is empty', () => {
         expect(isNil('')).toBeFalsy();
     });
+
+    it('should return false if value is not empty', () => {
+        expect(isNil('foobar')).toBeFalsy();
+    });
 });
