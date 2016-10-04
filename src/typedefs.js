@@ -81,7 +81,7 @@
 
 /**
  * @typedef {Object} NoucePaymentData
- * @property {string} nouce
+ * @property {string} nonce
  * @property {string} [deviceData]
  */
 

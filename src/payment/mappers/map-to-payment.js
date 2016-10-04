@@ -16,10 +16,10 @@ export default function mapToPayment(data) {
         notify_url: order.callbackUrl,
     };
 
-    if (payment.nouce) {
+    if (payment.nonce) {
         objectAssign(payload, {
             credit_card_token: {
-                token: payment.nouce,
+                token: payment.nonce,
             },
         });
     } else {

@@ -26,7 +26,7 @@ describe('mapToPayment', () => {
     it('should map to payment with credit card token data', () => {
         data = merge({}, data, {
             payment: {
-                nouce: 'abc123',
+                nonce: 'abc123',
             },
         });
 
@@ -34,7 +34,7 @@ describe('mapToPayment', () => {
 
         expect(output).toEqual({
             credit_card_token: {
-                token: data.payment.nouce,
+                token: data.payment.nonce,
             },
             device_info: data.payment.deviceData,
             gateway: data.paymentMethod.id,
