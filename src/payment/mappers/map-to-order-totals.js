@@ -1,4 +1,4 @@
-import { omitEmpty } from '../../common/utils';
+import { omitNil } from '../../common/utils';
 
 /**
  * Map to order totals
@@ -8,7 +8,7 @@ import { omitEmpty } from '../../common/utils';
 export default function mapToOrderTotals(data) {
     const { cart } = data;
 
-    return omitEmpty({
+    return omitNil({
         grand_total: cart.grandTotal ? cart.grandTotal.integerAmount : null,
         handling: cart.handling ? cart.handling.integerAmount : null,
         shipping: cart.shipping ? cart.shipping.integerAmount : null,

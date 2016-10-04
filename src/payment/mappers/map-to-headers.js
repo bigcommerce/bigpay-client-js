@@ -1,4 +1,4 @@
-import { omitEmpty } from '../../common/utils';
+import { omitNil } from '../../common/utils';
 
 /**
  * Map to headers
@@ -8,7 +8,7 @@ import { omitEmpty } from '../../common/utils';
 export default function mapToHeaders(data) {
     const { authToken } = data;
 
-    return omitEmpty({
+    return omitNil({
         Authorization: authToken,
     });
 }

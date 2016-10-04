@@ -1,4 +1,4 @@
-import { omitEmpty } from '../../common/utils';
+import { omitNil } from '../../common/utils';
 
 /**
  * Map to store
@@ -8,7 +8,7 @@ import { omitEmpty } from '../../common/utils';
 export default function mapToStore(data) {
     const { store = {} } = data;
 
-    return omitEmpty({
+    return omitNil({
         store_hash: store.storeHash,
         store_id: store.storeId,
     });

@@ -1,4 +1,4 @@
-import { omitEmpty } from '../../common/utils';
+import { omitNil } from '../../common/utils';
 
 /**
  * Map to address
@@ -9,7 +9,7 @@ import { omitEmpty } from '../../common/utils';
 export default function mapToAddress(data, addressKey) {
     const address = data[addressKey] || {};
 
-    return omitEmpty({
+    return omitNil({
         city: address.city,
         company: address.company,
         country_code: address.countryCode,

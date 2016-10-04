@@ -1,4 +1,4 @@
-import { omitEmpty } from '../../common/utils';
+import { omitNil } from '../../common/utils';
 import mapToCustomer from './map-to-customer';
 import mapToOrder from './map-to-order';
 import mapToPayment from './map-to-payment';
@@ -12,7 +12,7 @@ import mapToStore from './map-to-store';
 export default function mapToPayload(data) {
     const { order = {} } = data;
 
-    return omitEmpty({
+    return omitNil({
         customer: mapToCustomer(data),
         notify_url: order.callbackUrl,
         order: mapToOrder(data),

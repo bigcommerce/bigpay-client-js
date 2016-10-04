@@ -1,4 +1,4 @@
-import { omitEmpty } from '../../common/utils';
+import { omitNil } from '../../common/utils';
 
 /**
  * Map to customer
@@ -8,7 +8,7 @@ import { omitEmpty } from '../../common/utils';
 export default function mapToCustomer(data) {
     const { customer = {}, store = {} } = data;
 
-    return omitEmpty({
+    return omitNil({
         customer_browser_info: navigator.userAgent,
         customer_email: customer.email,
         customer_first_name: customer.firstName,

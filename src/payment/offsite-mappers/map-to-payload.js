@@ -1,5 +1,5 @@
 import objectAssign from 'object-assign';
-import { omitEmpty, toString } from '../../common/utils';
+import { omitNil, toString } from '../../common/utils';
 import mapToBillingAddress from './map-to-billing-address';
 import mapToCustomer from './map-to-customer';
 import mapToMeta from './map-to-meta';
@@ -34,5 +34,5 @@ export default function mapToPayload(data) {
         mapToStore(data)
     );
 
-    return omitEmpty(payload);
+    return omitNil(payload);
 }
