@@ -166,46 +166,46 @@ return /******/ (function(modules) { // webpackBootstrap
 	    /**
 	     * Initialize offsite payment
 	     * @param {PaymentRequestData} data
-	     * @returns {Promise}
+	     * @param {Function} [callback]
+	     * @returns {void}
 	     */
 	
 	
 	    _createClass(Client, [{
 	        key: 'initializeOffsitePayment',
-	        value: function initializeOffsitePayment(data) {
+	        value: function initializeOffsitePayment(data, callback) {
 	            var _data$paymentMethod = data.paymentMethod;
 	            var paymentMethod = _data$paymentMethod === undefined ? {} : _data$paymentMethod;
 	
+	            var options = { host: this.host };
 	
 	            if (paymentMethod.type !== _payment.PAYMENT_TYPES.HOSTED) {
-	                var error = new Error(data.type + ' is not supported.');
-	
-	                return Promise.reject(error);
+	                throw new Error(data.type + ' is not supported.');
 	            }
 	
-	            return (0, _payment.initializeOffsitePayment)(data, { host: this.host });
+	            (0, _payment.initializeOffsitePayment)(data, options, callback);
 	        }
 	
 	        /**
 	         * Submit payment
 	         * @param {PaymentRequestData} data
-	         * @returns {Promise}
+	         * @param {Function} [callback]
+	         * @returns {void}
 	         */
 	
 	    }, {
 	        key: 'submitPayment',
-	        value: function submitPayment(data) {
+	        value: function submitPayment(data, callback) {
 	            var _data$paymentMethod2 = data.paymentMethod;
 	            var paymentMethod = _data$paymentMethod2 === undefined ? {} : _data$paymentMethod2;
 	
+	            var options = { host: this.host };
 	
 	            if (paymentMethod.type !== _payment.PAYMENT_TYPES.API) {
-	                var error = new Error(data.type + ' is not supported.');
-	
-	                return Promise.reject(error);
+	                throw new Error(data.type + ' is not supported.');
 	            }
 	
-	            return (0, _payment.submitPayment)(data, { host: this.host });
+	            (0, _payment.submitPayment)(data, options, callback);
 	        }
 	    }]);
 	
@@ -280,17 +280,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param {PaymentRequestData} data
 	 * @param {Object} [options = {}]
 	 * @param {string} [options.host]
-	 * @returns {Promise}
+	 * @param {Function} [callback]
+	 * @returns {void}
 	 */
 	function initializeOffsitePayment(data) {
 	  var _ref = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 	
 	  var host = _ref.host;
+	  var callback = arguments[2];
 	
 	  var payload = (0, _offsiteMappers.mapToPayload)(data);
 	  var url = (0, _urls.getOffsitePaymentUrl)(host);
 	
-	  return (0, _formRequest.postForm)(url, payload);
+	  (0, _formRequest.postForm)(url, payload, callback);
 	}
 
 /***/ },
@@ -408,7 +410,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return_url: paymentMethod.config ? paymentMethod.config.redirectUrl : null
 	    }, (0, _mapToBillingAddress2.default)(data), (0, _mapToCustomer2.default)(data), (0, _mapToMeta2.default)(data), (0, _mapToShippingAddress2.default)(data), (0, _mapToStore2.default)(data));
 	
-	    return (0, _utils.omitEmpty)(payload);
+	    return (0, _utils.omitNil)(payload);
 	}
 
 /***/ },
@@ -509,7 +511,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.toString = exports.toSnakeCase = exports.toNumber = exports.omitProperty = exports.omitEmpty = exports.isObject = exports.isEmpty = exports.includes = exports.capitalize = undefined;
+	exports.toString = exports.toSnakeCase = exports.toNumber = exports.omitProperty = exports.omitNil = exports.isObject = exports.isNil = exports.includes = exports.capitalize = undefined;
 	
 	var _capitalize = __webpack_require__(12);
 	
@@ -519,17 +521,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _includes2 = _interopRequireDefault(_includes);
 	
-	var _isEmpty = __webpack_require__(14);
+	var _isNil = __webpack_require__(14);
 	
-	var _isEmpty2 = _interopRequireDefault(_isEmpty);
+	var _isNil2 = _interopRequireDefault(_isNil);
 	
 	var _isObject = __webpack_require__(15);
 	
 	var _isObject2 = _interopRequireDefault(_isObject);
 	
-	var _omitEmpty = __webpack_require__(16);
+	var _omitNil = __webpack_require__(16);
 	
-	var _omitEmpty2 = _interopRequireDefault(_omitEmpty);
+	var _omitNil2 = _interopRequireDefault(_omitNil);
 	
 	var _omitProperty = __webpack_require__(17);
 	
@@ -551,9 +553,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	exports.capitalize = _capitalize2.default;
 	exports.includes = _includes2.default;
-	exports.isEmpty = _isEmpty2.default;
+	exports.isNil = _isNil2.default;
 	exports.isObject = _isObject2.default;
-	exports.omitEmpty = _omitEmpty2.default;
+	exports.omitNil = _omitNil2.default;
 	exports.omitProperty = _omitProperty2.default;
 	exports.toNumber = _toNumber2.default;
 	exports.toSnakeCase = _toSnakeCase2.default;
@@ -608,33 +610,22 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 14 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	'use strict';
+	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.default = isEmpty;
-	
-	var _isObject = __webpack_require__(15);
-	
-	var _isObject2 = _interopRequireDefault(_isObject);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
+	exports.default = isNil;
 	/**
-	 * Is empty
+	 * Is nil
 	 * @param {*} value
 	 * @returns {boolean}
 	 */
-	function isEmpty(value) {
-	    if (value === '' || value === 0 || value === null || value === undefined) {
+	function isNil(value) {
+	    if (value === null || value === undefined) {
 	        return true;
-	    }
-	
-	    if ((0, _isObject2.default)(value)) {
-	        return Object.keys(value).length === 0;
 	    }
 	
 	    return false;
@@ -673,11 +664,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.default = omitEmpty;
+	exports.default = omitNil;
 	
-	var _isEmpty = __webpack_require__(14);
+	var _isNil = __webpack_require__(14);
 	
-	var _isEmpty2 = _interopRequireDefault(_isEmpty);
+	var _isNil2 = _interopRequireDefault(_isNil);
 	
 	var _omitProperty = __webpack_require__(17);
 	
@@ -686,12 +677,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	/**
-	 * Omit empty
+	 * Omit nil
 	 * @param {Object} object
 	 * @returns {Object}
 	 */
-	function omitEmpty(object) {
-	  return (0, _omitProperty2.default)(object, _isEmpty2.default);
+	function omitNil(object) {
+	  return (0, _omitProperty2.default)(object, _isNil2.default);
 	}
 
 /***/ },
@@ -828,12 +819,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @returns {Object}
 	 */
 	function mapToAddress(data, addressKey) {
-	    var _omitEmpty;
+	    var _omitNil;
 	
 	    var address = data[addressKey] || {};
 	    var formattedAddressKey = (0, _utils.toSnakeCase)(addressKey);
 	
-	    return (0, _utils.omitEmpty)((_omitEmpty = {}, _defineProperty(_omitEmpty, formattedAddressKey + '_city', address.city), _defineProperty(_omitEmpty, formattedAddressKey + '_company', address.company), _defineProperty(_omitEmpty, formattedAddressKey + '_country_code', address.countryCode), _defineProperty(_omitEmpty, formattedAddressKey + '_country', address.country), _defineProperty(_omitEmpty, formattedAddressKey + '_first_name', address.firstName), _defineProperty(_omitEmpty, formattedAddressKey + '_last_name', address.lastName), _defineProperty(_omitEmpty, formattedAddressKey + '_phone', address.phone), _defineProperty(_omitEmpty, formattedAddressKey + '_state_code', address.provinceCode), _defineProperty(_omitEmpty, formattedAddressKey + '_state', address.province), _defineProperty(_omitEmpty, formattedAddressKey + '_street_1', address.addressLine1), _defineProperty(_omitEmpty, formattedAddressKey + '_street_2', address.addressLine2), _defineProperty(_omitEmpty, formattedAddressKey + '_zip', address.postCode), _omitEmpty));
+	    return (0, _utils.omitNil)((_omitNil = {}, _defineProperty(_omitNil, formattedAddressKey + '_city', address.city), _defineProperty(_omitNil, formattedAddressKey + '_company', address.company), _defineProperty(_omitNil, formattedAddressKey + '_country_code', address.countryCode), _defineProperty(_omitNil, formattedAddressKey + '_country', address.country), _defineProperty(_omitNil, formattedAddressKey + '_first_name', address.firstName), _defineProperty(_omitNil, formattedAddressKey + '_last_name', address.lastName), _defineProperty(_omitNil, formattedAddressKey + '_phone', address.phone), _defineProperty(_omitNil, formattedAddressKey + '_state_code', address.provinceCode), _defineProperty(_omitNil, formattedAddressKey + '_state', address.province), _defineProperty(_omitNil, formattedAddressKey + '_street_1', address.addressLine1), _defineProperty(_omitNil, formattedAddressKey + '_street_2', address.addressLine2), _defineProperty(_omitNil, formattedAddressKey + '_zip', address.postCode), _omitNil));
 	}
 
 /***/ },
@@ -861,7 +852,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var store = _data$store === undefined ? {} : _data$store;
 	
 	
-	    return (0, _utils.omitEmpty)({
+	    return (0, _utils.omitNil)({
 	        customer_browser_info: navigator.userAgent,
 	        customer_email: customer.email,
 	        customer_first_name: customer.firstName,
@@ -896,7 +887,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var source = data.source;
 	
 	
-	    return (0, _utils.omitEmpty)({
+	    return (0, _utils.omitNil)({
 	        meta_referrer: document.referrer,
 	        meta_source: source,
 	        meta_user_agent: navigator.userAgent
@@ -928,9 +919,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var store = _data$store === undefined ? {} : _data$store;
 	
 	
-	    return (0, _utils.omitEmpty)({
+	    return (0, _utils.omitNil)({
 	        store_hash: store.storeHash,
-	        store_id: store.storeId
+	        store_id: '' + store.storeId
 	    });
 	}
 
@@ -974,19 +965,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * Post form
 	 * @param {string} url
 	 * @param {Object} data
-	 * @returns {Promise}
+	 * @param {Function} [callback]
+	 * @returns {void}
 	 */
 	function postForm(url, data) {
+	    var callback = arguments.length <= 2 || arguments[2] === undefined ? function () {} : arguments[2];
+	
 	    var form = (0, _createForm2.default)(url, data);
 	
 	    form.submit();
 	
-	    return new Promise(function (resolve) {
-	        window.addEventListener('beforeunload', function handleBeforeUnload() {
-	            window.removeEventListener('beforeunload', handleBeforeUnload);
+	    window.addEventListener('beforeunload', function handleBeforeUnload() {
+	        window.removeEventListener('beforeunload', handleBeforeUnload);
 	
-	            resolve();
-	        });
+	        callback();
 	    });
 	}
 
@@ -1059,12 +1051,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param {PaymentRequestData} data
 	 * @param {Object} [options = {}]
 	 * @param {string} [options.host]
-	 * @returns {Promise}
+	 * @param {Function} [callback]
+	 * @returns {void}
 	 */
 	function submitPayment(data) {
 	    var _ref = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 	
 	    var host = _ref.host;
+	    var callback = arguments[2];
 	
 	    var payload = (0, _mappers.mapToPayload)(data);
 	    var url = (0, _urls.getPaymentUrl)(host);
@@ -1072,7 +1066,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        headers: (0, _mappers.mapToHeaders)(data)
 	    };
 	
-	    return (0, _httpRequest.postRequest)(url, payload, options);
+	    (0, _httpRequest.postRequest)(url, payload, options, callback);
 	}
 
 /***/ },
@@ -1127,14 +1121,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param {string} url
 	 * @param {Object} data
 	 * @param {Object} [options]
-	 * @returns {Promise}
+	 * @param {Function} [callback]
+	 * @returns {void}
 	 */
-	function postRequest(url, data, options) {
+	function postRequest(url, data, options, callback) {
 	    var mergedOptions = (0, _objectAssign2.default)({}, options, {
 	        method: _constants.METHOD_TYPES.POST
 	    });
 	
-	    return (0, _sendRequest2.default)(url, data, mergedOptions);
+	    (0, _sendRequest2.default)(url, data, mergedOptions, callback);
 	}
 
 /***/ },
@@ -1258,18 +1253,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 	
 	/**
-	 * Get error response
-	 * @private
-	 * @param {XMLHttpRequest} xhr
-	 * @returns {Error}
-	 */
-	function getErrorResponse(xhr) {
-	    var response = getResponse(xhr);
-	
-	    return new Error(response);
-	}
-	
-	/**
 	 * Get response
 	 * @private
 	 * @param {XMLHttpRequest} xhr
@@ -1305,29 +1288,29 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param {string} url
 	 * @param {Object} data
 	 * @param {Object} [options]
-	 * @returns {Promise}
+	 * @param {Function} [callback]
+	 * @returns {void}
 	 */
 	function sendRequest(url, data, options) {
+	    var callback = arguments.length <= 3 || arguments[3] === undefined ? function () {} : arguments[3];
+	
 	    var mergedOptions = (0, _deepAssign2.default)({}, _constants.DEFAULT_OPTIONS, options);
 	
-	    return new Promise(function (resolve, reject) {
-	        function onerror(xhr) {
-	            reject(getErrorResponse(xhr));
+	    var xhr = (0, _createRequest2.default)(url, mergedOptions, function (error) {
+	        var response = getResponse(xhr);
+	
+	        if (error || !isSuccessfulRequest(xhr)) {
+	            callback(response);
+	
+	            return;
 	        }
 	
-	        function onload(xhr) {
-	            if (isSuccessfulRequest(xhr)) {
-	                resolve(getResponse(xhr));
-	            } else {
-	                reject(getErrorResponse(xhr));
-	            }
-	        }
-	
-	        var xhr = (0, _createRequest2.default)(url, mergedOptions, { onerror: onerror, onload: onload });
-	        var payload = getRequestBody(data, mergedOptions.headers['Content-Type']);
-	
-	        xhr.send(payload);
+	        callback(null, response);
 	    });
+	
+	    var payload = getRequestBody(data, mergedOptions.headers['Content-Type']);
+	
+	    xhr.send(payload);
 	}
 
 /***/ },
@@ -1461,30 +1444,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * Create XMLHttpRequest
 	 * @param {string} url
 	 * @param {Object} options
-	 * @param {Object} [callbacks]
-	 * @param {Function} [callbacks.onload]
-	 * @param {Function} [callbacks.onerror]
+	 * @param {Function} [callback]
 	 * @returns {XMLHttpRequest}
 	 */
 	function createRequest(url, options) {
-	    var _ref = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
-	
-	    var onload = _ref.onload;
-	    var onerror = _ref.onerror;
+	    var callback = arguments.length <= 2 || arguments[2] === undefined ? function () {} : arguments[2];
 	
 	    var xhr = new XMLHttpRequest();
 	
-	    if (onerror) {
-	        xhr.onerror = function () {
-	            return onerror(xhr);
-	        };
-	    }
-	
-	    if (onload) {
-	        xhr.onload = function () {
-	            return onload(xhr);
-	        };
-	    }
+	    xhr.onerror = function () {
+	        return callback(new Error(xhr.statusText));
+	    };
+	    xhr.onload = function () {
+	        return callback();
+	    };
 	
 	    xhr.open(options.method, url, true);
 	    setOptions(xhr, options);
@@ -1538,7 +1511,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var authToken = data.authToken;
 	
 	
-	    return (0, _utils.omitEmpty)({
+	    return (0, _utils.omitNil)({
 	        Authorization: authToken
 	    });
 	}
@@ -1584,7 +1557,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var order = _data$order === undefined ? {} : _data$order;
 	
 	
-	    return (0, _utils.omitEmpty)({
+	    return (0, _utils.omitNil)({
 	        customer: (0, _mapToCustomer2.default)(data),
 	        notify_url: order.callbackUrl,
 	        order: (0, _mapToOrder2.default)(data),
@@ -1616,7 +1589,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var customer = _data$customer === undefined ? {} : _data$customer;
 	
 	
-	    return (0, _utils.omitEmpty)({
+	    return (0, _utils.omitNil)({
 	        geo_ip_country_code: customer.geoCountryCode,
 	        id: (0, _utils.toString)(customer.customerId),
 	        session_token: customer.sessionHash
@@ -1664,7 +1637,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var order = data.order;
 	
 	
-	    return (0, _utils.omitEmpty)({
+	    return (0, _utils.omitNil)({
 	        billing_address: (0, _mapToBillingAddress2.default)(data),
 	        currency: cart.currency,
 	        id: (0, _utils.toString)(order.orderId),
@@ -1699,7 +1672,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	function mapToAddress(data, addressKey) {
 	    var address = data[addressKey] || {};
 	
-	    return (0, _utils.omitEmpty)({
+	    return (0, _utils.omitNil)({
 	        city: address.city,
 	        company: address.company,
 	        country_code: address.countryCode,
@@ -1737,12 +1710,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var _data$cart = data.cart;
 	    var cart = _data$cart === undefined ? { items: [] } : _data$cart;
 	
+	    // KLUDGE: amount * 100 - integerAmount is not available yet
 	
 	    return cart.items.map(function (itemData) {
-	        return (0, _utils.omitEmpty)({
+	        return (0, _utils.omitNil)({
 	            code: itemData.id,
 	            name: itemData.name,
-	            price: itemData.integerAmount,
+	            price: itemData.integerAmount || itemData.amount * 100,
 	            quantity: itemData.quantity,
 	            sku: itemData.sku
 	        });
@@ -1770,13 +1744,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	function mapToOrderTotals(data) {
 	    var cart = data.cart;
 	
+	    // KLUDGE: amount * 100 - integerAmount is not available yet
 	
-	    return (0, _utils.omitEmpty)({
+	    return (0, _utils.omitNil)({
 	        grand_total: cart.grandTotal ? cart.grandTotal.integerAmount : null,
-	        handling: cart.handling ? cart.handling.integerAmount : null,
-	        shipping: cart.shipping ? cart.shipping.integerAmount : null,
-	        subtotal: cart.subTotal ? cart.subTotal.integerAmount : null,
-	        tax: cart.taxTotal ? cart.taxTotal.integerAmount : null
+	        handling: cart.handling ? cart.handling.integerAmount || cart.handling.amount * 100 : null,
+	        shipping: cart.shipping ? cart.shipping.integerAmount || cart.shipping.amount * 100 : null,
+	        subtotal: cart.subTotal ? cart.subTotal.integerAmount || cart.subTotal.amount * 100 : null,
+	        tax: cart.taxTotal ? cart.taxTotal.integerAmount || cart.taxTotal.amount * 100 : null
 	    });
 	}
 
@@ -1837,7 +1812,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        });
 	    }
 	
-	    return (0, _utils.omitEmpty)(payload);
+	    return (0, _utils.omitNil)(payload);
 	}
 
 /***/ },
@@ -1863,7 +1838,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var payment = _data$payment === undefined ? {} : _data$payment;
 	
 	
-	    return (0, _utils.omitEmpty)({
+	    return (0, _utils.omitNil)({
 	        account_name: payment.ccName,
 	        month: payment.ccExpiry ? (0, _utils.toNumber)(payment.ccExpiry.month) : null,
 	        number: payment.ccNumber,
@@ -1895,9 +1870,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var store = _data$store === undefined ? {} : _data$store;
 	
 	
-	    return (0, _utils.omitEmpty)({
+	    return (0, _utils.omitNil)({
 	        hash: store.storeHash,
-	        id: store.storeId,
+	        id: '' + store.storeId,
 	        name: store.storeName
 	    });
 	}
