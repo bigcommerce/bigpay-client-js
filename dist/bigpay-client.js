@@ -1800,10 +1800,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        notify_url: order.callbackUrl
 	    };
 	
-	    if (payment.nouce) {
+	    if (payment.nonce) {
 	        (0, _objectAssign2.default)(payload, {
 	            credit_card_token: {
-	                token: payment.nouce
+	                token: payment.nonce
 	            }
 	        });
 	    } else {
