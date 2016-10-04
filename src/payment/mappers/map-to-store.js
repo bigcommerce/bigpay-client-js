@@ -10,7 +10,7 @@ export default function mapToStore(data) {
 
     return omitNil({
         hash: store.storeHash,
-        id: store.storeId,
+        id: `${store.storeId}`,
         name: store.storeName,
     });
 }
