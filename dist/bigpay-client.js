@@ -180,7 +180,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var options = { host: this.host };
 	
 	            if (paymentMethod.type !== _payment.PAYMENT_TYPES.HOSTED) {
-	                throw new Error(data.type + ' is not supported.');
+	                throw new Error(paymentMethod.type + ' is not supported.');
 	            }
 	
 	            (0, _payment.initializeOffsitePayment)(data, options, callback);
@@ -202,7 +202,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var options = { host: this.host };
 	
 	            if (paymentMethod.type !== _payment.PAYMENT_TYPES.API) {
-	                throw new Error(data.type + ' is not supported.');
+	                throw new Error(paymentMethod.type + ' is not supported.');
 	            }
 	
 	            (0, _payment.submitPayment)(data, options, callback);
@@ -407,7 +407,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        page_title: document.title,
 	        payment_method_id: paymentMethod.id,
 	        reference_id: (0, _utils.toString)(order.orderId),
-	        return_url: paymentMethod.config ? paymentMethod.config.redirectUrl : null
+	        return_url: order.payment ? order.payment.returnUrl : null
 	    }, (0, _mapToBillingAddress2.default)(data), (0, _mapToCustomer2.default)(data), (0, _mapToMeta2.default)(data), (0, _mapToShippingAddress2.default)(data), (0, _mapToStore2.default)(data));
 	
 	    return (0, _utils.omitNil)(payload);
@@ -1710,13 +1710,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var _data$cart = data.cart;
 	    var cart = _data$cart === undefined ? { items: [] } : _data$cart;
 	
-	    // KLUDGE: amount * 100 - integerAmount is not available yet
 	
 	    return cart.items.map(function (itemData) {
 	        return (0, _utils.omitNil)({
 	            code: itemData.id,
 	            name: itemData.name,
-	            price: itemData.integerAmount || itemData.amount * 100,
+	            price: itemData.integerAmount,
 	            quantity: itemData.quantity,
 	            sku: itemData.sku
 	        });
@@ -1744,14 +1743,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	function mapToOrderTotals(data) {
 	    var cart = data.cart;
 	
-	    // KLUDGE: amount * 100 - integerAmount is not available yet
 	
 	    return (0, _utils.omitNil)({
 	        grand_total: cart.grandTotal ? cart.grandTotal.integerAmount : null,
-	        handling: cart.handling ? cart.handling.integerAmount || cart.handling.amount * 100 : null,
-	        shipping: cart.shipping ? cart.shipping.integerAmount || cart.shipping.amount * 100 : null,
-	        subtotal: cart.subTotal ? cart.subTotal.integerAmount || cart.subTotal.amount * 100 : null,
-	        tax: cart.taxTotal ? cart.taxTotal.integerAmount || cart.taxTotal.amount * 100 : null
+	        handling: cart.handling ? cart.handling.integerAmount : null,
+	        shipping: cart.shipping ? cart.shipping.integerAmount : null,
+	        subtotal: cart.subTotal ? cart.subTotal.integerAmount : null,
+	        tax: cart.taxTotal ? cart.taxTotal.integerAmount : null
 	    });
 	}
 
