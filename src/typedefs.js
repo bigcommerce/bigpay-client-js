@@ -64,6 +64,8 @@
 /**
  * @typedef {Object} OrderData
  * @property {string} orderId
+ * @property {Object} [payment]
+ * @property {string} [payment.returnUrl]
  * @property {string} [callbackUrl]
  * @property {string} [token]
  */
@@ -88,8 +90,6 @@
 /**
  * @typedef {Object} PaymentMethodData
  * @property {string} id
- * @property {Object} [config]
- * @property {string} [config.redirectUrl]
  * @property {string} [gateway]
  */
 

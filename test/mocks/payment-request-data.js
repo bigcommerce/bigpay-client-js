@@ -57,6 +57,9 @@ const paymentRequestDataMock = {
     order: {
         callbackUrl: '/order/123/payment',
         orderId: '123',
+        payment: {
+            returnUrl: '/checkout',
+        },
         token: 'abc123',
     },
     payment: {
@@ -70,9 +73,6 @@ const paymentRequestDataMock = {
         deviceData: 'Chrome',
     },
     paymentMethod: {
-        config: {
-            redirectUrl: '/checkout',
-        },
         id: 'paypalprous',
         type: API,
     },

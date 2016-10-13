@@ -25,7 +25,7 @@ export default function mapToPayload(data) {
             page_title: document.title,
             payment_method_id: paymentMethod.id,
             reference_id: toString(order.orderId),
-            return_url: paymentMethod.config ? paymentMethod.config.redirectUrl : null,
+            return_url: order.payment ? order.payment.returnUrl : null,
         },
         mapToBillingAddress(data),
         mapToCustomer(data),
