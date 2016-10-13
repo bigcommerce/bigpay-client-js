@@ -42,7 +42,7 @@ describe('mapToPayload', () => {
             page_title: document.title,
             payment_method_id: data.paymentMethod.id,
             reference_id: data.order.orderId,
-            return_url: data.paymentMethod.config.redirectUrl,
+            return_url: data.order.payment.returnUrl,
             shippingAddress: 'shippingAddress',
             store: 'store',
         });
