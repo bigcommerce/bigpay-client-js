@@ -22,7 +22,7 @@ describe('mapToOrder', () => {
 
         expect(output).toEqual({
             billing_address: 'billingAddress',
-            currency: data.cart.currency,
+            currency: data.order.currency,
             id: `${data.order.orderId}`,
             items: 'items',
             shipping_address: 'shippingAddress',

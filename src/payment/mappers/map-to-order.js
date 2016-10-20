@@ -10,11 +10,11 @@ import mapToShippingAddress from './map-to-shipping-address';
  * @returns {Object}
  */
 export default function mapToOrder(data) {
-    const { cart, order } = data;
+    const { order } = data;
 
     return omitNil({
         billing_address: mapToBillingAddress(data),
-        currency: cart.currency,
+        currency: order.currency,
         id: toString(order.orderId),
         items: mapToItems(data),
         shipping_address: mapToShippingAddress(data),

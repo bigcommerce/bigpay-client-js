@@ -30,10 +30,10 @@ describe('mapToPayload', () => {
         const output = mapToPayload(data);
 
         expect(output).toEqual({
-            amount: data.cart.grandTotal.integerAmount,
+            amount: data.order.grandTotal.integerAmount,
             bc_auth_token: data.authToken,
             billingAddress: 'billingAddress',
-            currency: data.cart.currency,
+            currency: data.order.currency,
             customer: 'customer',
             gateway: data.paymentMethod.gateway,
             meta: 'meta',
