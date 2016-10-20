@@ -389,8 +389,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	function mapToPayload(data) {
 	    var authToken = data.authToken;
-	    var _data$cart = data.cart;
-	    var cart = _data$cart === undefined ? {} : _data$cart;
 	    var _data$order = data.order;
 	    var order = _data$order === undefined ? {} : _data$order;
 	    var _data$paymentMethod = data.paymentMethod;
@@ -398,9 +396,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	
 	    var payload = (0, _objectAssign2.default)({
-	        amount: cart.grandTotal ? cart.grandTotal.integerAmount : null,
+	        amount: order.grandTotal ? order.grandTotal.integerAmount : null,
 	        bc_auth_token: authToken,
-	        currency: cart.currency,
+	        currency: order.currency,
 	        gateway: paymentMethod.gateway,
 	        notify_url: order.callbackUrl,
 	        order_id: (0, _utils.toString)(order.orderId),
@@ -1633,13 +1631,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @returns {Object}
 	 */
 	function mapToOrder(data) {
-	    var cart = data.cart;
 	    var order = data.order;
 	
 	
 	    return (0, _utils.omitNil)({
 	        billing_address: (0, _mapToBillingAddress2.default)(data),
-	        currency: cart.currency,
+	        currency: order.currency,
 	        id: (0, _utils.toString)(order.orderId),
 	        items: (0, _mapToItems2.default)(data),
 	        shipping_address: (0, _mapToShippingAddress2.default)(data),
@@ -1741,15 +1738,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @returns {Object}
 	 */
 	function mapToOrderTotals(data) {
-	    var cart = data.cart;
+	    var order = data.order;
 	
 	
 	    return (0, _utils.omitNil)({
-	        grand_total: cart.grandTotal ? cart.grandTotal.integerAmount : null,
-	        handling: cart.handling ? cart.handling.integerAmount : null,
-	        shipping: cart.shipping ? cart.shipping.integerAmount : null,
-	        subtotal: cart.subTotal ? cart.subTotal.integerAmount : null,
-	        tax: cart.taxTotal ? cart.taxTotal.integerAmount : null
+	        grand_total: order.grandTotal ? order.grandTotal.integerAmount : null,
+	        handling: order.handling ? order.handling.integerAmount : null,
+	        shipping: order.shipping ? order.shipping.integerAmount : null,
+	        subtotal: order.subTotal ? order.subTotal.integerAmount : null,
+	        tax: order.taxTotal ? order.taxTotal.integerAmount : null
 	    });
 	}
 
