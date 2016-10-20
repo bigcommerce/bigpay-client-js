@@ -29,18 +29,7 @@
 
 /**
  * @typedef {Object} CartData
- * @property {string} currency
- * @property {Object} grandTotal
- * @property {number} grandTotal.integerAmount
- * @property {Object} [handling]
- * @property {number} [handling.integerAmount]
  * @property {ItemData[]} [items]
- * @property {Object} [shipping]
- * @property {number} [shipping.integerAmount]
- * @property {Object} [subTotal]
- * @property {number} [subTotal.integerAmount]
- * @property {Object} [taxTotal]
- * @property {number} [taxTotal.integerAmount]
  */
 
 /**
@@ -63,10 +52,21 @@
 
 /**
  * @typedef {Object} OrderData
+ * @property {string} currency
  * @property {string} orderId
+ * @property {Object} grandTotal
+ * @property {number} grandTotal.integerAmount
+ * @property {string} [callbackUrl]
+ * @property {Object} [handling]
+ * @property {number} [handling.integerAmount]
  * @property {Object} [payment]
  * @property {string} [payment.returnUrl]
- * @property {string} [callbackUrl]
+ * @property {Object} [shipping]
+ * @property {number} [shipping.integerAmount]
+ * @property {Object} [subTotal]
+ * @property {number} [subTotal.integerAmount]
+ * @property {Object} [taxTotal]
+ * @property {number} [taxTotal.integerAmount]
  * @property {string} [token]
  */
 

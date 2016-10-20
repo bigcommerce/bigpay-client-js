@@ -17,14 +17,6 @@ const paymentRequestDataMock = {
         province: 'New South Wales',
     },
     cart: {
-        currency: 'AUD',
-        grandTotal: {
-            integerAmount: 12000,
-        },
-        handling: {
-            integerAmount: 500,
-        },
-        id: '123',
         items: [
             {
                 integerAmount: 10000,
@@ -34,15 +26,6 @@ const paymentRequestDataMock = {
                 sku: '123456789',
             },
         ],
-        shipping: {
-            integerAmount: 1000,
-        },
-        subTotal: {
-            integerAmount: 10000,
-        },
-        taxTotal: {
-            integerAmount: 1000,
-        },
     },
     customer: {
         customerId: '123',
@@ -56,9 +39,25 @@ const paymentRequestDataMock = {
     },
     order: {
         callbackUrl: '/order/123/payment',
+        currency: 'AUD',
+        grandTotal: {
+            integerAmount: 12000,
+        },
+        handling: {
+            integerAmount: 500,
+        },
         orderId: '123',
         payment: {
             returnUrl: '/checkout',
+        },
+        shipping: {
+            integerAmount: 1000,
+        },
+        subTotal: {
+            integerAmount: 10000,
+        },
+        taxTotal: {
+            integerAmount: 1000,
         },
         token: 'abc123',
     },

@@ -12,13 +12,13 @@ import mapToStore from './map-to-store';
  * @returns {Object}
  */
 export default function mapToPayload(data) {
-    const { authToken, cart = {}, order = {}, paymentMethod = {} } = data;
+    const { authToken, order = {}, paymentMethod = {} } = data;
 
     const payload = objectAssign(
         {
-            amount: cart.grandTotal ? cart.grandTotal.integerAmount : null,
+            amount: order.grandTotal ? order.grandTotal.integerAmount : null,
             bc_auth_token: authToken,
-            currency: cart.currency,
+            currency: order.currency,
             gateway: paymentMethod.gateway,
             notify_url: order.callbackUrl,
             order_id: toString(order.orderId),

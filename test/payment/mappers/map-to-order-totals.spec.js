@@ -12,11 +12,11 @@ describe('mapToOrderTotals', () => {
         const output = mapToOrderTotals(data);
 
         expect(output).toEqual({
-            grand_total: data.cart.grandTotal.integerAmount,
-            handling: data.cart.handling.integerAmount,
-            shipping: data.cart.shipping.integerAmount,
-            subtotal: data.cart.subTotal.integerAmount,
-            tax: data.cart.taxTotal.integerAmount,
+            grand_total: data.order.grandTotal.integerAmount,
+            handling: data.order.handling.integerAmount,
+            shipping: data.order.shipping.integerAmount,
+            subtotal: data.order.subTotal.integerAmount,
+            tax: data.order.taxTotal.integerAmount,
         });
     });
 });

@@ -6,13 +6,13 @@ import { omitNil } from '../../common/utils';
  * @returns {Object}
  */
 export default function mapToOrderTotals(data) {
-    const { cart } = data;
+    const { order } = data;
 
     return omitNil({
-        grand_total: cart.grandTotal ? cart.grandTotal.integerAmount : null,
-        handling: cart.handling ? cart.handling.integerAmount : null,
-        shipping: cart.shipping ? cart.shipping.integerAmount : null,
-        subtotal: cart.subTotal ? cart.subTotal.integerAmount : null,
-        tax: cart.taxTotal ? cart.taxTotal.integerAmount : null,
+        grand_total: order.grandTotal ? order.grandTotal.integerAmount : null,
+        handling: order.handling ? order.handling.integerAmount : null,
+        shipping: order.shipping ? order.shipping.integerAmount : null,
+        subtotal: order.subTotal ? order.subTotal.integerAmount : null,
+        tax: order.taxTotal ? order.taxTotal.integerAmount : null,
     });
 }
