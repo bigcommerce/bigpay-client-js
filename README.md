@@ -44,14 +44,6 @@ export default function getPaymentData() {
             province: 'New South Wales',
         },
         cart: {
-            currency: 'AUD',
-            grandTotal: {
-                integerAmount: 12000,
-            },
-            handling: {
-                integerAmount: 0,
-            },
-            id: '123',
             items: [
                 {
                     id: '123',
@@ -61,15 +53,6 @@ export default function getPaymentData() {
                     sku: '123456789',
                 },
             ],
-            shipping: {
-                integerAmount: 1000,
-            },
-            subTotal: {
-                integerAmount: 10000,
-            },
-            taxTotal: {
-                integerAmount: 1000,
-            },
         },
         customer: {
             customerId: '123',
@@ -80,7 +63,23 @@ export default function getPaymentData() {
             sessionHash: 'abc123',
         },
         order: {
+            currency: 'AUD',
+            grandTotal: {
+                integerAmount: 12000,
+            },
+            handling: {
+                integerAmount: 0,
+            },
             orderId: '123',
+            shipping: {
+                integerAmount: 1000,
+            },
+            subTotal: {
+                integerAmount: 10000,
+            },
+            taxTotal: {
+                integerAmount: 1000,
+            },
             token: 'abc123',
         },
         payment: {
