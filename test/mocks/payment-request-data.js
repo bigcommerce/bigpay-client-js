@@ -53,7 +53,7 @@ const paymentRequestDataMock = {
         shipping: {
             integerAmount: 1000,
         },
-        subTotal: {
+        subtotal: {
             integerAmount: 10000,
         },
         taxTotal: {
