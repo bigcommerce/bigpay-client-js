@@ -15,7 +15,7 @@ describe('mapToOrderTotals', () => {
             grand_total: data.order.grandTotal.integerAmount,
             handling: data.order.handling.integerAmount,
             shipping: data.order.shipping.integerAmount,
-            subtotal: data.order.subTotal.integerAmount,
+            subtotal: data.order.subtotal.integerAmount,
             tax: data.order.taxTotal.integerAmount,
         });
     });
