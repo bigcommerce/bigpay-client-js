@@ -8,6 +8,7 @@ function createInput(value, key) {
     const input = document.createElement('input');
 
     input.setAttribute('name', key);
+    input.setAttribute('type', 'hidden');
     input.setAttribute('value', value);
 
     return input;
@@ -21,6 +22,8 @@ function createInput(value, key) {
  */
 export default function createForm(url, data) {
     const form = document.createElement('form');
+
+    form.style.display = 'none';
 
     form.setAttribute('action', url);
     form.setAttribute('method', 'POST');

@@ -9,9 +9,10 @@ describe('postForm', () => {
     beforeEach(() => {
         actionUrl = '/pay/initialize';
         data = { id: 'adyen' };
-        form = jasmine.createSpyObj('form', ['submit']);
+        form = document.createElement('form');
 
         spyOn(createFormModule, 'default').and.returnValue(form);
+        spyOn(form, 'submit');
     });
 
     it('should create form', () => {
