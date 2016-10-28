@@ -16,9 +16,9 @@ describe('createForm', () => {
         const output = createForm(actionUrl, fields);
 
         expect(output.outerHTML).toEqual(
-            '<form action="/pay/initialize" method="POST" target="_top">' +
-                '<input name="field_1" value="foo">' +
-                '<input name="field_2" value="bar">' +
+            '<form action="/pay/initialize" method="POST" target="_top" style="display: none;">' +
+                '<input name="field_1" type="hidden" value="foo">' +
+                '<input name="field_2" type="hidden" value="bar">' +
             '</form>'
         );
     });
