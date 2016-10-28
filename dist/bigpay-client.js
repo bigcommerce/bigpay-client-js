@@ -971,7 +971,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	    var form = (0, _createForm2.default)(url, data);
 	
+	    // Some browsers require the form to be part of DOM in order to submit
+	    document.body.appendChild(form);
 	    form.submit();
+	    document.body.removeChild(form);
 	
 	    window.addEventListener('beforeunload', function handleBeforeUnload() {
 	        window.removeEventListener('beforeunload', handleBeforeUnload);
@@ -1000,6 +1003,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var input = document.createElement('input');
 	
 	    input.setAttribute('name', key);
+	    input.setAttribute('type', 'hidden');
 	    input.setAttribute('value', value);
 	
 	    return input;
@@ -1013,6 +1017,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	function createForm(url, data) {
 	    var form = document.createElement('form');
+	
+	    form.style.display = 'none';
 	
 	    form.setAttribute('action', url);
 	    form.setAttribute('method', 'POST');
@@ -1745,7 +1751,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        grand_total: order.grandTotal ? order.grandTotal.integerAmount : null,
 	        handling: order.handling ? order.handling.integerAmount : null,
 	        shipping: order.shipping ? order.shipping.integerAmount : null,
-	        subtotal: order.subTotal ? order.subTotal.integerAmount : null,
+	        subtotal: order.subtotal ? order.subtotal.integerAmount : null,
 	        tax: order.taxTotal ? order.taxTotal.integerAmount : null
 	    });
 	}
