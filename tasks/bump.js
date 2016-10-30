@@ -50,7 +50,7 @@ function promptVersionTask() {
         }));
 }
 
-function commintVersionTask() {
+function commitVersionTask() {
     var files = ['./bower.json', './package.json', './dist'];
 
     return gulp.src(files)
@@ -70,6 +70,6 @@ function tagVersionTask(done) {
 
 module.exports = gulp.series(
     promptVersionTask,
-    commintVersionTask,
+    commitVersionTask,
     tagVersionTask
 );
