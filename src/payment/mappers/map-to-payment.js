@@ -8,18 +8,18 @@ import mapToCreditCard from './map-to-credit-card';
  * @returns {Object}
  */
 export default function mapToPayment(data) {
-    const { order = {}, payment = {}, paymentMethod = {} } = data;
+    const { order = {}, paymentMethod = {}, quoteMeta = {} } = data;
 
     const payload = {
-        device_info: payment.deviceData,
+        device_info: quoteMeta.request ? quoteMeta.request.deviceSessionId : null,
         gateway: paymentMethod.id,
         notify_url: order.callbackUrl,
     };
 
-    if (payment.nonce) {
+    if (paymentMethod.nonce) {
         objectAssign(payload, {
             credit_card_token: {
-                token: payment.nonce,
+                token: paymentMethod.nonce,
             },
         });
     } else {

@@ -57,10 +57,8 @@ export default function getPaymentData() {
         customer: {
             customerId: '123',
             firstName: 'Foo',
-            geoCountryCode: 'AU',
             lastName: 'Bar',
             locale: 'en-AU',
-            sessionHash: 'abc123',
         },
         order: {
             currency: 'AUD',
@@ -92,11 +90,15 @@ export default function getPaymentData() {
             ccNumber: '4007000000027',
         },
         paymentMethod: {
-            config: {
-                redirectUrl: '/checkout',
-            },
             id: 'paypalprous',
             type: 'PAYMENT_TYPE_API',
+        },
+        quoteMeta: {
+            request: {
+                deviceSessionId: 'xyz123',
+                geoCountryCode: 'AU',
+                sessionHash: 'abc123',
+            },
         },
         shippingAddress: {
             addressLine1: '685 Market St',
@@ -115,8 +117,9 @@ export default function getPaymentData() {
         source: 'bcapp-checkout-uco',
         store: {
             storeHash: 's123456789',
-            storeName: 'Test Store',
             storeId: '100',
+            storeLanguage: 'en-AU',
+            storeName: 'Test Store',
         },
     }
 }

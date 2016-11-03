@@ -12,9 +12,9 @@ describe('mapToCustomer', () => {
         const output = mapToCustomer(data);
 
         expect(output).toEqual({
-            geo_ip_country_code: data.customer.geoCountryCode,
+            geo_ip_country_code: data.quoteMeta.request.geoCountryCode,
             id: `${data.customer.customerId}`,
-            session_token: data.customer.sessionHash,
+            session_token: data.quoteMeta.request.sessionHash,
         });
     });
 });

@@ -17,7 +17,7 @@ describe('mapToPayment', () => {
 
         expect(output).toEqual({
             credit_card: 'creditCard',
-            device_info: data.payment.deviceData,
+            device_info: data.quoteMeta.request.deviceSessionId,
             gateway: data.paymentMethod.id,
             notify_url: data.order.callbackUrl,
         });
@@ -25,7 +25,7 @@ describe('mapToPayment', () => {
 
     it('should map to payment with credit card token data', () => {
         data = merge({}, data, {
-            payment: {
+            paymentMethod: {
                 nonce: 'abc123',
             },
         });
@@ -34,9 +34,9 @@ describe('mapToPayment', () => {
 
         expect(output).toEqual({
             credit_card_token: {
-                token: data.payment.nonce,
+                token: data.paymentMethod.nonce,
             },
-            device_info: data.payment.deviceData,
+            device_info: data.quoteMeta.request.deviceSessionId,
             gateway: data.paymentMethod.id,
             notify_url: data.order.callbackUrl,
         });

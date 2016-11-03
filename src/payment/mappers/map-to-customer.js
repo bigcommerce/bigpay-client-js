@@ -6,11 +6,11 @@ import { omitNil, toString } from '../../common/utils';
  * @returns {Object}
  */
 export default function mapToCustomer(data) {
-    const { customer = {} } = data;
+    const { customer = {}, quoteMeta = {} } = data;
 
     return omitNil({
-        geo_ip_country_code: customer.geoCountryCode,
+        geo_ip_country_code: quoteMeta.request ? quoteMeta.request.geoCountryCode : null,
         id: toString(customer.customerId),
-        session_token: customer.sessionHash,
+        session_token: quoteMeta.request ? quoteMeta.request.sessionHash : null,
     });
 }
