@@ -31,10 +31,8 @@ const paymentRequestDataMock = {
         customerId: '123',
         email: 'email@bigcommerce.com',
         firstName: 'Foo',
-        geoCountryCode: 'AU',
         lastName: 'Bar',
         name: 'Foo Bar',
-        sessionHash: 'abc123',
         phoneNumber: '98765432',
     },
     order: {
@@ -69,11 +67,17 @@ const paymentRequestDataMock = {
         },
         ccName: 'Foo Bar',
         ccNumber: '4007000000027',
-        deviceData: 'Chrome',
     },
     paymentMethod: {
         id: 'paypalprous',
         type: API,
+    },
+    quoteMeta: {
+        request: {
+            deviceSessionId: 'xyz123',
+            geoCountryCode: 'AU',
+            sessionHash: 'abc123',
+        },
     },
     shippingAddress: {
         addressLine1: '685 Market St',
