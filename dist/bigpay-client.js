@@ -846,6 +846,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	function mapToCustomer(data) {
 	    var _data$customer = data.customer;
 	    var customer = _data$customer === undefined ? {} : _data$customer;
+	    var _data$quoteMeta = data.quoteMeta;
+	    var quoteMeta = _data$quoteMeta === undefined ? {} : _data$quoteMeta;
 	    var _data$store = data.store;
 	    var store = _data$store === undefined ? {} : _data$store;
 	
@@ -854,7 +856,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        customer_browser_info: navigator.userAgent,
 	        customer_email: customer.email,
 	        customer_first_name: customer.firstName,
-	        customer_geo_ip_country_code: customer.geoCountryCode,
+	        customer_geo_ip_country_code: quoteMeta.request ? quoteMeta.request.geoCountryCode : null,
 	        customer_last_name: customer.lastName,
 	        customer_locale: store.storeLanguage,
 	        customer_name: customer.name,
@@ -1591,12 +1593,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	function mapToCustomer(data) {
 	    var _data$customer = data.customer;
 	    var customer = _data$customer === undefined ? {} : _data$customer;
+	    var _data$quoteMeta = data.quoteMeta;
+	    var quoteMeta = _data$quoteMeta === undefined ? {} : _data$quoteMeta;
 	
 	
 	    return (0, _utils.omitNil)({
-	        geo_ip_country_code: customer.geoCountryCode,
+	        geo_ip_country_code: quoteMeta.request ? quoteMeta.request.geoCountryCode : null,
 	        id: (0, _utils.toString)(customer.customerId),
-	        session_token: customer.sessionHash
+	        session_token: quoteMeta.request ? quoteMeta.request.sessionHash : null
 	    });
 	}
 
@@ -1789,22 +1793,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	function mapToPayment(data) {
 	    var _data$order = data.order;
 	    var order = _data$order === undefined ? {} : _data$order;
-	    var _data$payment = data.payment;
-	    var payment = _data$payment === undefined ? {} : _data$payment;
 	    var _data$paymentMethod = data.paymentMethod;
 	    var paymentMethod = _data$paymentMethod === undefined ? {} : _data$paymentMethod;
+	    var _data$quoteMeta = data.quoteMeta;
+	    var quoteMeta = _data$quoteMeta === undefined ? {} : _data$quoteMeta;
 	
 	
 	    var payload = {
-	        device_info: payment.deviceData,
+	        device_info: quoteMeta.request ? quoteMeta.request.deviceSessionId : null,
 	        gateway: paymentMethod.id,
 	        notify_url: order.callbackUrl
 	    };
 	
-	    if (payment.nonce) {
+	    if (paymentMethod.nonce) {
 	        (0, _objectAssign2.default)(payload, {
 	            credit_card_token: {
-	                token: payment.nonce
+	                token: paymentMethod.nonce
 	            }
 	        });
 	    } else {
