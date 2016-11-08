@@ -1,4 +1,13 @@
 /**
+ * Get client token URL
+ * @param {type} host
+ * @returns {String}
+ */
+export function getClientTokenUrl(host) {
+    return `${host}/api/public/v1/payments/client_tokens`;
+}
+
+/**
  * Get offsite payment URL
  * @param {string} host
  * @returns {string}

@@ -15,6 +15,7 @@ describe('Client', () => {
 
         spyOn(paymentModule, 'initializeOffsitePayment');
         spyOn(paymentModule, 'submitPayment');
+        spyOn(paymentModule, 'requestClientToken');
     });
 
     describe('construct', () => {
@@ -22,6 +23,18 @@ describe('Client', () => {
             client = new Client(config);
 
             expect(client.host).toEqual(config.host);
+        });
+    });
+
+    describe('requestClientToken', () => {
+        let data;
+
+        it('should request payment session token', () => {
+            const { requestClientToken } = paymentModule;
+
+            client.requestClientToken(data, callback);
+
+            expect(requestClientToken).toHaveBeenCalledWith(data, { host: config.host }, callback);
         });
     });
 
