@@ -1,18 +1,18 @@
-import { getPaymentSessionTokenUrl } from './urls';
+import { getClientTokenUrl } from './urls';
 import { postRequest } from '../common/http-request';
-import { mapToHeaders, mapToPayload } from './session-token-mappers';
+import { mapToHeaders, mapToPayload } from './client-token-mappers';
 
 /**
- * Request payment session token
+ * Request client token
  * @param {PaymentRequestData} data
  * @param {Object} [options = {}]
  * @param {string} [options.host]
  * @param {Function} [callback]
  * @returns {void}
  */
-export default function requestPaymentSessionToken(data, { host } = {}, callback) {
+export default function requestClientToken(data, { host } = {}, callback) {
     const payload = mapToPayload(data);
-    const url = getPaymentSessionTokenUrl(host);
+    const url = getClientTokenUrl(host);
     const options = {
         headers: mapToHeaders(data),
     };

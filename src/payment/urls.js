@@ -1,10 +1,10 @@
 /**
- * Get payment session token URL
+ * Get client token URL
  * @param {type} host
  * @returns {String}
  */
-export function getPaymentSessionTokenUrl(host) {
-    return `${host}/api/public/v1/payments/session_tokens`;
+export function getClientTokenUrl(host) {
+    return `${host}/api/public/v1/payments/client_tokens`;
 }
 
 /**
