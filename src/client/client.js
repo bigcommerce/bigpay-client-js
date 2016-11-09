@@ -1,4 +1,4 @@
-import { PAYMENT_TYPES, initializeOffsitePayment, requestClientToken, submitPayment } from '../payment';
+import { PAYMENT_TYPES, initializeOffsitePayment, submitPayment } from '../payment';
 
 export default class Client {
     /**
@@ -25,18 +25,6 @@ export default class Client {
         }
 
         initializeOffsitePayment(data, options, callback);
-    }
-
-    /**
-     * Request client token
-     * @param {Object} data
-     * @param {Function} [callback]
-     * @returns {void}
-     */
-    requestClientToken(data, callback) {
-        const options = { host: this.host };
-
-        requestClientToken(data, options, callback);
     }
 
     /**
