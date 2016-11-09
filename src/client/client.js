@@ -29,7 +29,7 @@ export default class Client {
 
     /**
      * Request client token
-     * @param {PaymentRequestData} data
+     * @param {Object} data
      * @param {Function} [callback]
      * @returns {void}
      */

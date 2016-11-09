@@ -4,7 +4,7 @@ import { mapToHeaders, mapToPayload } from './client-token-mappers';
 
 /**
  * Request client token
- * @param {PaymentRequestData} data
+ * @param {Object} data
  * @param {Object} [options = {}]
  * @param {string} [options.host]
  * @param {Function} [callback]
