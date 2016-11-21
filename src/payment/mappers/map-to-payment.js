@@ -1,5 +1,6 @@
 import objectAssign from 'object-assign';
 import { omitNil } from '../../common/utils';
+import { mapToId } from '../../payment-method';
 import mapToCreditCard from './map-to-credit-card';
 
 /**
@@ -12,7 +13,7 @@ export default function mapToPayment(data) {
 
     const payload = {
         device_info: quoteMeta.request ? quoteMeta.request.deviceSessionId : null,
-        gateway: paymentMethod.id,
+        gateway: mapToId(paymentMethod),
         notify_url: order.callbackUrl,
     };
 
