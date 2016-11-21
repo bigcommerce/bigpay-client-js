@@ -8,7 +8,7 @@ import mapToCreditCard from './map-to-credit-card';
  * @returns {Object}
  */
 export default function mapToPayment(data) {
-    const { order = {}, paymentMethod = {}, quoteMeta = {} } = data;
+    const { order = {}, payment = {}, paymentMethod = {}, quoteMeta = {} } = data;
 
     const payload = {
         device_info: quoteMeta.request ? quoteMeta.request.deviceSessionId : null,
@@ -16,10 +16,12 @@ export default function mapToPayment(data) {
         notify_url: order.callbackUrl,
     };
 
-    if (paymentMethod.nonce) {
+    const nonce = payment.nonce || paymentMethod.nonce;
+
+    if (nonce) {
         objectAssign(payload, {
             credit_card_token: {
-                token: paymentMethod.nonce,
+                token: nonce,
             },
         });
     } else {
