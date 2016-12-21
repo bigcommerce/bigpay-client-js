@@ -1,5 +1,6 @@
 import objectAssign from 'object-assign';
 import { omitNil, toString } from '../../common/utils';
+import { mapToId } from '../../payment-method';
 import mapToBillingAddress from './map-to-billing-address';
 import mapToCustomer from './map-to-customer';
 import mapToMeta from './map-to-meta';
@@ -23,7 +24,7 @@ export default function mapToPayload(data) {
             notify_url: order.callbackUrl,
             order_id: toString(order.orderId),
             page_title: document.title,
-            payment_method_id: paymentMethod.id,
+            payment_method_id: mapToId(paymentMethod),
             reference_id: toString(order.orderId),
             return_url: order.payment ? order.payment.returnUrl : null,
         },
