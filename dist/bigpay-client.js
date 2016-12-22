@@ -233,7 +233,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _initializeOffsitePayment2 = _interopRequireDefault(_initializeOffsitePayment);
 	
-	var _submitPayment = __webpack_require__(30);
+	var _submitPayment = __webpack_require__(33);
 	
 	var _submitPayment2 = _interopRequireDefault(_submitPayment);
 	
@@ -273,7 +273,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _offsiteMappers = __webpack_require__(8);
 	
-	var _formRequest = __webpack_require__(27);
+	var _formRequest = __webpack_require__(30);
 	
 	/**
 	 * Initialize offsite payment
@@ -360,23 +360,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _utils = __webpack_require__(11);
 	
-	var _mapToBillingAddress = __webpack_require__(21);
+	var _paymentMethod = __webpack_require__(21);
+	
+	var _mapToBillingAddress = __webpack_require__(24);
 	
 	var _mapToBillingAddress2 = _interopRequireDefault(_mapToBillingAddress);
 	
-	var _mapToCustomer = __webpack_require__(23);
+	var _mapToCustomer = __webpack_require__(26);
 	
 	var _mapToCustomer2 = _interopRequireDefault(_mapToCustomer);
 	
-	var _mapToMeta = __webpack_require__(24);
+	var _mapToMeta = __webpack_require__(27);
 	
 	var _mapToMeta2 = _interopRequireDefault(_mapToMeta);
 	
-	var _mapToShippingAddress = __webpack_require__(25);
+	var _mapToShippingAddress = __webpack_require__(28);
 	
 	var _mapToShippingAddress2 = _interopRequireDefault(_mapToShippingAddress);
 	
-	var _mapToStore = __webpack_require__(26);
+	var _mapToStore = __webpack_require__(29);
 	
 	var _mapToStore2 = _interopRequireDefault(_mapToStore);
 	
@@ -403,7 +405,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        notify_url: order.callbackUrl,
 	        order_id: (0, _utils.toString)(order.orderId),
 	        page_title: document.title,
-	        payment_method_id: paymentMethod.id,
+	        payment_method_id: (0, _paymentMethod.mapToId)(paymentMethod),
 	        reference_id: (0, _utils.toString)(order.orderId),
 	        return_url: order.payment ? order.payment.returnUrl : null
 	    }, (0, _mapToBillingAddress2.default)(data), (0, _mapToCustomer2.default)(data), (0, _mapToMeta2.default)(data), (0, _mapToShippingAddress2.default)(data), (0, _mapToStore2.default)(data));
@@ -795,8 +797,72 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 21 */
-[54, 22],
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.PAYMENT_METHODS = exports.mapToId = undefined;
+	
+	var _paymentMethods = __webpack_require__(22);
+	
+	var PAYMENT_METHODS = _interopRequireWildcard(_paymentMethods);
+	
+	var _mapToId = __webpack_require__(23);
+	
+	var _mapToId2 = _interopRequireDefault(_mapToId);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	
+	exports.mapToId = _mapToId2.default;
+	exports.PAYMENT_METHODS = PAYMENT_METHODS;
+
+/***/ },
 /* 22 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var BRAINTREE = exports.BRAINTREE = 'braintree';
+	var BRAINTREE_PAYPAL = exports.BRAINTREE_PAYPAL = 'braintreepaypal';
+
+/***/ },
+/* 23 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = mapToId;
+	
+	var _paymentMethods = __webpack_require__(22);
+	
+	/**
+	 * Map to gateway
+	 * @param {PaymentMethod} paymentMethod
+	 * @returns {string}
+	 */
+	function mapToId(paymentMethod) {
+	    if (paymentMethod.id === _paymentMethods.BRAINTREE_PAYPAL) {
+	        return _paymentMethods.BRAINTREE;
+	    }
+	
+	    return paymentMethod.id;
+	}
+
+/***/ },
+/* 24 */
+[57, 25],
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -826,7 +892,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 23 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -866,7 +932,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 24 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -895,9 +961,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 25 */
-[55, 22],
-/* 26 */
+/* 28 */
+[58, 25],
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -926,7 +992,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 27 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -936,7 +1002,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.postForm = undefined;
 	
-	var _postForm = __webpack_require__(28);
+	var _postForm = __webpack_require__(31);
 	
 	var _postForm2 = _interopRequireDefault(_postForm);
 	
@@ -945,7 +1011,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.postForm = _postForm2.default;
 
 /***/ },
-/* 28 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -955,7 +1021,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.default = postForm;
 	
-	var _createForm = __webpack_require__(29);
+	var _createForm = __webpack_require__(32);
 	
 	var _createForm2 = _interopRequireDefault(_createForm);
 	
@@ -986,7 +1052,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 29 */
+/* 32 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1036,7 +1102,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 30 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1048,9 +1114,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _urls = __webpack_require__(7);
 	
-	var _httpRequest = __webpack_require__(31);
+	var _httpRequest = __webpack_require__(34);
 	
-	var _mappers = __webpack_require__(41);
+	var _mappers = __webpack_require__(44);
 	
 	/**
 	 * Submit payment
@@ -1076,7 +1142,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 31 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1086,11 +1152,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.sendRequest = exports.postRequest = undefined;
 	
-	var _postRequest = __webpack_require__(32);
+	var _postRequest = __webpack_require__(35);
 	
 	var _postRequest2 = _interopRequireDefault(_postRequest);
 	
-	var _sendRequest = __webpack_require__(37);
+	var _sendRequest = __webpack_require__(40);
 	
 	var _sendRequest2 = _interopRequireDefault(_sendRequest);
 	
@@ -1100,7 +1166,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.sendRequest = _sendRequest2.default;
 
 /***/ },
-/* 32 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1114,9 +1180,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _objectAssign2 = _interopRequireDefault(_objectAssign);
 	
-	var _constants = __webpack_require__(33);
+	var _constants = __webpack_require__(36);
 	
-	var _sendRequest = __webpack_require__(37);
+	var _sendRequest = __webpack_require__(40);
 	
 	var _sendRequest2 = _interopRequireDefault(_sendRequest);
 	
@@ -1139,7 +1205,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 33 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1149,15 +1215,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.METHOD_TYPES = exports.DEFAULT_OPTIONS = exports.CONTENT_TYPES = undefined;
 	
-	var _contentTypes = __webpack_require__(34);
+	var _contentTypes = __webpack_require__(37);
 	
 	var CONTENT_TYPES = _interopRequireWildcard(_contentTypes);
 	
-	var _methodTypes = __webpack_require__(35);
+	var _methodTypes = __webpack_require__(38);
 	
 	var METHOD_TYPES = _interopRequireWildcard(_methodTypes);
 	
-	var _defaultOptions = __webpack_require__(36);
+	var _defaultOptions = __webpack_require__(39);
 	
 	var _defaultOptions2 = _interopRequireDefault(_defaultOptions);
 	
@@ -1170,7 +1236,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.METHOD_TYPES = METHOD_TYPES;
 
 /***/ },
-/* 34 */
+/* 37 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1181,7 +1247,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var APPLICATION_JSON = exports.APPLICATION_JSON = 'application/json';
 
 /***/ },
-/* 35 */
+/* 38 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1193,7 +1259,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var POST = exports.POST = 'POST';
 
 /***/ },
-/* 36 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1202,9 +1268,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: true
 	});
 	
-	var _contentTypes = __webpack_require__(34);
+	var _contentTypes = __webpack_require__(37);
 	
-	var _methodTypes = __webpack_require__(35);
+	var _methodTypes = __webpack_require__(38);
 	
 	var DEFAULT_OPTIONS = {
 	    headers: {
@@ -1217,7 +1283,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = DEFAULT_OPTIONS;
 
 /***/ },
-/* 37 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1227,15 +1293,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.default = sendRequest;
 	
-	var _deepAssign = __webpack_require__(38);
+	var _deepAssign = __webpack_require__(41);
 	
 	var _deepAssign2 = _interopRequireDefault(_deepAssign);
 	
-	var _constants = __webpack_require__(33);
+	var _constants = __webpack_require__(36);
 	
 	var _utils = __webpack_require__(11);
 	
-	var _createRequest = __webpack_require__(40);
+	var _createRequest = __webpack_require__(43);
 	
 	var _createRequest2 = _interopRequireDefault(_createRequest);
 	
@@ -1320,11 +1386,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 38 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var isObj = __webpack_require__(39);
+	var isObj = __webpack_require__(42);
 	var hasOwnProperty = Object.prototype.hasOwnProperty;
 	var propIsEnumerable = Object.prototype.propertyIsEnumerable;
 	
@@ -1394,7 +1460,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 39 */
+/* 42 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1405,7 +1471,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 40 */
+/* 43 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1472,7 +1538,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 41 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1482,11 +1548,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.mapToPayload = exports.mapToHeaders = undefined;
 	
-	var _mapToHeaders = __webpack_require__(42);
+	var _mapToHeaders = __webpack_require__(45);
 	
 	var _mapToHeaders2 = _interopRequireDefault(_mapToHeaders);
 	
-	var _mapToPayload = __webpack_require__(43);
+	var _mapToPayload = __webpack_require__(46);
 	
 	var _mapToPayload2 = _interopRequireDefault(_mapToPayload);
 	
@@ -1496,7 +1562,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.mapToPayload = _mapToPayload2.default;
 
 /***/ },
-/* 42 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1523,7 +1589,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 43 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1535,19 +1601,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _utils = __webpack_require__(11);
 	
-	var _mapToCustomer = __webpack_require__(44);
+	var _mapToCustomer = __webpack_require__(47);
 	
 	var _mapToCustomer2 = _interopRequireDefault(_mapToCustomer);
 	
-	var _mapToOrder = __webpack_require__(45);
+	var _mapToOrder = __webpack_require__(48);
 	
 	var _mapToOrder2 = _interopRequireDefault(_mapToOrder);
 	
-	var _mapToPayment = __webpack_require__(51);
+	var _mapToPayment = __webpack_require__(54);
 	
 	var _mapToPayment2 = _interopRequireDefault(_mapToPayment);
 	
-	var _mapToStore = __webpack_require__(53);
+	var _mapToStore = __webpack_require__(56);
 	
 	var _mapToStore2 = _interopRequireDefault(_mapToStore);
 	
@@ -1573,7 +1639,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 44 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1605,7 +1671,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 45 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1617,19 +1683,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _utils = __webpack_require__(11);
 	
-	var _mapToBillingAddress = __webpack_require__(46);
+	var _mapToBillingAddress = __webpack_require__(49);
 	
 	var _mapToBillingAddress2 = _interopRequireDefault(_mapToBillingAddress);
 	
-	var _mapToItems = __webpack_require__(48);
+	var _mapToItems = __webpack_require__(51);
 	
 	var _mapToItems2 = _interopRequireDefault(_mapToItems);
 	
-	var _mapToOrderTotals = __webpack_require__(49);
+	var _mapToOrderTotals = __webpack_require__(52);
 	
 	var _mapToOrderTotals2 = _interopRequireDefault(_mapToOrderTotals);
 	
-	var _mapToShippingAddress = __webpack_require__(50);
+	var _mapToShippingAddress = __webpack_require__(53);
 	
 	var _mapToShippingAddress2 = _interopRequireDefault(_mapToShippingAddress);
 	
@@ -1656,9 +1722,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 46 */
-[54, 47],
-/* 47 */
+/* 49 */
+[57, 50],
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1696,7 +1762,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 48 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1730,7 +1796,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 49 */
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1761,9 +1827,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 50 */
-[55, 47],
-/* 51 */
+/* 53 */
+[58, 50],
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1779,7 +1845,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _utils = __webpack_require__(11);
 	
-	var _mapToCreditCard = __webpack_require__(52);
+	var _paymentMethod = __webpack_require__(21);
+	
+	var _mapToCreditCard = __webpack_require__(55);
 	
 	var _mapToCreditCard2 = _interopRequireDefault(_mapToCreditCard);
 	
@@ -1793,6 +1861,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	function mapToPayment(data) {
 	    var _data$order = data.order;
 	    var order = _data$order === undefined ? {} : _data$order;
+	    var _data$payment = data.payment;
+	    var payment = _data$payment === undefined ? {} : _data$payment;
 	    var _data$paymentMethod = data.paymentMethod;
 	    var paymentMethod = _data$paymentMethod === undefined ? {} : _data$paymentMethod;
 	    var _data$quoteMeta = data.quoteMeta;
@@ -1801,14 +1871,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	    var payload = {
 	        device_info: quoteMeta.request ? quoteMeta.request.deviceSessionId : null,
-	        gateway: paymentMethod.id,
+	        gateway: (0, _paymentMethod.mapToId)(paymentMethod),
 	        notify_url: order.callbackUrl
 	    };
 	
-	    if (paymentMethod.nonce) {
+	    var nonce = payment.nonce || paymentMethod.nonce;
+	
+	    if (nonce) {
 	        (0, _objectAssign2.default)(payload, {
 	            credit_card_token: {
-	                token: paymentMethod.nonce
+	                token: nonce
 	            }
 	        });
 	    } else {
@@ -1821,7 +1893,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 52 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1853,7 +1925,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 53 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1883,7 +1955,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 54 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__, __webpack_module_template_argument_0__) {
 
 	'use strict';
@@ -1909,7 +1981,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 55 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__, __webpack_module_template_argument_0__) {
 
 	'use strict';
