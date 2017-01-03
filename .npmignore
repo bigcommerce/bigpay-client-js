@@ -1,5 +1,6 @@
 **/.*
 bower.json
+coverage
 gulpfile.js
 karma.config.js
 src
