@@ -6,5 +6,12 @@ import mapToAddress from './map-to-address';
  * @returns {Object}
  */
 export default function mapToBillingAddress(data) {
-    return mapToAddress(data, 'billingAddress');
+    const { customer = {} } = data;
+    const address = mapToAddress(data, 'billingAddress');
+
+    if (customer.email) {
+        address.email = customer.email;
+    }
+
+    return address;
 }

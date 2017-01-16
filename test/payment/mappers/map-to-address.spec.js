@@ -8,22 +8,22 @@ describe('mapToAddress', () => {
         data = paymentRequestDataMock;
     });
 
-    it('should map to billing address', () => {
-        const output = mapToAddress(data, 'billingAddress');
+    it('should map to shipping address', () => {
+        const output = mapToAddress(data, 'shippingAddress');
 
         expect(output).toEqual({
-            city: data.billingAddress.city,
-            company: data.billingAddress.company,
-            country_code: data.billingAddress.countryCode,
-            country: data.billingAddress.country,
-            first_name: data.billingAddress.firstName,
-            last_name: data.billingAddress.lastName,
-            phone: data.billingAddress.phone,
-            state_code: data.billingAddress.provinceCode,
-            state: data.billingAddress.province,
-            street_1: data.billingAddress.addressLine1,
-            street_2: data.billingAddress.addressLine2,
-            zip: data.billingAddress.postCode,
+            city: data.shippingAddress.city,
+            company: data.shippingAddress.company,
+            country_code: data.shippingAddress.countryCode,
+            country: data.shippingAddress.country,
+            first_name: data.shippingAddress.firstName,
+            last_name: data.shippingAddress.lastName,
+            phone: data.shippingAddress.phone,
+            state_code: data.shippingAddress.provinceCode,
+            state: data.shippingAddress.province,
+            street_1: data.shippingAddress.addressLine1,
+            street_2: data.shippingAddress.addressLine2,
+            zip: data.shippingAddress.postCode,
         });
     });
 });
