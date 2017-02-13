@@ -56,6 +56,7 @@ export default function getPaymentData() {
         },
         customer: {
             customerId: '123',
+            email: 'customer@bigcommerce.com',
             firstName: 'Foo',
             lastName: 'Bar',
             locale: 'en-AU',
@@ -121,7 +122,7 @@ export default function getPaymentData() {
             storeLanguage: 'en-AU',
             storeName: 'Test Store',
         },
-    }
+    };
 }
 ```
 
