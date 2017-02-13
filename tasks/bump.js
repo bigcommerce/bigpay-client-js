@@ -1,4 +1,5 @@
 var bump = require('gulp-bump');
+var changelog = require('gulp-conventional-changelog');
 var git = require('gulp-git');
 var gulp = require('gulp');
 var pkg = require('../package');
@@ -50,8 +51,22 @@ function promptVersionTask() {
         }));
 }
 
+function changelogTask() {
+    return gulp.src('./CHANGELOG.md')
+        .pipe(prompt.confirm({
+            default: true,
+            message: 'Do you want to auto-update the changelog?',
+        }))
+        .pipe(changelog({ buffer: false, preset: 'angular' }))
+        .pipe(gulp.dest('./'))
+        .pipe(prompt.confirm({
+            default: false,
+            message: 'Are you happy with the generated changelog? If not, please revise it before continuing.',
+        }));
+}
+
 function commitVersionTask() {
-    var files = ['./bower.json', './package.json', './dist'];
+    var files = ['./bower.json', './package.json', './dist', './CHANGELOG.md'];
 
     return gulp.src(files)
         .pipe(git.add())
@@ -70,6 +85,7 @@ function tagVersionTask(done) {
 
 module.exports = gulp.series(
     promptVersionTask,
+    changelogTask,
     commitVersionTask,
     tagVersionTask
 );
