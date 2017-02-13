@@ -861,7 +861,31 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 24 */
-[57, 25],
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = mapToBillingAddress;
+	
+	var _mapToAddress = __webpack_require__(25);
+	
+	var _mapToAddress2 = _interopRequireDefault(_mapToAddress);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	/**
+	 * Map to billing address
+	 * @param {PaymentRequestData} data
+	 * @returns {Object}
+	 */
+	function mapToBillingAddress(data) {
+	  return (0, _mapToAddress2.default)(data, 'billingAddress');
+	}
+
+/***/ },
 /* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -962,7 +986,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 28 */
-[58, 25],
+[57, 25],
 /* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -1723,7 +1747,40 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 49 */
-[57, 50],
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = mapToBillingAddress;
+	
+	var _mapToAddress = __webpack_require__(50);
+	
+	var _mapToAddress2 = _interopRequireDefault(_mapToAddress);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	/**
+	 * Map to billing address
+	 * @param {PaymentRequestData} data
+	 * @returns {Object}
+	 */
+	function mapToBillingAddress(data) {
+	    var _data$customer = data.customer;
+	    var customer = _data$customer === undefined ? {} : _data$customer;
+	
+	    var address = (0, _mapToAddress2.default)(data, 'billingAddress');
+	
+	    if (customer.email) {
+	        address.email = customer.email;
+	    }
+	
+	    return address;
+	}
+
+/***/ },
 /* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -1828,7 +1885,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 53 */
-[58, 50],
+[57, 50],
 /* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -1956,32 +2013,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 57 */
-/***/ function(module, exports, __webpack_require__, __webpack_module_template_argument_0__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = mapToBillingAddress;
-	
-	var _mapToAddress = __webpack_require__(__webpack_module_template_argument_0__);
-	
-	var _mapToAddress2 = _interopRequireDefault(_mapToAddress);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	/**
-	 * Map to billing address
-	 * @param {PaymentRequestData} data
-	 * @returns {Object}
-	 */
-	function mapToBillingAddress(data) {
-	  return (0, _mapToAddress2.default)(data, 'billingAddress');
-	}
-
-/***/ },
-/* 58 */
 /***/ function(module, exports, __webpack_require__, __webpack_module_template_argument_0__) {
 
 	'use strict';
