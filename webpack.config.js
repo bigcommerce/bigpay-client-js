@@ -1,3 +1,4 @@
+var path = require('path');
 var webpack = require('webpack');
 
 function getWebpackConfig() {
@@ -26,6 +27,7 @@ function getLoaders() {
     return [
         {
             exclude: /node_modules/,
+            include: __dirname,
             loader: 'babel',
             query: {
                 presets: ['es2015'],
@@ -48,6 +50,7 @@ function getPreLoaders() {
     return [
         {
             exclude: /node_modules/,
+            include: __dirname,
             loader: 'eslint',
             test: /\.js$/,
         },
