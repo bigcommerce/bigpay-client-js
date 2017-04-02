@@ -58,7 +58,7 @@ function isSuccessfulRequest(xhr) {
 export default function sendRequest(url, data, options, callback = () => {}) {
     const mergedOptions = deepAssign({}, DEFAULT_OPTIONS, options);
 
-    const xhr = createRequest(url, mergedOptions, error => {
+    const xhr = createRequest(url, mergedOptions, (error) => {
         const response = getResponse(xhr);
 
         if (error || !isSuccessfulRequest(xhr)) {

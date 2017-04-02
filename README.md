@@ -128,12 +128,18 @@ export default function getPaymentData() {
 
 ## Development
 
+Use [yarn](https://yarnpkg.com/en/) to install dependencies. i.e.:
+
+```
+yarn install
+```
+
 To run unit tests:
 ```
-npm run test
+yarn test
 ```
 
 To release a new version:
 ```
-npm run release
+yarn release
 ```
