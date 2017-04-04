@@ -20,6 +20,7 @@ describe('mapToPayment', () => {
             device_info: data.quoteMeta.request.deviceSessionId,
             gateway: data.paymentMethod.id,
             notify_url: data.order.callbackUrl,
+            return_url: data.order.payment.returnUrl,
         });
     });
 
@@ -39,6 +40,7 @@ describe('mapToPayment', () => {
             device_info: data.quoteMeta.request.deviceSessionId,
             gateway: data.paymentMethod.id,
             notify_url: data.order.callbackUrl,
+            return_url: data.order.payment.returnUrl,
         });
     });
 });
