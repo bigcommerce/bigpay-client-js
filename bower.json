@@ -2,7 +2,7 @@
   "name": "bigpay-client",
   "version": "2.0.0",
   "description": "JavaScript client for Bigpay",
-  "main": "dist/bigpay-client.js",
+  "main": "lib/index.js",
   "authors": [
     "BigCommerce"
   ],
