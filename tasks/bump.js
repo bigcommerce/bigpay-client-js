@@ -66,7 +66,7 @@ function changelogTask() {
 }
 
 function commitVersionTask() {
-    var files = ['./bower.json', './package.json', './dist', './CHANGELOG.md'];
+    var files = ['./bower.json', './package.json', './lib', './CHANGELOG.md'];
 
     return gulp.src(files)
         .pipe(git.add())
