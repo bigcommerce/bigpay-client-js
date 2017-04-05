@@ -1,3 +1,13 @@
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/bigcommerce-labs/bigpay-client-js/compare/2.0.0...2.0.1) (2017-04-05)
+
+
+### Bug Fixes
+
+* **build:** Point to the correct file in bower.json ([dbe340b](https://github.com/bigcommerce-labs/bigpay-client-js/commit/dbe340b))
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/bigcommerce-labs/bigpay-client-js/compare/1.0.0...2.0.0) (2017-04-05)
 
