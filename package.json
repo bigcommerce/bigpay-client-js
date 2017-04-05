@@ -51,7 +51,7 @@
   },
   "dependencies": {
     "deep-assign": "^2.0.0",
-    "form-poster": "git+ssh://git@github.com/bigcommerce-labs/form-poster-js.git#1.0.0",
+    "form-poster": "git+ssh://git@github.com/bigcommerce-labs/form-poster-js.git#1.0.1",
     "object-assign": "^4.1.0"
   }
 }

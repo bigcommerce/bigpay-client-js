@@ -37,7 +37,7 @@ function getVersionQuestion(currentVersion) {
 }
 
 function promptVersionTask() {
-    var files = ['./bower.json', './package.json'];
+    var files = ['./package.json'];
     var question = getVersionQuestion(pkg.version);
 
     return gulp.src(files)
@@ -66,7 +66,7 @@ function changelogTask() {
 }
 
 function commitVersionTask() {
-    var files = ['./bower.json', './package.json', './lib', './CHANGELOG.md'];
+    var files = ['./package.json', './lib', './CHANGELOG.md'];
 
     return gulp.src(files)
         .pipe(git.add())

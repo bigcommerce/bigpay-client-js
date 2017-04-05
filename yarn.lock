@@ -2003,9 +2003,9 @@ form-data@~2.1.1:
     combined-stream "^1.0.5"
     mime-types "^2.1.12"
 
-"form-poster@git+ssh://git@github.com/bigcommerce-labs/form-poster-js.git#1.0.0":
-  version "1.0.0"
-  resolved "git+ssh://git@github.com/bigcommerce-labs/form-poster-js.git#9c622762552f21abfea4720f227af77dd5377cf6"
+"form-poster@git+ssh://git@github.com/bigcommerce-labs/form-poster-js.git#1.0.1":
+  version "1.0.1"
+  resolved "git+ssh://git@github.com/bigcommerce-labs/form-poster-js.git#f5df7d86bf70c1910d6ddd4aa07328916c7c8052"
 
 from@~0:
   version "0.1.7"
