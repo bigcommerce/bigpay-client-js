@@ -1,11 +1,13 @@
 # bigpay-client.js
 
+[![Build Status](https://travis-ci.com/bigcommerce-labs/bigpay-client-js.svg?token=pywwZy8zX1F5AzeQ9WpL&branch=master)](https://travis-ci.com/bigcommerce-labs/bigpay-client-js)
+
 bigpay-client.js is a client-side library for posting payment data to Bigpay.
 
 ## Usage
 
 In `checkout.js`
-```{js}
+```js
 import { createClient } from 'bigpay-client';
 import { getPaymentData } from './payment';
 
@@ -25,7 +27,7 @@ client.submitPayment(data, (error, response) => {
 ```
 
 In `payment.js`
-```{js}
+```js
 export default function getPaymentData() {
     return {
         authToken: 'aaa.bbb.ccc',
