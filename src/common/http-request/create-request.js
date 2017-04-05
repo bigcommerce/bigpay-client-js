@@ -8,7 +8,7 @@
 function setHeaders(xhr, headers) {
     const headerKeys = Object.keys(headers);
 
-    headerKeys.forEach(key => {
+    headerKeys.forEach((key) => {
         const value = headers[key];
 
         xhr.setRequestHeader(key, value);

@@ -1,6 +1,6 @@
+import { createFormPoster } from 'form-poster';
 import { getOffsitePaymentUrl } from './urls';
 import { mapToPayload } from './offsite-mappers';
-import { postForm } from '../common/form-request';
 
 /**
  * Initialize offsite payment
@@ -13,6 +13,7 @@ import { postForm } from '../common/form-request';
 export default function initializeOffsitePayment(data, { host } = {}, callback) {
     const payload = mapToPayload(data);
     const url = getOffsitePaymentUrl(host);
+    const formPoster = createFormPoster();
 
-    postForm(url, payload, callback);
+    formPoster.postForm(url, payload, callback);
 }

@@ -46,7 +46,7 @@ describe('sendRequest', () => {
         expect(request.data()).toEqual(data);
     });
 
-    it('should return response in callback if successful', done => {
+    it('should return response in callback if successful', (done) => {
         sendRequest(url, data, options, (err, resp) => {
             expect(resp).toBeDefined();
             done();
@@ -60,8 +60,8 @@ describe('sendRequest', () => {
         });
     });
 
-    it('should return error in callback if unsuccessful', done => {
-        sendRequest(url, data, options, err => {
+    it('should return error in callback if unsuccessful', (done) => {
+        sendRequest(url, data, options, (err) => {
             expect(err).toBeDefined();
             done();
         });
@@ -71,7 +71,7 @@ describe('sendRequest', () => {
         request.respondWith({ status: 400 });
     });
 
-    it('should parse response body as JSON if content type is JSON', done => {
+    it('should parse response body as JSON if content type is JSON', (done) => {
         sendRequest(url, data, options, (err, resp) => {
             expect(resp).toEqual({
                 data: { message: 'foobar' },
