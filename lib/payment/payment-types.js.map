@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/payment/payment-types.js"],"names":["API","HOSTED","OFFLINE"],"mappings":";;;;;AAAO,IAAMA,oBAAM,kBAAZ;AACA,IAAMC,0BAAS,qBAAf;AACA,IAAMC,4BAAU,sBAAhB","file":"payment-types.js","sourcesContent":["export const API = 'PAYMENT_TYPE_API';\nexport const HOSTED = 'PAYMENT_TYPE_HOSTED';\nexport const OFFLINE = 'PAYMENT_TYPE_OFFLINE';\n"]}

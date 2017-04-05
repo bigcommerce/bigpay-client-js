@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../src/payment/offsite-mappers/index.js"],"names":["mapToPayload"],"mappings":";;;;;;;AAAA;;;;;;QAGIA,Y","file":"index.js","sourcesContent":["import mapToPayload from './map-to-payload';\n\nexport {\n    mapToPayload,\n};\n"]}

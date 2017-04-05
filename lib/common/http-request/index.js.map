@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../src/common/http-request/index.js"],"names":["postRequest","sendRequest"],"mappings":";;;;;;;AAAA;;;;AACA;;;;;;QAGIA,W;QACAC,W","file":"index.js","sourcesContent":["import postRequest from './post-request';\nimport sendRequest from './send-request';\n\nexport {\n    postRequest,\n    sendRequest,\n};\n"]}

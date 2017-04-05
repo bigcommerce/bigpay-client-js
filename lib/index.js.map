@@ -1,0 +1,1 @@
+{"version":3,"sources":["../src/index.js"],"names":["createClient"],"mappings":";;;;;;;AAAA;;QAGIA,Y","file":"index.js","sourcesContent":["import { createClient } from './client';\n\nexport {\n    createClient,\n};\n"]}

@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/payment-method/payment-methods.js"],"names":["BRAINTREE","BRAINTREE_PAYPAL"],"mappings":";;;;;AAAO,IAAMA,gCAAY,WAAlB;AACA,IAAMC,8CAAmB,iBAAzB","file":"payment-methods.js","sourcesContent":["export const BRAINTREE = 'braintree';\nexport const BRAINTREE_PAYPAL = 'braintreepaypal';\n"]}
