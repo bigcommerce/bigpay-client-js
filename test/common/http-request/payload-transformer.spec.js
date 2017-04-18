@@ -7,6 +7,12 @@ describe('PayloadTransformer', () => {
         payloadTransformer = new PayloadTransformer();
     });
 
+    it('creates an instance of PayloadTransformer', () => {
+        const instance = PayloadTransformer.create();
+
+        expect(instance instanceof PayloadTransformer).toBeTruthy();
+    });
+
     it('parses the response payload as JSON if its content type is JSON', () => {
         const xhr = {
             getResponseHeader: jasmine.createSpy('getResponseHeader').and.callFake(type => (

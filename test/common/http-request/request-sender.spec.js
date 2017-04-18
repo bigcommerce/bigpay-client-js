@@ -26,6 +26,12 @@ describe('RequestSender', () => {
         jasmine.Ajax.uninstall();
     });
 
+    it('creates an instance of RequestSender', () => {
+        const instance = RequestSender.create();
+
+        expect(instance instanceof RequestSender).toBeTruthy();
+    });
+
     it('create a XHR', () => {
         spyOn(requestFactory, 'createRequest').and.callThrough();
 
@@ -85,5 +91,15 @@ describe('RequestSender', () => {
         const request = jasmine.Ajax.requests.mostRecent();
 
         request.respondWith({ status: 400 });
+    });
+
+    it('does not throw an error if no callback is provided', () => {
+        expect(() => {
+            requestSender.sendRequest(url, data, options);
+
+            const request = jasmine.Ajax.requests.mostRecent();
+
+            request.respondWith({ status: 200 });
+        }).not.toThrow();
     });
 });
