@@ -45,9 +45,6 @@ const paymentRequestDataMock = {
             integerAmount: 500,
         },
         orderId: '123',
-        payment: {
-            returnUrl: '/checkout',
-        },
         shipping: {
             integerAmount: 1000,
         },
@@ -71,6 +68,7 @@ const paymentRequestDataMock = {
     paymentMethod: {
         id: 'paypalprous',
         type: API,
+        returnUrl: '/checkout',
     },
     quoteMeta: {
         request: {
