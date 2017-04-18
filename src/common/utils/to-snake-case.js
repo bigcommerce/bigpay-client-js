@@ -1,10 +1,9 @@
 /**
- * To snake case
  * @param {string} string
  * @returns {string}
  */
 export default function toSnakeCase(string) {
-    if (!string) {
+    if (typeof string !== 'string') {
         return string;
     }
 

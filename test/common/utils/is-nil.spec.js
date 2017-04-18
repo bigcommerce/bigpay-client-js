@@ -1,19 +1,19 @@
 import isNil from '../../../src/common/utils/is-nil';
 
 describe('isNil', () => {
-    it('should return true if value is null', () => {
+    it('returns true if the input value is null', () => {
         expect(isNil(null)).toBeTruthy();
     });
 
-    it('should return true if value is undefined', () => {
+    it('returns true if the input value is undefined', () => {
         expect(isNil(undefined)).toBeTruthy();
     });
 
-    it('should return false if value is empty', () => {
+    it('returns false if the input value is empty', () => {
         expect(isNil('')).toBeFalsy();
     });
 
-    it('should return false if value is not empty', () => {
+    it('returns false if the input value is not empty', () => {
         expect(isNil('foobar')).toBeFalsy();
     });
 });
