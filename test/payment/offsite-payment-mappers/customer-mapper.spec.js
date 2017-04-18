@@ -1,15 +1,17 @@
-import mapToCustomer from '../../../src/payment/offsite-mappers/map-to-customer';
+import CustomerMapper from '../../../src/payment/offsite-payment-mappers/customer-mapper';
 import paymentRequestDataMock from '../../mocks/payment-request-data';
 
-describe('mapToCustomer', () => {
+describe('CustomerMapper', () => {
+    let customerMapper;
     let data;
 
     beforeEach(() => {
+        customerMapper = new CustomerMapper();
         data = paymentRequestDataMock;
     });
 
-    it('should map to customer', () => {
-        const output = mapToCustomer(data);
+    it('maps the input data into a customer object', () => {
+        const output = customerMapper.mapToCustomer(data);
 
         expect(output).toEqual({
             customer_browser_info: navigator.userAgent,

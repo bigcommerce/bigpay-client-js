@@ -1,4 +1,5 @@
-import { PAYMENT_TYPES, initializeOffsitePayment, submitPayment } from '../payment';
+import { PAYMENT_TYPES, submitPayment } from '../payment';
+import OffsitePaymentInitializer from '../payment/offsite-payment-initializer';
 
 export default class Client {
     /**
@@ -6,8 +7,9 @@ export default class Client {
      * @param {Object} config
      * @param {string} config.host
      */
-    constructor({ host }) {
-        this.host = host;
+    constructor(config) {
+        this.host = config.host;
+        this.offsitePaymentInitializer = OffsitePaymentInitializer.create(config);
     }
 
     /**
@@ -17,14 +19,7 @@ export default class Client {
      * @returns {void}
      */
     initializeOffsitePayment(data, callback) {
-        const { paymentMethod = {} } = data;
-        const options = { host: this.host };
-
-        if (paymentMethod.type !== PAYMENT_TYPES.HOSTED) {
-            throw new Error(`${paymentMethod.type} is not supported.`);
-        }
-
-        initializeOffsitePayment(data, options, callback);
+        this.offsitePaymentInitializer.initializeOffsitePayment(data, callback);
     }
 
     /**
