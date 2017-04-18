@@ -38,6 +38,12 @@ describe('PayloadMapper', () => {
         payloadMapper = new PayloadMapper(addressMapper, customerMapper, metaMapper, paymentMethodIdMapper, storeMapper);
     });
 
+    it('creates an instance of PayloadMapper', () => {
+        const instance = PayloadMapper.create();
+
+        expect(instance instanceof PayloadMapper).toBeTruthy();
+    });
+
     it('maps the input data into a payload for submitting a payment to an offsite provider', () => {
         data = merge({}, data, {
             paymentMethod: {
@@ -68,5 +74,16 @@ describe('PayloadMapper', () => {
         });
 
         document.title = '';
+    });
+
+    it('returns an empty object if the input does not contain the required information', () => {
+        addressMapper.mapToBillingAddress.and.returnValue({});
+        addressMapper.mapToShippingAddress.and.returnValue({});
+        customerMapper.mapToCustomer.and.returnValue({});
+        metaMapper.mapToMeta.and.returnValue({});
+        paymentMethodIdMapper.mapToId.and.returnValue(null);
+        storeMapper.mapToStore.and.returnValue({});
+
+        expect(payloadMapper.mapToPayload({})).toEqual({});
     });
 });

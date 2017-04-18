@@ -55,4 +55,18 @@ describe('OffsitePaymentInitializer', () => {
 
         expect(formPoster.postForm).toHaveBeenCalledWith(url, transformedData, callback);
     });
+
+    it('throws an error if the payment method is not a hosted provider', () => {
+        data = merge({}, paymentRequestDataMock, {
+            paymentMethod: {
+                type: API,
+            },
+        });
+
+        expect(() => offsitePaymentInitializer.initializeOffsitePayment(data)).toThrow();
+    });
+
+    it('throws an error if the input data does not contain payment method information', () => {
+        expect(() => offsitePaymentInitializer.initializeOffsitePayment({})).toThrow();
+    });
 });
