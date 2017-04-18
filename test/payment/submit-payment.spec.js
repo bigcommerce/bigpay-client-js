@@ -1,7 +1,7 @@
-import * as httpRequestModule from '../../src/common/http-request';
 import * as mappersModule from '../../src/payment/mappers';
 import * as urlsModule from '../../src/payment/urls';
 import paymentRequestDataMock from '../mocks/payment-request-data';
+import RequestSender from '../../src/common/http-request/request-sender';
 import submitPayment from '../../src/payment/submit-payment';
 
 describe('submitPayment', () => {
@@ -9,6 +9,7 @@ describe('submitPayment', () => {
     let data;
     let headers;
     let options;
+    let requestSender;
     let transformedData;
 
     beforeEach(() => {
@@ -17,8 +18,9 @@ describe('submitPayment', () => {
         transformedData = { body: 'hello world' };
         headers = { AUTH_TOKEN: '123' };
         options = { host: 'https://bcapp.dev' };
+        requestSender = jasmine.createSpyObj('requestSender', ['postRequest']);
 
-        spyOn(httpRequestModule, 'postRequest');
+        spyOn(RequestSender, 'create').and.returnValue(requestSender);
         spyOn(mappersModule, 'mapToHeaders').and.returnValue(headers);
         spyOn(mappersModule, 'mapToPayload').and.returnValue(transformedData);
         spyOn(urlsModule, 'getPaymentUrl').and.returnValue(`${options.host}/api/public/v1/payments/payment`);
@@ -37,6 +39,6 @@ describe('submitPayment', () => {
 
         submitPayment(data, options, callback);
 
-        expect(httpRequestModule.postRequest).toHaveBeenCalledWith(url, transformedData, { headers }, callback);
+        expect(requestSender.postRequest).toHaveBeenCalledWith(url, transformedData, { headers }, callback);
     });
 });
