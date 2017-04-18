@@ -10,6 +10,12 @@ describe('CustomerMapper', () => {
         data = paymentRequestDataMock;
     });
 
+    it('creates an instance of CustomerMapper', () => {
+        const instance = CustomerMapper.create();
+
+        expect(instance instanceof CustomerMapper).toBeTruthy();
+    });
+
     it('maps the input data into a customer object', () => {
         const output = customerMapper.mapToCustomer(data);
 
@@ -23,6 +29,12 @@ describe('CustomerMapper', () => {
             customer_name: data.customer.name,
             customer_phone: data.customer.phoneNumber,
             customer_reference: data.customer.email,
+        });
+    });
+
+    it('returns an object containing only browser information if the input does not contain customer information', () => {
+        expect(customerMapper.mapToCustomer({})).toEqual({
+            customer_browser_info: jasmine.any(String),
         });
     });
 });

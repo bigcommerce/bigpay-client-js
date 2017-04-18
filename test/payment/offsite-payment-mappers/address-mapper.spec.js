@@ -10,6 +10,12 @@ describe('AddressMapper', () => {
         addressMapper = new AddressMapper();
     });
 
+    it('creates an instance of AddressMapper', () => {
+        const instance = AddressMapper.create();
+
+        expect(instance instanceof AddressMapper).toBeTruthy();
+    });
+
     it('maps the input data into a billing address object', () => {
         const output = addressMapper.mapToBillingAddress(data);
 
@@ -46,5 +52,13 @@ describe('AddressMapper', () => {
             shipping_address_street_2: data.shippingAddress.addressLine2,
             shipping_address_zip: data.shippingAddress.postCode,
         });
+    });
+
+    it('returns an empty object if the input does not contain a billing address', () => {
+        expect(addressMapper.mapToBillingAddress({})).toEqual({});
+    });
+
+    it('returns an empty object if the input does not contain a shipping address', () => {
+        expect(addressMapper.mapToShippingAddress({})).toEqual({});
     });
 });

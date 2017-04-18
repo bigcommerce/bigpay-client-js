@@ -39,6 +39,12 @@ describe('PayloadMapper', () => {
         payloadMapper = new PayloadMapper(addressMapper, customerMapper, metaMapper, paymentMethodIdMapper, storeMapper);
     });
 
+    it('creates an instance of PayloadMapper', () => {
+        const instance = PayloadMapper.create();
+
+        expect(instance instanceof PayloadMapper).toBeTruthy();
+    });
+
     it('maps the input data into a payload for submitting a payment to an offsite provider', () => {
         data = merge({}, data, {
             paymentMethod: {
@@ -73,11 +79,36 @@ describe('PayloadMapper', () => {
 
     it('uses the return URL contained in the order object as a fallback', () => {
         data = merge({}, data, {
+            order: {
+                payment: {
+                    returnUrl: '/checkout',
+                },
+            },
             paymentMethod: omit(data.paymentMethod, 'returnUrl'),
         });
 
         const output = payloadMapper.mapToPayload(data);
 
-        expect(output.return_url).toEqual(data.paymentMethod.returnUrl);
+        expect(output.return_url).toEqual(data.order.payment.returnUrl);
+    });
+
+    it('returns null as the return URL if both order and payment method are blank', () => {
+        const output = payloadMapper.mapToPayload({
+            order: { payment: {} },
+            paymentMethod: {},
+        });
+
+        expect(output.return_url).toBeFalsy();
+    });
+
+    it('returns an empty object if the input does not contain the required information', () => {
+        addressMapper.mapToBillingAddress.and.returnValue({});
+        addressMapper.mapToShippingAddress.and.returnValue({});
+        customerMapper.mapToCustomer.and.returnValue({});
+        metaMapper.mapToMeta.and.returnValue({});
+        paymentMethodIdMapper.mapToId.and.returnValue(null);
+        storeMapper.mapToStore.and.returnValue({});
+
+        expect(payloadMapper.mapToPayload({})).toEqual({});
     });
 });
