@@ -1,5 +1,4 @@
 /**
- * To number
  * @param {*} value
  * @returns {number}
  */

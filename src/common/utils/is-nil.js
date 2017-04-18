@@ -1,5 +1,4 @@
 /**
- * Is nil
  * @param {*} value
  * @returns {boolean}
  */
