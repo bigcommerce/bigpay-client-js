@@ -1,5 +1,5 @@
+import RequestSender from '../common/http-request/request-sender';
 import { getPaymentUrl } from './urls';
-import { postRequest } from '../common/http-request';
 import { mapToHeaders, mapToPayload } from './mappers';
 
 /**
@@ -17,5 +17,7 @@ export default function submitPayment(data, { host } = {}, callback) {
         headers: mapToHeaders(data),
     };
 
-    postRequest(url, payload, options, callback);
+    const requestSender = RequestSender.create();
+
+    requestSender.postRequest(url, payload, options, callback);
 }

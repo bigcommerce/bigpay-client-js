@@ -1,7 +1,8 @@
-import createRequest from '../../../src/common/http-request/create-request';
+import RequestFactory from '../../../src/common/http-request/request-factory';
 
-describe('createRequest', () => {
+describe('RequestFactory', () => {
     let options;
+    let requestFactory;
     let url;
     let XMLHttpRequest;
     let XMLHttpRequestMock;
@@ -21,22 +22,29 @@ describe('createRequest', () => {
 
         XMLHttpRequest = global.XMLHttpRequest;
         global.XMLHttpRequest = XMLHttpRequestMock;
+
+        requestFactory = new RequestFactory();
     });
 
     afterEach(() => {
         global.XMLHttpRequest = XMLHttpRequest;
     });
 
-    it('should create XHR', () => {
-        const xhr = createRequest(url, options);
+    it('creates a XHR', () => {
+        const xhr = requestFactory.createRequest(url, options);
 
         expect(xhr.constructor).toEqual(XMLHttpRequestMock);
     });
 
-    it('should configure XHR', () => {
-        const xhr = createRequest(url, options);
+    it('sets the URL for the XHR', () => {
+        const xhr = requestFactory.createRequest(url, options);
 
         expect(xhr.open).toHaveBeenCalledWith(options.method, url, true);
+    });
+
+    it('sets the request headers for the XHR', () => {
+        const xhr = requestFactory.createRequest(url, options);
+
         expect(xhr.setRequestHeader).toHaveBeenCalledWith('Content-Type', options.headers['Content-Type']);
     });
 });
