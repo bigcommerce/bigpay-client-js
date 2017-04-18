@@ -1,3 +1,4 @@
+import omit from 'lodash/omit';
 import merge from 'lodash/merge';
 import * as mapToCreditCardModule from '../../../src/payment/mappers/map-to-credit-card';
 import mapToPayment from '../../../src/payment/mappers/map-to-payment';
@@ -20,7 +21,7 @@ describe('mapToPayment', () => {
             device_info: data.quoteMeta.request.deviceSessionId,
             gateway: data.paymentMethod.id,
             notify_url: data.order.callbackUrl,
-            return_url: data.order.payment.returnUrl,
+            return_url: data.paymentMethod.returnUrl,
         });
     });
 
@@ -40,7 +41,17 @@ describe('mapToPayment', () => {
             device_info: data.quoteMeta.request.deviceSessionId,
             gateway: data.paymentMethod.id,
             notify_url: data.order.callbackUrl,
-            return_url: data.order.payment.returnUrl,
+            return_url: data.paymentMethod.returnUrl,
         });
+    });
+
+    it('should use the return URL contained in the order object as a fallback', () => {
+        data = merge({}, data, {
+            paymentMethod: omit(data.paymentMethod, 'returnUrl'),
+        });
+
+        const output = mapToPayment(data);
+
+        expect(output.return_url).toEqual(data.paymentMethod.returnUrl);
     });
 });

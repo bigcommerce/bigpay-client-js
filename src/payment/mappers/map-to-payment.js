@@ -15,7 +15,7 @@ export default function mapToPayment(data) {
         device_info: quoteMeta.request ? quoteMeta.request.deviceSessionId : null,
         gateway: mapToId(paymentMethod),
         notify_url: order.callbackUrl,
-        return_url: order.payment ? order.payment.returnUrl : null,
+        return_url: paymentMethod.returnUrl || (order.payment ? order.payment.returnUrl : null),
     };
 
     const nonce = payment.nonce || paymentMethod.nonce;

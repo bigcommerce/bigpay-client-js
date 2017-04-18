@@ -1,3 +1,4 @@
+import omit from 'lodash/omit';
 import merge from 'lodash/merge';
 import * as mapToBillingAddressModule from '../../../src/payment/offsite-mappers/map-to-billing-address';
 import * as mapToCustomerModule from '../../../src/payment/offsite-mappers/map-to-customer';
@@ -42,9 +43,19 @@ describe('mapToPayload', () => {
             page_title: document.title,
             payment_method_id: data.paymentMethod.id,
             reference_id: data.order.orderId,
-            return_url: data.order.payment.returnUrl,
+            return_url: data.paymentMethod.returnUrl,
             shippingAddress: 'shippingAddress',
             store: 'store',
         });
+    });
+
+    it('should use the return URL contained in the order object as a fallback', () => {
+        data = merge({}, data, {
+            paymentMethod: omit(data.paymentMethod, 'returnUrl'),
+        });
+
+        const output = mapToPayload(data);
+
+        expect(output.return_url).toEqual(data.paymentMethod.returnUrl);
     });
 });
