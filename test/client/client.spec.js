@@ -2,18 +2,24 @@ import cloneDeep from 'lodash/cloneDeep';
 import { HOSTED } from '../../src/payment/payment-types';
 import * as paymentModule from '../../src/payment';
 import Client from '../../src/client/client';
+import OffsitePaymentInitializer from '../../src/payment/offsite-payment-initializer';
 import paymentRequestDataMock from '../mocks/payment-request-data';
 
 describe('Client', () => {
     let callback;
     let client;
     let config;
+    let offsitePaymentInitializer;
 
     beforeEach(() => {
         callback = () => {};
         config = { host: 'https://bcapp.dev' };
 
-        spyOn(paymentModule, 'initializeOffsitePayment');
+        offsitePaymentInitializer = {
+            initializeOffsitePayment: jasmine.createSpy('initializeOffsitePayment'),
+        };
+
+        spyOn(OffsitePaymentInitializer, 'create').and.returnValue(offsitePaymentInitializer);
         spyOn(paymentModule, 'submitPayment');
     });
 
@@ -35,11 +41,9 @@ describe('Client', () => {
         });
 
         it('should initialize offsite payment', () => {
-            const { initializeOffsitePayment } = paymentModule;
-
             client.initializeOffsitePayment(data, callback);
 
-            expect(initializeOffsitePayment).toHaveBeenCalledWith(data, { host: config.host }, callback);
+            expect(offsitePaymentInitializer.initializeOffsitePayment).toHaveBeenCalledWith(data, callback);
         });
     });
 

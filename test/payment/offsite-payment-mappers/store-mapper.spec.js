@@ -1,15 +1,17 @@
-import mapToStore from '../../../src/payment/offsite-mappers/map-to-store';
 import paymentRequestDataMock from '../../mocks/payment-request-data';
+import StoreMapper from '../../../src/payment/offsite-payment-mappers/store-mapper';
 
-describe('mapToStore', () => {
+describe('StoreMapper', () => {
     let data;
+    let storeMapper;
 
     beforeEach(() => {
         data = paymentRequestDataMock;
+        storeMapper = new StoreMapper();
     });
 
-    it('should map to store', () => {
-        const output = mapToStore(data);
+    it('maps the input object into a store object', () => {
+        const output = storeMapper.mapToStore(data);
 
         expect(output).toEqual({
             store_hash: data.store.storeHash,

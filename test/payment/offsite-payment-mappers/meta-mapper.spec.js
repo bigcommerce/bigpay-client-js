@@ -1,15 +1,17 @@
-import mapToMeta from '../../../src/payment/offsite-mappers/map-to-meta';
+import MetaMapper from '../../../src/payment/offsite-payment-mappers/meta-mapper';
 import paymentRequestDataMock from '../../mocks/payment-request-data';
 
-describe('mapToMeta', () => {
+describe('MetaMapper', () => {
     let data;
+    let metaMapper;
 
     beforeEach(() => {
         data = paymentRequestDataMock;
+        metaMapper = new MetaMapper();
     });
 
-    it('should map to meta', () => {
-        const output = mapToMeta(data);
+    it('maps the input data into a meta object', () => {
+        const output = metaMapper.mapToMeta(data);
 
         expect(output).toEqual({
             meta_referrer: document.referrer,
