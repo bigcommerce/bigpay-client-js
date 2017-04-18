@@ -1,3 +1,13 @@
+<a name="2.0.3"></a>
+## [2.0.3](https://github.com/bigcommerce-labs/bigpay-client-js/compare/2.0.2...2.0.3) (2017-04-18)
+
+
+### Bug Fixes
+
+* **payment:** PAYMENTS-889 Forward returnUrl of order instead of payment object if possible ([5cfe022](https://github.com/bigcommerce-labs/bigpay-client-js/commit/5cfe022))
+
+
+
 <a name="2.0.2"></a>
 ## [2.0.2](https://github.com/bigcommerce-labs/bigpay-client-js/compare/2.0.1...2.0.2) (2017-04-05)
 
