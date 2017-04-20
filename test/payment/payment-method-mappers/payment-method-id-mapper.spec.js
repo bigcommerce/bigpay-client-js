@@ -9,6 +9,12 @@ describe('PaymentMethodIdMapper', () => {
         paymentMethodIdMapper = new PaymentMethodIdMapper();
     });
 
+    it('creates an instance of PaymentMethodIdMapper', () => {
+        const instance = PaymentMethodIdMapper.create();
+
+        expect(instance instanceof PaymentMethodIdMapper).toBeTruthy();
+    });
+
     it('returns "braintree" if the payment method is "braintreepaypal"', () => {
         paymentMethod = { id: PAYMENT_METHODS.BRAINTREE_PAYPAL };
         expect(paymentMethodIdMapper.mapToId(paymentMethod)).toEqual(PAYMENT_METHODS.BRAINTREE);
