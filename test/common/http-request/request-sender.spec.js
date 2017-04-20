@@ -32,7 +32,7 @@ describe('RequestSender', () => {
         expect(instance instanceof RequestSender).toBeTruthy();
     });
 
-    it('create a XHR', () => {
+    it('creates a XHR', () => {
         spyOn(requestFactory, 'createRequest').and.callThrough();
 
         requestSender.sendRequest(url, data, options);
