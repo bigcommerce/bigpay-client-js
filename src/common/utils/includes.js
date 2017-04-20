@@ -1,5 +1,4 @@
 /**
- * Includes item
  * @param {array|string} items
  * @param {array|string} item
  * @returns {boolean}

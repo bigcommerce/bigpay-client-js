@@ -1,5 +1,4 @@
 /**
- * To string
  * @param {*} value
  * @returns {string}
  */

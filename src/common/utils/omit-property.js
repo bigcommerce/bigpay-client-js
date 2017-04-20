@@ -1,7 +1,6 @@
 import isObject from './is-object';
 
 /**
- * Omit property
  * @param {Object} object
  * @param {Function} predicateFn
  * @returns {Object}
