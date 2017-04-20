@@ -3,18 +3,42 @@ import PaymentSubmitter from '../payment/payment-submitter';
 
 export default class Client {
     /**
-     * Construct BigpayClient
      * @param {Object} config
-     * @param {string} config.host
+     * @returns {Client}
      */
-    constructor(config) {
-        this.host = config.host;
-        this.offsitePaymentInitializer = OffsitePaymentInitializer.create(config);
-        this.paymentSubmitter = PaymentSubmitter.create(config);
+    static create(config) {
+        const paymentSubmitter = PaymentSubmitter.create(config);
+        const offsitePaymentInitializer = OffsitePaymentInitializer.create(config);
+
+        return new Client(config, paymentSubmitter, offsitePaymentInitializer);
     }
 
     /**
-     * Initialize offsite payment
+     * @param {Object} config
+     * @param {PaymentSubmitter} paymentSubmitter
+     * @param {OffsitePaymentInitializer} offsitePaymentInitializer
+     */
+    constructor(config, paymentSubmitter, offsitePaymentInitializer) {
+        /**
+         * @private
+         * @type {Object}
+         */
+        this.config = config;
+
+        /**
+         * @private
+         * @type {PaymentSubmitter}
+         */
+        this.paymentSubmitter = paymentSubmitter;
+
+        /**
+         * @private
+         * @type {OffsitePaymentInitializer}
+         */
+        this.offsitePaymentInitializer = offsitePaymentInitializer;
+    }
+
+    /**
      * @param {PaymentRequestData} data
      * @param {Function} [callback]
      * @returns {void}
@@ -24,7 +48,6 @@ export default class Client {
     }
 
     /**
-     * Submit payment
      * @param {PaymentRequestData} data
      * @param {Function} [callback]
      * @returns {void}
