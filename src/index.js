@@ -1,5 +1,9 @@
-import { createClient } from './client';
+import Client from './client/client';
 
-export {
-    createClient,
-};
+/**
+ * @param {Object} config
+ * @returns {Client}
+ */
+export function createClient(config) {
+    return Client.create(config);
+}

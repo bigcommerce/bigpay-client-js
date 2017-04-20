@@ -1,5 +1,5 @@
-import { PAYMENT_TYPES, submitPayment } from '../payment';
 import OffsitePaymentInitializer from '../payment/offsite-payment-initializer';
+import PaymentSubmitter from '../payment/payment-submitter';
 
 export default class Client {
     /**
@@ -10,6 +10,7 @@ export default class Client {
     constructor(config) {
         this.host = config.host;
         this.offsitePaymentInitializer = OffsitePaymentInitializer.create(config);
+        this.paymentSubmitter = PaymentSubmitter.create(config);
     }
 
     /**
@@ -29,13 +30,6 @@ export default class Client {
      * @returns {void}
      */
     submitPayment(data, callback) {
-        const { paymentMethod = {} } = data;
-        const options = { host: this.host };
-
-        if (paymentMethod.type !== PAYMENT_TYPES.API) {
-            throw new Error(`${paymentMethod.type} is not supported.`);
-        }
-
-        submitPayment(data, options, callback);
+        this.paymentSubmitter.submitPayment(data, callback);
     }
 }

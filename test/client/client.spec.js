@@ -1,8 +1,8 @@
 import cloneDeep from 'lodash/cloneDeep';
 import { HOSTED } from '../../src/payment/payment-types';
-import * as paymentModule from '../../src/payment';
 import Client from '../../src/client/client';
 import OffsitePaymentInitializer from '../../src/payment/offsite-payment-initializer';
+import PaymentSubmitter from '../../src/payment/payment-submitter';
 import paymentRequestDataMock from '../mocks/payment-request-data';
 
 describe('Client', () => {
@@ -10,6 +10,7 @@ describe('Client', () => {
     let client;
     let config;
     let offsitePaymentInitializer;
+    let paymentSubmitter;
 
     beforeEach(() => {
         callback = () => {};
@@ -19,8 +20,12 @@ describe('Client', () => {
             initializeOffsitePayment: jasmine.createSpy('initializeOffsitePayment'),
         };
 
+        paymentSubmitter = {
+            submitPayment: jasmine.createSpy('submitPayment'),
+        };
+
         spyOn(OffsitePaymentInitializer, 'create').and.returnValue(offsitePaymentInitializer);
-        spyOn(paymentModule, 'submitPayment');
+        spyOn(PaymentSubmitter, 'create').and.returnValue(paymentSubmitter);
     });
 
     describe('construct', () => {
@@ -56,11 +61,9 @@ describe('Client', () => {
         });
 
         it('should submit payment', () => {
-            const { submitPayment } = paymentModule;
-
             client.submitPayment(data, callback);
 
-            expect(submitPayment).toHaveBeenCalledWith(data, { host: config.host }, callback);
+            expect(paymentSubmitter.submitPayment).toHaveBeenCalledWith(data, callback);
         });
     });
 });
