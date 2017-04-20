@@ -14,7 +14,10 @@ function configureKarma(config) {
         coverageReporter: {
             check: {
                 global: {
-                    lines: 85,
+                    branches: 95,
+                    functions: 95,
+                    lines: 95,
+                    statements: 95,
                 },
             },
             reporters: [
