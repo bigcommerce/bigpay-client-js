@@ -1,69 +1,53 @@
-import cloneDeep from 'lodash/cloneDeep';
+import merge from 'lodash/merge';
 import { HOSTED } from '../../src/payment/payment-types';
 import Client from '../../src/client/client';
-import OffsitePaymentInitializer from '../../src/payment/offsite-payment-initializer';
-import PaymentSubmitter from '../../src/payment/payment-submitter';
 import paymentRequestDataMock from '../mocks/payment-request-data';
 
 describe('Client', () => {
-    let callback;
     let client;
     let config;
-    let offsitePaymentInitializer;
     let paymentSubmitter;
+    let offsitePaymentInitializer;
 
     beforeEach(() => {
-        callback = () => {};
         config = { host: 'https://bcapp.dev' };
-
-        offsitePaymentInitializer = {
-            initializeOffsitePayment: jasmine.createSpy('initializeOffsitePayment'),
-        };
 
         paymentSubmitter = {
             submitPayment: jasmine.createSpy('submitPayment'),
         };
 
-        spyOn(OffsitePaymentInitializer, 'create').and.returnValue(offsitePaymentInitializer);
-        spyOn(PaymentSubmitter, 'create').and.returnValue(paymentSubmitter);
+        offsitePaymentInitializer = {
+            initializeOffsitePayment: jasmine.createSpy('initializeOffsitePayment'),
+        };
+
+        client = new Client(config, paymentSubmitter, offsitePaymentInitializer);
     });
 
-    describe('construct', () => {
-        it('should set host', () => {
-            client = new Client(config);
+    it('returns an instance of Client', () => {
+        const instance = Client.create();
 
-            expect(client.host).toEqual(config.host);
-        });
+        expect(instance instanceof Client).toEqual(true);
     });
 
-    describe('initializeOffsitePayment', () => {
-        let data;
-
-        beforeEach(() => {
-            client = new Client(config);
-            data = cloneDeep(paymentRequestDataMock);
-            data.paymentMethod.type = HOSTED;
+    it('initializes the offsite payment flow', () => {
+        const callback = () => {};
+        const data = merge({}, paymentRequestDataMock, {
+            paymentMethod: {
+                type: HOSTED,
+            },
         });
 
-        it('should initialize offsite payment', () => {
-            client.initializeOffsitePayment(data, callback);
+        client.initializeOffsitePayment(data, callback);
 
-            expect(offsitePaymentInitializer.initializeOffsitePayment).toHaveBeenCalledWith(data, callback);
-        });
+        expect(offsitePaymentInitializer.initializeOffsitePayment).toHaveBeenCalledWith(data, callback);
     });
 
-    describe('submitPayment', () => {
-        let data;
+    it('submits the payment data', () => {
+        const callback = () => {};
+        const data = paymentRequestDataMock;
 
-        beforeEach(() => {
-            client = new Client(config);
-            data = paymentRequestDataMock;
-        });
+        client.submitPayment(data, callback);
 
-        it('should submit payment', () => {
-            client.submitPayment(data, callback);
-
-            expect(paymentSubmitter.submitPayment).toHaveBeenCalledWith(data, callback);
-        });
+        expect(paymentSubmitter.submitPayment).toHaveBeenCalledWith(data, callback);
     });
 });
