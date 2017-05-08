@@ -8,7 +8,7 @@ export default class PaymentMapper {
      * @returns {PaymentMapper}
      */
     static create() {
-        const paymentMethodIdMapper = new PaymentMethodIdMapper();
+        const paymentMethodIdMapper = PaymentMethodIdMapper.create();
 
         return new PaymentMapper(paymentMethodIdMapper);
     }
