@@ -32,4 +32,11 @@ export default class UrlHelper {
     getPaymentUrl() {
         return `${this.host}/api/public/v1/orders/payments`;
     }
+
+    /**
+     * @returns {string}
+     */
+    getGenerateClientTokenUrl() {
+        return `${this.host}/api/v2/public/payments/client_tokens`;
+    }
 }
