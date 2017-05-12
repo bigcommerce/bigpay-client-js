@@ -1,5 +1,5 @@
-import PayloadMapper from '../../../src/payment/payment-mappers/payload-mapper';
-import paymentRequestDataMock from '../../mocks/payment-request-data';
+import PayloadMapper from '../../../../src/payment/v1/payment-mappers/payload-mapper';
+import paymentRequestDataMock from '../../../mocks/payment-request-data';
 
 describe('PayloadMapper', () => {
     let customerMapper;

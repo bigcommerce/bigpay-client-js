@@ -1,4 +1,4 @@
-import { omitNil, toString } from '../../common/utils';
+import { omitNil, toString } from '../../../common/utils';
 
 export default class CustomerMapper {
     /**

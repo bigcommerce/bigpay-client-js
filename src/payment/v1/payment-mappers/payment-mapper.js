@@ -1,6 +1,6 @@
 import objectAssign from 'object-assign';
-import PaymentMethodIdMapper from '../payment-method-mappers/payment-method-id-mapper';
-import { omitNil, toNumber } from '../../common/utils';
+import PaymentMethodIdMapper from '../../payment-method-mappers/payment-method-id-mapper';
+import { omitNil, toNumber } from '../../../common/utils';
 
 export default class PaymentMapper {
     /**

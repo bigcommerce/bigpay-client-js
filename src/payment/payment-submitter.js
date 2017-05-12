@@ -1,5 +1,5 @@
 import { API } from './payment-types';
-import PayloadMapper from './payment-mappers/payload-mapper';
+import PayloadMapper from './v1/payment-mappers/payload-mapper';
 import RequestSender from '../common/http-request/request-sender';
 import UrlHelper from './url-helper';
 

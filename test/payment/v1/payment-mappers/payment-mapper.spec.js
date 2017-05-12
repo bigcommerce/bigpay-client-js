@@ -1,7 +1,7 @@
 import omit from 'lodash/omit';
 import merge from 'lodash/merge';
-import PaymentMapper from '../../../src/payment/payment-mappers/payment-mapper';
-import paymentRequestDataMock from '../../mocks/payment-request-data';
+import PaymentMapper from '../../../../src/payment/v1/payment-mappers/payment-mapper';
+import paymentRequestDataMock from '../../../mocks/payment-request-data';
 
 describe('PaymentMapper', () => {
     let data;
