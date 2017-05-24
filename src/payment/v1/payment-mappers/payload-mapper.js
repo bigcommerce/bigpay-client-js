@@ -1,4 +1,4 @@
-import { omitNil } from '../../common/utils';
+import { omitNil } from '../../../common/utils';
 import CustomerMapper from './customer-mapper';
 import OrderMapper from './order-mapper';
 import PaymentMapper from './payment-mapper';

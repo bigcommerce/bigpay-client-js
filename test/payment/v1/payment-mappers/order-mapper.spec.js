@@ -1,5 +1,5 @@
-import OrderMapper from '../../../src/payment/payment-mappers/order-mapper';
-import paymentRequestDataMock from '../../mocks/payment-request-data';
+import OrderMapper from '../../../../src/payment/v1/payment-mappers/order-mapper';
+import paymentRequestDataMock from '../../../mocks/payment-request-data';
 
 describe('OrderMapper', () => {
     let data;

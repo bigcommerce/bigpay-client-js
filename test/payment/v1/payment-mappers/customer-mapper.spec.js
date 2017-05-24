@@ -1,5 +1,5 @@
-import CustomerMapper from '../../../src/payment/payment-mappers/customer-mapper';
-import paymentRequestDataMock from '../../mocks/payment-request-data';
+import CustomerMapper from '../../../../src/payment/v1/payment-mappers/customer-mapper';
+import paymentRequestDataMock from '../../../mocks/payment-request-data';
 
 describe('CustomerMapper', () => {
     let customerMapper;
