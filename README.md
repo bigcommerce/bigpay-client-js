@@ -46,22 +46,43 @@ export default function getPaymentData() {
             province: 'New South Wales',
         },
         cart: {
+            currency: 'AUD',
+            grandTotal: {
+                integerAmount: 12000,
+            },
+            handling: {
+                integerAmount: 0,
+            },
+            shipping: {
+                integerAmount: 1000,
+            },
+            subtotal: {
+                integerAmount: 10000,
+            },
+            taxTotal: {
+                integerAmount: 1000,
+            },
             items: [
                 {
                     id: '123',
                     integerAmount: 10000,
+                    integerAmountAfterDiscount: 10000,
+                    integerDiscount: 0,
+                    integerTax: 1000,
                     name: 'Cheese',
                     quantity: 1,
                     sku: '123456789',
+                    type: 'ItemPhysicalEntity',
                 },
             ],
         },
         customer: {
             customerId: '123',
-            email: 'customer@bigcommerce.com',
+            email: 'email@bigcommerce.com',
             firstName: 'Foo',
             lastName: 'Bar',
-            locale: 'en-AU',
+            name: 'Foo Bar',
+            phoneNumber: '98765432',
         },
         order: {
             currency: 'AUD',
@@ -119,6 +140,12 @@ export default function getPaymentData() {
         },
         source: 'bcapp-checkout-uco',
         store: {
+            cartLink: '/cart',
+            checkoutLink: '/checkout',
+            countryCode: 'AU',
+            currencyCode: 'AUD',
+            orderConfirmationLink: '/order-confirmation',
+            shopPath: '/',
             storeHash: 's123456789',
             storeId: '100',
             storeLanguage: 'en-AU',

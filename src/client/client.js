@@ -17,8 +17,9 @@ export default class Client {
      * @param {Object} config
      * @param {PaymentSubmitter} paymentSubmitter
      * @param {OffsitePaymentInitializer} offsitePaymentInitializer
+     * @param {ClientTokenGenerator} clientTokenGenerator
      */
-    constructor(config, paymentSubmitter, offsitePaymentInitializer) {
+    constructor(config, paymentSubmitter, offsitePaymentInitializer, clientTokenGenerator) {
         /**
          * @private
          * @type {Object}
@@ -36,6 +37,12 @@ export default class Client {
          * @type {OffsitePaymentInitializer}
          */
         this.offsitePaymentInitializer = offsitePaymentInitializer;
+
+        /**
+         * @private
+         * @type {ClientTokenGenerator}
+         */
+        this.clientTokenGenerator = clientTokenGenerator;
     }
 
     /**
@@ -54,5 +61,14 @@ export default class Client {
      */
     submitPayment(data, callback) {
         this.paymentSubmitter.submitPayment(data, callback);
+    }
+
+    /**
+     * @param {PaymentRequestData} data
+     * @param {Function} [callback]
+     * @returns {void}
+     */
+    generateClientToken(data, callback) {
+        this.clientTokenGenerator.generateClientToken(data, callback);
     }
 }

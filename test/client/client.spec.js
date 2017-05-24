@@ -5,6 +5,7 @@ import paymentRequestDataMock from '../mocks/payment-request-data';
 
 describe('Client', () => {
     let client;
+    let clientTokenGenerator;
     let config;
     let paymentSubmitter;
     let offsitePaymentInitializer;
@@ -20,7 +21,11 @@ describe('Client', () => {
             initializeOffsitePayment: jasmine.createSpy('initializeOffsitePayment'),
         };
 
-        client = new Client(config, paymentSubmitter, offsitePaymentInitializer);
+        clientTokenGenerator = {
+            generateClientToken: jasmine.createSpy('generateClientToken'),
+        };
+
+        client = new Client(config, paymentSubmitter, offsitePaymentInitializer, clientTokenGenerator);
     });
 
     it('returns an instance of Client', () => {
@@ -49,5 +54,14 @@ describe('Client', () => {
         client.submitPayment(data, callback);
 
         expect(paymentSubmitter.submitPayment).toHaveBeenCalledWith(data, callback);
+    });
+
+    it('generates a client token', () => {
+        const callback = () => {};
+        const data = paymentRequestDataMock;
+
+        client.generateClientToken(data, callback);
+
+        expect(clientTokenGenerator.generateClientToken).toHaveBeenCalledWith(data, callback);
     });
 });

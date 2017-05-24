@@ -17,13 +17,36 @@ const paymentRequestDataMock = {
         province: 'New South Wales',
     },
     cart: {
+        currency: 'AUD',
+        discount: {
+            integerAmount: 0,
+        },
+        grandTotal: {
+            integerAmount: 12000,
+        },
+        handling: {
+            integerAmount: 500,
+        },
+        shipping: {
+            integerAmount: 1000,
+        },
+        subtotal: {
+            integerAmount: 10000,
+        },
+        taxTotal: {
+            integerAmount: 1000,
+        },
         items: [
             {
-                integerAmount: 10000,
                 id: '123',
+                integerAmount: 10000,
+                integerAmountAfterDiscount: 10000,
+                integerDiscount: 0,
+                integerTax: 1000,
                 name: 'Cheese',
                 quantity: 1,
                 sku: '123456789',
+                type: 'ItemPhysicalEntity',
             },
         ],
     },
@@ -38,6 +61,9 @@ const paymentRequestDataMock = {
     order: {
         callbackUrl: '/order/123/payment',
         currency: 'AUD',
+        discount: {
+            integerAmount: 0,
+        },
         grandTotal: {
             integerAmount: 12000,
         },
@@ -93,6 +119,12 @@ const paymentRequestDataMock = {
     },
     source: 'bcapp-checkout-uco',
     store: {
+        cartLink: '/cart',
+        checkoutLink: '/checkout',
+        countryCode: 'AU',
+        currencyCode: 'AUD',
+        orderConfirmationLink: '/order-confirmation',
+        shopPath: '/',
         storeHash: 's123456789',
         storeId: '100',
         storeLanguage: 'en-AU',

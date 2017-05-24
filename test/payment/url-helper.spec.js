@@ -22,4 +22,8 @@ describe('UrlHelper', () => {
     it('returns a URL for submitting payments to an offsite provider', () => {
         expect(urlHelper.getOffsitePaymentUrl()).toEqual(`${host}/pay/initialize`);
     });
+
+    it('returns a URL for generating a client token', () => {
+        expect(urlHelper.getGenerateClientTokenUrl()).toEqual(`${host}/api/v2/public/payments/client_tokens`);
+    });
 });
