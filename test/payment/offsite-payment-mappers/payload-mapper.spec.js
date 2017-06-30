@@ -13,7 +13,11 @@ describe('PayloadMapper', () => {
     let storeMapper;
 
     beforeEach(() => {
-        data = paymentRequestDataMock;
+        data = merge({}, paymentRequestDataMock, {
+            paymentMethod: {
+                gateway: 'Adyen',
+            },
+        });
 
         addressMapper = {
             mapToBillingAddress: jasmine.createSpy('mapToBillingAddress').and.returnValue({ billingAddress: 'billingAddress' }),
@@ -29,7 +33,7 @@ describe('PayloadMapper', () => {
         };
 
         paymentMethodIdMapper = {
-            mapToId: jasmine.createSpy('mapToId').and.returnValue(data.paymentMethod.id),
+            mapToId: jasmine.createSpy('mapToId').and.returnValue(data.paymentMethod.gateway),
         };
 
         storeMapper = {
@@ -46,12 +50,6 @@ describe('PayloadMapper', () => {
     });
 
     it('maps the input data into a payload for submitting a payment to an offsite provider', () => {
-        data = merge({}, data, {
-            paymentMethod: {
-                gateway: 'Adyen',
-            },
-        });
-
         document.title = 'Hello world';
 
         const output = payloadMapper.mapToPayload(data);

@@ -1,4 +1,5 @@
 import PaymentMethodIdMapper from '../../../src/payment/payment-method-mappers/payment-method-id-mapper';
+import { MULTI_OPTION } from '../../../src/payment/payment-method-types';
 import * as PAYMENT_METHODS from '../../../src/payment/payment-method-ids';
 
 describe('PaymentMethodIdMapper', () => {
@@ -18,6 +19,16 @@ describe('PaymentMethodIdMapper', () => {
     it('returns "braintree" if the payment method is "braintreepaypal"', () => {
         paymentMethod = { id: PAYMENT_METHODS.BRAINTREE_PAYPAL };
         expect(paymentMethodIdMapper.mapToId(paymentMethod)).toEqual(PAYMENT_METHODS.BRAINTREE);
+    });
+
+    it('returns the "gateway" field of the payment method if it is a multi-option method', () => {
+        paymentMethod = {
+            id: PAYMENT_METHODS.BRAINTREE_PAYPAL,
+            gateway: 'Adyen',
+            method: MULTI_OPTION,
+        };
+
+        expect(paymentMethodIdMapper.mapToId(paymentMethod)).toEqual('Adyen');
     });
 
     it('does not perform any mapping for other payment methods', () => {
