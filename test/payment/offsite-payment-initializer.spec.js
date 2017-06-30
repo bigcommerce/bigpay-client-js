@@ -36,7 +36,8 @@ describe('OffsitePaymentInitializer', () => {
     });
 
     it('creates an instance of OffsitePaymentInitializer', () => {
-        const instance = OffsitePaymentInitializer.create();
+        const config = { host: 'https://bigpay.dev' };
+        const instance = OffsitePaymentInitializer.create(config);
 
         expect(instance instanceof OffsitePaymentInitializer).toBeTruthy();
     });

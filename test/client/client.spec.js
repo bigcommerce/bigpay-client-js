@@ -11,7 +11,7 @@ describe('Client', () => {
     let offsitePaymentInitializer;
 
     beforeEach(() => {
-        config = { host: 'https://bcapp.dev' };
+        config = { host: 'https://bigpay.dev' };
 
         paymentSubmitter = {
             submitPayment: jasmine.createSpy('submitPayment'),
