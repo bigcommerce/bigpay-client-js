@@ -9,7 +9,6 @@
     "bump": "gulp bump",
     "lint": "eslint src test",
     "release": "npm run build && npm run bump",
-    "prepublish": "npm run build",
     "test": "karma start --single-run",
     "test:watch": "karma start"
   },
