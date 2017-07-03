@@ -29,7 +29,8 @@ describe('ClientTokenGenerator', () => {
     });
 
     it('creates an instance of ClientTokenGenerator', () => {
-        const instance = ClientTokenGenerator.create();
+        const config = { host: 'https://bigpay.dev' };
+        const instance = ClientTokenGenerator.create(config);
 
         expect(instance instanceof ClientTokenGenerator).toBeTruthy();
     });

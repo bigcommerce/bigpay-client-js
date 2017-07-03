@@ -1,5 +1,7 @@
+import objectAssign from 'object-assign';
 import OffsitePaymentInitializer from '../payment/offsite-payment-initializer';
 import PaymentSubmitter from '../payment/payment-submitter';
+import DEFAULT_CONFIG from './default-config';
 
 export default class Client {
     /**
@@ -7,10 +9,11 @@ export default class Client {
      * @returns {Client}
      */
     static create(config) {
-        const paymentSubmitter = PaymentSubmitter.create(config);
-        const offsitePaymentInitializer = OffsitePaymentInitializer.create(config);
+        const clientConfig = objectAssign({}, DEFAULT_CONFIG, config);
+        const paymentSubmitter = PaymentSubmitter.create(clientConfig);
+        const offsitePaymentInitializer = OffsitePaymentInitializer.create(clientConfig);
 
-        return new Client(config, paymentSubmitter, offsitePaymentInitializer);
+        return new Client(clientConfig, paymentSubmitter, offsitePaymentInitializer);
     }
 
     /**

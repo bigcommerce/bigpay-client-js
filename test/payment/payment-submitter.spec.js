@@ -34,7 +34,8 @@ describe('PaymentSubmitter', () => {
     });
 
     it('creates an instance of PaymentSubmitter', () => {
-        const instance = PaymentSubmitter.create();
+        const config = { host: 'https://bigpay.dev' };
+        const instance = PaymentSubmitter.create(config);
 
         expect(instance instanceof PaymentSubmitter).toBeTruthy();
     });

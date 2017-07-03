@@ -1,7 +1,7 @@
 import Client from './client/client';
 
 /**
- * @param {Object} config
+ * @param {Object} [config]
  * @returns {Client}
  */
 export function createClient(config) {

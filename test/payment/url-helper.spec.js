@@ -6,11 +6,11 @@ describe('UrlHelper', () => {
 
     beforeEach(() => {
         host = 'https://bigpay.com';
-        urlHelper = new UrlHelper(host);
+        urlHelper = new UrlHelper({ host });
     });
 
     it('creates an instance of UrlHelper', () => {
-        const instance = UrlHelper.create();
+        const instance = UrlHelper.create({ host });
 
         expect(instance instanceof UrlHelper).toBeTruthy();
     });

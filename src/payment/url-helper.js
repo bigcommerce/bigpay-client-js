@@ -1,17 +1,19 @@
 export default class UrlHelper {
     /**
-     * @param {string} host
+     * @param {Object} config
+     * @param {string} config.host
      * @returns {CustomerMapper}
      */
-    static create(host) {
-        return new UrlHelper(host);
+    static create(config) {
+        return new UrlHelper(config);
     }
 
     /**
-     * @param {string} host
+     * @param {Object} config
+     * @param {string} config.host
      * @returns {void}
      */
-    constructor(host) {
+    constructor({ host }) {
         /**
          * @private
          * @type {string}
