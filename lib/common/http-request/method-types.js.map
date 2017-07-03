@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../src/common/http-request/method-types.js"],"names":["GET","POST"],"mappings":";;;;;AAAO,IAAMA,oBAAM,KAAZ;AACA,IAAMC,sBAAO,MAAb","file":"method-types.js","sourcesContent":["export const GET = 'GET';\nexport const POST = 'POST';\n"]}

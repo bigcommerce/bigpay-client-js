@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../src/payment/mappers/index.js"],"names":["mapToHeaders","mapToPayload"],"mappings":";;;;;;;AAAA;;;;AACA;;;;;;QAGIA,Y;QACAC,Y","file":"index.js","sourcesContent":["import mapToHeaders from './map-to-headers';\nimport mapToPayload from './map-to-payload';\n\nexport {\n    mapToHeaders,\n    mapToPayload,\n};\n"]}

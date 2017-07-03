@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/payment/payment-method-types.js"],"names":["CREDIT_CARD","MULTI_OPTION"],"mappings":";;;;;AAAO,IAAMA,oCAAc,aAApB;AACA,IAAMC,sCAAe,cAArB","file":"payment-method-types.js","sourcesContent":["export const CREDIT_CARD = 'credit-card';\nexport const MULTI_OPTION = 'multi-option';\n"]}

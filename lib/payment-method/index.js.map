@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../src/payment-method/index.js"],"names":["PAYMENT_METHODS","mapToId"],"mappings":";;;;;;;AAAA;;IAAYA,e;;AACZ;;;;;;;;QAGIC,O;QACAD,e,GAAAA,e","file":"index.js","sourcesContent":["import * as PAYMENT_METHODS from './payment-methods';\nimport mapToId from './map-to-id';\n\nexport {\n    mapToId,\n    PAYMENT_METHODS,\n};\n"]}
