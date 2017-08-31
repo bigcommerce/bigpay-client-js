@@ -21,6 +21,11 @@ describe('PaymentMethodIdMapper', () => {
         expect(paymentMethodIdMapper.mapToId(paymentMethod)).toEqual(PAYMENT_METHODS.BRAINTREE);
     });
 
+    it('returns "braintree" if the payment method is "braintreevisacheckout"', () => {
+        paymentMethod = { id: PAYMENT_METHODS.BRAINTREE_VISACHECKOUT };
+        expect(paymentMethodIdMapper.mapToId(paymentMethod)).toEqual(PAYMENT_METHODS.BRAINTREE);
+    });
+
     it('returns the "gateway" field of the payment method if it is a multi-option method', () => {
         paymentMethod = {
             id: PAYMENT_METHODS.BRAINTREE_PAYPAL,
