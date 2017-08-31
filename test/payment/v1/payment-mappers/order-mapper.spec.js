@@ -60,6 +60,9 @@ describe('OrderMapper', () => {
                 street_2: data.shippingAddress.addressLine2,
                 zip: data.shippingAddress.postCode,
             },
+            coupons: [{
+                code: data.order.coupon.coupons[0].code,
+            }],
             totals: {
                 grand_total: data.order.grandTotal.integerAmount,
                 handling: data.order.handling.integerAmount,
@@ -73,6 +76,7 @@ describe('OrderMapper', () => {
 
     it('returns an empty object if the input does not contain order information', () => {
         expect(orderMapper.mapToOrder({})).toEqual({
+            coupons: [],
             billing_address: {},
             items: [],
             shipping_address: {},

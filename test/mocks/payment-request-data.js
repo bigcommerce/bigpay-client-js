@@ -51,6 +51,7 @@ const paymentRequestDataMock = {
         ],
     },
     customer: {
+        customerGroupName: 'b2b',
         customerId: '123',
         email: 'email@bigcommerce.com',
         firstName: 'Foo',
@@ -60,6 +61,13 @@ const paymentRequestDataMock = {
     },
     order: {
         callbackUrl: '/order/123/payment',
+        coupon: {
+            coupons: [{
+                code: 'fiver',
+                name: 'Five off',
+                discount: '$5.00 off the order total',
+            }],
+        },
         currency: 'AUD',
         discount: {
             integerAmount: 0,
@@ -81,6 +89,9 @@ const paymentRequestDataMock = {
             integerAmount: 1000,
         },
         token: 'abc123',
+    },
+    orderMeta: {
+        deviceFingerprint: 'xyz1234',
     },
     payment: {
         ccCvv: '123',

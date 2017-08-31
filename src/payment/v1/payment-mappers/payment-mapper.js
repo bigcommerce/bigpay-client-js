@@ -30,10 +30,17 @@ export default class PaymentMapper {
      * @returns {Object}
      */
     mapToPayment(data) {
-        const { order = {}, payment = {}, paymentMethod = {}, quoteMeta = {} } = data;
+        const {
+            order = {},
+            orderMeta = {},
+            payment = {},
+            paymentMethod = {},
+            quoteMeta = {},
+        } = data;
 
         const payload = {
             device_info: quoteMeta.request ? quoteMeta.request.deviceSessionId : null,
+            device: orderMeta.deviceFingerprint ? { fingerprint_id: orderMeta.deviceFingerprint } : null,
             gateway: this.paymentMethodIdMapper.mapToId(paymentMethod),
             notify_url: order.callbackUrl,
             return_url: paymentMethod.returnUrl || (order.payment ? order.payment.returnUrl : null),

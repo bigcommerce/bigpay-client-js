@@ -20,6 +20,7 @@ describe('CustomerMapper', () => {
         const output = customerMapper.mapToCustomer(data);
 
         expect(output).toEqual({
+            customer_group: { name: data.customer.customerGroupName },
             geo_ip_country_code: data.quoteMeta.request.geoCountryCode,
             id: `${data.customer.customerId}`,
             session_token: data.quoteMeta.request.sessionHash,

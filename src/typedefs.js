@@ -102,3 +102,8 @@
  * @property {string} storeLanguage
  * @property {string} storeName
  */
+
+/**
+ * @typedef {Object} Coupon
+ * @property {string} code
+ */
