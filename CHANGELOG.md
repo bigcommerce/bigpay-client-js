@@ -1,3 +1,13 @@
+<a name="2.2.0"></a>
+# [2.2.0](https://github.com/bigcommerce-labs/bigpay-client-js/compare/2.1.0...2.2.0) (2017-09-01)
+
+
+### Features
+
+* **payment:** Map Braintree VisaCheckout to Braintree ([4397abd](https://github.com/bigcommerce-labs/bigpay-client-js/commit/4397abd))
+
+
+
 <a name="2.1.0"></a>
 # [2.1.0](https://github.com/bigcommerce-labs/bigpay-client-js/compare/2.0.3...2.1.0) (2017-07-03)
 
