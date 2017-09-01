@@ -1,4 +1,4 @@
-import { BRAINTREE, BRAINTREE_PAYPAL } from '../payment-method-ids';
+import { BRAINTREE, BRAINTREE_PAYPAL, BRAINTREE_VISACHECKOUT } from '../payment-method-ids';
 import { MULTI_OPTION } from '../payment-method-types';
 
 export default class PaymentMethodIdMapper {
@@ -20,7 +20,7 @@ export default class PaymentMethodIdMapper {
             id = paymentMethod.gateway;
         }
 
-        if (id === BRAINTREE_PAYPAL) {
+        if (id === BRAINTREE_PAYPAL || id === BRAINTREE_VISACHECKOUT) {
             return BRAINTREE;
         }
 
