@@ -1,3 +1,13 @@
+<a name="2.3.0"></a>
+# [2.3.0](https://github.com/bigcommerce-labs/bigpay-client-js/compare/2.2.0...2.3.0) (2017-09-04)
+
+
+### Features
+
+* **payment:** CHECKOUT-2358 Add extra data for CyberSource ([e29dbf7](https://github.com/bigcommerce-labs/bigpay-client-js/commit/e29dbf7))
+
+
+
 <a name="2.2.0"></a>
 # [2.2.0](https://github.com/bigcommerce-labs/bigpay-client-js/compare/2.1.0...2.2.0) (2017-09-01)
 
