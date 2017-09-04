@@ -35,6 +35,9 @@ describe('PaymentMapper', () => {
                 verification_value: data.payment.ccCvv,
                 year: parseInt(data.payment.ccExpiry.year, 10),
             },
+            device: {
+                fingerprint_id: data.orderMeta.deviceFingerprint,
+            },
             device_info: data.quoteMeta.request.deviceSessionId,
             gateway: data.paymentMethod.id,
             notify_url: data.order.callbackUrl,
@@ -54,6 +57,9 @@ describe('PaymentMapper', () => {
         expect(output).toEqual({
             credit_card_token: {
                 token: data.paymentMethod.nonce,
+            },
+            device: {
+                fingerprint_id: data.orderMeta.deviceFingerprint,
             },
             device_info: data.quoteMeta.request.deviceSessionId,
             gateway: data.paymentMethod.id,

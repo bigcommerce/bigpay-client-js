@@ -17,6 +17,7 @@ export default class OrderMapper {
 
         return omitNil({
             billing_address: this.mapToBillingAddress(data),
+            coupons: this.mapToCoupons(data),
             currency: order.currency,
             id: order.orderId ? toString(order.orderId) : null,
             items: this.mapToItems(data),
@@ -40,6 +41,19 @@ export default class OrderMapper {
         }
 
         return address;
+    }
+
+    /**
+     * @private
+     * @param {PaymentRequestData} data
+     * @returns {Coupon[]}
+     */
+    mapToCoupons({ order = {} }) {
+        if (order.coupon && order.coupon.coupons) {
+            return order.coupon.coupons.map(({ code }) => ({ code }));
+        }
+
+        return [];
     }
 
     /**

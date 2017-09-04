@@ -16,6 +16,7 @@ export default class CustomerMapper {
         const { customer = {}, quoteMeta = {} } = data;
 
         return omitNil({
+            customer_group: customer.customerGroupName ? { name: customer.customerGroupName } : null,
             geo_ip_country_code: quoteMeta.request ? quoteMeta.request.geoCountryCode : null,
             id: customer.customerId ? toString(customer.customerId) : null,
             session_token: quoteMeta.request ? quoteMeta.request.sessionHash : null,
