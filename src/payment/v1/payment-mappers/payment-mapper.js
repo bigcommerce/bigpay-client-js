@@ -66,6 +66,7 @@ export default class PaymentMapper {
 
         return omitNil({
             account_name: payment.ccName,
+            customer_code: payment.ccCustomerCode,
             month: payment.ccExpiry ? toNumber(payment.ccExpiry.month) : null,
             number: payment.ccNumber,
             verification_value: payment.ccCvv,

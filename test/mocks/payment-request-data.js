@@ -84,6 +84,7 @@ const paymentRequestDataMock = {
     },
     payment: {
         ccCvv: '123',
+        ccCustomerCode: 'XYZ',
         ccExpiry: {
             month: 1,
             year: 2018,
