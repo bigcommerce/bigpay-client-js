@@ -163,6 +163,19 @@ Use [yarn](https://yarnpkg.com/en/) to install dependencies. i.e.:
 yarn install
 ```
 
+Link with other projects:
+
+Inside `bigpay-client-js`
+```
+yarn link
+./node_modules/.bin/babel src --out-dir lib --source-maps --watch
+```
+Other project(s):
+```
+yarn link bigpay-client
+yarn dev
+```
+
 To run unit tests:
 ```
 yarn test
