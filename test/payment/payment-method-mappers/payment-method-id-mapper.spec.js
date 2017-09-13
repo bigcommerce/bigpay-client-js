@@ -16,16 +16,6 @@ describe('PaymentMethodIdMapper', () => {
         expect(instance instanceof PaymentMethodIdMapper).toBeTruthy();
     });
 
-    it('returns "braintree" if the payment method is "braintreepaypal"', () => {
-        paymentMethod = { id: PAYMENT_METHODS.BRAINTREE_PAYPAL };
-        expect(paymentMethodIdMapper.mapToId(paymentMethod)).toEqual(PAYMENT_METHODS.BRAINTREE);
-    });
-
-    it('returns "braintree" if the payment method is "braintreevisacheckout"', () => {
-        paymentMethod = { id: PAYMENT_METHODS.BRAINTREE_VISACHECKOUT };
-        expect(paymentMethodIdMapper.mapToId(paymentMethod)).toEqual(PAYMENT_METHODS.BRAINTREE);
-    });
-
     it('returns the "gateway" field of the payment method if it is a multi-option method', () => {
         paymentMethod = {
             id: PAYMENT_METHODS.BRAINTREE_PAYPAL,
@@ -38,6 +28,21 @@ describe('PaymentMethodIdMapper', () => {
 
     it('does not perform any mapping for other payment methods', () => {
         paymentMethod = { id: PAYMENT_METHODS.BRAINTREE };
+        expect(paymentMethodIdMapper.mapToId(paymentMethod)).toEqual(PAYMENT_METHODS.BRAINTREE);
+    });
+
+    it('returns "braintree" if the payment method is "braintreepaypal"', () => {
+        paymentMethod = { id: PAYMENT_METHODS.BRAINTREE_PAYPAL };
+        expect(paymentMethodIdMapper.mapToId(paymentMethod)).toEqual(PAYMENT_METHODS.BRAINTREE);
+    });
+
+    it('returns "braintree" if the payment method is "braintreepaypalcredit"', () => {
+        paymentMethod = { id: PAYMENT_METHODS.BRAINTREE_PAYPAL_CREDIT };
+        expect(paymentMethodIdMapper.mapToId(paymentMethod)).toEqual(PAYMENT_METHODS.BRAINTREE);
+    });
+
+    it('returns "braintree" if the payment method is "braintreevisacheckout"', () => {
+        paymentMethod = { id: PAYMENT_METHODS.BRAINTREE_VISACHECKOUT };
         expect(paymentMethodIdMapper.mapToId(paymentMethod)).toEqual(PAYMENT_METHODS.BRAINTREE);
     });
 });
