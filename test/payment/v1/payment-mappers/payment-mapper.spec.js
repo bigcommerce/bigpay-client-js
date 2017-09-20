@@ -30,6 +30,7 @@ describe('PaymentMapper', () => {
         expect(output).toEqual({
             credit_card: {
                 account_name: data.payment.ccName,
+                customer_code: data.payment.ccCustomerCode,
                 number: data.payment.ccNumber,
                 month: parseInt(data.payment.ccExpiry.month, 10),
                 verification_value: data.payment.ccCvv,
