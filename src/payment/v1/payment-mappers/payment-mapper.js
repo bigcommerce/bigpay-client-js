@@ -70,6 +70,7 @@ export default class PaymentMapper {
             number: payment.ccNumber,
             verification_value: payment.ccCvv,
             year: payment.ccExpiry ? toNumber(payment.ccExpiry.year) : null,
+            customer_code: payment.ccCustomerCode,
         });
     }
 }
