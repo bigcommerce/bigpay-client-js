@@ -1,3 +1,13 @@
+<a name="2.4.0"></a>
+# [2.4.0](https://github.com/bigcommerce-labs/bigpay-client-js/compare/2.3.0...2.4.0) (2017-09-20)
+
+
+### Features
+
+* **Payment Mappers:** map BT PayPal Credit to braintree ([44e3183](https://github.com/bigcommerce-labs/bigpay-client-js/commit/44e3183))
+
+
+
 <a name="2.3.0"></a>
 # [2.3.0](https://github.com/bigcommerce-labs/bigpay-client-js/compare/2.2.0...2.3.0) (2017-09-04)
 

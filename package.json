@@ -1,6 +1,6 @@
 {
   "name": "bigpay-client",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "description": "JavaScript client for Bigpay",
   "main": "lib/index.js",
   "scripts": {
