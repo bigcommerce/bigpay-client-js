@@ -34,6 +34,7 @@ describe('PaymentMapper', () => {
                 month: parseInt(data.payment.ccExpiry.month, 10),
                 verification_value: data.payment.ccCvv,
                 year: parseInt(data.payment.ccExpiry.year, 10),
+                customer_code: data.payment.ccCustomerCode,
             },
             device: {
                 fingerprint_id: data.orderMeta.deviceFingerprint,
