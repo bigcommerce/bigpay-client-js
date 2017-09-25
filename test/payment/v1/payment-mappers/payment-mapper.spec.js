@@ -69,6 +69,20 @@ describe('PaymentMapper', () => {
         });
     });
 
+    it('maps the input object into a payment object with method', () => {
+        data = merge({}, data, {
+            payment: {
+                method: 'paypal',
+            },
+        });
+
+        const output = paymentMapper.mapToPayment(data);
+
+        expect(output).toEqual(jasmine.objectContaining({
+            method: data.payment.method,
+        }));
+    });
+
     it('uses the return URL contained in the order object as a fallback', () => {
         data = merge({}, data, {
             order: {
