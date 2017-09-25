@@ -1,3 +1,15 @@
+<a name="2.5.0"></a>
+# [2.5.0](https://github.com/bigcommerce-labs/bigpay-client-js/compare/2.2.0...2.5.0) (2017-09-25)
+
+
+### Features
+
+* **payment:** CHECKOUT-2358 Add extra data for CyberSource ([e29dbf7](https://github.com/bigcommerce-labs/bigpay-client-js/commit/e29dbf7))
+* **Payment Mappers:** map BT PayPal Credit to braintree ([44e3183](https://github.com/bigcommerce-labs/bigpay-client-js/commit/44e3183))
+* **payment-mapper:** map referrer id to payment if available ([b434b67](https://github.com/bigcommerce-labs/bigpay-client-js/commit/b434b67))
+
+
+
 <a name="2.4.0"></a>
 # [2.4.0](https://github.com/bigcommerce-labs/bigpay-client-js/compare/2.3.0...2.4.0) (2017-09-20)
 
