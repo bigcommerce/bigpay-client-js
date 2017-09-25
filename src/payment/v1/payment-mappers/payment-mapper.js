@@ -46,6 +46,12 @@ export default class PaymentMapper {
             return_url: paymentMethod.returnUrl || (order.payment ? order.payment.returnUrl : null),
         };
 
+        const method = payment.method;
+
+        if (method) {
+            objectAssign(payload, { method });
+        }
+
         const nonce = payment.nonce || paymentMethod.nonce;
 
         if (nonce) {
