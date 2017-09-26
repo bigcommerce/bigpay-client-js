@@ -9,6 +9,7 @@
  * @property {PaymentMethodData} paymentMethod
  * @property {QuoteMetaData} quoteMeta
  * @property {AddressData} shippingAddress
+ * @property {ShippingData} shippingOption
  * @property {StoreData} store
  */
 
@@ -114,6 +115,24 @@
  */
 
 /**
+ * @typedef {Object} ShippingData
+ * @property {string} description
+ * @property {string} formattedPrice
+ * @property {string} id
+ * @property {string} imageUrl
+ * @property {number} method
+ * @property {string} module
+ * @property {number} price
+ * @property {boolean} selected
+ * @property {string} transitTime
+ */
+
+/**
  * @typedef {Object} Coupon
  * @property {string} code
  */
+
+ /**
+  * @typedef {Object} Shipping
+  * @property {string} method
+  */

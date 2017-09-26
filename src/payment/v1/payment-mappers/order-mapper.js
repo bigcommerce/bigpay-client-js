@@ -21,6 +21,7 @@ export default class OrderMapper {
             currency: order.currency,
             id: order.orderId ? toString(order.orderId) : null,
             items: this.mapToItems(data),
+            shipping: this.mapToShipping(data),
             shipping_address: this.mapToShippingAddress(data),
             token: order.token,
             totals: this.mapToOrderTotals(data),
@@ -41,6 +42,23 @@ export default class OrderMapper {
         }
 
         return address;
+    }
+
+    /**
+     * @private
+     * @param  {PaymentRequestData} data
+     * @return {Shipping[]}
+     */
+    mapToShipping(data) {
+        const { description } = data.shippingOption || {};
+
+        if (description) {
+            return [{
+                method: description,
+            }];
+        }
+
+        return [];
     }
 
     /**
