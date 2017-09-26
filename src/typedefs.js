@@ -51,6 +51,9 @@
 
 /**
  * @typedef {Object} OrderData
+ * @property {Object} [coupon]
+ * @property {number} coupon.discountedAmount
+ * @property {CouponData[]} coupon.coupons
  * @property {Object} grandTotal
  * @property {number} grandTotal.integerAmount
  * @property {Object} handling
@@ -67,6 +70,13 @@
  * @property {string} [callbackUrl]
  * @property {Object} [payment]
  * @property {string} [payment.returnUrl]
+ */
+
+/**
+ * @typedef {Object} CouponData
+ * @property {string} code
+ * @property {string} discount
+ * @property {string} discountType
  */
 
 /**
