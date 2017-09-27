@@ -46,6 +46,9 @@ describe('OrderMapper', () => {
                     sku: data.cart.items[0].sku,
                 },
             ],
+            shipping: [{
+                method: data.shippingOption.description,
+            }],
             shipping_address: {
                 city: data.shippingAddress.city,
                 company: data.shippingAddress.company,
@@ -79,6 +82,7 @@ describe('OrderMapper', () => {
             coupons: [],
             billing_address: {},
             items: [],
+            shipping: [],
             shipping_address: {},
             totals: {},
         });

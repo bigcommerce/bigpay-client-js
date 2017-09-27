@@ -129,6 +129,17 @@ const paymentRequestDataMock = {
         provinceCode: 'CA',
         province: 'California',
     },
+    shippingOption: {
+        description: 'Free Shipping',
+        formattedPrice: '$15.00',
+        id: '0:f877ffc1fac6f544e36746c38d90a2bf',
+        imageUrl: '',
+        method: -1,
+        module: 'freeshipping',
+        price: 15,
+        selected: true,
+        transitTime: '',
+    },
     source: 'bcapp-checkout-uco',
     store: {
         cartLink: '/cart',
