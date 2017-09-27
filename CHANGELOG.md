@@ -1,3 +1,13 @@
+<a name="2.6.0"></a>
+# [2.6.0](https://github.com/bigcommerce-labs/bigpay-client-js/compare/2.5.0...2.6.0) (2017-09-27)
+
+
+### Features
+
+* **order:** CHECKOUT-2509 Map shipping method name for CyberSource ([1c1ffca](https://github.com/bigcommerce-labs/bigpay-client-js/commit/1c1ffca))
+
+
+
 <a name="2.5.0"></a>
 # [2.5.0](https://github.com/bigcommerce-labs/bigpay-client-js/compare/2.2.0...2.5.0) (2017-09-25)
 
