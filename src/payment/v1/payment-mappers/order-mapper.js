@@ -118,6 +118,7 @@ export default class OrderMapper {
 
         return cart.items.map(itemData => omitNil({
             code: itemData.id,
+            variant_id: itemData.variantId,
             name: itemData.name,
             price: itemData.integerAmount,
             quantity: itemData.quantity,
