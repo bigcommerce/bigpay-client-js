@@ -47,6 +47,7 @@ const paymentRequestDataMock = {
                 quantity: 1,
                 sku: '123456789',
                 type: 'ItemPhysicalEntity',
+                variantId: 13,
             },
         ],
     },
