@@ -186,3 +186,4 @@ To release a new version:
 ```
 yarn release
 ```
+The command auto-generates the changelog (you will have a chance to edit it manually), changes the version number, commits the transpiled files and creates an annotated tag for you. However, it does not push to remote for you. You have to run `git push upstream master --follow-tags` yourself once you’re happy with everything.
