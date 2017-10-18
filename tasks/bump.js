@@ -66,7 +66,11 @@ function changelogTask() {
 }
 
 function commitVersionTask() {
-    var files = ['./package.json', './lib', './CHANGELOG.md'];
+    var files = [
+        './package.json',
+        './lib',
+        './CHANGELOG.md',
+    ];
 
     return gulp.src(files)
         .pipe(git.add())
@@ -74,18 +78,41 @@ function commitVersionTask() {
 }
 
 function tagVersionTask(done) {
-    git.tag(version, version, function (err) {
-        if (err) {
-            throw err;
+    git.tag(version, version, function(tagError) {
+        if (tagError) {
+            throw tagError;
         }
 
         done();
-    })
+    });
+}
+
+function pushTask(done) {
+    gulp.src('./')
+        .pipe(prompt.prompt({
+            name: 'pushTo',
+            type: 'input',
+            message: 'Where would you like to push to?',
+            default: 'origin master',
+        }, function(response) {
+            var pushToSplit = response.pushTo ? response.pushTo.split(' ') : [];
+            var remote = pushToSplit[0];
+            var branch = pushToSplit[1];
+
+            git.push(remote, branch, { args: '--follow-tags' }, function(pushError) {
+                if (pushError) {
+                    throw pushError;
+                }
+
+                done();
+            });
+        }));
 }
 
 module.exports = gulp.series(
     promptVersionTask,
     changelogTask,
     commitVersionTask,
-    tagVersionTask
+    tagVersionTask,
+    pushTask
 );
