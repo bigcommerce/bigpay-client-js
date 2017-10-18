@@ -1,3 +1,13 @@
+<a name="2.7.0"></a>
+# [2.7.0](https://github.com/bigcommerce-labs/bigpay-client-js/compare/2.6.0...2.7.0) (2017-10-18)
+
+
+### Features
+
+* **payment-mapper:** feat(provider) INT-69 Added variant_id:variantId for Vantiv eCommerce ([6487c2](https://github.com/bigcommerce-labs/bigpay-client-js/commit/6487c2))
+
+
+
 <a name="2.6.0"></a>
 # [2.6.0](https://github.com/bigcommerce-labs/bigpay-client-js/compare/2.5.0...2.6.0) (2017-09-27)
 
