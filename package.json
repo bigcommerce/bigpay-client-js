@@ -32,7 +32,7 @@
     "gulp": "gulpjs/gulp#4.0",
     "gulp-bump": "^2.4.0",
     "gulp-conventional-changelog": "^1.1.0",
-    "gulp-git": "^1.11.3",
+    "gulp-git": "^2.4.2",
     "gulp-prompt": "^0.2.0",
     "gulp-touch": "^1.0.1",
     "jasmine-ajax": "^3.2.0",
