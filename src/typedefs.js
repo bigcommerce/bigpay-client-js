@@ -132,7 +132,7 @@
  * @property {string} code
  */
 
- /**
+/**
   * @typedef {Object} Shipping
   * @property {string} method
   */
