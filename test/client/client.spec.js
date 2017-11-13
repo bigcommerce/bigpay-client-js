@@ -2,13 +2,15 @@ import merge from 'lodash/merge';
 import { HOSTED } from '../../src/payment/payment-types';
 import Client from '../../src/client/client';
 import paymentRequestDataMock from '../mocks/payment-request-data';
+import storeIntrumentDataMock from '../mocks/store-instrument-data';
 
 describe('Client', () => {
     let client;
     let clientTokenGenerator;
     let config;
-    let paymentSubmitter;
     let offsitePaymentInitializer;
+    let paymentSubmitter;
+    let storeRequestSender;
 
     beforeEach(() => {
         config = { host: 'https://bigpay.dev' };
@@ -25,7 +27,20 @@ describe('Client', () => {
             generateClientToken: jasmine.createSpy('generateClientToken'),
         };
 
-        client = new Client(config, paymentSubmitter, offsitePaymentInitializer, clientTokenGenerator);
+        storeRequestSender = {
+            getShopperToken: jasmine.createSpy('getShopperToken'),
+            getShopperInstruments: jasmine.createSpy('getShopperInstruments'),
+            postShopperInstrument: jasmine.createSpy('postShopperInstrument'),
+            deleteShopperInstrument: jasmine.createSpy('deleteShopperInstrument'),
+        };
+
+        client = new Client(
+            config,
+            paymentSubmitter,
+            offsitePaymentInitializer,
+            clientTokenGenerator,
+            storeRequestSender
+        );
     });
 
     it('returns an instance of Client', () => {
@@ -63,5 +78,41 @@ describe('Client', () => {
         client.generateClientToken(data, callback);
 
         expect(clientTokenGenerator.generateClientToken).toHaveBeenCalledWith(data, callback);
+    });
+
+    it('requests a shopper token', () => {
+        const callback = () => {};
+        const data = storeIntrumentDataMock;
+
+        client.getShopperToken(data, callback);
+
+        expect(storeRequestSender.getShopperToken).toHaveBeenCalledWith(data, callback);
+    });
+
+    it('requests a shopper token', () => {
+        const callback = () => {};
+        const data = storeIntrumentDataMock;
+
+        client.getShopperInstruments(data, callback);
+
+        expect(storeRequestSender.getShopperInstruments).toHaveBeenCalledWith(data, callback);
+    });
+
+    it('generates a client token', () => {
+        const callback = () => {};
+        const data = storeIntrumentDataMock;
+
+        client.postShopperInstrument(data, callback);
+
+        expect(storeRequestSender.postShopperInstrument).toHaveBeenCalledWith(data, callback);
+    });
+
+    it('generates a client token', () => {
+        const callback = () => {};
+        const data = storeIntrumentDataMock;
+
+        client.deleteShopperInstrument(data, callback);
+
+        expect(storeRequestSender.deleteShopperInstrument).toHaveBeenCalledWith(data, callback);
     });
 });
