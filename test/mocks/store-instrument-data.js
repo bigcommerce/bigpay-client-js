@@ -1,6 +1,9 @@
 export const authTokenMock = '123';
 
 export const instrumentRequestDataMock = {
+    storeId: '123',
+    shopperId: '321',
+    instrumentId: '456',
     providerName: 'braintree',
     creditCard: {
         cardholderName: 'John Doe',
