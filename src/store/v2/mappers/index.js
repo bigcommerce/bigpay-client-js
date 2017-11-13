@@ -1,5 +1,13 @@
 import { omitNil } from '../../../common/utils';
 
+/**
+ * @param {Object} [data={}]
+ * @param {Object} data.billingAddress
+ * @param {CreditCard} data.creditCard
+ * @param {boolean} data.defaultInstrument
+ * @param {string} data.providerName
+ * @return {Object}
+ */
 export function mapToInstrumentPayload(data = {}) {
     const {
         providerName,
@@ -16,12 +24,21 @@ export function mapToInstrumentPayload(data = {}) {
     });
 }
 
+/**
+ * @param {Object} data
+ * @param {string} data.authToken
+ * @return {Object}
+ */
 export function mapToHeaders({ authToken: Authorization } = {}) {
     return omitNil({
         Authorization,
     });
 }
 
+/**
+ * @param {AddressData} data
+ * @return {Object}
+ */
 function mapToAddress({ billingAddress = {} }) {
     const {
         addressLine1: address_line_1,
@@ -55,6 +72,11 @@ function mapToAddress({ billingAddress = {} }) {
     });
 }
 
+/**
+ * @param {string} code
+ * @param {string} name
+ * @return {Object}
+ */
 function mapToState(code, name) {
     return omitNil({
         code,
@@ -62,6 +84,11 @@ function mapToState(code, name) {
     });
 }
 
+/**
+ * @param {Object} data
+ * @param {CreditCard} data.creditCard
+ * @return {Object}
+ */
 function mapToCreditCard({ creditCard = {} }) {
     const {
         cardholderName: cardholder_name,
@@ -103,6 +130,10 @@ function mapToCreditCard({ creditCard = {} }) {
     });
 }
 
+/**
+ * @param {ThreeDSecure} data
+ * @return {ThreeDSecure}
+ */
 function mapToThreeDSecure({ threeDSecure = {} }) {
     const {
         version,

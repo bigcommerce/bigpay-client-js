@@ -95,18 +95,51 @@ export default class Client {
         this.clientTokenGenerator.generateClientToken(data, callback);
     }
 
+    /**
+     * @param {Object} data
+     * @param {string} data.storeId
+     * @param {string} data.shopperId
+     * @param {Function} [callback]
+     * @return {void}
+     */
     getShopperToken(data, callback) {
         this.storeRequestSender.getShopperToken(data, callback);
     }
 
+    /**
+     * @param {Object} data
+     * @param {string} data.storeId
+     * @param {string} data.shopperId
+     * @param {Function} [callback]
+     * @return {void}
+     */
     getShopperInstruments(data, callback) {
         this.storeRequestSender.getShopperInstruments(data, callback);
     }
 
+    /**
+     * @param {Object} data
+     * @param {string} data.storeId
+     * @param {string} data.shopperId
+     * @param {CreditCard} data.creditCard
+     * @param {AddressData} data.billingAddress
+     * @param {boolean} data.defaultInstrument
+     * @param {string} data.providerName
+     * @param {Function} [callback]
+     * @return {void}
+     */
     postShopperInstrument(data, callback) {
         this.storeRequestSender.postShopperInstrument(data, callback);
     }
 
+    /**
+     * @param {Object} data
+     * @param {string} data.storeId
+     * @param {string} data.shopperId
+     * @param {string} data.instrumentId
+     * @param {Function} [callback]
+     * @return {void}
+     */
     deleteShopperInstrument(data, callback) {
         this.storeRequestSender.deleteShopperInstrument(data, callback);
     }

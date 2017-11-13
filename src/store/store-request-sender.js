@@ -37,6 +37,11 @@ export default class StoreRequestSender {
         this.requestSender = requestSender;
     }
 
+    /**
+     * @param {Object} data
+     * @param {Function} [callback]
+     * @return {void}
+     */
     getShopperToken(data, callback) {
         const {
             storeId,
@@ -51,6 +56,11 @@ export default class StoreRequestSender {
         this.requestSender.postRequest(url, null, options, callback);
     }
 
+    /**
+     * @param {Object} data
+     * @param {Function} [callback]
+     * @return {void}
+     */
     getShopperInstruments(data, callback) {
         const {
             storeId,
@@ -65,6 +75,11 @@ export default class StoreRequestSender {
         this.requestSender.sendRequest(url, null, options, callback);
     }
 
+    /**
+     * @param {Object} data
+     * @param {Function} [callback]
+     * @return {void}
+     */
     postShopperInstrument(data, callback) {
         const {
             storeId,
@@ -80,6 +95,11 @@ export default class StoreRequestSender {
         this.requestSender.postRequest(url, payload, options, callback);
     }
 
+    /**
+     * @param {Object} data
+     * @param {Function} [callback]
+     * @return {void}
+     */
     deleteShopperInstrument(data, callback) {
         const {
             instrumentId,
