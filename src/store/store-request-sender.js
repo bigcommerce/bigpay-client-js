@@ -1,10 +1,7 @@
 import RequestSender from '../common/http-request/request-sender';
 import { DELETE } from '../common/http-request/method-types';
 import UrlHelper from './url-helper';
-import {
-    mapToHeaders,
-    mapToInstrumentPayload,
-} from './v2/mappers';
+import { mapToHeaders, mapToInstrumentPayload } from './v2/mappers';
 
 export default class StoreRequestSender {
     /**
@@ -43,12 +40,7 @@ export default class StoreRequestSender {
      * @return {void}
      */
     getShopperToken(data, callback) {
-        const {
-            storeId,
-            shopperId,
-        } = data;
-
-        const url = this.urlHelper.getTokenUrl(storeId, shopperId);
+        const url = this.urlHelper.getTokenUrl(data.storeId, data.shopperId);
         const options = {
             headers: mapToHeaders(data),
         };
@@ -62,12 +54,7 @@ export default class StoreRequestSender {
      * @return {void}
      */
     getShopperInstruments(data, callback) {
-        const {
-            storeId,
-            shopperId,
-        } = data;
-
-        const url = this.urlHelper.getInstrumentsUrl(storeId, shopperId);
+        const url = this.urlHelper.getInstrumentsUrl(data.storeId, data.shopperId);
         const options = {
             headers: mapToHeaders(data),
         };
@@ -81,12 +68,7 @@ export default class StoreRequestSender {
      * @return {void}
      */
     postShopperInstrument(data, callback) {
-        const {
-            storeId,
-            shopperId,
-        } = data;
-
-        const url = this.urlHelper.getInstrumentsUrl(storeId, shopperId);
+        const url = this.urlHelper.getInstrumentsUrl(data.storeId, data.shopperId);
         const payload = mapToInstrumentPayload(data);
         const options = {
             headers: mapToHeaders(data),
@@ -101,13 +83,11 @@ export default class StoreRequestSender {
      * @return {void}
      */
     deleteShopperInstrument(data, callback) {
-        const {
-            instrumentId,
-            shopperId,
-            storeId,
-        } = data;
-
-        const url = this.urlHelper.getInstrumentByIdUrl(storeId, shopperId, instrumentId);
+        const url = this.urlHelper.getInstrumentByIdUrl(
+            data.storeId,
+            data.shopperId,
+            data.instrumentId
+        );
         const options = {
             method: DELETE,
             headers: mapToHeaders(data),

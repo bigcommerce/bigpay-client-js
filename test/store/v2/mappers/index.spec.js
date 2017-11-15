@@ -81,9 +81,7 @@ describe('StoreMapper', () => {
         const result = mapToInstrumentPayload();
         const expected = {
             provider: {},
-            credit_card: {
-                three_d_secure: {},
-            },
+            credit_card: {},
             billing_address: {
                 state: {},
             },
