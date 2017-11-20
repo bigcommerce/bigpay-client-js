@@ -1,3 +1,17 @@
+<a name="2.8.0"></a>
+# [2.8.0](https://github.com/bigcommerce-labs/bigpay-client-js/compare/2.7.0...2.8.0) (2017-11-20)
+
+
+### Features
+
+* **client:** PAYMENTS-1986 Expose store request methods ([2cb4e8b](https://github.com/bigcommerce-labs/bigpay-client-js/commit/2cb4e8b))
+* **common:** PAYMENT-1986 Add DELETE method ([072ecaa](https://github.com/bigcommerce-labs/bigpay-client-js/commit/072ecaa))
+* **store:** PAYMENTS-1986 Add store instrument mapper ([da62453](https://github.com/bigcommerce-labs/bigpay-client-js/commit/da62453))
+* **store:** PAYMENTS-1986 Add store request sender class ([09d1eeb](https://github.com/bigcommerce-labs/bigpay-client-js/commit/09d1eeb))
+* **store:** PAYMENTS-1986 Add url helper to new store domain ([d5edcfb](https://github.com/bigcommerce-labs/bigpay-client-js/commit/d5edcfb))
+
+
+
 <a name="2.7.0"></a>
 # [2.7.0](https://github.com/bigcommerce-labs/bigpay-client-js/compare/2.6.0...2.7.0) (2017-10-18)
 
