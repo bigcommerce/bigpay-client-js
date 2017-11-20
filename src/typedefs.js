@@ -21,6 +21,7 @@
  * @property {string} company
  * @property {string} country
  * @property {string} countryCode
+ * @property {?string} email
  * @property {string} firstName
  * @property {string} lastName
  * @property {string} phone
@@ -132,7 +133,37 @@
  * @property {string} code
  */
 
- /**
+/**
   * @typedef {Object} Shipping
   * @property {string} method
   */
+
+/**
+ * @typedef {Object} ThreeDSecure
+ * @property {string} version
+ * @property {string} status
+ * @property {string} vendor
+ * @property {string} cavv
+ * @property {string} eci
+ * @property {string} xid
+ */
+
+/**
+ * @typedef {Object} CreditCard
+ * @property {string} cardholderName
+ * @property {string} number
+ * @property {number} month
+ * @property {number} year
+ * @property {string} verificationCode
+ * @property {number} issueMonth
+ * @property {number} issueYear
+ * @property {number} issueNumber
+ * @property {string} trackData
+ * @property {boolean} isManualEntry
+ * @property {string} iccData
+ * @property {string} fallbackReason
+ * @property {boolean} isContactless
+ * @property {string} encryptedPinCryptogram
+ * @property {string} encryptedPinKsn
+ * @property {ThreeDSecure} threeDSecure
+ */
