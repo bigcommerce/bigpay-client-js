@@ -89,6 +89,7 @@
  * @property {number} ccExpiry.year
  * @property {string} ccName
  * @property {string} ccNumber
+ * @property {?boolean} shouldSaveInstrument
  */
 
 /**

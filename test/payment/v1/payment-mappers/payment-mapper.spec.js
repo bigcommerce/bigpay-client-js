@@ -43,6 +43,7 @@ describe('PaymentMapper', () => {
             gateway: data.paymentMethod.id,
             notify_url: data.order.callbackUrl,
             return_url: data.paymentMethod.returnUrl,
+            vault_payment_instrument: data.payment.shouldSaveInstrument,
         });
     });
 
@@ -66,6 +67,7 @@ describe('PaymentMapper', () => {
             gateway: data.paymentMethod.id,
             notify_url: data.order.callbackUrl,
             return_url: data.paymentMethod.returnUrl,
+            vault_payment_instrument: data.payment.shouldSaveInstrument,
         });
     });
 
