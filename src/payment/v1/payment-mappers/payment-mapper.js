@@ -44,6 +44,7 @@ export default class PaymentMapper {
             gateway: this.paymentMethodIdMapper.mapToId(paymentMethod),
             notify_url: order.callbackUrl,
             return_url: paymentMethod.returnUrl || (order.payment ? order.payment.returnUrl : null),
+            vault_payment_instrument: payment.shouldSaveInstrument || null,
         };
 
         const method = payment.method;
