@@ -1,3 +1,17 @@
+<a name="2.9.0"></a>
+# [2.9.0](https://github.com/bigcommerce-labs/bigpay-client-js/compare/2.8.0...2.9.0) (2017-11-30)
+
+
+### Features
+
+* **payment** PAYMENTS-1983 Map shouldSaveIntrument to bigpay equivalent ([1a78a8e](https://github.com/bigcommerce-labs/bigpay-client-js/commit/1a78a8e))
+
+### Bug Fixes
+
+* **common:** CHECKOUT-2702 Bump form-poster to fix callback getting called prematurely ([1189a97](https://github.com/bigcommerce-labs/bigpay-client-js/commit/1189a97))
+
+
+
 <a name="2.8.0"></a>
 # [2.8.0](https://github.com/bigcommerce-labs/bigpay-client-js/compare/2.7.0...2.8.0) (2017-11-20)
 
