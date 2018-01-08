@@ -1,6 +1,7 @@
 import objectAssign from 'object-assign';
 import OffsitePaymentInitializer from '../payment/offsite-payment-initializer';
 import PaymentSubmitter from '../payment/payment-submitter';
+import ClientTokenGenerator from '../payment/client-token-generator';
 import StoreRequestSender from '../store/store-request-sender';
 import DEFAULT_CONFIG from './default-config';
 
@@ -13,12 +14,14 @@ export default class Client {
         const clientConfig = objectAssign({}, DEFAULT_CONFIG, config);
         const offsitePaymentInitializer = OffsitePaymentInitializer.create(clientConfig);
         const paymentSubmitter = PaymentSubmitter.create(clientConfig);
+        const clientTokenGenerator = ClientTokenGenerator.create(clientConfig);
         const storeRequestSender = StoreRequestSender.create(clientConfig);
 
         return new Client(
             clientConfig,
             paymentSubmitter,
             offsitePaymentInitializer,
+            clientTokenGenerator,
             storeRequestSender
         );
     }
