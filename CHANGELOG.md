@@ -1,3 +1,13 @@
+<a name="2.9.1"></a>
+## [2.9.1](https://github.com/bigcommerce-labs/bigpay-client-js/compare/2.9.0...2.9.1) (2018-01-08)
+
+
+### Bug Fixes
+
+* **store:** PAYMENTS-1983 Inject 'storeRequestSender' in the correct position as per ([e1d7420](https://github.com/bigcommerce-labs/bigpay-client-js/commit/e1d7420))
+
+
+
 <a name="2.9.0"></a>
 # [2.9.0](https://github.com/bigcommerce-labs/bigpay-client-js/compare/2.8.0...2.9.0) (2017-11-30)
 
