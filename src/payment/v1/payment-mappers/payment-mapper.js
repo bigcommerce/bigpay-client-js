@@ -44,7 +44,7 @@ export default class PaymentMapper {
             gateway: this.paymentMethodIdMapper.mapToId(paymentMethod),
             notify_url: order.callbackUrl,
             return_url: paymentMethod.returnUrl || (order.payment ? order.payment.returnUrl : null),
-            vault_payment_instrument: payment.shouldSaveInstrument || null,
+            vault_payment_instrument: !payment.instrumentId ? payment.shouldSaveInstrument : null,
         };
 
         const method = payment.method;
@@ -55,7 +55,11 @@ export default class PaymentMapper {
 
         const nonce = payment.nonce || paymentMethod.nonce;
 
-        if (nonce) {
+        if (payment.instrumentId) {
+            objectAssign(payload, {
+                bigpay_token: this.mapToBigPayToken(data),
+            });
+        } else if (nonce) {
             objectAssign(payload, {
                 credit_card_token: {
                     token: nonce,
@@ -85,6 +89,18 @@ export default class PaymentMapper {
             verification_value: payment.ccCvv,
             year: payment.ccExpiry ? toNumber(payment.ccExpiry.year) : null,
             customer_code: payment.ccCustomerCode,
+        });
+    }
+
+    /**
+     * @private
+     * @param {PaymentRequestData} data
+     * @return {Object}
+     */
+    mapToBigPayToken({ payment }) {
+        return omitNil({
+            token: payment.instrumentId,
+            verification_value: payment.ccCvv,
         });
     }
 }

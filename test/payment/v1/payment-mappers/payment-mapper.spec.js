@@ -71,6 +71,52 @@ describe('PaymentMapper', () => {
         });
     });
 
+    it('maps vaulting data to the payload', () => {
+        data = merge({}, data, {
+            payment: {
+                shouldSaveInstrument: true,
+                instrumentId: 'token1',
+                ccCvv: '123',
+            },
+        });
+
+        const output = paymentMapper.mapToPayment(data);
+
+        expect(output.vault_payment_instrument).toBeUndefined();
+        expect(output).toEqual(
+            jasmine.objectContaining({
+                device: {
+                    fingerprint_id: data.orderMeta.deviceFingerprint,
+                },
+                device_info: data.quoteMeta.request.deviceSessionId,
+                gateway: data.paymentMethod.id,
+                notify_url: data.order.callbackUrl,
+                return_url: data.paymentMethod.returnUrl,
+                bigpay_token: {
+                    token: data.payment.instrumentId,
+                    verification_value: data.payment.ccCvv,
+                },
+            })
+        );
+    });
+
+    it('maps requests for instrument to be vaulted', () => {
+        data = merge({}, data, {
+            payment: {
+                shouldSaveInstrument: true,
+            },
+        });
+
+        const output = paymentMapper.mapToPayment(data);
+
+        expect(output.bigpay_token).toBeUndefined();
+        expect(output).toEqual(
+            jasmine.objectContaining({
+                vault_payment_instrument: data.payment.shouldSaveInstrument,
+            })
+        );
+    });
+
     it('maps the input object into a payment object with method', () => {
         data = merge({}, data, {
             payment: {
