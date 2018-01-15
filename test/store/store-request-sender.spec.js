@@ -35,14 +35,6 @@ describe('StoreRequestSender', () => {
         expect(instance instanceof StoreRequestSender).toBeTruthy();
     });
 
-    it('requests a shopper token with the appropriately mapped headers', () => {
-        storeRequestSender.getShopperToken(data, () => {});
-
-        expect(urlHelperMock.getTokenUrl).toHaveBeenCalledWith(data.storeId, data.shopperId);
-        expect(requestSenderMock.postRequest).toHaveBeenCalled();
-        expect(mappers.mapToHeaders).toHaveBeenCalled();
-    });
-
     it('request a shopper instrument with the appropriately mapped headers', () => {
         storeRequestSender.getShopperInstruments(data, () => {});
 

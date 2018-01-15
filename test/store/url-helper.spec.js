@@ -18,13 +18,6 @@ describe('UrlHelper', () => {
         expect(instance instanceof UrlHelper).toBeTruthy();
     });
 
-    it('returns a URL for submitting payments to an API provider', () => {
-        const result = urlHelper.getTokenUrl(storeId, shopperId);
-        const expected = `${host}/api/v2/stores/${storeId}/shoppers/${shopperId}/tokens`;
-
-        expect(result).toEqual(expected);
-    });
-
     it('returns a URL for submitting payments to an offsite provider', () => {
         const result = urlHelper.getInstrumentsUrl(storeId, shopperId);
         const expected = `${host}/api/v2/stores/${storeId}/shoppers/${shopperId}/instruments`;
