@@ -39,20 +39,6 @@ export default class StoreRequestSender {
      * @param {Function} [callback]
      * @return {void}
      */
-    getShopperToken(data, callback) {
-        const url = this.urlHelper.getTokenUrl(data.storeId, data.shopperId);
-        const options = {
-            headers: mapToHeaders(data),
-        };
-
-        this.requestSender.postRequest(url, null, options, callback);
-    }
-
-    /**
-     * @param {Object} data
-     * @param {Function} [callback]
-     * @return {void}
-     */
     getShopperInstruments(data, callback) {
         const url = this.urlHelper.getInstrumentsUrl(data.storeId, data.shopperId);
         const options = {

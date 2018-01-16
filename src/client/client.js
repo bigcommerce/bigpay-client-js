@@ -105,17 +105,6 @@ export default class Client {
      * @param {Function} [callback]
      * @return {void}
      */
-    getShopperToken(data, callback) {
-        this.storeRequestSender.getShopperToken(data, callback);
-    }
-
-    /**
-     * @param {Object} data
-     * @param {string} data.storeId
-     * @param {string} data.shopperId
-     * @param {Function} [callback]
-     * @return {void}
-     */
     getShopperInstruments(data, callback) {
         this.storeRequestSender.getShopperInstruments(data, callback);
     }

@@ -26,15 +26,6 @@ export default class UrlHelper {
      * @param {number} shopperId
      * @returns {string}
      */
-    getTokenUrl(storeId, shopperId) {
-        return `${this.host}/api/v2/stores/${storeId}/shoppers/${shopperId}/tokens`;
-    }
-
-    /**
-     * @param {number} storeId
-     * @param {number} shopperId
-     * @returns {string}
-     */
     getInstrumentsUrl(storeId, shopperId) {
         return `${this.host}/api/v2/stores/${storeId}/shoppers/${shopperId}/instruments`;
     }

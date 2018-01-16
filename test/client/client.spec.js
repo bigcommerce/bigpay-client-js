@@ -80,16 +80,7 @@ describe('Client', () => {
         expect(clientTokenGenerator.generateClientToken).toHaveBeenCalledWith(data, callback);
     });
 
-    it('requests a shopper token', () => {
-        const callback = () => {};
-        const data = storeIntrumentDataMock;
-
-        client.getShopperToken(data, callback);
-
-        expect(storeRequestSender.getShopperToken).toHaveBeenCalledWith(data, callback);
-    });
-
-    it('requests a shopper token', () => {
+    it('request a shopper\'s instruments', () => {
         const callback = () => {};
         const data = storeIntrumentDataMock;
 
@@ -98,7 +89,7 @@ describe('Client', () => {
         expect(storeRequestSender.getShopperInstruments).toHaveBeenCalledWith(data, callback);
     });
 
-    it('generates a client token', () => {
+    it('posts a new instrument', () => {
         const callback = () => {};
         const data = storeIntrumentDataMock;
 
@@ -107,7 +98,7 @@ describe('Client', () => {
         expect(storeRequestSender.postShopperInstrument).toHaveBeenCalledWith(data, callback);
     });
 
-    it('generates a client token', () => {
+    it('deletes an instrument', () => {
         const callback = () => {};
         const data = storeIntrumentDataMock;
 
