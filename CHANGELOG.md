@@ -1,3 +1,13 @@
+<a name="2.10.0"></a>
+# [2.10.0](https://github.com/bigcommerce-labs/bigpay-client-js/compare/2.9.1...2.10.0) (2018-01-22)
+
+
+### Features
+
+* **payment:** PAYMENTS-1990 Map vault data to payload ([42c94f6](https://github.com/bigcommerce-labs/bigpay-client-js/commit/42c94f6))
+
+
+
 <a name="2.9.1"></a>
 ## [2.9.1](https://github.com/bigcommerce-labs/bigpay-client-js/compare/2.9.0...2.9.1) (2018-01-08)
 
