@@ -1,4 +1,4 @@
-import { omitNil, toString } from '../../../common/utils';
+import { omitEmptyAndNil, omitNil, toString } from '../../../common/utils';
 
 export default class OrderMapper {
     /**
@@ -92,7 +92,7 @@ export default class OrderMapper {
     mapToAddress(data, addressKey) {
         const address = data[addressKey] || {};
 
-        return omitNil({
+        return omitEmptyAndNil({
             city: address.city,
             company: address.company,
             country_code: address.countryCode,
