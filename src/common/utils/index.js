@@ -1,7 +1,7 @@
 export { default as includes } from './includes';
 export { default as isNil } from './is-nil';
 export { default as isObject } from './is-object';
-export { default as omitEmptyAndNil } from './omit-empty-and-nil';
+export { default as omitEmptyStringAndNil } from './omit-emptystring-and-nil';
 export { default as omitNil } from './omit-nil';
 export { default as omitProperty } from './omit-property';
 export { default as toNumber } from './to-number';
