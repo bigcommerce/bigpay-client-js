@@ -1,3 +1,15 @@
+<a name="2.10.1"></a>
+## [2.10.1](https://github.com/bigcommerce-labs/bigpay-client-js/compare/2.10.0...2.10.1) (2018-03-18)
+
+
+### Bug Fixes
+
+* **payments:** PAYMENTS-2590 Omitting empty string from billing address ([6c3dcb7](https://github.com/bigcommerce-labs/bigpay-client-js/commit/6c3dcb7))
+* **payments:** PAYMENTS-2590 Review Feedback ([689b572](https://github.com/bigcommerce-labs/bigpay-client-js/commit/689b572))
+* **travis:** PAYMENTS-2590 Enforce yarn 0.11 in travis ([07f544f](https://github.com/bigcommerce-labs/bigpay-client-js/commit/07f544f))
+
+
+
 <a name="2.10.0"></a>
 # [2.10.0](https://github.com/bigcommerce-labs/bigpay-client-js/compare/2.9.1...2.10.0) (2018-01-22)
 
