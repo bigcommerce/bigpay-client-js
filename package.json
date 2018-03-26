@@ -2,6 +2,7 @@
   "name": "@bigcommerce/bigpay-client",
   "version": "2.10.1",
   "description": "JavaScript client for Bigpay",
+  "license": "MIT",
   "main": "lib/index.js",
   "scripts": {
     "prebuild": "rm -rf lib && npm test",

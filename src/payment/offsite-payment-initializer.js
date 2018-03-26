@@ -1,4 +1,4 @@
-import { createFormPoster } from 'form-poster';
+import { createFormPoster } from '@bigcommerce/form-poster';
 import { HOSTED } from './payment-types';
 import PayloadMapper from './offsite-payment-mappers/payload-mapper';
 import UrlHelper from './url-helper';
