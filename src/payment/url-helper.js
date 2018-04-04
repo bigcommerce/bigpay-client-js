@@ -13,12 +13,20 @@ export default class UrlHelper {
      * @param {string} config.host
      * @returns {void}
      */
-    constructor({ host }) {
+    constructor(config) {
         /**
          * @private
-         * @type {string}
+         * @type {Object}
          */
-        this.host = host;
+        this.config = config;
+    }
+
+    /**
+     * @private
+     * @returns {string}
+     */
+    get host() {
+        return this.config.host;
     }
 
     /**
