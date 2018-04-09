@@ -33,6 +33,15 @@ export default class UrlHelper {
     /**
      * @param {number} storeId
      * @param {number} shopperId
+     * @return {string}
+     */
+    getTrustedShippingAddressUrl(storeId, shopperId) {
+        return `${this.host}/api/v2/stores/${storeId}/shoppers/${shopperId}/instruments/trusted_shipping_address`;
+    }
+
+    /**
+     * @param {number} storeId
+     * @param {number} shopperId
      * @param {number} instrumentId
      * @returns {string}
      */

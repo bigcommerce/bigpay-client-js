@@ -1,5 +1,13 @@
-import { mapToInstrumentPayload, mapToHeaders } from '../../../../src/store/v2/mappers';
-import { instrumentRequestDataMock, authTokenMock } from '../../../mocks/store-instrument-data';
+import {
+    authTokenMock,
+    instrumentRequestDataMock,
+    trustedShippingAddressDataMock,
+} from '../../../mocks/store-instrument-data';
+import {
+    mapToInstrumentPayload,
+    mapToHeaders,
+    mapToTrustedShippingAddressPayload,
+} from '../../../../src/store/v2/mappers';
 
 describe('StoreMapper', () => {
     let headerData;
@@ -73,6 +81,43 @@ describe('StoreMapper', () => {
             },
             default_instrument: defaultInstrument,
         });
+
+        expect(result).toEqual(expected);
+    });
+
+    it('maps the input object into a trusted shipping address object', () => {
+        const { shippingAddress } = trustedShippingAddressDataMock;
+
+        const result = mapToTrustedShippingAddressPayload(trustedShippingAddressDataMock);
+        const expected = jasmine.objectContaining({
+            shipping_address: {
+                address_line_1: shippingAddress.addressLine1,
+                address_line_2: shippingAddress.addressLine2,
+                city: shippingAddress.city,
+                company: shippingAddress.company,
+                country_code: shippingAddress.countryCode,
+                email: shippingAddress.email,
+                first_name: shippingAddress.firstName,
+                last_name: shippingAddress.lastName,
+                phone: shippingAddress.phone,
+                postal_code: shippingAddress.postCode,
+                state: {
+                    code: shippingAddress.provinceCode,
+                    name: shippingAddress.province,
+                },
+            },
+        });
+
+        expect(result).toEqual(expected);
+    });
+
+    it('accepts null and returns an empty shipping address object', () => {
+        const result = mapToTrustedShippingAddressPayload();
+        const expected = {
+            shipping_address: {
+                state: {},
+            },
+        };
 
         expect(result).toEqual(expected);
     });

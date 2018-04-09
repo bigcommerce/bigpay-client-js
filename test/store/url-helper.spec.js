@@ -25,6 +25,13 @@ describe('UrlHelper', () => {
         expect(result).toEqual(expected);
     });
 
+    it('returns a URL for posting a trusted shipping address', () => {
+        const result = urlHelper.getTrustedShippingAddressUrl(storeId, shopperId);
+        const expected = `${host}/api/v2/stores/${storeId}/shoppers/${shopperId}/instruments/trusted_shipping_address`;
+
+        expect(result).toEqual(expected);
+    });
+
     it('returns a URL for generating a client token', () => {
         const result = urlHelper.getInstrumentByIdUrl(storeId, shopperId, instrumentId);
         const expected = `${host}/api/v2/stores/${storeId}/shoppers/${shopperId}/instruments/${instrumentId}`;
