@@ -1,3 +1,13 @@
+<a name="2.11.0"></a>
+# [2.11.0](https://github.com/bigcommerce/bigpay-client-js/compare/2.10.2...2.11.0) (2018-04-10)
+
+
+### Features
+
+* **common:** CHECKOUT-3035 Provide setter for config ([0d58b2b](https://github.com/bigcommerce/bigpay-client-js/commit/0d58b2b))
+
+
+
 <a name="2.10.2"></a>
 ## [2.10.2](https://github.com/bigcommerce/bigpay-client-js/compare/2.10.1...2.10.2) (2018-03-27)
 

@@ -1,6 +1,6 @@
 {
   "name": "@bigcommerce/bigpay-client",
-  "version": "2.10.2",
+  "version": "2.11.0",
   "description": "JavaScript client for Bigpay",
   "license": "MIT",
   "main": "lib/index.js",
