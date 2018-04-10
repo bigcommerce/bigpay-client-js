@@ -71,6 +71,10 @@ export default class Client {
         this.storeRequestSender = storeRequestSender;
     }
 
+    setHost(host) {
+        this.config.host = host;
+    }
+
     /**
      * @param {PaymentRequestData} data
      * @param {Function} [callback]
