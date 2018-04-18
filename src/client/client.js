@@ -71,6 +71,10 @@ export default class Client {
         this.storeRequestSender = storeRequestSender;
     }
 
+    /**
+     * @param {string} host
+     * @returns {void}
+     */
     setHost(host) {
         this.config.host = host;
     }
