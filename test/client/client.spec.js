@@ -43,6 +43,16 @@ describe('Client', () => {
         );
     });
 
+    it('sets the host url after client creation', () => {
+        const hostUrl = 'https://google.com';
+
+        expect(client.config.host).toEqual(config.host);
+
+        client.setHost(hostUrl);
+
+        expect(client.config.host).toEqual(hostUrl);
+    });
+
     it('returns an instance of Client', () => {
         const instance = Client.create();
 

@@ -18,6 +18,20 @@ describe('UrlHelper', () => {
         expect(instance instanceof UrlHelper).toBeTruthy();
     });
 
+    it('returns the correct host url', () => {
+        expect(urlHelper.host).toBe('https://bigpay.com');
+    });
+
+    it('throws an error if host was not supplied', () => {
+        urlHelper = new UrlHelper();
+
+        expect(() => urlHelper.host).toThrow();
+
+        urlHelper = new UrlHelper({});
+
+        expect(() => urlHelper.host).toThrow();
+    });
+
     it('returns a URL for submitting payments to an offsite provider', () => {
         const result = urlHelper.getInstrumentsUrl(storeId, shopperId);
         const expected = `${host}/api/v2/stores/${storeId}/shoppers/${shopperId}/instruments`;

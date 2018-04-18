@@ -13,12 +13,25 @@ export default class UrlHelper {
      * @param {string} config.host
      * @returns {void}
      */
-    constructor({ host }) {
+    constructor(config) {
         /**
          * @private
-         * @type {string}
+         * @type {Object}
          */
-        this.host = host;
+        this.config = config;
+    }
+
+    /**
+     * @private
+     * @returns {string}
+     * @throws {Error}
+     */
+    get host() {
+        if (!this.config || !this.config.host) {
+            throw new Error('Host URL unavailable or not supplied.');
+        }
+
+        return this.config.host;
     }
 
     /**
