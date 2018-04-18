@@ -1,3 +1,13 @@
+<a name="2.11.1"></a>
+## [2.11.1](https://github.com/bigcommerce/bigpay-client-js/compare/2.11.0...2.11.1) (2018-04-18)
+
+
+### Bug Fixes
+
+* **store:** PAYMENTS-2122 Ensure config reference is not lost when host is updated ([ca42158](https://github.com/bigcommerce/bigpay-client-js/commit/ca42158))
+
+
+
 <a name="2.11.0"></a>
 # [2.11.0](https://github.com/bigcommerce/bigpay-client-js/compare/2.10.2...2.11.0) (2018-04-10)
 
