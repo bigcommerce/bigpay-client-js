@@ -113,6 +113,7 @@ export default function getPaymentData() {
             ccName: 'Foo Bar',
             ccNumber: '4007000000027',
             ccCustomerCode: 'XYZ',
+            extraData: { ... },
         },
         paymentMethod: {
             id: 'paypalprous',
