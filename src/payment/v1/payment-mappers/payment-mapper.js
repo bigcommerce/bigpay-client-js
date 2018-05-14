@@ -65,6 +65,10 @@ export default class PaymentMapper {
                     token: nonce,
                 },
             });
+        } else if (payment.cryptogramId) {
+            objectAssign(payload, {
+                credit_card_cryptogram: this.mapToCryptogram(data),
+            });
         } else {
             objectAssign(payload, {
                 credit_card: this.mapToCreditCard(data),
@@ -108,6 +112,22 @@ export default class PaymentMapper {
         return omitNil({
             token: payment.instrumentId,
             verification_value: payment.ccCvv,
+        });
+    }
+
+    /**
+     * @private
+     * @param {PaymentRequestData} data
+     * @return {Object}
+     */
+    mapToCryptogram({ payment }) {
+        return omitNil({
+            payment_cryptogram: payment.cryptogramId,
+            eci: payment.eci,
+            xid: payment.transactionId,
+            month: payment.ccExpiry ? toNumber(payment.ccExpiry.month) : null,
+            number: payment.ccNumber,
+            year: payment.ccExpiry ? toNumber(payment.ccExpiry.year) : null,
         });
     }
 }

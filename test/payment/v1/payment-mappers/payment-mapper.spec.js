@@ -74,6 +74,72 @@ describe('PaymentMapper', () => {
         });
     });
 
+    it('maps the input object into a payment object with cryptogram', () => {
+        data = merge({}, data, {
+            payment: {
+                cryptogramId: 'cryptogram123',
+                eci: 'eci123',
+                transactionId: 'transaction123',
+            },
+        });
+
+        const output = paymentMapper.mapToPayment(data);
+
+        expect(output.cryptogramId).toBeUndefined();
+        expect(output).toEqual(
+            jasmine.objectContaining({
+                device: {
+                    fingerprint_id: data.orderMeta.deviceFingerprint,
+                },
+                device_info: data.quoteMeta.request.deviceSessionId,
+                gateway: data.paymentMethod.id,
+                notify_url: data.order.callbackUrl,
+                return_url: data.paymentMethod.returnUrl,
+                credit_card_cryptogram: {
+                    payment_cryptogram: data.payment.cryptogramId,
+                    eci: data.payment.eci,
+                    xid: data.payment.transactionId,
+                    number: data.payment.ccNumber,
+                    month: parseInt(data.payment.ccExpiry.month, 10),
+                    year: parseInt(data.payment.ccExpiry.year, 10),
+                },
+            })
+        );
+    });
+
+    it('maps the input object into a payment object with cryptogram without expiration', () => {
+        data = merge({}, data, {
+            payment: {
+                cryptogramId: 'cryptogram123',
+                eci: 'eci123',
+                transactionId: 'transaction123',
+                ccNumber: 'aa',
+                ccExpiry: null,
+            },
+        });
+
+        const output = paymentMapper.mapToPayment(data);
+
+        expect(output.cryptogramId).toBeUndefined();
+        expect(output).toEqual(
+            jasmine.objectContaining({
+                device: {
+                    fingerprint_id: data.orderMeta.deviceFingerprint,
+                },
+                device_info: data.quoteMeta.request.deviceSessionId,
+                gateway: data.paymentMethod.id,
+                notify_url: data.order.callbackUrl,
+                return_url: data.paymentMethod.returnUrl,
+                credit_card_cryptogram: {
+                    payment_cryptogram: data.payment.cryptogramId,
+                    eci: data.payment.eci,
+                    xid: data.payment.transactionId,
+                    number: data.payment.ccNumber,
+                },
+            })
+        );
+    });
+
     it('maps vaulting data to the payload', () => {
         data = merge({}, data, {
             payment: {
