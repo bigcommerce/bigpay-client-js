@@ -2,7 +2,7 @@ import merge from 'lodash/merge';
 import { HOSTED } from '../../src/payment/payment-types';
 import Client from '../../src/client/client';
 import paymentRequestDataMock from '../mocks/payment-request-data';
-import storeIntrumentDataMock from '../mocks/store-instrument-data';
+import { storeIntrumentDataMock, trustedShippingAddressDataMock } from '../mocks/store-instrument-data';
 
 describe('Client', () => {
     let client;
@@ -30,6 +30,7 @@ describe('Client', () => {
         storeRequestSender = {
             getShopperToken: jasmine.createSpy('getShopperToken'),
             getShopperInstruments: jasmine.createSpy('getShopperInstruments'),
+            postTrustedShippingAddress: jasmine.createSpy('postTrustedShippingAddress'),
             postShopperInstrument: jasmine.createSpy('postShopperInstrument'),
             deleteShopperInstrument: jasmine.createSpy('deleteShopperInstrument'),
         };
@@ -97,6 +98,15 @@ describe('Client', () => {
         client.getShopperInstruments(data, callback);
 
         expect(storeRequestSender.getShopperInstruments).toHaveBeenCalledWith(data, callback);
+    });
+
+    it('posts a trusted shipping address', () => {
+        const callback = () => {};
+        const data = trustedShippingAddressDataMock;
+
+        client.postTrustedShippingAddress(data, callback);
+
+        expect(storeRequestSender.postTrustedShippingAddress).toHaveBeenCalledWith(data, callback);
     });
 
     it('posts a new instrument', () => {

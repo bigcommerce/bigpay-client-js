@@ -1,7 +1,11 @@
 import RequestSender from '../common/http-request/request-sender';
-import { DELETE } from '../common/http-request/method-types';
+import { DELETE, POST } from '../common/http-request/method-types';
 import UrlHelper from './url-helper';
-import { mapToHeaders, mapToInstrumentPayload } from './v2/mappers';
+import {
+    mapToHeaders,
+    mapToInstrumentPayload,
+    mapToTrustedShippingAddressPayload,
+} from './v2/mappers';
 
 export default class StoreRequestSender {
     /**
@@ -46,6 +50,22 @@ export default class StoreRequestSender {
         };
 
         this.requestSender.sendRequest(url, null, options, callback);
+    }
+
+    /**
+     * @param {Object} data
+     * @param {Function} [callback]
+     * @return {void}
+     */
+    postTrustedShippingAddress(data, callback) {
+        const url = this.urlHelper.getTrustedShippingAddressUrl(data.storeId, data.shopperId);
+        const payload = mapToTrustedShippingAddressPayload(data);
+        const options = {
+            method: POST,
+            headers: mapToHeaders(data),
+        };
+
+        this.requestSender.postRequest(url, payload, options, callback);
     }
 
     /**

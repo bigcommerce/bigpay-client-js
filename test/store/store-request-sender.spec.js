@@ -13,11 +13,13 @@ describe('StoreRequestSender', () => {
 
         spyOn(mappers, 'mapToHeaders');
         spyOn(mappers, 'mapToInstrumentPayload');
+        spyOn(mappers, 'mapToTrustedShippingAddressPayload');
 
         urlHelperMock = {
             getTokenUrl: jasmine.createSpy('getTokenUrl').and.callThrough(),
             getInstrumentsUrl: jasmine.createSpy('getInstrumentsUrl').and.callThrough(),
             getInstrumentByIdUrl: jasmine.createSpy('getInstrumentByIdUrl').and.callThrough(),
+            getTrustedShippingAddressUrl: jasmine.createSpy('getTrustedShippingAddressUrl').and.callThrough(),
         };
 
         requestSenderMock = {
@@ -41,6 +43,15 @@ describe('StoreRequestSender', () => {
         expect(urlHelperMock.getInstrumentsUrl).toHaveBeenCalledWith(data.storeId, data.shopperId);
         expect(requestSenderMock.sendRequest).toHaveBeenCalled();
         expect(mappers.mapToHeaders).toHaveBeenCalled();
+    });
+
+    it('posts a trusted shipping address with the appropriately mapped headers and payload', () => {
+        storeRequestSender.postTrustedShippingAddress(data, () => {});
+
+        expect(urlHelperMock.getTrustedShippingAddressUrl).toHaveBeenCalledWith(data.storeId, data.shopperId);
+        expect(requestSenderMock.postRequest).toHaveBeenCalled();
+        expect(mappers.mapToHeaders).toHaveBeenCalled();
+        expect(mappers.mapToTrustedShippingAddressPayload).toHaveBeenCalled();
     });
 
     it('posts a new shopper instrument with the appropriately mapped headers and payload', () => {

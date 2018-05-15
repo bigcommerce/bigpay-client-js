@@ -46,3 +46,22 @@ export const instrumentRequestDataMock = {
     },
     defaultInstrument: true,
 };
+
+export const trustedShippingAddressDataMock = {
+    storeId: '123',
+    shopperId: '321',
+    shippingAddress: {
+        addressLine1: '1-3 Smail St',
+        addressLine2: 'Ultimo',
+        city: 'Sydney',
+        company: 'BigCommerce',
+        countryCode: 'AU',
+        email: 'shopper@bigcommerce.com',
+        firstName: 'John',
+        lastName: 'Doe',
+        phone: '98765432',
+        postCode: '2007',
+        provinceCode: 'NSW',
+        province: 'New South Wales',
+    },
+};

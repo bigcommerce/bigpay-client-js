@@ -19,8 +19,19 @@ export function mapToInstrumentPayload(data = {}) {
     return omitNil({
         provider,
         credit_card: mapToCreditCard(data),
-        billing_address: mapToAddress(data),
+        billing_address: mapToAddress(data.billingAddress),
         default_instrument,
+    });
+}
+
+/**
+ * @param {Object} [data={}]
+ * @param {Object} data.shippingAddress
+ * @return {Object}
+ */
+export function mapToTrustedShippingAddressPayload(data = {}) {
+    return omitNil({
+        shipping_address: mapToAddress(data.shippingAddress),
     });
 }
 
@@ -36,23 +47,23 @@ export function mapToHeaders({ authToken: Authorization } = {}) {
 }
 
 /**
- * @param {AddressData} data
+ * @param {AddressData} address
  * @return {Object}
  */
-function mapToAddress({ billingAddress = {} }) {
-    const state = mapToState(billingAddress.provinceCode, billingAddress.province);
+function mapToAddress(address = {}) {
+    const state = mapToState(address.provinceCode, address.province);
 
     return omitNil({
-        address_line_1: billingAddress.addressLine1,
-        address_line_2: billingAddress.addressLine2,
-        city: billingAddress.city,
-        company: billingAddress.company,
-        country_code: billingAddress.countryCode,
-        email: billingAddress.email,
-        first_name: billingAddress.firstName,
-        last_name: billingAddress.lastName,
-        phone: billingAddress.phone,
-        postal_code: billingAddress.postCode,
+        address_line_1: address.addressLine1,
+        address_line_2: address.addressLine2,
+        city: address.city,
+        company: address.company,
+        country_code: address.countryCode,
+        email: address.email,
+        first_name: address.firstName,
+        last_name: address.lastName,
+        phone: address.phone,
+        postal_code: address.postCode,
         state,
     });
 }

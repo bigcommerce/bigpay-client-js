@@ -121,6 +121,18 @@ export default class Client {
      * @param {Object} data
      * @param {string} data.storeId
      * @param {string} data.shopperId
+     * @param {AddressData} data.shippingAddress
+     * @param {Function} [callback]
+     * @return {void}
+     */
+    postTrustedShippingAddress(data, callback) {
+        this.storeRequestSender.postTrustedShippingAddress(data, callback);
+    }
+
+    /**
+     * @param {Object} data
+     * @param {string} data.storeId
+     * @param {string} data.shopperId
      * @param {CreditCard} data.creditCard
      * @param {AddressData} data.billingAddress
      * @param {boolean} data.defaultInstrument
