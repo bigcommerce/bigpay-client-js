@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../src/client/default-config.js"],"names":["DEFAULT_CONFIG","host"],"mappings":";;;;;AAAA,IAAMA,iBAAiB;AACnBC,UAAM;AADa,CAAvB;;kBAIeD,c","file":"default-config.js","sourcesContent":["const DEFAULT_CONFIG = {\n    host: '',\n};\n\nexport default DEFAULT_CONFIG;\n"]}
