@@ -1,3 +1,14 @@
+<a name="2.12.0"></a>
+# [2.12.0](https://github.com/bigcommerce/bigpay-client-js/compare/2.11.1...2.12.0) (2018-05-16)
+
+
+### Features
+
+* **payments:** INT-417 Pass 'extraData' field to BigPay ([fdb1a43](https://github.com/bigcommerce/bigpay-client-js/commit/fdb1a43))
+* **store:** PAYMENTS-2672 Allow consumers to post a trusted shipping ([09e759d](https://github.com/bigcommerce/bigpay-client-js/commit/09e759d))
+
+
+
 <a name="2.11.1"></a>
 ## [2.11.1](https://github.com/bigcommerce/bigpay-client-js/compare/2.11.0...2.11.1) (2018-04-18)
 
