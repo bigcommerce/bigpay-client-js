@@ -68,7 +68,6 @@ function changelogTask() {
 function commitVersionTask() {
     var files = [
         './package.json',
-        './lib',
         './CHANGELOG.md',
     ];
 

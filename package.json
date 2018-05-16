@@ -4,12 +4,17 @@
   "description": "JavaScript client for Bigpay",
   "license": "MIT",
   "main": "lib/index.js",
+  "files": [
+    "lib/"
+  ],
   "scripts": {
-    "prebuild": "rm -rf lib && npm test",
+    "prebuild": "rm -rf lib",
     "build": "NODE_ENV=production babel src --out-dir lib --source-maps",
-    "bump": "gulp bump",
     "lint": "eslint src test",
-    "release": "npm run build && npm run bump",
+    "prepare": "npm run build",
+    "prerelease": "npm run lint && npm test",
+    "release": "gulp bump",
+    "postrelease": "npm publish --access public && git push --follow-tags",
     "test": "karma start --single-run",
     "test:watch": "karma start"
   },
@@ -18,7 +23,6 @@
     "url": "git@github.com:bigcommerce/bigpay-client-js.git"
   },
   "author": "BigCommerce",
-  "private": true,
   "devDependencies": {
     "babel-cli": "^6.14.0",
     "babel-core": "^6.14.0",
@@ -51,8 +55,8 @@
     "webpack": "^1.13.2"
   },
   "dependencies": {
+    "@bigcommerce/form-poster": "^1.2.1",
     "deep-assign": "^2.0.0",
-    "@bigcommerce/form-poster": "git+ssh://git@github.com/bigcommerce/form-poster-js.git#1.1.2",
     "object-assign": "^4.1.0"
   }
 }
