@@ -43,7 +43,7 @@ export default class StoreRequestSender {
      * @param {Function} [callback]
      * @return {void}
      */
-    getShopperInstruments(data, callback) {
+    loadInstruments(data, callback) {
         const url = this.urlHelper.getInstrumentsUrl(data.storeId, data.shopperId);
         const options = {
             headers: mapToHeaders(data),
@@ -57,7 +57,7 @@ export default class StoreRequestSender {
      * @param {Function} [callback]
      * @return {void}
      */
-    postTrustedShippingAddress(data, callback) {
+    loadInstrumentsWithAddress(data, callback) {
         const url = this.urlHelper.getTrustedShippingAddressUrl(data.storeId, data.shopperId);
         const payload = mapToTrustedShippingAddressPayload(data);
         const options = {

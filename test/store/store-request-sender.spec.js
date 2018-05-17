@@ -38,7 +38,7 @@ describe('StoreRequestSender', () => {
     });
 
     it('request a shopper instrument with the appropriately mapped headers', () => {
-        storeRequestSender.getShopperInstruments(data, () => {});
+        storeRequestSender.loadInstruments(data, () => {});
 
         expect(urlHelperMock.getInstrumentsUrl).toHaveBeenCalledWith(data.storeId, data.shopperId);
         expect(requestSenderMock.sendRequest).toHaveBeenCalled();
@@ -46,7 +46,7 @@ describe('StoreRequestSender', () => {
     });
 
     it('posts a trusted shipping address with the appropriately mapped headers and payload', () => {
-        storeRequestSender.postTrustedShippingAddress(data, () => {});
+        storeRequestSender.loadInstrumentsWithAddress(data, () => {});
 
         expect(urlHelperMock.getTrustedShippingAddressUrl).toHaveBeenCalledWith(data.storeId, data.shopperId);
         expect(requestSenderMock.postRequest).toHaveBeenCalled();

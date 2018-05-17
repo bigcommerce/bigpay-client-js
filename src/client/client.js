@@ -113,8 +113,8 @@ export default class Client {
      * @param {Function} [callback]
      * @return {void}
      */
-    getShopperInstruments(data, callback) {
-        this.storeRequestSender.getShopperInstruments(data, callback);
+    loadInstruments(data, callback) {
+        this.storeRequestSender.loadInstruments(data, callback);
     }
 
     /**
@@ -125,8 +125,8 @@ export default class Client {
      * @param {Function} [callback]
      * @return {void}
      */
-    postTrustedShippingAddress(data, callback) {
-        this.storeRequestSender.postTrustedShippingAddress(data, callback);
+    loadInstrumentsWithAddress(data, callback) {
+        this.storeRequestSender.loadInstrumentsWithAddress(data, callback);
     }
 
     /**
