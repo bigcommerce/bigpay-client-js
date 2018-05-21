@@ -1,3 +1,8 @@
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/bigcommerce/bigpay-client-js/compare/2.12.0...3.0.0) (2018-05-21)
+
+
+
 <a name="2.12.0"></a>
 # [2.12.0](https://github.com/bigcommerce/bigpay-client-js/compare/2.11.1...2.12.0) (2018-05-16)
 
