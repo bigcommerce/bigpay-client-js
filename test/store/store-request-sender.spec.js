@@ -40,7 +40,7 @@ describe('StoreRequestSender', () => {
     it('request a shopper instrument with the appropriately mapped headers', () => {
         storeRequestSender.loadInstruments(data, () => {});
 
-        expect(urlHelperMock.getInstrumentsUrl).toHaveBeenCalledWith(data.storeId, data.shopperId);
+        expect(urlHelperMock.getInstrumentsUrl).toHaveBeenCalledWith(data.storeId, data.customerId);
         expect(requestSenderMock.sendRequest).toHaveBeenCalled();
         expect(mappers.mapToHeaders).toHaveBeenCalled();
     });
@@ -48,7 +48,7 @@ describe('StoreRequestSender', () => {
     it('posts a trusted shipping address with the appropriately mapped headers and payload', () => {
         storeRequestSender.loadInstrumentsWithAddress(data, () => {});
 
-        expect(urlHelperMock.getTrustedShippingAddressUrl).toHaveBeenCalledWith(data.storeId, data.shopperId);
+        expect(urlHelperMock.getTrustedShippingAddressUrl).toHaveBeenCalledWith(data.storeId, data.customerId);
         expect(requestSenderMock.postRequest).toHaveBeenCalled();
         expect(mappers.mapToHeaders).toHaveBeenCalled();
         expect(mappers.mapToTrustedShippingAddressPayload).toHaveBeenCalled();
@@ -57,7 +57,7 @@ describe('StoreRequestSender', () => {
     it('posts a new shopper instrument with the appropriately mapped headers and payload', () => {
         storeRequestSender.postShopperInstrument(data, () => {});
 
-        expect(urlHelperMock.getInstrumentsUrl).toHaveBeenCalledWith(data.storeId, data.shopperId);
+        expect(urlHelperMock.getInstrumentsUrl).toHaveBeenCalledWith(data.storeId, data.customerId);
         expect(requestSenderMock.postRequest).toHaveBeenCalled();
         expect(mappers.mapToHeaders).toHaveBeenCalled();
     });
@@ -67,7 +67,7 @@ describe('StoreRequestSender', () => {
 
         expect(urlHelperMock.getInstrumentByIdUrl).toHaveBeenCalledWith(
             data.storeId,
-            data.shopperId,
+            data.customerId,
             data.instrumentId
         );
         expect(requestSenderMock.sendRequest).toHaveBeenCalled();

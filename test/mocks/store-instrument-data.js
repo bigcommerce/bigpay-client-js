@@ -49,7 +49,7 @@ export const instrumentRequestDataMock = {
 
 export const trustedShippingAddressDataMock = {
     storeId: '123',
-    shopperId: '321',
+    customerId: '321',
     shippingAddress: {
         addressLine1: '1-3 Smail St',
         addressLine2: 'Ultimo',

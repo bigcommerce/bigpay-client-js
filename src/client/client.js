@@ -109,7 +109,7 @@ export default class Client {
     /**
      * @param {Object} data
      * @param {string} data.storeId
-     * @param {string} data.shopperId
+     * @param {string} data.customerId
      * @param {Function} [callback]
      * @return {void}
      */
@@ -120,7 +120,7 @@ export default class Client {
     /**
      * @param {Object} data
      * @param {string} data.storeId
-     * @param {string} data.shopperId
+     * @param {string} data.customerId
      * @param {AddressData} data.shippingAddress
      * @param {Function} [callback]
      * @return {void}
@@ -132,7 +132,7 @@ export default class Client {
     /**
      * @param {Object} data
      * @param {string} data.storeId
-     * @param {string} data.shopperId
+     * @param {string} data.customerId
      * @param {CreditCard} data.creditCard
      * @param {AddressData} data.billingAddress
      * @param {boolean} data.defaultInstrument
@@ -147,7 +147,7 @@ export default class Client {
     /**
      * @param {Object} data
      * @param {string} data.storeId
-     * @param {string} data.shopperId
+     * @param {string} data.customerId
      * @param {string} data.instrumentId
      * @param {Function} [callback]
      * @return {void}

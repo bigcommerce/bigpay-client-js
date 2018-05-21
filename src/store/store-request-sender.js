@@ -44,7 +44,7 @@ export default class StoreRequestSender {
      * @return {void}
      */
     loadInstruments(data, callback) {
-        const url = this.urlHelper.getInstrumentsUrl(data.storeId, data.shopperId);
+        const url = this.urlHelper.getInstrumentsUrl(data.storeId, data.customerId);
         const options = {
             headers: mapToHeaders(data),
         };
@@ -58,7 +58,7 @@ export default class StoreRequestSender {
      * @return {void}
      */
     loadInstrumentsWithAddress(data, callback) {
-        const url = this.urlHelper.getTrustedShippingAddressUrl(data.storeId, data.shopperId);
+        const url = this.urlHelper.getTrustedShippingAddressUrl(data.storeId, data.customerId);
         const payload = mapToTrustedShippingAddressPayload(data);
         const options = {
             method: POST,
@@ -74,7 +74,7 @@ export default class StoreRequestSender {
      * @return {void}
      */
     postShopperInstrument(data, callback) {
-        const url = this.urlHelper.getInstrumentsUrl(data.storeId, data.shopperId);
+        const url = this.urlHelper.getInstrumentsUrl(data.storeId, data.customerId);
         const payload = mapToInstrumentPayload(data);
         const options = {
             headers: mapToHeaders(data),
@@ -91,7 +91,7 @@ export default class StoreRequestSender {
     deleteShopperInstrument(data, callback) {
         const url = this.urlHelper.getInstrumentByIdUrl(
             data.storeId,
-            data.shopperId,
+            data.customerId,
             data.instrumentId
         );
         const options = {
