@@ -109,30 +109,30 @@ export default class Client {
     /**
      * @param {Object} data
      * @param {string} data.storeId
-     * @param {string} data.shopperId
+     * @param {string} data.customerId
      * @param {Function} [callback]
      * @return {void}
      */
-    getShopperInstruments(data, callback) {
-        this.storeRequestSender.getShopperInstruments(data, callback);
+    loadInstruments(data, callback) {
+        this.storeRequestSender.loadInstruments(data, callback);
     }
 
     /**
      * @param {Object} data
      * @param {string} data.storeId
-     * @param {string} data.shopperId
+     * @param {string} data.customerId
      * @param {AddressData} data.shippingAddress
      * @param {Function} [callback]
      * @return {void}
      */
-    postTrustedShippingAddress(data, callback) {
-        this.storeRequestSender.postTrustedShippingAddress(data, callback);
+    loadInstrumentsWithAddress(data, callback) {
+        this.storeRequestSender.loadInstrumentsWithAddress(data, callback);
     }
 
     /**
      * @param {Object} data
      * @param {string} data.storeId
-     * @param {string} data.shopperId
+     * @param {string} data.customerId
      * @param {CreditCard} data.creditCard
      * @param {AddressData} data.billingAddress
      * @param {boolean} data.defaultInstrument
@@ -147,7 +147,7 @@ export default class Client {
     /**
      * @param {Object} data
      * @param {string} data.storeId
-     * @param {string} data.shopperId
+     * @param {string} data.customerId
      * @param {string} data.instrumentId
      * @param {Function} [callback]
      * @return {void}

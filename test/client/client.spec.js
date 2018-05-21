@@ -29,8 +29,8 @@ describe('Client', () => {
 
         storeRequestSender = {
             getShopperToken: jasmine.createSpy('getShopperToken'),
-            getShopperInstruments: jasmine.createSpy('getShopperInstruments'),
-            postTrustedShippingAddress: jasmine.createSpy('postTrustedShippingAddress'),
+            loadInstruments: jasmine.createSpy('loadInstruments'),
+            loadInstrumentsWithAddress: jasmine.createSpy('loadInstrumentsWithAddress'),
             postShopperInstrument: jasmine.createSpy('postShopperInstrument'),
             deleteShopperInstrument: jasmine.createSpy('deleteShopperInstrument'),
         };
@@ -91,22 +91,22 @@ describe('Client', () => {
         expect(clientTokenGenerator.generateClientToken).toHaveBeenCalledWith(data, callback);
     });
 
-    it('request a shopper\'s instruments', () => {
+    it('load instruments', () => {
         const callback = () => {};
         const data = storeIntrumentDataMock;
 
-        client.getShopperInstruments(data, callback);
+        client.loadInstruments(data, callback);
 
-        expect(storeRequestSender.getShopperInstruments).toHaveBeenCalledWith(data, callback);
+        expect(storeRequestSender.loadInstruments).toHaveBeenCalledWith(data, callback);
     });
 
-    it('posts a trusted shipping address', () => {
+    it('load instruments with shipping address', () => {
         const callback = () => {};
         const data = trustedShippingAddressDataMock;
 
-        client.postTrustedShippingAddress(data, callback);
+        client.loadInstrumentsWithAddress(data, callback);
 
-        expect(storeRequestSender.postTrustedShippingAddress).toHaveBeenCalledWith(data, callback);
+        expect(storeRequestSender.loadInstrumentsWithAddress).toHaveBeenCalledWith(data, callback);
     });
 
     it('posts a new instrument', () => {

@@ -36,29 +36,29 @@ export default class UrlHelper {
 
     /**
      * @param {number} storeId
-     * @param {number} shopperId
+     * @param {number} customerId
      * @returns {string}
      */
-    getInstrumentsUrl(storeId, shopperId) {
-        return `${this.host}/api/v2/stores/${storeId}/shoppers/${shopperId}/instruments`;
+    getInstrumentsUrl(storeId, customerId) {
+        return `${this.host}/api/v2/stores/${storeId}/shoppers/${customerId}/instruments`;
     }
 
     /**
      * @param {number} storeId
-     * @param {number} shopperId
+     * @param {number} customerId
      * @return {string}
      */
-    getTrustedShippingAddressUrl(storeId, shopperId) {
-        return `${this.host}/api/v2/stores/${storeId}/shoppers/${shopperId}/instruments/trusted_shipping_address`;
+    getTrustedShippingAddressUrl(storeId, customerId) {
+        return `${this.host}/api/v2/stores/${storeId}/shoppers/${customerId}/instruments/trusted_shipping_address`;
     }
 
     /**
      * @param {number} storeId
-     * @param {number} shopperId
+     * @param {number} customerId
      * @param {number} instrumentId
      * @returns {string}
      */
-    getInstrumentByIdUrl(storeId, shopperId, instrumentId) {
-        return `${this.host}/api/v2/stores/${storeId}/shoppers/${shopperId}/instruments/${instrumentId}`;
+    getInstrumentByIdUrl(storeId, customerId, instrumentId) {
+        return `${this.host}/api/v2/stores/${storeId}/shoppers/${customerId}/instruments/${instrumentId}`;
     }
 }
