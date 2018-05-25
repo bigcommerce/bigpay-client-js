@@ -164,6 +164,7 @@ describe('PaymentMapper', () => {
                 bigpay_token: {
                     token: data.payment.instrumentId,
                     verification_value: data.payment.ccCvv,
+                    credit_card_number_confirmation: data.payment.ccNumber,
                 },
             })
         );

@@ -110,6 +110,7 @@ export default class PaymentMapper {
      */
     mapToBigPayToken({ payment }) {
         return omitNil({
+            credit_card_number_confirmation: payment.ccNumber,
             token: payment.instrumentId,
             verification_value: payment.ccCvv,
         });
