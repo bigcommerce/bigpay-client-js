@@ -1,3 +1,14 @@
+<a name="3.1.0"></a>
+# [3.1.0](https://github.com/bigcommerce/bigpay-client-js/compare/3.0.0...3.1.0) (2018-05-29)
+
+
+### Features
+
+* **payment:** PAYMENTS-2675 Add CCNo. as part of the vaulting payment ([c6d708c](https://github.com/bigcommerce/bigpay-client-js/commit/c6d708c))
+* **payment:** INT-275 Add a mapper for Cryptogram Payment instrument ([b1ddf87](https://github.com/bigcommerce/bigpay-client-js/commit/b1ddf87))
+
+
+
 <a name="3.0.0"></a>
 # [3.0.0](https://github.com/bigcommerce/bigpay-client-js/compare/2.12.0...3.0.0) (2018-05-21)
 
