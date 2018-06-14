@@ -80,6 +80,7 @@ describe('PaymentMapper', () => {
                 cryptogramId: 'cryptogram123',
                 eci: 'eci123',
                 transactionId: 'transaction123',
+                accountMask: 'accountMask123',
             },
         });
 
@@ -102,6 +103,7 @@ describe('PaymentMapper', () => {
                     number: data.payment.ccNumber,
                     month: parseInt(data.payment.ccExpiry.month, 10),
                     year: parseInt(data.payment.ccExpiry.year, 10),
+                    account_mask: data.payment.accountMask,
                 },
             })
         );
@@ -115,6 +117,7 @@ describe('PaymentMapper', () => {
                 transactionId: 'transaction123',
                 ccNumber: 'aa',
                 ccExpiry: null,
+                accountMask: 'accountMask123',
             },
         });
 
@@ -135,6 +138,7 @@ describe('PaymentMapper', () => {
                     eci: data.payment.eci,
                     xid: data.payment.transactionId,
                     number: data.payment.ccNumber,
+                    account_mask: data.payment.accountMask,
                 },
             })
         );

@@ -129,6 +129,7 @@ export default class PaymentMapper {
             month: payment.ccExpiry ? toNumber(payment.ccExpiry.month) : null,
             number: payment.ccNumber,
             year: payment.ccExpiry ? toNumber(payment.ccExpiry.year) : null,
+            account_mask: payment.accountMask,
         });
     }
 }
