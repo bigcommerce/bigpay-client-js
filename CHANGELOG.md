@@ -1,3 +1,13 @@
+<a name="3.2.0"></a>
+# [3.2.0](https://github.com/bigcommerce/bigpay-client-js/compare/3.1.0...3.2.0) (2018-06-18)
+
+
+### Features
+
+* **payment:** INT-594 Send ChasePay CheckoutData needed for WePay ([7a5d9d3](https://github.com/bigcommerce/bigpay-client-js/commit/7a5d9d3))
+
+
+
 <a name="3.1.0"></a>
 # [3.1.0](https://github.com/bigcommerce/bigpay-client-js/compare/3.0.0...3.1.0) (2018-05-29)
 
