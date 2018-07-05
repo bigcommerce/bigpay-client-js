@@ -42,7 +42,7 @@ describe('PaymentMapper', () => {
             device: {
                 fingerprint_id: data.orderMeta.deviceFingerprint,
             },
-            device_info: data.quoteMeta.request.deviceSessionId,
+            device_info: data.payment.deviceSessionId,
             gateway: data.paymentMethod.id,
             notify_url: data.order.callbackUrl,
             return_url: data.paymentMethod.returnUrl,
@@ -66,7 +66,7 @@ describe('PaymentMapper', () => {
             device: {
                 fingerprint_id: data.orderMeta.deviceFingerprint,
             },
-            device_info: data.quoteMeta.request.deviceSessionId,
+            device_info: data.payment.deviceSessionId,
             gateway: data.paymentMethod.id,
             notify_url: data.order.callbackUrl,
             return_url: data.paymentMethod.returnUrl,
@@ -92,7 +92,7 @@ describe('PaymentMapper', () => {
                 device: {
                     fingerprint_id: data.orderMeta.deviceFingerprint,
                 },
-                device_info: data.quoteMeta.request.deviceSessionId,
+                device_info: data.payment.deviceSessionId,
                 gateway: data.paymentMethod.id,
                 notify_url: data.order.callbackUrl,
                 return_url: data.paymentMethod.returnUrl,
@@ -129,7 +129,7 @@ describe('PaymentMapper', () => {
                 device: {
                     fingerprint_id: data.orderMeta.deviceFingerprint,
                 },
-                device_info: data.quoteMeta.request.deviceSessionId,
+                device_info: data.payment.deviceSessionId,
                 gateway: data.paymentMethod.id,
                 notify_url: data.order.callbackUrl,
                 return_url: data.paymentMethod.returnUrl,
@@ -161,7 +161,7 @@ describe('PaymentMapper', () => {
                 device: {
                     fingerprint_id: data.orderMeta.deviceFingerprint,
                 },
-                device_info: data.quoteMeta.request.deviceSessionId,
+                device_info: data.payment.deviceSessionId,
                 gateway: data.paymentMethod.id,
                 notify_url: data.order.callbackUrl,
                 return_url: data.paymentMethod.returnUrl,
