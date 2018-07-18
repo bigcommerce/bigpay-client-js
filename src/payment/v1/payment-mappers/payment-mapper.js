@@ -85,21 +85,14 @@ export default class PaymentMapper {
     mapToCreditCard(data) {
         const { payment = {} } = data;
 
-        const mappedData = {
+        return omitNil({
             account_name: payment.ccName,
             month: payment.ccExpiry ? toNumber(payment.ccExpiry.month) : null,
             number: payment.ccNumber,
             verification_value: payment.ccCvv,
             year: payment.ccExpiry ? toNumber(payment.ccExpiry.year) : null,
             customer_code: payment.ccCustomerCode,
-        };
-
-        if (payment.extraData) {
-            mappedData.extra_data = {};
-            mappedData.extra_data.risk_token = payment.extraData.riskToken;
-        }
-
-        return omitNil(mappedData);
+        });
     }
 
     /**
