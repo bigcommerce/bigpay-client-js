@@ -104,7 +104,6 @@ const paymentRequestDataMock = {
         ccNumber: '4007000000027',
         ccCustomerCode: 'XYZ',
         deviceSessionId: 'fakeDeviceSessionId',
-        extraData: { test: 'data' },
         shouldSaveInstrument: false,
     },
     paymentMethod: {
