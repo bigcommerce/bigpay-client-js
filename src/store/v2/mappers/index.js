@@ -26,12 +26,12 @@ export function mapToInstrumentPayload(data = {}) {
 
 /**
  * @param {Object} [data={}]
- * @param {Object} data.shippingAddress
+ * @param {AddressData[]} data.shippingAddresses
  * @return {Object}
  */
-export function mapToTrustedShippingAddressPayload(data = {}) {
+export function mapToTrustedShippingAddressesPayload(data = {}) {
     return omitNil({
-        shipping_address: mapToAddress(data.shippingAddress),
+        shipping_addresses: mapToAddresses(data.shippingAddresses),
     });
 }
 
@@ -44,6 +44,14 @@ export function mapToHeaders({ authToken: Authorization } = {}) {
     return omitNil({
         Authorization,
     });
+}
+
+/**
+ * @param {AddressData[]} addresses
+ * @return {Array}
+ */
+function mapToAddresses(addresses = []) {
+    return addresses.map(address => mapToAddress(address));
 }
 
 /**

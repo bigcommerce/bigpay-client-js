@@ -4,7 +4,7 @@ import UrlHelper from './url-helper';
 import {
     mapToHeaders,
     mapToInstrumentPayload,
-    mapToTrustedShippingAddressPayload,
+    mapToTrustedShippingAddressesPayload,
 } from './v2/mappers';
 
 export default class StoreRequestSender {
@@ -59,7 +59,7 @@ export default class StoreRequestSender {
      */
     loadInstrumentsWithAddress(data, callback) {
         const url = this.urlHelper.getTrustedShippingAddressUrl(data.storeId, data.customerId);
-        const payload = mapToTrustedShippingAddressPayload(data);
+        const payload = mapToTrustedShippingAddressesPayload(data);
         const options = {
             method: POST,
             headers: mapToHeaders(data),

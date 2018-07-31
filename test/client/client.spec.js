@@ -2,7 +2,7 @@ import merge from 'lodash/merge';
 import { HOSTED } from '../../src/payment/payment-types';
 import Client from '../../src/client/client';
 import paymentRequestDataMock from '../mocks/payment-request-data';
-import { storeIntrumentDataMock, trustedShippingAddressDataMock } from '../mocks/store-instrument-data';
+import { storeIntrumentDataMock, trustedShippingAddressesDataMock } from '../mocks/store-instrument-data';
 
 describe('Client', () => {
     let client;
@@ -30,7 +30,7 @@ describe('Client', () => {
         storeRequestSender = {
             getShopperToken: jasmine.createSpy('getShopperToken'),
             loadInstruments: jasmine.createSpy('loadInstruments'),
-            loadInstrumentsWithAddress: jasmine.createSpy('loadInstrumentsWithAddress'),
+            loadInstrumentsWithAddresses: jasmine.createSpy('loadInstrumentsWithAddresses'),
             postShopperInstrument: jasmine.createSpy('postShopperInstrument'),
             deleteShopperInstrument: jasmine.createSpy('deleteShopperInstrument'),
         };
@@ -102,11 +102,11 @@ describe('Client', () => {
 
     it('load instruments with shipping address', () => {
         const callback = () => {};
-        const data = trustedShippingAddressDataMock;
+        const data = trustedShippingAddressesDataMock;
 
-        client.loadInstrumentsWithAddress(data, callback);
+        client.loadInstrumentsWithAddresses(data, callback);
 
-        expect(storeRequestSender.loadInstrumentsWithAddress).toHaveBeenCalledWith(data, callback);
+        expect(storeRequestSender.loadInstrumentsWithAddresses).toHaveBeenCalledWith(data, callback);
     });
 
     it('posts a new instrument', () => {
