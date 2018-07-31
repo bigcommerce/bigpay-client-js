@@ -121,12 +121,12 @@ export default class Client {
      * @param {Object} data
      * @param {string} data.storeId
      * @param {string} data.customerId
-     * @param {AddressData} data.shippingAddress
+     * @param {AddressData[]} data.shippingAddresses
      * @param {Function} [callback]
      * @return {void}
      */
-    loadInstrumentsWithAddress(data, callback) {
-        this.storeRequestSender.loadInstrumentsWithAddress(data, callback);
+    loadInstrumentsWithAddresses(data, callback) {
+        this.storeRequestSender.loadInstrumentsWithAddresses(data, callback);
     }
 
     /**

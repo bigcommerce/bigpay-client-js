@@ -1,12 +1,12 @@
 import {
     authTokenMock,
     instrumentRequestDataMock,
-    trustedShippingAddressDataMock,
+    trustedShippingAddressesDataMock,
 } from '../../../mocks/store-instrument-data';
 import {
     mapToInstrumentPayload,
     mapToHeaders,
-    mapToTrustedShippingAddressPayload,
+    mapToTrustedShippingAddressesPayload,
 } from '../../../../src/store/v2/mappers';
 
 describe('StoreMapper', () => {
@@ -86,37 +86,35 @@ describe('StoreMapper', () => {
     });
 
     it('maps the input object into a trusted shipping address object', () => {
-        const { shippingAddress } = trustedShippingAddressDataMock;
+        const { shippingAddresses } = trustedShippingAddressesDataMock;
 
-        const result = mapToTrustedShippingAddressPayload(trustedShippingAddressDataMock);
+        const result = mapToTrustedShippingAddressesPayload(trustedShippingAddressesDataMock);
         const expected = jasmine.objectContaining({
-            shipping_address: {
-                address_line_1: shippingAddress.addressLine1,
-                address_line_2: shippingAddress.addressLine2,
-                city: shippingAddress.city,
-                company: shippingAddress.company,
-                country_code: shippingAddress.countryCode,
-                email: shippingAddress.email,
-                first_name: shippingAddress.firstName,
-                last_name: shippingAddress.lastName,
-                phone: shippingAddress.phone,
-                postal_code: shippingAddress.postCode,
+            shipping_addresses: [{
+                address_line_1: shippingAddresses[0].addressLine1,
+                address_line_2: shippingAddresses[0].addressLine2,
+                city: shippingAddresses[0].city,
+                company: shippingAddresses[0].company,
+                country_code: shippingAddresses[0].countryCode,
+                email: shippingAddresses[0].email,
+                first_name: shippingAddresses[0].firstName,
+                last_name: shippingAddresses[0].lastName,
+                phone: shippingAddresses[0].phone,
+                postal_code: shippingAddresses[0].postCode,
                 state: {
-                    code: shippingAddress.provinceCode,
-                    name: shippingAddress.province,
+                    code: shippingAddresses[0].provinceCode,
+                    name: shippingAddresses[0].province,
                 },
-            },
+            }],
         });
 
         expect(result).toEqual(expected);
     });
 
     it('accepts null and returns an empty shipping address object', () => {
-        const result = mapToTrustedShippingAddressPayload();
+        const result = mapToTrustedShippingAddressesPayload();
         const expected = {
-            shipping_address: {
-                state: {},
-            },
+            shipping_addresses: [],
         };
 
         expect(result).toEqual(expected);

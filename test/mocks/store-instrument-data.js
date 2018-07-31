@@ -47,10 +47,10 @@ export const instrumentRequestDataMock = {
     defaultInstrument: true,
 };
 
-export const trustedShippingAddressDataMock = {
+export const trustedShippingAddressesDataMock = {
     storeId: '123',
     customerId: '321',
-    shippingAddress: {
+    shippingAddresses: [{
         addressLine1: '1-3 Smail St',
         addressLine2: 'Ultimo',
         city: 'Sydney',
@@ -63,5 +63,5 @@ export const trustedShippingAddressDataMock = {
         postCode: '2007',
         provinceCode: 'NSW',
         province: 'New South Wales',
-    },
+    }],
 };
