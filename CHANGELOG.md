@@ -1,3 +1,13 @@
+<a name="3.2.2"></a>
+# [3.2.2](https://github.com/bigcommerce/bigpay-client-js/compare/3.2.0...3.2.2) (2018-08-01)
+
+
+### Features
+
+* **payments:** INT-491 re-map wepay risk token into device_info field instead of using extra_data ([a6f8325](https://github.com/bigcommerce/bigpay-client-js/commit/a6f8325))
+
+
+
 <a name="3.2.1"></a>
 ## [3.2.1](https://github.com/bigcommerce/bigpay-client-js/compare/3.2.0...3.2.1) (2018-07-05)
 
