@@ -45,4 +45,9 @@ describe('PaymentMethodIdMapper', () => {
         paymentMethod = { id: PAYMENT_METHODS.BRAINTREE_VISACHECKOUT };
         expect(paymentMethodIdMapper.mapToId(paymentMethod)).toEqual(PAYMENT_METHODS.BRAINTREE);
     });
+
+    it('returns "braintree" if the payment method is "googlepaybraintree"', () => {
+        paymentMethod = { id: PAYMENT_METHODS.BRAINTREE_GOOGLEPAY };
+        expect(paymentMethodIdMapper.mapToId(paymentMethod)).toEqual(PAYMENT_METHODS.BRAINTREE);
+    });
 });

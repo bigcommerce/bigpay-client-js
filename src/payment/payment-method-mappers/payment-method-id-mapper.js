@@ -1,6 +1,7 @@
 import { MULTI_OPTION } from '../payment-method-types';
 import {
     BRAINTREE,
+    BRAINTREE_GOOGLEPAY,
     BRAINTREE_PAYPAL,
     BRAINTREE_PAYPAL_CREDIT,
     BRAINTREE_VISACHECKOUT,
@@ -15,6 +16,7 @@ function isBraintreePaymentMethod(id) {
     case BRAINTREE_PAYPAL:
     case BRAINTREE_PAYPAL_CREDIT:
     case BRAINTREE_VISACHECKOUT:
+    case BRAINTREE_GOOGLEPAY:
         return true;
     default:
         return false;
