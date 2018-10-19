@@ -1,3 +1,13 @@
+<a name="3.2.3"></a>
+## [3.2.3](https://github.com/bigcommerce/bigpay-client-js/compare/3.2.2...3.2.3) (2018-10-19)
+
+
+### Features
+
+* **payments:** INT-835 Update braintree payment methods ([df6d38a](https://github.com/bigcommerce/bigpay-client-js/commit/df6d38a))
+
+
+
 <a name="3.2.2"></a>
 # [3.2.2](https://github.com/bigcommerce/bigpay-client-js/compare/3.2.0...3.2.2) (2018-08-01)
 
