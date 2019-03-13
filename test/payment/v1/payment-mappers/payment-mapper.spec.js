@@ -190,7 +190,7 @@ describe('PaymentMapper', () => {
 
     it('maps the input object into a payment object with method', () => {
         data = merge({}, data, {
-            payment: {
+            paymentMethod: {
                 method: 'paypal',
             },
         });
@@ -198,7 +198,7 @@ describe('PaymentMapper', () => {
         const output = paymentMapper.mapToPayment(data);
 
         expect(output).toEqual(jasmine.objectContaining({
-            method: data.payment.method,
+            method: data.paymentMethod.method,
         }));
     });
 
