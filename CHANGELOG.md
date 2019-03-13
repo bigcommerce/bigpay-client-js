@@ -1,3 +1,13 @@
+<a name="3.2.4"></a>
+## [3.2.4](https://github.com/bigcommerce/bigpay-client-js/compare/3.2.3...3.2.4) (2019-03-13)
+
+
+### Bug Fixes
+
+* **payments:** INT-1360 payment-mapper take method value from paymentMethod instead of payment object, and fix gulp dependency not found. ([1234b69](https://github.com/bigcommerce/bigpay-client-js/commit/1234b69))
+
+
+
 <a name="3.2.3"></a>
 ## [3.2.3](https://github.com/bigcommerce/bigpay-client-js/compare/3.2.2...3.2.3) (2018-10-19)
 
