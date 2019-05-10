@@ -92,6 +92,7 @@ export default class PaymentMapper {
             verification_value: payment.ccCvv,
             year: payment.ccExpiry ? toNumber(payment.ccExpiry.year) : null,
             customer_code: payment.ccCustomerCode,
+            three_d_secure: payment.threeDSecure,
         });
     }
 
