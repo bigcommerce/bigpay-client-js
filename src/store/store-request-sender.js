@@ -44,7 +44,11 @@ export default class StoreRequestSender {
      * @return {void}
      */
     loadInstruments(data, callback) {
-        const url = this.urlHelper.getInstrumentsUrl(data.storeId, data.customerId);
+        const url = this.urlHelper.getInstrumentsUrl(
+            data.storeId,
+            data.customerId,
+            data.currencyCode
+        );
         const options = {
             headers: mapToHeaders(data),
         };
@@ -58,7 +62,11 @@ export default class StoreRequestSender {
      * @return {void}
      */
     loadInstrumentsWithAddress(data, callback) {
-        const url = this.urlHelper.getTrustedShippingAddressUrl(data.storeId, data.customerId);
+        const url = this.urlHelper.getTrustedShippingAddressUrl(
+            data.storeId,
+            data.customerId,
+            data.currencyCode
+        );
         const payload = mapToTrustedShippingAddressPayload(data);
         const options = {
             method: POST,
@@ -74,7 +82,11 @@ export default class StoreRequestSender {
      * @return {void}
      */
     postShopperInstrument(data, callback) {
-        const url = this.urlHelper.getInstrumentsUrl(data.storeId, data.customerId);
+        const url = this.urlHelper.getInstrumentsUrl(
+            data.storeId,
+            data.customerId,
+            data.currencyCode
+        );
         const payload = mapToInstrumentPayload(data);
         const options = {
             headers: mapToHeaders(data),
@@ -92,7 +104,8 @@ export default class StoreRequestSender {
         const url = this.urlHelper.getInstrumentByIdUrl(
             data.storeId,
             data.customerId,
-            data.instrumentId
+            data.instrumentId,
+            data.currencyCode
         );
         const options = {
             method: DELETE,

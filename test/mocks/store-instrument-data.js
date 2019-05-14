@@ -5,6 +5,7 @@ export const instrumentRequestDataMock = {
     shopperId: '321',
     instrumentId: '456',
     providerName: 'braintree',
+    currencyCode: 'USD',
     creditCard: {
         cardholderName: 'John Doe',
         number: '4111 1111 1111 1111',
