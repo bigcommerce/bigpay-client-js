@@ -1,3 +1,13 @@
+<a name="4.0.0"></a>
+# [4.0.0](https://github.com/bigcommerce/bigpay-client-js/compare/3.2.4...4.0.0) (2019-05-14)
+
+
+### Features
+
+* **payments:** PAYMENTS-4228 include currency code in shopper instrument calls ([a22917c](https://github.com/bigcommerce/bigpay-client-js/commit/a22917c))
+
+
+
 <a name="3.2.4"></a>
 ## [3.2.4](https://github.com/bigcommerce/bigpay-client-js/compare/3.2.3...3.2.4) (2019-03-13)
 
