@@ -1,3 +1,13 @@
+<a name="4.0.1"></a>
+## [4.0.1](https://github.com/bigcommerce/bigpay-client-js/compare/4.0.0...4.0.1) (2019-05-22)
+
+
+### Bug Fixes
+
+* **payments:** PAYMENTS-4228 remove currency code for when ID already provided ([c9da8a8](https://github.com/bigcommerce/bigpay-client-js/commit/c9da8a8))
+
+
+
 <a name="4.0.0"></a>
 # [4.0.0](https://github.com/bigcommerce/bigpay-client-js/compare/3.2.4...4.0.0) (2019-05-14)
 
