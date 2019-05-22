@@ -104,8 +104,7 @@ export default class StoreRequestSender {
         const url = this.urlHelper.getInstrumentByIdUrl(
             data.storeId,
             data.customerId,
-            data.instrumentId,
-            data.currencyCode
+            data.instrumentId
         );
         const options = {
             method: DELETE,

@@ -48,8 +48,8 @@ describe('UrlHelper', () => {
     });
 
     it('returns a URL for generating a client token', () => {
-        const result = urlHelper.getInstrumentByIdUrl(storeId, shopperId, instrumentId, currencyCode);
-        const expected = `${host}/api/v2/stores/${storeId}/shoppers/${shopperId}/instruments/${instrumentId}?currency_code=${currencyCode}`;
+        const result = urlHelper.getInstrumentByIdUrl(storeId, shopperId, instrumentId);
+        const expected = `${host}/api/v2/stores/${storeId}/shoppers/${shopperId}/instruments/${instrumentId}`;
 
         expect(result).toEqual(expected);
     });
