@@ -105,6 +105,9 @@ const paymentRequestDataMock = {
         ccCustomerCode: 'XYZ',
         deviceSessionId: 'fakeDeviceSessionId',
         shouldSaveInstrument: false,
+        threeDSecure: {
+            token: 'aaa.bbb.ccc',
+        },
     },
     paymentMethod: {
         id: 'paypalprous',

@@ -91,6 +91,7 @@
  * @property {string} ccNumber
  * @property {?boolean} shouldSaveInstrument
  * @property {?string} instrumentId
+ * @property {?ThreeDSecure} threeDSecure
  */
 
 /**
@@ -148,6 +149,7 @@
  * @property {string} cavv
  * @property {string} eci
  * @property {string} xid
+ * @property {string} token
  */
 
 /**

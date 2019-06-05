@@ -35,6 +35,7 @@ describe('PaymentMapper', () => {
                 verification_value: data.payment.ccCvv,
                 year: parseInt(data.payment.ccExpiry.year, 10),
                 customer_code: data.payment.ccCustomerCode,
+                three_d_secure: data.payment.threeDSecure,
             },
             device: {
                 fingerprint_id: data.orderMeta.deviceFingerprint,
