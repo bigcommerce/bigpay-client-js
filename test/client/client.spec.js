@@ -11,6 +11,7 @@ describe('Client', () => {
     let offsitePaymentInitializer;
     let paymentSubmitter;
     let storeRequestSender;
+    let paymentIntentGenerator;
 
     beforeEach(() => {
         config = { host: 'https://bigpay.dev' };
@@ -35,12 +36,17 @@ describe('Client', () => {
             deleteShopperInstrument: jasmine.createSpy('deleteShopperInstrument'),
         };
 
+        paymentIntentGenerator = {
+            generatePaymentIntent: jasmine.createSpy('generatePaymentIntent'),
+        };
+
         client = new Client(
             config,
             paymentSubmitter,
             offsitePaymentInitializer,
             clientTokenGenerator,
-            storeRequestSender
+            storeRequestSender,
+            paymentIntentGenerator
         );
     });
 
@@ -125,5 +131,14 @@ describe('Client', () => {
         client.deleteShopperInstrument(data, callback);
 
         expect(storeRequestSender.deleteShopperInstrument).toHaveBeenCalledWith(data, callback);
+    });
+
+    it('Generate a payment intent', () => {
+        const callback = () => {};
+        const data = storeIntrumentDataMock;
+
+        client.generatePaymentIntent(data, callback);
+
+        expect(paymentIntentGenerator.generatePaymentIntent).toHaveBeenCalledWith(data, callback);
     });
 });

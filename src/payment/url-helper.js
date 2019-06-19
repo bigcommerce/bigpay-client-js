@@ -49,4 +49,11 @@ export default class UrlHelper {
     getGenerateClientTokenUrl() {
         return `${this.host}/api/v2/public/payments/client_tokens`;
     }
+
+    /**
+     * @returns {string}
+     */
+    getGeneratePaymentIntentUrl() {
+        return `${this.host}/api/v2/public/payments/payment_intents`;
+    }
 }
