@@ -106,6 +106,7 @@ export default class PaymentMapper {
             credit_card_number_confirmation: payment.ccNumber,
             token: payment.instrumentId,
             verification_value: payment.ccCvv,
+            three_d_secure: payment.threeDSecure,
         });
     }
 
