@@ -1,3 +1,14 @@
+<a name="4.1.0"></a>
+# [4.1.0](https://github.com/bigcommerce/bigpay-client-js/compare/4.0.1...4.1.0) (2019-07-16)
+
+
+### Features
+
+* **payments:** INT-1479 Add extraData to credit card payload ([a962d0f](https://github.com/bigcommerce/bigpay-client-js/commit/a962d0f))
+* **payments:** INT-1650 adding properties to vaulting object ([595fc00](https://github.com/bigcommerce/bigpay-client-js/commit/595fc00))
+
+
+
 <a name="4.0.1"></a>
 ## [4.0.1](https://github.com/bigcommerce/bigpay-client-js/compare/4.0.0...4.0.1) (2019-05-22)
 
