@@ -26,8 +26,4 @@ describe('UrlHelper', () => {
     it('returns a URL for generating a client token', () => {
         expect(urlHelper.getGenerateClientTokenUrl()).toEqual(`${host}/api/v2/public/payments/client_tokens`);
     });
-
-    it('returns a URL for generating a payment intent', () => {
-        expect(urlHelper.getGeneratePaymentIntentUrl()).toEqual(`${host}/api/v2/public/payments/payment_intents`);
-    });
 });
