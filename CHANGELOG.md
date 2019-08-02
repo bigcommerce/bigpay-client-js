@@ -1,3 +1,13 @@
+<a name="4.3.0"></a>
+# [4.3.0](https://github.com/bigcommerce/bigpay-client-js/compare/4.2.0...4.3.0) (2019-08-02)
+
+
+### Features
+
+* **payments:** INT-1768 Revert Add support for paymentIntent creations endpoint ([a60aec4](https://github.com/bigcommerce/bigpay-client-js/commit/a60aec4))
+
+
+
 <a name="4.2.0"></a>
 # [4.2.0](https://github.com/bigcommerce/bigpay-client-js/compare/4.1.0...4.2.0) (2019-07-25)
 
