@@ -234,4 +234,20 @@ describe('PaymentMapper', () => {
 
         expect(paymentMapper.mapToPayment({})).toEqual({ credit_card: {} });
     });
+
+    it('uses formattedPayload when provided', () => {
+        data = merge({}, data, {
+            payment: { formattedPayload: { credit_card_token: { token: '12356aaa' } } },
+        });
+
+        const output = paymentMapper.mapToPayment(data);
+
+        expect(output).toEqual(
+            jasmine.objectContaining({
+                credit_card_token: {
+                    token: '12356aaa',
+                },
+            })
+        );
+    });
 });
