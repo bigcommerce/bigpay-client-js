@@ -1,3 +1,4 @@
+import objectAssign from 'object-assign';
 import { APPLICATION_JSON } from './content-types';
 import { includes } from '../utils';
 
@@ -30,6 +31,7 @@ export default class PayloadTransformer {
      * @property {string} statusText
      */
     fromResponse(xhr) {
+        const headers = this.parseResponseHeaders(xhr.getAllResponseHeaders());
         const contentType = xhr.getResponseHeader('Content-Type');
         const { status, statusText } = xhr;
 
@@ -39,6 +41,28 @@ export default class PayloadTransformer {
             data = JSON.parse(data);
         }
 
-        return { data, status, statusText };
+        return { data, headers, status, statusText };
+    }
+
+    /**
+     * @private
+     * @param {string} rawHeaders
+     * @returns {Object}
+     */
+    parseResponseHeaders(rawHeaders) {
+        const lines = rawHeaders ? rawHeaders.replace(/\r?\n[\t ]+/g, ' ').split(/\r?\n/) : [];
+
+        return lines.reduce((headers, line) => {
+            const parts = line.split(':');
+            const key = (parts.shift() || '').trim();
+
+            if (!key) {
+                return headers;
+            }
+
+            return objectAssign({}, headers, {
+                [key.toLowerCase()]: parts.join(':').trim(),
+            });
+        }, {});
     }
 }

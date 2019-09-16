@@ -2,8 +2,28 @@ import PayloadTransformer from '../../../src/common/http-request/payload-transfo
 
 describe('PayloadTransformer', () => {
     let payloadTransformer;
+    let xhr;
 
     beforeEach(() => {
+        xhr = {
+            getResponseHeader: (type) => {
+                switch (type) {
+                case 'Content-Type':
+                    return 'application/json';
+
+                case 'Content-Language':
+                    return 'en';
+
+                default:
+                    return null;
+                }
+            },
+            getAllResponseHeaders: () => 'Content-Type:application/json\nContent-Language:en',
+            response: '{ "message": "foobar" }',
+            status: 200,
+            statusText: 'OK',
+        };
+
         payloadTransformer = new PayloadTransformer();
     });
 
@@ -14,34 +34,28 @@ describe('PayloadTransformer', () => {
     });
 
     it('parses the response payload as JSON if its content type is JSON', () => {
-        const xhr = {
-            getResponseHeader: jasmine.createSpy('getResponseHeader').and.callFake(type => (
-                type === 'Content-Type' ? 'application/json' : null
-            )),
-            response: '{ "message": "foobar" }',
-            status: 200,
-            statusText: 'OK',
-        };
-
         expect(payloadTransformer.fromResponse(xhr)).toEqual({
             data: { message: 'foobar' },
+            headers: {
+                'content-language': 'en',
+                'content-type': 'application/json',
+            },
             status: 200,
             statusText: 'OK',
         });
     });
 
     it('parses "responseText" field if the browser does not support "response" field', () => {
-        const xhr = {
-            getResponseHeader: jasmine.createSpy('getResponseHeader').and.callFake(type => (
-                type === 'Content-Type' ? 'application/json' : null
-            )),
-            responseText: '{ "message": "foobar" }',
-            status: 200,
-            statusText: 'OK',
-        };
+        delete xhr.response;
+
+        xhr.responseText = '{ "message": "foobar" }';
 
         expect(payloadTransformer.fromResponse(xhr)).toEqual({
             data: { message: 'foobar' },
+            headers: {
+                'content-language': 'en',
+                'content-type': 'application/json',
+            },
             status: 200,
             statusText: 'OK',
         });
