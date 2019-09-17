@@ -1,3 +1,13 @@
+<a name="4.5.0"></a>
+# [4.5.0](https://github.com/bigcommerce/bigpay-client-js/compare/4.3.0...4.5.0) (2019-09-17)
+
+
+### Features
+
+* **payments:** CHECKOUT-4418 Return response headers in success and error callbacks ([939add2](https://github.com/bigcommerce/bigpay-client-js/commit/939add2))
+
+
+
 <a name="4.3.0"></a>
 # [4.3.0](https://github.com/bigcommerce/bigpay-client-js/compare/4.2.0...4.3.0) (2019-08-02)
 
