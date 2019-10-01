@@ -11,6 +11,7 @@ describe('Client', () => {
     let offsitePaymentInitializer;
     let paymentSubmitter;
     let storeRequestSender;
+    let target;
 
     beforeEach(() => {
         config = { host: 'https://bigpay.dev' };
@@ -34,6 +35,8 @@ describe('Client', () => {
             postShopperInstrument: jasmine.createSpy('postShopperInstrument'),
             deleteShopperInstrument: jasmine.createSpy('deleteShopperInstrument'),
         };
+
+        target = '';
 
         client = new Client(
             config,
@@ -60,7 +63,7 @@ describe('Client', () => {
         expect(instance instanceof Client).toEqual(true);
     });
 
-    it('initializes the offsite payment flow', () => {
+    it('initializes the offsite payment flow with the default target', () => {
         const callback = () => {};
         const data = merge({}, paymentRequestDataMock, {
             paymentMethod: {
@@ -70,7 +73,21 @@ describe('Client', () => {
 
         client.initializeOffsitePayment(data, callback);
 
-        expect(offsitePaymentInitializer.initializeOffsitePayment).toHaveBeenCalledWith(data, callback);
+        expect(offsitePaymentInitializer.initializeOffsitePayment).toHaveBeenCalledWith(data, callback, target);
+    });
+
+    it('initializes the offsite payment flow with the provided target', () => {
+        target = 'target_iframe';
+        const callback = () => {};
+        const data = merge({}, paymentRequestDataMock, {
+            paymentMethod: {
+                type: HOSTED,
+            },
+        });
+
+        client.initializeOffsitePayment(data, callback, target);
+
+        expect(offsitePaymentInitializer.initializeOffsitePayment).toHaveBeenCalledWith(data, callback, target);
     });
 
     it('submits the payment data', () => {

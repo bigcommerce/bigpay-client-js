@@ -8,6 +8,7 @@ describe('OffsitePaymentInitializer', () => {
     let formPoster;
     let offsitePaymentInitializer;
     let payloadMapper;
+    let target;
     let transformedData;
     let urlHelper;
 
@@ -32,6 +33,8 @@ describe('OffsitePaymentInitializer', () => {
             mapToPayload: jasmine.createSpy('mapToPayload').and.returnValue(transformedData),
         };
 
+        target = '';
+
         offsitePaymentInitializer = new OffsitePaymentInitializer(urlHelper, formPoster, payloadMapper);
     });
 
@@ -48,13 +51,23 @@ describe('OffsitePaymentInitializer', () => {
         expect(payloadMapper.mapToPayload).toHaveBeenCalled();
     });
 
-    it('posts the request payload containing payment information to the server using a hidden HTML form', () => {
+    it('posts the request payload containing payment information to the server using a hidden HTML form with the default target', () => {
         const callback = () => {};
         const url = urlHelper.getOffsitePaymentUrl();
 
         offsitePaymentInitializer.initializeOffsitePayment(data, callback);
 
-        expect(formPoster.postForm).toHaveBeenCalledWith(url, transformedData, callback);
+        expect(formPoster.postForm).toHaveBeenCalledWith(url, transformedData, callback, target);
+    });
+
+    it('posts the request payload containing payment information to the server using a hidden HTML form with the provided target', () => {
+        target = 'target_iframe';
+        const callback = () => {};
+        const url = urlHelper.getOffsitePaymentUrl();
+
+        offsitePaymentInitializer.initializeOffsitePayment(data, callback, target);
+
+        expect(formPoster.postForm).toHaveBeenCalledWith(url, transformedData, callback, target);
     });
 
     it('throws an error if the payment method is not a hosted provider', () => {
