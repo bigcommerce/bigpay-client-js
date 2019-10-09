@@ -3,7 +3,6 @@ import { DELETE, POST } from '../common/http-request/method-types';
 import UrlHelper from './url-helper';
 import {
     mapToHeaders,
-    mapToInstrumentPayload,
     mapToTrustedShippingAddressPayload,
 } from './v2/mappers';
 
@@ -70,25 +69,6 @@ export default class StoreRequestSender {
         const payload = mapToTrustedShippingAddressPayload(data);
         const options = {
             method: POST,
-            headers: mapToHeaders(data),
-        };
-
-        this.requestSender.postRequest(url, payload, options, callback);
-    }
-
-    /**
-     * @param {Object} data
-     * @param {Function} [callback]
-     * @return {void}
-     */
-    postShopperInstrument(data, callback) {
-        const url = this.urlHelper.getInstrumentsUrl(
-            data.storeId,
-            data.customerId,
-            data.currencyCode
-        );
-        const payload = mapToInstrumentPayload(data);
-        const options = {
             headers: mapToHeaders(data),
         };
 

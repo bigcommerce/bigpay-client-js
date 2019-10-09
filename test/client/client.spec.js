@@ -31,7 +31,6 @@ describe('Client', () => {
             getShopperToken: jasmine.createSpy('getShopperToken'),
             loadInstruments: jasmine.createSpy('loadInstruments'),
             loadInstrumentsWithAddress: jasmine.createSpy('loadInstrumentsWithAddress'),
-            postShopperInstrument: jasmine.createSpy('postShopperInstrument'),
             deleteShopperInstrument: jasmine.createSpy('deleteShopperInstrument'),
         };
 
@@ -107,15 +106,6 @@ describe('Client', () => {
         client.loadInstrumentsWithAddress(data, callback);
 
         expect(storeRequestSender.loadInstrumentsWithAddress).toHaveBeenCalledWith(data, callback);
-    });
-
-    it('posts a new instrument', () => {
-        const callback = () => {};
-        const data = storeIntrumentDataMock;
-
-        client.postShopperInstrument(data, callback);
-
-        expect(storeRequestSender.postShopperInstrument).toHaveBeenCalledWith(data, callback);
     });
 
     it('deletes an instrument', () => {
