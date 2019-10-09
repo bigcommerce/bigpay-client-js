@@ -41,7 +41,7 @@ export default class UrlHelper {
      * @returns {string}
      */
     getInstrumentsUrl(storeId, customerId, currencyCode) {
-        return `${this.host}/api/v2/stores/${storeId}/shoppers/${customerId}/instruments?currency_code=${currencyCode}`;
+        return `${this.host}/api/v3/stores/${storeId}/shoppers/${customerId}/instruments?currency_code=${currencyCode}`;
     }
 
     /**
@@ -51,7 +51,7 @@ export default class UrlHelper {
      * @return {string}
      */
     getTrustedShippingAddressUrl(storeId, customerId, currencyCode) {
-        return `${this.host}/api/v2/stores/${storeId}/shoppers/${customerId}/instruments/trusted_shipping_address?currency_code=${currencyCode}`;
+        return `${this.host}/api/v3/stores/${storeId}/shoppers/${customerId}/instruments/trusted_shipping_address?currency_code=${currencyCode}`;
     }
 
     /**

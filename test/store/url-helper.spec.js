@@ -35,14 +35,14 @@ describe('UrlHelper', () => {
 
     it('returns a URL for submitting payments to an offsite provider', () => {
         const result = urlHelper.getInstrumentsUrl(storeId, shopperId, currencyCode);
-        const expected = `${host}/api/v2/stores/${storeId}/shoppers/${shopperId}/instruments?currency_code=${currencyCode}`;
+        const expected = `${host}/api/v3/stores/${storeId}/shoppers/${shopperId}/instruments?currency_code=${currencyCode}`;
 
         expect(result).toEqual(expected);
     });
 
     it('returns a URL for posting a trusted shipping address', () => {
         const result = urlHelper.getTrustedShippingAddressUrl(storeId, shopperId, currencyCode);
-        const expected = `${host}/api/v2/stores/${storeId}/shoppers/${shopperId}/instruments/trusted_shipping_address?currency_code=${currencyCode}`;
+        const expected = `${host}/api/v3/stores/${storeId}/shoppers/${shopperId}/instruments/trusted_shipping_address?currency_code=${currencyCode}`;
 
         expect(result).toEqual(expected);
     });
