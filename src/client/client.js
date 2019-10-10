@@ -135,22 +135,6 @@ export default class Client {
      * @param {Object} data
      * @param {string} data.storeId
      * @param {string} data.customerId
-     * @param {string} data.currencyCode
-     * @param {CreditCard} data.creditCard
-     * @param {AddressData} data.billingAddress
-     * @param {boolean} data.defaultInstrument
-     * @param {string} data.providerName
-     * @param {Function} [callback]
-     * @return {void}
-     */
-    postShopperInstrument(data, callback) {
-        this.storeRequestSender.postShopperInstrument(data, callback);
-    }
-
-    /**
-     * @param {Object} data
-     * @param {string} data.storeId
-     * @param {string} data.customerId
      * @param {string} data.instrumentId
      * @param {string} data.currencyCode
      * @param {Function} [callback]

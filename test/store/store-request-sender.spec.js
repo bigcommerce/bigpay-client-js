@@ -62,18 +62,6 @@ describe('StoreRequestSender', () => {
         expect(mappers.mapToTrustedShippingAddressPayload).toHaveBeenCalled();
     });
 
-    it('posts a new shopper instrument with the appropriately mapped headers and payload', () => {
-        storeRequestSender.postShopperInstrument(data, () => {});
-
-        expect(urlHelperMock.getInstrumentsUrl).toHaveBeenCalledWith(
-            data.storeId,
-            data.customerId,
-            data.currencyCode
-        );
-        expect(requestSenderMock.postRequest).toHaveBeenCalled();
-        expect(mappers.mapToHeaders).toHaveBeenCalled();
-    });
-
     it('requests the deletion of a shopper\'s payment instrument', () => {
         storeRequestSender.deleteShopperInstrument(data, () => {});
 
