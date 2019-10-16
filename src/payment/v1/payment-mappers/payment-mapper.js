@@ -54,7 +54,9 @@ export default class PaymentMapper {
 
         const nonce = payment.nonce || paymentMethod.nonce;
 
-        if (payment.instrumentId) {
+        if (payment.formattedPayload) {
+            objectAssign(payload, payment.formattedPayload);
+        } else if (payment.instrumentId) {
             objectAssign(payload, {
                 bigpay_token: this.mapToBigPayToken(data),
             });
