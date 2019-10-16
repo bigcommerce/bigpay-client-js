@@ -1,3 +1,18 @@
+<a name="4.6.0"></a>
+# [4.6.0](https://github.com/bigcommerce/bigpay-client-js/compare/4.5.0...4.6.0) (2019-10-16)
+
+
+### Bug Fixes
+
+* **instruments:** PAYMENTS-4759 Remove POST instrument for api/v2 ([29928a8](https://github.com/bigcommerce/bigpay-client-js/commit/29928a8))
+
+
+### Features
+
+* **common:** PAYMENTS-4616 Allow a passthrough for payment data ([ab24e7a](https://github.com/bigcommerce/bigpay-client-js/commit/ab24e7a))
+
+
+
 <a name="4.5.0"></a>
 # [4.5.0](https://github.com/bigcommerce/bigpay-client-js/compare/4.3.0...4.5.0) (2019-09-17)
 
