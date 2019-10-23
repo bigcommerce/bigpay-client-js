@@ -31,9 +31,9 @@ describe('PaymentMapper', () => {
             credit_card: {
                 account_name: data.payment.ccName,
                 number: data.payment.ccNumber,
-                month: parseInt(data.payment.ccExpiry.month, 10),
+                month: String(data.payment.ccExpiry.month),
                 verification_value: data.payment.ccCvv,
-                year: parseInt(data.payment.ccExpiry.year, 10),
+                year: String(data.payment.ccExpiry.year),
                 customer_code: data.payment.ccCustomerCode,
                 three_d_secure: data.payment.threeDSecure,
             },
