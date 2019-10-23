@@ -1,3 +1,19 @@
+<a name="5.0.0"></a>
+# [5.0.0](https://github.com/bigcommerce/bigpay-client-js/compare/4.6.0...5.0.0) (2019-10-23)
+
+
+### Features
+
+* **instrument:** PAYMENTS-4759 Include new instrument types in the response ([7c5d85b](https://github.com/bigcommerce/bigpay-client-js/commit/7c5d85b))
+
+
+### BREAKING CHANGES
+
+* **instrument:** * Include new instrument types as part of the response. They need to be
+handled by the consumer.
+
+
+
 <a name="4.6.0"></a>
 # [4.6.0](https://github.com/bigcommerce/bigpay-client-js/compare/4.5.0...4.6.0) (2019-10-16)
 
