@@ -75,6 +75,20 @@ describe('PayloadMapper', () => {
         document.title = '';
     });
 
+    it('maps the formattedPayload fields if supplied', () => {
+        data = merge({}, paymentRequestDataMock, {
+            payment: {
+                formattedPayload: {
+                    sample_field: 'sample',
+                },
+            },
+        });
+
+        const output = payloadMapper.mapToPayload(data);
+
+        expect(output.sample_field).toEqual('sample');
+    });
+
     it('uses the return URL contained in the order object as a fallback', () => {
         data = merge({}, data, {
             order: {
