@@ -72,6 +72,7 @@ describe('OrderMapper', () => {
             ],
             shipping: [{
                 method: data.shippingOption.description,
+                transit_time: data.shippingOption.transitTime,
             }],
             shipping_address: {
                 city: data.shippingAddress.city,
