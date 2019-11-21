@@ -68,7 +68,8 @@ describe('StoreRequestSender', () => {
         expect(urlHelperMock.getInstrumentByIdUrl).toHaveBeenCalledWith(
             data.storeId,
             data.customerId,
-            data.instrumentId
+            data.instrumentId,
+            data.currencyCode
         );
         expect(requestSenderMock.sendRequest).toHaveBeenCalled();
         expect(mappers.mapToHeaders).toHaveBeenCalled();

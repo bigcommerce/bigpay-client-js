@@ -58,9 +58,10 @@ export default class UrlHelper {
      * @param {number} storeId
      * @param {number} customerId
      * @param {number} instrumentId
+     * @param {string} currencyCode
      * @returns {string}
      */
-    getInstrumentByIdUrl(storeId, customerId, instrumentId) {
-        return `${this.host}/api/v2/stores/${storeId}/shoppers/${customerId}/instruments/${instrumentId}`;
+    getInstrumentByIdUrl(storeId, customerId, instrumentId, currencyCode) {
+        return `${this.host}/api/v2/stores/${storeId}/shoppers/${customerId}/instruments/${instrumentId}?currency_code=${currencyCode}`;
     }
 }
