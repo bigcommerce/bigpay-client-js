@@ -1,3 +1,13 @@
+<a name="5.0.1"></a>
+## [5.0.1](https://github.com/bigcommerce/bigpay-client-js/compare/5.0.0...5.0.1) (2019-11-26)
+
+
+### Bug Fixes
+
+* **vaulting:** PAYMENTS-4820 Add currency to checkout request to delete a stored card ([dbdfb4b](https://github.com/bigcommerce/bigpay-client-js/commit/dbdfb4b))
+
+
+
 <a name="5.0.0"></a>
 # [5.0.0](https://github.com/bigcommerce/bigpay-client-js/compare/4.6.0...5.0.0) (2019-10-23)
 
