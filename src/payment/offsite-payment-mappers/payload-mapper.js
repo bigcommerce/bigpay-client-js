@@ -65,7 +65,7 @@ export default class PayloadMapper {
      * @returns {Object}
      */
     mapToPayload(data) {
-        const { authToken, order = {}, paymentMethod = {} } = data;
+        const { authToken, order = {}, payment = {}, paymentMethod = {} } = data;
 
         const payload = objectAssign(
             {
@@ -86,6 +86,10 @@ export default class PayloadMapper {
             this.addressMapper.mapToShippingAddress(data),
             this.storeMapper.mapToStore(data)
         );
+
+        const { formattedPayload = {} } = payment;
+
+        objectAssign(payload, formattedPayload);
 
         return omitNil(payload);
     }
