@@ -1,3 +1,13 @@
+<a name="5.1.0"></a>
+# [5.1.0](https://github.com/bigcommerce/bigpay-client-js/compare/5.0.1...5.1.0) (2019-11-26)
+
+
+### Features
+
+* **payments:** INT-1778 Map formatted payload in offsite payment ([540dddd](https://github.com/bigcommerce/bigpay-client-js/commit/540dddd))
+
+
+
 <a name="5.0.1"></a>
 ## [5.0.1](https://github.com/bigcommerce/bigpay-client-js/compare/5.0.0...5.0.1) (2019-11-26)
 
