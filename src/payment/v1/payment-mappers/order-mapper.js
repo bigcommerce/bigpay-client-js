@@ -50,12 +50,13 @@ export default class OrderMapper {
      * @return {Shipping[]}
      */
     mapToShipping(data) {
-        const { description } = data.shippingOption || {};
+        const { description, transitTime } = data.shippingOption || {};
 
         if (description) {
-            return [{
+            return [omitEmptyStringAndNil({
                 method: description,
-            }];
+                transit_time: transitTime,
+            })];
         }
 
         return [];

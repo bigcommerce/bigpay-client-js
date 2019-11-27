@@ -144,7 +144,7 @@ const paymentRequestDataMock = {
         module: 'freeshipping',
         price: 15,
         selected: true,
-        transitTime: '',
+        transitTime: '3 business days',
     },
     source: 'bcapp-checkout-uco',
     store: {
