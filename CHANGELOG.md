@@ -1,3 +1,32 @@
+<a name="5.2.0"></a>
+# [5.2.0](https://github.com/bigcommerce/bigpay-client-js/compare/4.0.1...5.2.0) (2019-11-27)
+
+
+### Bug Fixes
+
+* **instruments:** PAYMENTS-4759 Remove POST instrument for api/v2 ([29928a8](https://github.com/bigcommerce/bigpay-client-js/commit/29928a8))
+* **vaulting:** PAYMENTS-4820 Add currency to checkout request to delete a stored card ([dbdfb4b](https://github.com/bigcommerce/bigpay-client-js/commit/dbdfb4b))
+
+
+### Features
+
+* **common:** PAYMENTS-4616 Allow a passthrough for payment data ([ab24e7a](https://github.com/bigcommerce/bigpay-client-js/commit/ab24e7a))
+* **instrument:** PAYMENTS-4759 Include new instrument types in the response ([7c5d85b](https://github.com/bigcommerce/bigpay-client-js/commit/7c5d85b))
+* **payments:** CHECKOUT-4418 Return response headers in success and error callbacks ([939add2](https://github.com/bigcommerce/bigpay-client-js/commit/939add2))
+* **payments:** INT-1479 Add extraData to credit card payload ([a962d0f](https://github.com/bigcommerce/bigpay-client-js/commit/a962d0f))
+* **payments:** INT-1577 Add support for paymentIntent creations endpoint ([fdc3c5d](https://github.com/bigcommerce/bigpay-client-js/commit/fdc3c5d))
+* **payments:** INT-1650 adding properties to vaulting object ([595fc00](https://github.com/bigcommerce/bigpay-client-js/commit/595fc00))
+* **payments:** INT-1768 Revert Add support for paymentIntent creations endpoint ([a60aec4](https://github.com/bigcommerce/bigpay-client-js/commit/a60aec4))
+* **payments:** INT-1778 Map formatted payload in offsite payment ([540dddd](https://github.com/bigcommerce/bigpay-client-js/commit/540dddd))
+
+
+### BREAKING CHANGES
+
+* **instrument:** * Include new instrument types as part of the response. They need to be
+handled by the consumer.
+
+
+
 <a name="5.1.0"></a>
 # [5.1.0](https://github.com/bigcommerce/bigpay-client-js/compare/5.0.1...5.1.0) (2019-11-26)
 
