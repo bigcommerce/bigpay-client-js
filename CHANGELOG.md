@@ -1,3 +1,13 @@
+<a name="5.3.0"></a>
+# [5.3.0](https://github.com/bigcommerce/bigpay-client-js/compare/5.2.0...5.3.0) (2019-12-05)
+
+
+### Features
+
+* **instrument:** INT-1780 Map customer id in offsite payment ([83b98b8](https://github.com/bigcommerce/bigpay-client-js/commit/83b98b8))
+
+
+
 <a name="5.2.0"></a>
 # [5.2.0](https://github.com/bigcommerce/bigpay-client-js/compare/4.0.1...5.2.0) (2019-11-27)
 
