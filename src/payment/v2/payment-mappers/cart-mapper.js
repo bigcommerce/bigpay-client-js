@@ -30,7 +30,7 @@ export default class CartMapper {
     mapToItems(data) {
         const { cart = { items: [] } } = data;
 
-        return cart.items.map(itemData => omitNil({
+        return cart.items.map((itemData) => omitNil({
             discount_amount: itemData.integerDiscount,
             name: itemData.name,
             price: itemData.integerAmount,

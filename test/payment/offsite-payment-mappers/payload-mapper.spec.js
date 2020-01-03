@@ -20,24 +20,34 @@ describe('PayloadMapper', () => {
         });
 
         addressMapper = {
-            mapToBillingAddress: jasmine.createSpy('mapToBillingAddress').and.returnValue({ billingAddress: 'billingAddress' }),
-            mapToShippingAddress: jasmine.createSpy('mapToShippingAddress').and.returnValue({ shippingAddress: 'shippingAddress' }),
+            mapToBillingAddress: jest.fn(() => ({
+                billingAddress: 'billingAddress',
+            })),
+            mapToShippingAddress: jest.fn(() => ({
+                shippingAddress: 'shippingAddress',
+            })),
         };
 
         customerMapper = {
-            mapToCustomer: jasmine.createSpy('mapToCustomer').and.returnValue({ customer: 'customer' }),
+            mapToCustomer: jest.fn(() => ({
+                customer: 'customer',
+            })),
         };
 
         metaMapper = {
-            mapToMeta: jasmine.createSpy('mapToMeta').and.returnValue({ meta: 'meta' }),
+            mapToMeta: jest.fn(() => ({
+                meta: 'meta',
+            })),
         };
 
         paymentMethodIdMapper = {
-            mapToId: jasmine.createSpy('mapToId').and.returnValue(data.paymentMethod.gateway),
+            mapToId: jest.fn(() => data.paymentMethod.gateway),
         };
 
         storeMapper = {
-            mapToStore: jasmine.createSpy('mapToStore').and.returnValue({ store: 'store' }),
+            mapToStore: jest.fn(() => ({
+                store: 'store',
+            })),
         };
 
         payloadMapper = new PayloadMapper(addressMapper, customerMapper, metaMapper, paymentMethodIdMapper, storeMapper);
@@ -114,12 +124,12 @@ describe('PayloadMapper', () => {
     });
 
     it('returns an empty object if the input does not contain the required information', () => {
-        addressMapper.mapToBillingAddress.and.returnValue({});
-        addressMapper.mapToShippingAddress.and.returnValue({});
-        customerMapper.mapToCustomer.and.returnValue({});
-        metaMapper.mapToMeta.and.returnValue({});
-        paymentMethodIdMapper.mapToId.and.returnValue(null);
-        storeMapper.mapToStore.and.returnValue({});
+        addressMapper.mapToBillingAddress.mockReturnValueOnce({});
+        addressMapper.mapToShippingAddress.mockReturnValueOnce({});
+        customerMapper.mapToCustomer.mockReturnValueOnce({});
+        metaMapper.mapToMeta.mockReturnValueOnce({});
+        paymentMethodIdMapper.mapToId.mockReturnValueOnce(null);
+        storeMapper.mapToStore.mockReturnValueOnce({});
 
         expect(payloadMapper.mapToPayload({})).toEqual({});
     });

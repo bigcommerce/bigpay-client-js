@@ -13,19 +13,19 @@ describe('PayloadMapper', () => {
         data = paymentRequestDataMock;
 
         customerMapper = {
-            mapToCustomer: jasmine.createSpy('mapToCustomer').and.returnValue('customer'),
+            mapToCustomer: jest.fn(() => 'customer'),
         };
 
         orderMapper = {
-            mapToOrder: jasmine.createSpy('mapToOrder').and.returnValue('order'),
+            mapToOrder: jest.fn(() => 'order'),
         };
 
         paymentMapper = {
-            mapToPayment: jasmine.createSpy('mapToPayment').and.returnValue('payment'),
+            mapToPayment: jest.fn(() => 'payment'),
         };
 
         storeMapper = {
-            mapToStore: jasmine.createSpy('mapToStore').and.returnValue('store'),
+            mapToStore: jest.fn(() => 'store'),
         };
 
         payloadMapper = new PayloadMapper(customerMapper, orderMapper, paymentMapper, storeMapper);
@@ -58,10 +58,10 @@ describe('PayloadMapper', () => {
     });
 
     it('returns an empty object if the input does not contain the required information', () => {
-        customerMapper.mapToCustomer.and.returnValue({});
-        orderMapper.mapToOrder.and.returnValue({});
-        paymentMapper.mapToPayment.and.returnValue({});
-        storeMapper.mapToStore.and.returnValue({});
+        customerMapper.mapToCustomer.mockReturnValueOnce({});
+        orderMapper.mapToOrder.mockReturnValueOnce({});
+        paymentMapper.mapToPayment.mockReturnValueOnce({});
+        storeMapper.mapToStore.mockReturnValueOnce({});
 
         expect(payloadMapper.mapToPayload({})).toEqual({
             customer: {},

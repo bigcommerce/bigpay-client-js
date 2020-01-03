@@ -7,7 +7,7 @@ export default function toString(value) {
         return value;
     }
 
-    if (typeof value === 'number' && !isNaN(value)) {
+    if (typeof value === 'number' && !Number.isNaN(value)) {
         return value.toString();
     }
 

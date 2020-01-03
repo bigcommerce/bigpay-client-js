@@ -2,6 +2,13 @@
   "name": "@bigcommerce/bigpay-client",
   "version": "5.5.0",
   "description": "JavaScript client for Bigpay",
+  "browserslist": [
+    "last 2 versions",
+    "not ie < 11",
+    "not Baidu > 0",
+    "not QQAndroid > 0",
+    "not Android < 62"
+  ],
   "license": "MIT",
   "main": "lib/index.js",
   "files": [
@@ -13,8 +20,8 @@
     "lint": "eslint src test",
     "prerelease": "npm run lint && npm test",
     "release": "standard-version -a",
-    "test": "karma start --single-run",
-    "test:watch": "karma start"
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -22,40 +29,27 @@
   },
   "author": "BigCommerce",
   "devDependencies": {
-    "babel-cli": "^6.14.0",
-    "babel-core": "^6.14.0",
-    "babel-loader": "^6.2.5",
-    "babel-plugin-istanbul": "^3.0.0",
-    "babel-preset-es2015": "^6.14.0",
-    "eslint": "^3.4.0",
-    "eslint-config-airbnb-base": "^7.0.0",
-    "eslint-loader": "^1.5.0",
-    "eslint-plugin-import": "^1.16.0",
-    "eslint-plugin-jsdoc": "^2.3.1",
-    "gulp": "^4.0.0",
-    "gulp-bump": "^2.4.0",
-    "gulp-conventional-changelog": "^1.1.0",
-    "gulp-git": "^2.4.2",
-    "gulp-prompt": "^0.2.0",
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.1",
+    "gulp": "^4.0.2",
+    "gulp-bump": "^3.1.3",
+    "gulp-conventional-changelog": "^2.0.29",
+    "gulp-git": "^2.10.0",
+    "gulp-prompt": "^1.2.0",
     "gulp-touch": "^1.0.1",
-    "jasmine-ajax": "^3.2.0",
-    "jasmine-core": "^2.5.1",
-    "karma": "^1.2.0",
-    "karma-coverage": "^1.1.1",
-    "karma-jasmine": "^1.0.2",
-    "karma-mocha-reporter": "^2.1.0",
-    "karma-phantomjs-launcher": "^1.0.2",
-    "karma-sourcemap-loader": "^0.3.7",
-    "karma-webpack": "^1.8.0",
-    "lodash": "^4.17.4",
-    "phantomjs-prebuilt": "^2.1.15",
-    "semver": "^5.3.0",
-    "standard-version": "^7.0.1",
-    "webpack": "^1.13.2"
+    "jest": "^25.2.0",
+    "lodash": "^4.17.15",
+    "semver": "^7.1.3",
+    "xhr-mock": "^2.5.1"
   },
   "dependencies": {
     "@bigcommerce/form-poster": "^1.4.0",
-    "deep-assign": "^2.0.0",
-    "object-assign": "^4.1.0"
+    "babel-jest": "^25.2.0",
+    "deep-assign": "^3.0.0",
+    "object-assign": "^4.1.1"
   }
 }

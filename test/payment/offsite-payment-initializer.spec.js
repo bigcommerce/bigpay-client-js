@@ -22,15 +22,15 @@ describe('OffsitePaymentInitializer', () => {
         });
 
         urlHelper = {
-            getOffsitePaymentUrl: jasmine.createSpy('getOffsitePaymentUrl').and.returnValue('/api/pay/initialize'),
+            getOffsitePaymentUrl: jest.fn(() => '/api/pay/initialize'),
         };
 
         formPoster = {
-            postForm: jasmine.createSpy('postForm'),
+            postForm: jest.fn(),
         };
 
         payloadMapper = {
-            mapToPayload: jasmine.createSpy('mapToPayload').and.returnValue(transformedData),
+            mapToPayload: jest.fn(() => transformedData),
         };
 
         target = undefined;

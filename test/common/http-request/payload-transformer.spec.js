@@ -45,6 +45,15 @@ describe('PayloadTransformer', () => {
         });
     });
 
+    it('omits empty lines within the request headers', () => {
+        const xhrWithEmptyLinesInHeader = { ...xhr, getAllResponseHeaders: () => '\nContent-Type:application/json\n\n\nContent-Language:en\n' };
+
+        expect(payloadTransformer.fromResponse(xhrWithEmptyLinesInHeader).headers).toEqual({
+            'content-language': 'en',
+            'content-type': 'application/json',
+        });
+    });
+
     it('parses "responseText" field if the browser does not support "response" field', () => {
         delete xhr.response;
 

@@ -20,19 +20,19 @@ describe('ClientTokenMapper', () => {
         };
 
         cartMapper = {
-            mapToCart: jasmine.createSpy('mapToCart').and.returnValue(mappedData.cart),
+            mapToCart: jest.fn(() => mappedData.cart),
         };
 
         gatewayMapper = {
-            mapToGateway: jasmine.createSpy('mapToGateway').and.returnValue(mappedData.gateway),
+            mapToGateway: jest.fn(() => mappedData.gateway),
         };
 
         quoteMapper = {
-            mapToQuote: jasmine.createSpy('mapToQuote').and.returnValue(mappedData.quote),
+            mapToQuote: jest.fn(() => mappedData.quote),
         };
 
         storeMapper = {
-            mapToStore: jasmine.createSpy('mapToStore').and.returnValue(mappedData.store),
+            mapToStore: jest.fn(() => mappedData.store),
         };
 
         clientTokenMapper = new ClientTokenMapper(cartMapper, gatewayMapper, quoteMapper, storeMapper);
@@ -56,10 +56,10 @@ describe('ClientTokenMapper', () => {
     });
 
     it('returns an empty object if the input does not contain the required information', () => {
-        cartMapper.mapToCart.and.returnValue({});
-        gatewayMapper.mapToGateway.and.returnValue({});
-        quoteMapper.mapToQuote.and.returnValue({});
-        storeMapper.mapToStore.and.returnValue({});
+        cartMapper.mapToCart.mockReturnValue({});
+        gatewayMapper.mapToGateway.mockReturnValue({});
+        quoteMapper.mapToQuote.mockReturnValue({});
+        storeMapper.mapToStore.mockReturnValue({});
 
         expect(clientTokenMapper.mapToClientToken({})).toEqual({
             cart: {},

@@ -18,7 +18,7 @@ describe('StoreMapper', () => {
 
     it('maps an auth token to a header compatible object', () => {
         const result = mapToHeaders(headerData);
-        const expected = jasmine.objectContaining({
+        const expected = expect.objectContaining({
             Authorization: authTokenMock,
         });
 
@@ -41,7 +41,7 @@ describe('StoreMapper', () => {
         } = instrumentRequestDataMock;
 
         const result = mapToInstrumentPayload(instrumentRequestDataMock);
-        const expected = jasmine.objectContaining({
+        const expected = expect.objectContaining({
             provider: {
                 name: providerName,
             },
@@ -89,7 +89,7 @@ describe('StoreMapper', () => {
         const { shippingAddress } = trustedShippingAddressDataMock;
 
         const result = mapToTrustedShippingAddressPayload(trustedShippingAddressDataMock);
-        const expected = jasmine.objectContaining({
+        const expected = expect.objectContaining({
             shipping_address: {
                 address_line_1: shippingAddress.addressLine1,
                 address_line_2: shippingAddress.addressLine2,

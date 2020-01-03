@@ -2,7 +2,7 @@ import merge from 'lodash/merge';
 import { HOSTED } from '../../src/payment/payment-types';
 import Client from '../../src/client/client';
 import paymentRequestDataMock from '../mocks/payment-request-data';
-import { storeIntrumentDataMock, trustedShippingAddressDataMock } from '../mocks/store-instrument-data';
+import { instrumentRequestDataMock, trustedShippingAddressDataMock } from '../mocks/store-instrument-data';
 
 describe('Client', () => {
     let client;
@@ -17,22 +17,22 @@ describe('Client', () => {
         config = { host: 'https://bigpay.dev' };
 
         paymentSubmitter = {
-            submitPayment: jasmine.createSpy('submitPayment'),
+            submitPayment: jest.fn(),
         };
 
         offsitePaymentInitializer = {
-            initializeOffsitePayment: jasmine.createSpy('initializeOffsitePayment'),
+            initializeOffsitePayment: jest.fn(),
         };
 
         clientTokenGenerator = {
-            generateClientToken: jasmine.createSpy('generateClientToken'),
+            generateClientToken: jest.fn(),
         };
 
         storeRequestSender = {
-            getShopperToken: jasmine.createSpy('getShopperToken'),
-            loadInstruments: jasmine.createSpy('loadInstruments'),
-            loadInstrumentsWithAddress: jasmine.createSpy('loadInstrumentsWithAddress'),
-            deleteShopperInstrument: jasmine.createSpy('deleteShopperInstrument'),
+            getShopperToken: jest.fn(),
+            loadInstruments: jest.fn(),
+            loadInstrumentsWithAddress: jest.fn(),
+            deleteShopperInstrument: jest.fn(),
         };
 
         target = undefined;
@@ -42,7 +42,7 @@ describe('Client', () => {
             paymentSubmitter,
             offsitePaymentInitializer,
             clientTokenGenerator,
-            storeRequestSender
+            storeRequestSender,
         );
     });
 
@@ -109,7 +109,7 @@ describe('Client', () => {
 
     it('load instruments', () => {
         const callback = () => {};
-        const data = storeIntrumentDataMock;
+        const data = instrumentRequestDataMock;
 
         client.loadInstruments(data, callback);
 
@@ -127,7 +127,7 @@ describe('Client', () => {
 
     it('deletes an instrument', () => {
         const callback = () => {};
-        const data = storeIntrumentDataMock;
+        const data = instrumentRequestDataMock;
 
         client.deleteShopperInstrument(data, callback);
 

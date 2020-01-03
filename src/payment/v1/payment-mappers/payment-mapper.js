@@ -46,7 +46,7 @@ export default class PaymentMapper {
             vault_payment_instrument: !payment.instrumentId ? payment.shouldSaveInstrument : null,
         };
 
-        const method = paymentMethod.method;
+        const { method } = paymentMethod;
 
         if (method) {
             objectAssign(payload, { method });
