@@ -1,0 +1,129 @@
+version: 2.1
+orbs:
+  ci: bigcommerce/internal@volatile
+  node: bigcommerce/internal-node@volatile
+
+#####################################################
+# Aliases
+#####################################################
+aliases:
+  - &node_executor
+      executor:
+        name: node/node
+        node-version: "10"
+
+  - &release_filter
+      branches:
+        only:
+          - master
+
+  - &pull_request_filter
+      branches:
+        ignore:
+          - master
+
+#####################################################
+# Commands
+#####################################################
+commands:
+  install:
+    steps:
+      - ci/pre-setup
+      - restore_cache:
+          keys:
+            - bigpay-client-js
+      - run: npm ci
+      - save_cache:
+          key: bigpay-client-js
+          paths:
+            - ~/.npm
+  test:
+    steps:
+      - run: npm run lint && npm test
+  build:
+    steps:
+      - run: npm run build
+
+#####################################################
+# Jobs
+#####################################################
+jobs:
+  build-and-test:
+    <<: *node_executor
+    steps:
+      - install
+      - build
+      - test
+      - persist_to_workspace:
+          root: .
+          paths:
+            - lib
+      - store_artifacts:
+          path: coverage
+          destination: coverage
+  validate-commits:
+    <<: *node_executor
+    steps:
+      - ci/pre-setup
+      - ci/merge-base
+      - run:
+          name: 'Validate Commits'
+          command: '[ -z "$MERGE_BASE_SHA1" ] || npx @bigcommerce/validate-commits ${MERGE_BASE_SHA1}..${CIRCLE_SHA1}'
+  release:
+    <<: *node_executor
+    steps:
+      - ci/pre-setup
+      - install
+      - run:
+          name: "Configure Git user"
+          command: |
+            git config user.email $GIT_USER_EMAIL
+            git config user.name $GIT_USER_NAME
+      - run:
+          name: "Remove old release files"
+          command: rm -rf lib
+      - attach_workspace:
+          at: .
+      - run:
+          name: "Create and tag new release"
+          command: npm run release
+      - run:
+          name: "Push commits and tag to GitHub"
+          command: |
+            git push --follow-tags origin $CIRCLE_BRANCH
+      - run:
+          name: "Publish release to NPM"
+          command: |
+            echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" > .npmrc
+            npm publish --access public
+
+#####################################################
+# Workflows
+#####################################################
+workflows:
+  version: 2
+
+  pull_request:
+    jobs:
+      - build-and-test:
+          filters:
+            <<: *pull_request_filter
+      - validate-commits:
+          filters:
+            <<: *pull_request_filter
+  release:
+    jobs:
+      - build-and-test:
+          filters:
+            <<: *release_filter
+      - approve:
+          filters:
+            <<: *release_filter
+          type: approval
+          requires:
+            - build-and-test
+      - release:
+          filters:
+            <<: *release_filter
+          requires:
+            - approve
