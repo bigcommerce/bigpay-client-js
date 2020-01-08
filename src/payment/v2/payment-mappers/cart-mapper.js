@@ -34,6 +34,7 @@ export default class CartMapper {
             discount_amount: itemData.integerDiscount,
             name: itemData.name,
             price: itemData.integerAmount,
+            unit_price: itemData.integerUnitPrice,
             quantity: itemData.quantity,
             sku: itemData.sku,
             tax_amount: itemData.integerTax,

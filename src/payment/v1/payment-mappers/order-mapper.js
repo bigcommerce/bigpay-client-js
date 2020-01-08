@@ -122,6 +122,7 @@ export default class OrderMapper {
             variant_id: itemData.variantId,
             name: itemData.name,
             price: itemData.integerAmount,
+            unit_price: itemData.integerUnitPrice,
             quantity: itemData.quantity,
             sku: itemData.sku,
         }));

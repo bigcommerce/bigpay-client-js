@@ -69,6 +69,8 @@ export default function getPaymentData() {
                     integerAmountAfterDiscount: 10000,
                     integerDiscount: 0,
                     integerTax: 1000,
+                    integerUnitPrice: 10000,
+                    integerUnitPriceAfterDiscount: 10000,
                     name: 'Cheese',
                     quantity: 1,
                     sku: '123456789',

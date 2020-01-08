@@ -25,6 +25,7 @@ describe('CartMapper', () => {
                 discount_amount: item.integerDiscount,
                 name: item.name,
                 price: item.integerAmount,
+                unit_price: item.integerUnitPrice,
                 quantity: item.quantity,
                 sku: item.sku,
                 tax_amount: item.integerTax,
