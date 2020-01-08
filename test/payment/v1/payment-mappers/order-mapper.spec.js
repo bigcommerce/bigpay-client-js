@@ -65,6 +65,7 @@ describe('OrderMapper', () => {
                     code: data.cart.items[0].id,
                     name: data.cart.items[0].name,
                     price: data.cart.items[0].integerAmount,
+                    unit_price: data.cart.items[0].integerUnitPrice,
                     variant_id: data.cart.items[0].variantId,
                     quantity: data.cart.items[0].quantity,
                     sku: data.cart.items[0].sku,
