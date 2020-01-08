@@ -1,3 +1,20 @@
+<a name="5.4.1"></a>
+## [5.4.1](https://github.com/bigcommerce/bigpay-client-js/compare/5.0.1...5.4.1) (2020-01-08)
+
+
+### Bug Fixes
+
+* **payments:** PAYMENTS-5037 Add Item Unit Price to Line Item object in order payment payload ([931482a](https://github.com/bigcommerce/bigpay-client-js/commit/931482a))
+
+
+### Features
+
+* **instrument:** INT-1780 Map customer id in offsite payment ([83b98b8](https://github.com/bigcommerce/bigpay-client-js/commit/83b98b8))
+* **payments:** INT-1778 Map formatted payload in offsite payment ([540dddd](https://github.com/bigcommerce/bigpay-client-js/commit/540dddd))
+* **payments:** INT-1997 Add optional target parameter ([74ba9c9](https://github.com/bigcommerce/bigpay-client-js/commit/74ba9c9))
+
+
+
 <a name="5.4.0"></a>
 # [5.4.0](https://github.com/bigcommerce/bigpay-client-js/compare/5.2.0...5.4.0) (2020-01-02)
 
