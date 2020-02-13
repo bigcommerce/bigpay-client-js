@@ -75,6 +75,16 @@ describe('PayloadMapper', () => {
         document.title = '';
     });
 
+    it('cleans the authToken if it contains more than one token', () => {
+        data = merge({}, paymentRequestDataMock, {
+            authToken: 'aaa.bbb.ccc, ddd.eee.fff',
+        });
+
+        const output = payloadMapper.mapToPayload(data);
+
+        expect(output.bc_auth_token).toEqual('aaa.bbb.ccc');
+    });
+
     it('maps the formattedPayload fields if supplied', () => {
         data = merge({}, paymentRequestDataMock, {
             payment: {

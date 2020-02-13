@@ -70,7 +70,7 @@ export default class PayloadMapper {
         const payload = objectAssign(
             {
                 amount: order.grandTotal ? order.grandTotal.integerAmount : null,
-                bc_auth_token: authToken,
+                bc_auth_token: this.cleanBigPayJWT(authToken),
                 currency: order.currency,
                 gateway: this.paymentMethodIdMapper.mapToId(paymentMethod),
                 notify_url: order.callbackUrl,
@@ -92,5 +92,18 @@ export default class PayloadMapper {
         objectAssign(payload, formattedPayload);
 
         return omitNil(payload);
+    }
+
+    /**
+     * @private
+     * @param {string} token
+     * @return {string}
+     */
+    cleanBigPayJWT(token) {
+        if (token && token.indexOf(',') !== -1) {
+            return token.substring(0, token.indexOf(','));
+        }
+
+        return token;
     }
 }
