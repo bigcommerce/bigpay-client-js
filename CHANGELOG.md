@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.5.1](https://github.com/bigcommerce/bigpay-client-js/compare/v5.5.0...v5.5.1) (2020-03-26)
+
+
+### Bug Fixes
+
+* **common:** PAYMENTS-5038 add missing standard-version dev dep ([97a4f11](https://github.com/bigcommerce/bigpay-client-js/commit/97a4f11a6f405c5adbd4608c493d6d88b3257a1f))
+
 ## 5.5.0 (2020-03-26)
 
 
