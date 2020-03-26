@@ -11,10 +11,8 @@
     "prebuild": "rm -rf lib",
     "build": "NODE_ENV=production babel src --out-dir lib --source-maps",
     "lint": "eslint src test",
-    "prepare": "npm run build",
     "prerelease": "npm run lint && npm test",
-    "release": "gulp bump",
-    "postrelease": "npm publish --access public && git push --follow-tags",
+    "release": "standard-version -a",
     "test": "karma start --single-run",
     "test:watch": "karma start"
   },
@@ -52,6 +50,7 @@
     "lodash": "^4.17.4",
     "phantomjs-prebuilt": "^2.1.15",
     "semver": "^5.3.0",
+    "standard-version": "^7.0.1",
     "webpack": "^1.13.2"
   },
   "dependencies": {

@@ -1,0 +1,8 @@
+{
+    "scopes": [
+        "common",
+        "payments",
+        "vaulting",
+        "instrument"
+    ]
+}
