@@ -11,20 +11,20 @@ describe('StoreRequestSender', () => {
     beforeEach(() => {
         data = instrumentRequestDataMock;
 
-        spyOn(mappers, 'mapToHeaders');
-        spyOn(mappers, 'mapToInstrumentPayload');
-        spyOn(mappers, 'mapToTrustedShippingAddressPayload');
+        jest.spyOn(mappers, 'mapToHeaders');
+        jest.spyOn(mappers, 'mapToInstrumentPayload');
+        jest.spyOn(mappers, 'mapToTrustedShippingAddressPayload');
 
         urlHelperMock = {
-            getTokenUrl: jasmine.createSpy('getTokenUrl').and.callThrough(),
-            getInstrumentsUrl: jasmine.createSpy('getInstrumentsUrl').and.callThrough(),
-            getInstrumentByIdUrl: jasmine.createSpy('getInstrumentByIdUrl').and.callThrough(),
-            getTrustedShippingAddressUrl: jasmine.createSpy('getTrustedShippingAddressUrl').and.callThrough(),
+            getTokenUrl: jest.fn(),
+            getInstrumentsUrl: jest.fn(),
+            getInstrumentByIdUrl: jest.fn(),
+            getTrustedShippingAddressUrl: jest.fn(),
         };
 
         requestSenderMock = {
-            postRequest: jasmine.createSpy('postRequest'),
-            sendRequest: jasmine.createSpy('sendRequest'),
+            postRequest: jest.fn(),
+            sendRequest: jest.fn(),
         };
 
         storeRequestSender = new StoreRequestSender(urlHelperMock, requestSenderMock);
@@ -43,7 +43,7 @@ describe('StoreRequestSender', () => {
         expect(urlHelperMock.getInstrumentsUrl).toHaveBeenCalledWith(
             data.storeId,
             data.customerId,
-            data.currencyCode
+            data.currencyCode,
         );
         expect(requestSenderMock.sendRequest).toHaveBeenCalled();
         expect(mappers.mapToHeaders).toHaveBeenCalled();
@@ -55,7 +55,7 @@ describe('StoreRequestSender', () => {
         expect(urlHelperMock.getTrustedShippingAddressUrl).toHaveBeenCalledWith(
             data.storeId,
             data.customerId,
-            data.currencyCode
+            data.currencyCode,
         );
         expect(requestSenderMock.postRequest).toHaveBeenCalled();
         expect(mappers.mapToHeaders).toHaveBeenCalled();
@@ -69,7 +69,7 @@ describe('StoreRequestSender', () => {
             data.storeId,
             data.customerId,
             data.instrumentId,
-            data.currencyCode
+            data.currencyCode,
         );
         expect(requestSenderMock.sendRequest).toHaveBeenCalled();
         expect(mappers.mapToHeaders).toHaveBeenCalled();

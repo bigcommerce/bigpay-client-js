@@ -21,7 +21,7 @@ describe('CartMapper', () => {
 
         expect(output).toEqual({
             currency_code: data.cart.currency,
-            items: data.cart.items.map(item => ({
+            items: data.cart.items.map((item) => ({
                 discount_amount: item.integerDiscount,
                 name: item.name,
                 price: item.integerAmount,

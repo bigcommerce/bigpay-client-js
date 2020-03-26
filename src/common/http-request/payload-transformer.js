@@ -41,7 +41,9 @@ export default class PayloadTransformer {
             data = JSON.parse(data);
         }
 
-        return { data, headers, status, statusText };
+        return {
+            data, headers, status, statusText,
+        };
     }
 
     /**

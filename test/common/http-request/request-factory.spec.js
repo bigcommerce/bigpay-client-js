@@ -18,8 +18,8 @@ describe('RequestFactory', () => {
         url = '/endpoint';
 
         XMLHttpRequestMock = function XMLHttpRequestMockConstructor() {};
-        XMLHttpRequestMock.prototype.open = jasmine.createSpy('open');
-        XMLHttpRequestMock.prototype.setRequestHeader = jasmine.createSpy('setRequestHeader');
+        XMLHttpRequestMock.prototype.open = jest.fn();
+        XMLHttpRequestMock.prototype.setRequestHeader = jest.fn();
 
         XMLHttpRequest = global.XMLHttpRequest;
         global.XMLHttpRequest = XMLHttpRequestMock;
@@ -74,7 +74,7 @@ describe('RequestFactory', () => {
     });
 
     it('triggers the callback if XHR is successful', () => {
-        const callback = jasmine.createSpy('callback');
+        const callback = jest.fn();
         const xhr = requestFactory.createRequest(url, options, callback);
 
         xhr.onload();

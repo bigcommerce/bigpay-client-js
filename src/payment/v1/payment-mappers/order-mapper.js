@@ -117,7 +117,7 @@ export default class OrderMapper {
     mapToItems(data) {
         const { cart = { items: [] } } = data;
 
-        return cart.items.map(itemData => omitNil({
+        return cart.items.map((itemData) => omitNil({
             code: itemData.id,
             variant_id: itemData.variantId,
             name: itemData.name,

@@ -46,7 +46,7 @@ export default class StoreRequestSender {
         const url = this.urlHelper.getInstrumentsUrl(
             data.storeId,
             data.customerId,
-            data.currencyCode
+            data.currencyCode,
         );
         const options = {
             headers: mapToHeaders(data),
@@ -64,7 +64,7 @@ export default class StoreRequestSender {
         const url = this.urlHelper.getTrustedShippingAddressUrl(
             data.storeId,
             data.customerId,
-            data.currencyCode
+            data.currencyCode,
         );
         const payload = mapToTrustedShippingAddressPayload(data);
         const options = {
@@ -85,7 +85,7 @@ export default class StoreRequestSender {
             data.storeId,
             data.customerId,
             data.instrumentId,
-            data.currencyCode
+            data.currencyCode,
         );
         const options = {
             method: DELETE,

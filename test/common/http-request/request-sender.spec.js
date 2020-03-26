@@ -1,3 +1,4 @@
+import xhrMock from 'xhr-mock';
 import RequestFactory from '../../../src/common/http-request/request-factory';
 import RequestSender from '../../../src/common/http-request/request-sender';
 import PayloadTransformer from '../../../src/common/http-request/payload-transformer';
@@ -15,7 +16,7 @@ describe('RequestSender', () => {
         options = { method: 'POST' };
         url = '/endpoint';
 
-        jasmine.Ajax.install();
+        xhrMock.setup();
 
         requestFactory = new RequestFactory();
         payloadTransformer = new PayloadTransformer();
@@ -23,7 +24,7 @@ describe('RequestSender', () => {
     });
 
     afterEach(() => {
-        jasmine.Ajax.uninstall();
+        xhrMock.teardown();
     });
 
     it('creates an instance of RequestSender', () => {
@@ -33,7 +34,9 @@ describe('RequestSender', () => {
     });
 
     it('creates a XHR', () => {
-        spyOn(requestFactory, 'createRequest').and.callThrough();
+        jest.spyOn(requestFactory, 'createRequest');
+
+        xhrMock.post(url, (req, res) => res.status(200));
 
         requestSender.sendRequest(url, data, options);
 
@@ -45,11 +48,11 @@ describe('RequestSender', () => {
             method: options.method,
         };
 
-        expect(requestFactory.createRequest).toHaveBeenCalledWith(url, expectedOptions, jasmine.any(Function));
+        expect(requestFactory.createRequest).toHaveBeenCalledWith(url, expectedOptions, expect.any(Function));
     });
 
     it('posts the XHR', () => {
-        spyOn(requestSender, 'sendRequest');
+        jest.spyOn(requestSender, 'sendRequest').mockImplementation(() => {});
 
         const callback = () => {};
 
@@ -59,47 +62,42 @@ describe('RequestSender', () => {
     });
 
     it('sends the XHR with a payload', () => {
+        expect.assertions(3);
+
+        xhrMock.post(url, (req, res) => {
+            expect(req.url().path).toEqual(url);
+            expect(req.method()).toEqual(options.method);
+            expect(JSON.parse(req.body())).toEqual(data);
+
+            return res.status(200);
+        });
+
         requestSender.sendRequest(url, data, options);
-
-        const request = jasmine.Ajax.requests.mostRecent();
-
-        expect(request.url).toEqual(url);
-        expect(request.method).toEqual(options.method);
-        expect(request.data()).toEqual(data);
     });
 
     it('returns the response in the callback if the request is successful', (done) => {
+        xhrMock.post(url, (req, res) => res.status(200).body('{ "message": "foobar" }'));
+
         requestSender.sendRequest(url, data, options, (err, resp) => {
             expect(resp).toBeDefined();
             done();
         });
-
-        const request = jasmine.Ajax.requests.mostRecent();
-
-        request.respondWith({
-            responseText: '{ "message": "foobar" }',
-            status: 200,
-        });
     });
 
     it('returns the error in the callback if the request is unsuccessful', (done) => {
+        xhrMock.post(url, (req, res) => res.status(400));
+
         requestSender.sendRequest(url, data, options, (err) => {
             expect(err).toBeDefined();
             done();
         });
-
-        const request = jasmine.Ajax.requests.mostRecent();
-
-        request.respondWith({ status: 400 });
     });
 
     it('does not throw an error if no callback is provided', () => {
         expect(() => {
+            xhrMock.post(url, (req, res) => res.status(200));
+
             requestSender.sendRequest(url, data, options);
-
-            const request = jasmine.Ajax.requests.mostRecent();
-
-            request.respondWith({ status: 200 });
         }).not.toThrow();
     });
 });

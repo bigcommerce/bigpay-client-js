@@ -35,7 +35,7 @@ describe('CustomerMapper', () => {
 
     it('returns an object containing only browser information if the input does not contain customer information', () => {
         expect(customerMapper.mapToCustomer({})).toEqual({
-            customer_browser_info: jasmine.any(String),
+            customer_browser_info: expect.any(String),
         });
     });
 });

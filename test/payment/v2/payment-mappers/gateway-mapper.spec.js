@@ -14,7 +14,7 @@ describe('GatewayMapper', () => {
         };
 
         paymentMethodIdMapper = {
-            mapToId: jasmine.createSpy('mapToId').and.returnValue(mappedData.name),
+            mapToId: jest.fn(() => mappedData.name),
         };
 
         gatewayMapper = new GatewayMapper(paymentMethodIdMapper);
@@ -35,7 +35,7 @@ describe('GatewayMapper', () => {
     });
 
     it('returns an empty object if the input does not contain gateway information', () => {
-        paymentMethodIdMapper.mapToId.and.returnValue(null);
+        paymentMethodIdMapper.mapToId.mockReturnValueOnce(null);
 
         expect(gatewayMapper.mapToGateway({})).toEqual({});
     });

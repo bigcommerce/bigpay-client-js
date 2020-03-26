@@ -12,7 +12,7 @@ describe('PaymentMapper', () => {
         data = paymentRequestDataMock;
 
         paymentMethodIdMapper = {
-            mapToId: jasmine.createSpy('mapToId').and.returnValue(data.paymentMethod.id),
+            mapToId: jest.fn(() => data.paymentMethod.id),
         };
 
         paymentMapper = new PaymentMapper(paymentMethodIdMapper);
@@ -86,7 +86,7 @@ describe('PaymentMapper', () => {
 
         expect(output.cryptogramId).toBeUndefined();
         expect(output).toEqual(
-            jasmine.objectContaining({
+            expect.objectContaining({
                 device: {
                     fingerprint_id: data.orderMeta.deviceFingerprint,
                 },
@@ -103,7 +103,7 @@ describe('PaymentMapper', () => {
                     year: parseInt(data.payment.ccExpiry.year, 10),
                     account_mask: data.payment.accountMask,
                 },
-            })
+            }),
         );
     });
 
@@ -123,7 +123,7 @@ describe('PaymentMapper', () => {
 
         expect(output.cryptogramId).toBeUndefined();
         expect(output).toEqual(
-            jasmine.objectContaining({
+            expect.objectContaining({
                 device: {
                     fingerprint_id: data.orderMeta.deviceFingerprint,
                 },
@@ -138,7 +138,7 @@ describe('PaymentMapper', () => {
                     number: data.payment.ccNumber,
                     account_mask: data.payment.accountMask,
                 },
-            })
+            }),
         );
     });
 
@@ -156,7 +156,7 @@ describe('PaymentMapper', () => {
 
         expect(output.vault_payment_instrument).toBeUndefined();
         expect(output).toEqual(
-            jasmine.objectContaining({
+            expect.objectContaining({
                 device: {
                     fingerprint_id: data.orderMeta.deviceFingerprint,
                 },
@@ -170,7 +170,7 @@ describe('PaymentMapper', () => {
                     credit_card_number_confirmation: data.payment.ccNumber,
                     three_d_secure: data.payment.three_d_secure,
                 },
-            })
+            }),
         );
     });
 
@@ -185,9 +185,9 @@ describe('PaymentMapper', () => {
 
         expect(output.bigpay_token).toBeUndefined();
         expect(output).toEqual(
-            jasmine.objectContaining({
+            expect.objectContaining({
                 vault_payment_instrument: data.payment.shouldSaveInstrument,
-            })
+            }),
         );
     });
 
@@ -200,7 +200,7 @@ describe('PaymentMapper', () => {
 
         const output = paymentMapper.mapToPayment(data);
 
-        expect(output).toEqual(jasmine.objectContaining({
+        expect(output).toEqual(expect.objectContaining({
             method: data.paymentMethod.method,
         }));
     });
@@ -230,7 +230,7 @@ describe('PaymentMapper', () => {
     });
 
     it('returns an empty object if the input does not contain information related to payment', () => {
-        paymentMethodIdMapper.mapToId.and.returnValue(null);
+        paymentMethodIdMapper.mapToId.mockReturnValueOnce(null);
 
         expect(paymentMapper.mapToPayment({})).toEqual({ credit_card: {} });
     });
@@ -243,11 +243,11 @@ describe('PaymentMapper', () => {
         const output = paymentMapper.mapToPayment(data);
 
         expect(output).toEqual(
-            jasmine.objectContaining({
+            expect.objectContaining({
                 credit_card_token: {
                     token: '12356aaa',
                 },
-            })
+            }),
         );
     });
 });

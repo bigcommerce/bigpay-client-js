@@ -18,16 +18,16 @@ describe('PaymentSubmitter', () => {
         transformedHeaders = { AUTH_TOKEN: '123' };
 
         urlHelper = {
-            getPaymentUrl: jasmine.createSpy('getPaymentUrl').and.returnValue('/api/public/v1/payments/payment'),
+            getPaymentUrl: jest.fn(() => '/api/public/v1/payments/payment'),
         };
 
         requestSender = {
-            postRequest: jasmine.createSpy('postRequest'),
+            postRequest: jest.fn(),
         };
 
         payloadMapper = {
-            mapToPayload: jasmine.createSpy('mapToPayload').and.returnValue(transformedData),
-            mapToHeaders: jasmine.createSpy('mapToHeaders').and.returnValue(transformedHeaders),
+            mapToPayload: jest.fn(() => transformedData),
+            mapToHeaders: jest.fn(() => transformedHeaders),
         };
 
         paymentSubmitter = new PaymentSubmitter(urlHelper, requestSender, payloadMapper);

@@ -22,7 +22,7 @@ export default class Client {
             paymentSubmitter,
             offsitePaymentInitializer,
             clientTokenGenerator,
-            storeRequestSender
+            storeRequestSender,
         );
     }
 
@@ -38,7 +38,7 @@ export default class Client {
         paymentSubmitter,
         offsitePaymentInitializer,
         clientTokenGenerator,
-        storeRequestSender
+        storeRequestSender,
     ) {
         /**
          * @private

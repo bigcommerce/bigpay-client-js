@@ -14,15 +14,15 @@ describe('ClientTokenGenerator', () => {
         transformedData = { body: 'hello world' };
 
         urlHelper = {
-            getGenerateClientTokenUrl: jasmine.createSpy('getGenerateClientTokenUrl').and.returnValue('/api/v2/public/payments/client_tokens'),
+            getGenerateClientTokenUrl: jest.fn(() => '/api/v2/public/payments/client_tokens'),
         };
 
         requestSender = {
-            postRequest: jasmine.createSpy('postRequest'),
+            postRequest: jest.fn(),
         };
 
         clientTokenMapper = {
-            mapToClientToken: jasmine.createSpy('mapToClientToken').and.returnValue(transformedData),
+            mapToClientToken: jest.fn(() => transformedData),
         };
 
         clientTokenGenerator = new ClientTokenGenerator(urlHelper, requestSender, clientTokenMapper);

@@ -11,7 +11,7 @@ import { omitNil } from '../../../common/utils';
 export function mapToInstrumentPayload(data = {}) {
     const {
         providerName,
-        defaultInstrument: default_instrument,
+        defaultInstrument,
     } = data;
 
     const provider = omitNil({ name: providerName });
@@ -20,7 +20,7 @@ export function mapToInstrumentPayload(data = {}) {
         provider,
         credit_card: mapToCreditCard(data),
         billing_address: mapToAddress(data.billingAddress),
-        default_instrument,
+        default_instrument: defaultInstrument,
     });
 }
 
