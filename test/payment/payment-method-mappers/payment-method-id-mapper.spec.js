@@ -50,4 +50,9 @@ describe('PaymentMethodIdMapper', () => {
         paymentMethod = { id: PAYMENT_METHODS.BRAINTREE_GOOGLEPAY };
         expect(paymentMethodIdMapper.mapToId(paymentMethod)).toEqual(PAYMENT_METHODS.BRAINTREE);
     });
+
+    it('returns "paypalcommerce" if the payment method is "paypalcommercecredit"', () => {
+        paymentMethod = { id: PAYMENT_METHODS.PAYPAL_COMMERCE_CREDIT };
+        expect(paymentMethodIdMapper.mapToId(paymentMethod)).toEqual(PAYMENT_METHODS.PAYPAL_COMMERCE);
+    });
 });

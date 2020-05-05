@@ -5,6 +5,8 @@ import {
     BRAINTREE_PAYPAL,
     BRAINTREE_PAYPAL_CREDIT,
     BRAINTREE_VISACHECKOUT,
+    PAYPAL_COMMERCE,
+    PAYPAL_COMMERCE_CREDIT,
 } from '../payment-method-ids';
 
 /**
@@ -21,6 +23,14 @@ function isBraintreePaymentMethod(id) {
     default:
         return false;
     }
+}
+
+/**
+ * @param {string} id
+ * @return {Boolean}
+ */
+function isPaypalCommercePaymentMethod(id) {
+    return (id === PAYPAL_COMMERCE_CREDIT);
 }
 
 export default class PaymentMethodIdMapper {
@@ -44,6 +54,10 @@ export default class PaymentMethodIdMapper {
 
         if (isBraintreePaymentMethod(id)) {
             return BRAINTREE;
+        }
+
+        if (isPaypalCommercePaymentMethod(id)) {
+            return PAYPAL_COMMERCE;
         }
 
         return id;
