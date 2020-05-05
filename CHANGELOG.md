@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.6.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.5.1...v5.6.0) (2020-05-05)
+
+
+### Features
+
+* **payments:** PAYPAL-293 Add paypalcommerce to payment methods ([0720e30](https://github.com/bigcommerce/bigpay-client-js/commit/0720e302d30ab92e74ecdcfdbb28db32fc840646))
+
 ### [5.5.1](https://github.com/bigcommerce/bigpay-client-js/compare/v5.5.0...v5.5.1) (2020-03-26)
 
 
