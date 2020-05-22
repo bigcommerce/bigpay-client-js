@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.7.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.6.0...v5.7.0) (2020-05-22)
+
+
+### Features
+
+* **payments:** PAYMENTS-5425 Update payload-mapper for Carding remediation solution ([3a97902](https://github.com/bigcommerce/bigpay-client-js/commit/3a9790236eea5ade2381bcc0df108944fe53f3e0))
+
 ## [5.6.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.5.1...v5.6.0) (2020-05-05)
 
 
