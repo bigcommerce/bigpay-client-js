@@ -54,7 +54,7 @@ export default class PayloadMapper {
      * @returns {Object}
      */
     mapToPayload(data) {
-        const { order = {} } = data;
+        const { order = {}, additionalAction } = data;
 
         return omitNil({
             customer: this.customerMapper.mapToCustomer(data),
@@ -62,6 +62,7 @@ export default class PayloadMapper {
             order: this.orderMapper.mapToOrder(data),
             payment: this.paymentMapper.mapToPayment(data),
             store: this.storeMapper.mapToStore(data),
+            additional_action: additionalAction,
         });
     }
 
