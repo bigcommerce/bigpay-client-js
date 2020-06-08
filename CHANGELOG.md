@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.8.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.7.0...v5.8.0) (2020-06-08)
+
+
+### Features
+
+* **payments:** PAYMENTS-5513 add set_as_default_vaulted_instrument mapping ([#100](https://github.com/bigcommerce/bigpay-client-js/issues/100)) ([6eb926d](https://github.com/bigcommerce/bigpay-client-js/commit/6eb926db566d4ed52fd9244423d2825b7baa121e))
+
 ## [5.7.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.6.0...v5.7.0) (2020-05-22)
 
 
