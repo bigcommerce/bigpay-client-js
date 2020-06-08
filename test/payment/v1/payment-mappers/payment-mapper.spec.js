@@ -174,6 +174,26 @@ describe('PaymentMapper', () => {
         );
     });
 
+    it('maps requests for vaulted instrument to be made default', () => {
+        data = merge({}, data, {
+            payment: {
+                shouldSaveInstrument: true,
+                instrumentId: 'token1',
+                ccCvv: '123',
+                three_d_secure: { token: 'aaa.bbb.ccc' },
+                setAsDefaultInstrument: true,
+            },
+        });
+
+        const output = paymentMapper.mapToPayment(data);
+
+        expect(output).toEqual(
+            expect.objectContaining({
+                set_as_default_stored_instrument: true,
+            }),
+        );
+    });
+
     it('maps requests for instrument to be vaulted', () => {
         data = merge({}, data, {
             payment: {
@@ -187,6 +207,57 @@ describe('PaymentMapper', () => {
         expect(output).toEqual(
             expect.objectContaining({
                 vault_payment_instrument: data.payment.shouldSaveInstrument,
+            }),
+        );
+    });
+
+    it('maps requests for instrument to be vaulted AND made default', () => {
+        data = merge({}, data, {
+            payment: {
+                shouldSaveInstrument: true,
+                setAsDefaultInstrument: true,
+            },
+        });
+
+        const output = paymentMapper.mapToPayment(data);
+
+        expect(output).toEqual(
+            expect.objectContaining({
+                set_as_default_stored_instrument: true,
+            }),
+        );
+    });
+
+    it('ignores requests to set non-vaulted instruments as default', () => {
+        data = merge({}, data, {
+            payment: {
+                instrumentId: undefined,
+                setAsDefaultInstrument: true,
+            },
+        });
+
+        const output = paymentMapper.mapToPayment(data);
+
+        expect(output).not.toEqual(
+            expect.objectContaining({
+                set_as_default_stored_instrument: true,
+            }),
+        );
+    });
+
+    it('ignores requests to set an instrument that is not about to be vaulted, as default', () => {
+        data = merge({}, data, {
+            payment: {
+                shouldSaveInstrument: false,
+                setAsDefaultInstrument: true,
+            },
+        });
+
+        const output = paymentMapper.mapToPayment(data);
+
+        expect(output).not.toEqual(
+            expect.objectContaining({
+                set_as_default_stored_instrument: true,
             }),
         );
     });
