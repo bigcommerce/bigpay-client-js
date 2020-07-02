@@ -110,6 +110,7 @@ const paymentRequestDataMock = {
         threeDSecure: {
             token: 'aaa.bbb.ccc',
         },
+        hostedFormNonce: 'fakeHostedFormNonce',
     },
     paymentMethod: {
         id: 'paypalprous',

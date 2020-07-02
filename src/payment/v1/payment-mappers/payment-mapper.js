@@ -1,6 +1,7 @@
 import objectAssign from 'object-assign';
-import PaymentMethodIdMapper from '../../payment-method-mappers/payment-method-id-mapper';
 import { omitNil, toNumber } from '../../../common/utils';
+
+import PaymentMethodIdMapper from '../../payment-method-mappers/payment-method-id-mapper';
 
 export default class PaymentMapper {
     /**
@@ -96,6 +97,7 @@ export default class PaymentMapper {
             year: payment.ccExpiry ? toNumber(payment.ccExpiry.year) : null,
             customer_code: payment.ccCustomerCode,
             three_d_secure: payment.threeDSecure,
+            hosted_form_nonce: payment.hostedFormNonce,
         });
     }
 

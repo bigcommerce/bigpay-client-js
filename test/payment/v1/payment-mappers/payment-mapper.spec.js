@@ -1,5 +1,5 @@
-import omit from 'lodash/omit';
 import merge from 'lodash/merge';
+import omit from 'lodash/omit';
 import PaymentMapper from '../../../../src/payment/v1/payment-mappers/payment-mapper';
 import paymentRequestDataMock from '../../../mocks/payment-request-data';
 
@@ -36,6 +36,7 @@ describe('PaymentMapper', () => {
                 year: parseInt(data.payment.ccExpiry.year, 10),
                 customer_code: data.payment.ccCustomerCode,
                 three_d_secure: data.payment.threeDSecure,
+                hosted_form_nonce: data.payment.hostedFormNonce,
             },
             device: {
                 fingerprint_id: data.orderMeta.deviceFingerprint,
