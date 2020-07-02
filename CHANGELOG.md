@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.9.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.8.0...v5.9.0) (2020-07-02)
+
+
+### Features
+
+* **payments:** CHECKOUT-4973 Add hosted_form_nonce to payment request object ([436476a](https://github.com/bigcommerce/bigpay-client-js/commit/436476add620f0ecd3f2fcf725485c8c0bbec23f))
+
 ## [5.8.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.7.0...v5.8.0) (2020-06-08)
 
 
