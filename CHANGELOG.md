@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.10.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.9.0...v5.10.0) (2020-07-29)
+
+
+### Features
+
+* **payments:** PAYMENTS-5513 rename setAsDefaultInstrument to shouldSetAsDefaultInstrument ([#105](https://github.com/bigcommerce/bigpay-client-js/issues/105)) ([50d96c3](https://github.com/bigcommerce/bigpay-client-js/commit/50d96c361a2018ff59aecbf83c6724cbe0abe360))
+
 ## [5.9.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.8.0...v5.9.0) (2020-07-02)
 
 
