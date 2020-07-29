@@ -182,7 +182,7 @@ describe('PaymentMapper', () => {
                 instrumentId: 'token1',
                 ccCvv: '123',
                 three_d_secure: { token: 'aaa.bbb.ccc' },
-                setAsDefaultInstrument: true,
+                shouldSetAsDefaultInstrument: true,
             },
         });
 
@@ -216,7 +216,7 @@ describe('PaymentMapper', () => {
         data = merge({}, data, {
             payment: {
                 shouldSaveInstrument: true,
-                setAsDefaultInstrument: true,
+                shouldSetAsDefaultInstrument: true,
             },
         });
 
@@ -233,7 +233,7 @@ describe('PaymentMapper', () => {
         data = merge({}, data, {
             payment: {
                 instrumentId: undefined,
-                setAsDefaultInstrument: true,
+                shouldSetAsDefaultInstrument: true,
             },
         });
 
@@ -250,7 +250,7 @@ describe('PaymentMapper', () => {
         data = merge({}, data, {
             payment: {
                 shouldSaveInstrument: false,
-                setAsDefaultInstrument: true,
+                shouldSetAsDefaultInstrument: true,
             },
         });
 

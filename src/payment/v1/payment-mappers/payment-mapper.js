@@ -45,7 +45,7 @@ export default class PaymentMapper {
             notify_url: order.callbackUrl,
             return_url: paymentMethod.returnUrl || (order.payment ? order.payment.returnUrl : null),
             vault_payment_instrument: !payment.instrumentId ? payment.shouldSaveInstrument : null,
-            set_as_default_stored_instrument: (payment.instrumentId || payment.shouldSaveInstrument) ? payment.setAsDefaultInstrument : null,
+            set_as_default_stored_instrument: (payment.instrumentId || payment.shouldSaveInstrument) ? payment.shouldSetAsDefaultInstrument : null,
         };
 
         const { method } = paymentMethod;
