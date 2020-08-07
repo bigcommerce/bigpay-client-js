@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.11.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.10.0...v5.11.0) (2020-08-07)
+
+
+### Features
+
+* **vaulting:** CHECKOUT-4947 Forward payment method nonce when paying with stored instrument for card verification ([b2f1dc4](https://github.com/bigcommerce/bigpay-client-js/commit/b2f1dc43d7c7409af1047aa9d663927f3a62c508))
+
 ## [5.10.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.9.0...v5.10.0) (2020-07-29)
 
 
