@@ -175,6 +175,24 @@ describe('PaymentMapper', () => {
         );
     });
 
+    it('maps vaulting data with verification nonce to payload format', () => {
+        data = merge({}, data, {
+            payment: {
+                instrumentId: 'token1',
+                nonce: 'verification_nonce',
+            },
+        });
+
+        const output = paymentMapper.mapToPayment(data);
+
+        expect(output.bigpay_token).toEqual(
+            expect.objectContaining({
+                token: data.payment.instrumentId,
+                verification_nonce: data.payment.nonce,
+            }),
+        );
+    });
+
     it('maps requests for vaulted instrument to be made default', () => {
         data = merge({}, data, {
             payment: {
