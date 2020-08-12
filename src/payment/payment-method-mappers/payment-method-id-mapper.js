@@ -7,6 +7,7 @@ import {
     BRAINTREE_VISACHECKOUT,
     PAYPAL_COMMERCE,
     PAYPAL_COMMERCE_CREDIT,
+    PAYPAL_COMMERCE_CREDIT_CARDS,
 } from '../payment-method-ids';
 
 /**
@@ -30,7 +31,13 @@ function isBraintreePaymentMethod(id) {
  * @return {Boolean}
  */
 function isPaypalCommercePaymentMethod(id) {
-    return (id === PAYPAL_COMMERCE_CREDIT);
+    switch (id) {
+    case PAYPAL_COMMERCE_CREDIT:
+    case PAYPAL_COMMERCE_CREDIT_CARDS:
+        return true;
+    default:
+        return false;
+    }
 }
 
 export default class PaymentMethodIdMapper {

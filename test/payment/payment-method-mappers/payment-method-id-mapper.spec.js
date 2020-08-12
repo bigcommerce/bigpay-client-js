@@ -55,4 +55,9 @@ describe('PaymentMethodIdMapper', () => {
         paymentMethod = { id: PAYMENT_METHODS.PAYPAL_COMMERCE_CREDIT };
         expect(paymentMethodIdMapper.mapToId(paymentMethod)).toEqual(PAYMENT_METHODS.PAYPAL_COMMERCE);
     });
+
+    it('returns "paypalcommerce" if the payment method is "paypalcommercecreditcards"', () => {
+        paymentMethod = { id: PAYMENT_METHODS.PAYPAL_COMMERCE_CREDIT_CARDS };
+        expect(paymentMethodIdMapper.mapToId(paymentMethod)).toEqual(PAYMENT_METHODS.PAYPAL_COMMERCE);
+    });
 });
