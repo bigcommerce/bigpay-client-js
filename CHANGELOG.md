@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.12.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.11.0...v5.12.0) (2020-08-12)
+
+
+### Features
+
+* **payments:** PAYPAL-202 Add paypalcommercecreditcards to PaymentMethodIdMapper ([dfea8c2](https://github.com/bigcommerce/bigpay-client-js/commit/dfea8c2c3957e99bac5e62a22f871ba850075df0))
+
 ## [5.11.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.10.0...v5.11.0) (2020-08-07)
 
 
