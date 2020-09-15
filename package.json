@@ -1,7 +1,7 @@
 {
   "name": "@bigcommerce/bigpay-client",
   "version": "5.12.0",
-  "description": "JavaScript client for Bigpay",
+  "description": "JavaScript client for BigPay",
   "browserslist": [
     "last 2 versions",
     "not ie < 11",
@@ -42,7 +42,7 @@
     "gulp-prompt": "^1.2.0",
     "gulp-touch": "^1.0.1",
     "jest": "^25.2.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.20",
     "semver": "^7.1.3",
     "standard-version": "^7.1.0",
     "xhr-mock": "^2.5.1"
