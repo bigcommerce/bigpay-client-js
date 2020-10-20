@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.13.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.12.1...v5.13.0) (2020-10-20)
+
+
+### Features
+
+* **payments:** PAYPAL-702 Add alternative to mapper ([f7b5134](https://github.com/bigcommerce/bigpay-client-js/commit/f7b513419be98b08d8d4442441e5624868df5de6))
+
 ### [5.12.1](https://github.com/bigcommerce/bigpay-client-js/compare/v5.12.0...v5.12.1) (2020-09-15)
 
 ## [5.12.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.11.0...v5.12.0) (2020-08-12)
