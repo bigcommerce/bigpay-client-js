@@ -8,6 +8,7 @@ import {
     PAYPAL_COMMERCE,
     PAYPAL_COMMERCE_CREDIT,
     PAYPAL_COMMERCE_CREDIT_CARDS,
+    PAYPAL_COMMERCE_ALTERNATIVE_METHODS,
 } from '../payment-method-ids';
 
 /**
@@ -34,6 +35,7 @@ function isPaypalCommercePaymentMethod(id) {
     switch (id) {
     case PAYPAL_COMMERCE_CREDIT:
     case PAYPAL_COMMERCE_CREDIT_CARDS:
+    case PAYPAL_COMMERCE_ALTERNATIVE_METHODS:
         return true;
     default:
         return false;
