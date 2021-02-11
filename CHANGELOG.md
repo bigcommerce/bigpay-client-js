@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.13.2](https://github.com/bigcommerce/bigpay-client-js/compare/v5.13.1...v5.13.2) (2021-02-11)
+
+
+### Bug Fixes
+
+* **payments:** CHECKOUT-5324 Send hosted form nonce when paying with stored payment instrument ([7c2c257](https://github.com/bigcommerce/bigpay-client-js/commit/7c2c2574690cbcb606fc240a5db8d16ce1c89b98))
+
 ### [5.13.1](https://github.com/bigcommerce/bigpay-client-js/compare/v5.13.0...v5.13.1) (2020-11-20)
 
 ## [5.13.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.12.1...v5.13.0) (2020-10-20)
