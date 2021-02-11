@@ -113,6 +113,7 @@ export default class PaymentMapper {
             verification_value: payment.ccCvv,
             verification_nonce: payment.nonce,
             three_d_secure: payment.threeDSecure,
+            hosted_form_nonce: payment.hostedFormNonce,
         });
     }
 
