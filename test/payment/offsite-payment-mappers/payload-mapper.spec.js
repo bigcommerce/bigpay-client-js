@@ -66,6 +66,7 @@ describe('PayloadMapper', () => {
 
         expect(output).toEqual({
             amount: data.order.grandTotal.integerAmount,
+            tax: data.order.taxTotal.integerAmount,
             bc_auth_token: data.authToken,
             billingAddress: 'billingAddress',
             currency: data.order.currency,
