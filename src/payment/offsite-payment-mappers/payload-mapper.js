@@ -72,6 +72,7 @@ export default class PayloadMapper {
         const payload = objectAssign(
             {
                 amount: order.grandTotal ? order.grandTotal.integerAmount : null,
+                tax: order.taxTotal ? order.taxTotal.integerAmount : null,
                 bc_auth_token: authToken,
                 currency: order.currency,
                 gateway: this.paymentMethodIdMapper.mapToId(paymentMethod),
