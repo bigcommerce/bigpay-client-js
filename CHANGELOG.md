@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.14.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.13.2...v5.14.0) (2021-05-10)
+
+
+### Features
+
+* **payments:** INT-4188 Send tax information on the offsite flow ([fbdda1c](https://github.com/bigcommerce/bigpay-client-js/commit/fbdda1cc3626972bde0e99999a4ce5773f51a0e6))
+
 ### [5.13.2](https://github.com/bigcommerce/bigpay-client-js/compare/v5.13.1...v5.13.2) (2021-02-11)
 
 
