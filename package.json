@@ -11,8 +11,10 @@
   ],
   "license": "MIT",
   "main": "lib/index.js",
+  "module": "src/index.js",
   "files": [
-    "lib/"
+    "lib/",
+    "src"
   ],
   "scripts": {
     "prebuild": "rm -rf lib",
