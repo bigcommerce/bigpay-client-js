@@ -23,6 +23,7 @@ describe('StoreMapper', () => {
         expect(output).toEqual({
             store_hash: data.store.storeHash,
             store_id: data.store.storeId,
+            store_name: data.store.storeName,
         });
     });
 

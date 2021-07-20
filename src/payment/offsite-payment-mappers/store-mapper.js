@@ -18,6 +18,7 @@ export default class StoreMapper {
         return omitNil({
             store_hash: store.storeHash,
             store_id: store.storeId ? toString(store.storeId) : null,
+            store_name: store.storeName ? toString(store.storeName) : null,
         });
     }
 }
