@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import omit from 'lodash/omit';
 import merge from 'lodash/merge';
 import PayloadMapper from '../../../src/payment/offsite-payment-mappers/payload-mapper';

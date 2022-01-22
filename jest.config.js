@@ -2,6 +2,7 @@
 // https://jestjs.io/docs/en/configuration.html
 
 module.exports = {
-  clearMocks: true,
-  coverageDirectory: "coverage"
+    clearMocks: true,
+    coverageDirectory: 'coverage',
+    maxWorkers: 2,
 };

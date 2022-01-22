@@ -10,7 +10,7 @@ aliases:
   - &node_executor
       executor:
         name: node/node
-        node-version: "10"
+        node-version: "16.13.2"
 
   - &release_filter
       branches:
