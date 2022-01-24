@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import MetaMapper from '../../../src/payment/offsite-payment-mappers/meta-mapper';
 import paymentRequestDataMock from '../../mocks/payment-request-data';
 

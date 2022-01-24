@@ -1,6 +1,5 @@
 .DS_Store
 *.log
-.DS_Store
 /coverage
 /lib
 /node_modules
