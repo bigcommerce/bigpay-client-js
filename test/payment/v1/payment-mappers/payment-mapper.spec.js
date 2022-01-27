@@ -50,22 +50,20 @@ describe('PaymentMapper', () => {
     });
 
     it('maps the input object into a payment object with credit card and browser info data', () => {
-        const browser_info = {
-            color_depth: 24,
-            java_enabled: false,
-            language: 'en-US',
-            screen_height: 400,
-            screen_width: 400,
-            time_zone_offset: 360,
-        }
-
-        const output = paymentMapper.mapToPayment({
-            ...data, 
+        data = merge({}, data, {
             payment: {
                 ...data.payment,
-                browser_info,
-            } 
+                browser_info: {
+                    color_depth: 24,
+                    java_enabled: false,
+                    language: 'en-US',
+                    screen_height: 400,
+                    screen_width: 400,
+                    time_zone_offset: 360,
+                },
+            },
         });
+        const output = paymentMapper.mapToPayment(data);
 
         expect(output).toEqual({
             credit_card: {
@@ -78,7 +76,7 @@ describe('PaymentMapper', () => {
                 three_d_secure: data.payment.threeDSecure,
                 hosted_form_nonce: data.payment.hostedFormNonce,
             },
-            browser_info,
+            browser_info: data.payment.browser_info,
             device: {
                 fingerprint_id: data.orderMeta.deviceFingerprint,
             },
