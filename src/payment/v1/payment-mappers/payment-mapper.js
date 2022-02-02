@@ -74,6 +74,7 @@ export default class PaymentMapper {
             });
         } else {
             objectAssign(payload, {
+                browser_info: payment.browser_info,
                 credit_card: this.mapToCreditCard(data),
             });
         }

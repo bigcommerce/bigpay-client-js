@@ -49,6 +49,45 @@ describe('PaymentMapper', () => {
         });
     });
 
+    it('maps the input object into a payment object with credit card and browser info data', () => {
+        data = merge({}, data, {
+            payment: {
+                ...data.payment,
+                browser_info: {
+                    color_depth: 24,
+                    java_enabled: false,
+                    language: 'en-US',
+                    screen_height: 400,
+                    screen_width: 400,
+                    time_zone_offset: 360,
+                },
+            },
+        });
+        const output = paymentMapper.mapToPayment(data);
+
+        expect(output).toEqual({
+            credit_card: {
+                account_name: data.payment.ccName,
+                number: data.payment.ccNumber,
+                month: parseInt(data.payment.ccExpiry.month, 10),
+                verification_value: data.payment.ccCvv,
+                year: parseInt(data.payment.ccExpiry.year, 10),
+                customer_code: data.payment.ccCustomerCode,
+                three_d_secure: data.payment.threeDSecure,
+                hosted_form_nonce: data.payment.hostedFormNonce,
+            },
+            browser_info: data.payment.browser_info,
+            device: {
+                fingerprint_id: data.orderMeta.deviceFingerprint,
+            },
+            device_info: data.payment.deviceSessionId,
+            gateway: data.paymentMethod.id,
+            notify_url: data.order.callbackUrl,
+            return_url: data.paymentMethod.returnUrl,
+            vault_payment_instrument: data.payment.shouldSaveInstrument,
+        });
+    });
+
     it('maps the input object into a payment object with credit card token', () => {
         data = merge({}, data, {
             paymentMethod: {
