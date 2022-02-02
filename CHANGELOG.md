@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.15.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.14.0...v5.15.0) (2022-02-02)
+
+
+### Features
+
+* **payments:** INT-4969 add browser_info to credit_card for Opayo ([ee52857](https://github.com/bigcommerce/bigpay-client-js/commit/ee52857484bbc2ebe42ea0de401194313bc51997))
+
 ## [5.14.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.13.2...v5.14.0) (2021-05-10)
 
 
