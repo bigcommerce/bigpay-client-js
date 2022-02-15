@@ -86,7 +86,7 @@ jobs:
           at: .
       - run:
           name: "Create and tag new release"
-          command: npm run release
+          command: npm run release:version
       - run:
           name: "Push commits and tag to GitHub"
           command: |
