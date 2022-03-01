@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.16.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.15.1...v5.16.0) (2022-03-01)
+
+
+### Features
+
+* **payments:** INT-4970 map browser_info for cc and vaultedInstrument for Opayo ([bc78e8e](https://github.com/bigcommerce/bigpay-client-js/commit/bc78e8e79d3ce346edf67433b10f915107fc8945))
+
 ### [5.15.1](https://github.com/bigcommerce/bigpay-client-js/compare/v5.15.0...v5.15.1) (2022-02-02)
 
 ## [5.15.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.14.0...v5.15.0) (2022-02-02)
