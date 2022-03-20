@@ -46,6 +46,13 @@ export default class UrlHelper {
     /**
      * @returns {string}
      */
+    getPpsdkPaymentUrl() {
+        return `${this.host}/payments`;
+    }
+
+    /**
+     * @returns {string}
+     */
     getGenerateClientTokenUrl() {
         return `${this.host}/api/v2/public/payments/client_tokens`;
     }

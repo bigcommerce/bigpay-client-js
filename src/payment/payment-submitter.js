@@ -1,4 +1,4 @@
-import { API } from './payment-types';
+import { API, SDK } from './payment-types';
 import PayloadMapper from './v1/payment-mappers/payload-mapper';
 import RequestSender from '../common/http-request/request-sender';
 import UrlHelper from './url-helper';
@@ -51,12 +51,12 @@ export default class PaymentSubmitter {
     submitPayment(data, callback) {
         const { paymentMethod = {} } = data;
 
-        if (paymentMethod.type !== API) {
+        if (paymentMethod.type !== API && paymentMethod.type !== SDK) {
             throw new Error(`${paymentMethod.type} is not supported.`);
         }
 
         const payload = this.payloadMapper.mapToPayload(data);
-        const url = this.urlHelper.getPaymentUrl();
+        const url = paymentMethod.type === SDK ? this.urlHelper.getPpsdkPaymentUrl() : this.urlHelper.getPaymentUrl();
         const options = {
             headers: this.payloadMapper.mapToHeaders(data),
         };

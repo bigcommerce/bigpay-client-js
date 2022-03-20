@@ -1,5 +1,5 @@
 import merge from 'lodash/merge';
-import { HOSTED } from '../../src/payment/payment-types';
+import { HOSTED, SDK } from '../../src/payment/payment-types';
 import paymentRequestDataMock from '../mocks/payment-request-data';
 import PaymentSubmitter from '../../src/payment/payment-submitter';
 
@@ -19,6 +19,7 @@ describe('PaymentSubmitter', () => {
 
         urlHelper = {
             getPaymentUrl: jest.fn(() => '/api/public/v1/payments/payment'),
+            getPpsdkPaymentUrl: jest.fn(() => '/payments'),
         };
 
         requestSender = {
@@ -40,32 +41,48 @@ describe('PaymentSubmitter', () => {
         expect(instance instanceof PaymentSubmitter).toBeTruthy();
     });
 
-    it('maps the input data into a payload object required for submitting a payment', () => {
-        paymentSubmitter.submitPayment(data, () => {});
+    describe('submitPayment()', () => {
+        it('maps the input data into a payload object required for submitting a payment', () => {
+            paymentSubmitter.submitPayment(data, () => {});
 
-        expect(payloadMapper.mapToPayload).toHaveBeenCalled();
-    });
-
-    it('posts the request payload containing payment information to the server', () => {
-        const callback = () => {};
-        const url = urlHelper.getPaymentUrl();
-
-        paymentSubmitter.submitPayment(data, callback);
-
-        expect(requestSender.postRequest).toHaveBeenCalledWith(url, transformedData, { headers: transformedHeaders }, callback);
-    });
-
-    it('throws an error if the payment method is not an API provider', () => {
-        data = merge({}, paymentRequestDataMock, {
-            paymentMethod: {
-                type: HOSTED,
-            },
+            expect(payloadMapper.mapToPayload).toHaveBeenCalled();
         });
 
-        expect(() => paymentSubmitter.submitPayment(data)).toThrow();
-    });
+        it('posts the request payload containing payment information to the correct URL when payment method type is API', () => {
+            const callback = () => {};
+            const url = urlHelper.getPaymentUrl();
 
-    it('throws an error if the input data does not contain payment method information', () => {
-        expect(() => paymentSubmitter.submitPayment({})).toThrow();
+            paymentSubmitter.submitPayment(data, callback);
+
+            expect(requestSender.postRequest).toHaveBeenCalledWith(url, transformedData, { headers: transformedHeaders }, callback);
+        });
+
+        it('posts the request payload containing payment information to the correct URL when payment method type is SDK', () => {
+            data = merge({}, paymentRequestDataMock, {
+                paymentMethod: {
+                    type: SDK,
+                },
+            });
+            const callback = () => { };
+            const url = urlHelper.getPpsdkPaymentUrl();
+
+            paymentSubmitter.submitPayment(data, callback);
+
+            expect(requestSender.postRequest).toHaveBeenCalledWith(url, transformedData, { headers: transformedHeaders }, callback);
+        });
+
+        it('throws an error if the payment method is not an API provider', () => {
+            data = merge({}, paymentRequestDataMock, {
+                paymentMethod: {
+                    type: HOSTED,
+                },
+            });
+
+            expect(() => paymentSubmitter.submitPayment(data)).toThrow();
+        });
+
+        it('throws an error if the input data does not contain payment method information', () => {
+            expect(() => paymentSubmitter.submitPayment({})).toThrow();
+        });
     });
 });
