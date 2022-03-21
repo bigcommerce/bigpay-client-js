@@ -6,6 +6,7 @@ import PaymentSubmitter from '../../src/payment/payment-submitter';
 describe('PaymentSubmitter', () => {
     let data;
     let payloadMapper;
+    let ppsdkPayloadMapper;
     let paymentSubmitter;
     let requestSender;
     let transformedData;
@@ -31,7 +32,12 @@ describe('PaymentSubmitter', () => {
             mapToHeaders: jest.fn(() => transformedHeaders),
         };
 
-        paymentSubmitter = new PaymentSubmitter(urlHelper, requestSender, payloadMapper);
+        ppsdkPayloadMapper = {
+            mapToPayload: jest.fn(() => transformedData),
+            mapToHeaders: jest.fn(() => transformedHeaders),
+        };
+
+        paymentSubmitter = new PaymentSubmitter(urlHelper, requestSender, payloadMapper, ppsdkPayloadMapper);
     });
 
     it('creates an instance of PaymentSubmitter', () => {
@@ -42,10 +48,21 @@ describe('PaymentSubmitter', () => {
     });
 
     describe('submitPayment()', () => {
-        it('maps the input data into a payload object required for submitting a payment', () => {
+        it('maps the input data into the correct payload object required for submitting a payment when payment method type is API', () => {
             paymentSubmitter.submitPayment(data, () => {});
 
             expect(payloadMapper.mapToPayload).toHaveBeenCalled();
+        });
+
+        it('maps the input data into the correct payload object required for submitting a payment when payment method type is SDK', () => {
+            data = merge({}, paymentRequestDataMock, {
+                paymentMethod: {
+                    type: SDK,
+                },
+            });
+            paymentSubmitter.submitPayment(data, () => { });
+
+            expect(ppsdkPayloadMapper.mapToPayload).toHaveBeenCalled();
         });
 
         it('posts the request payload containing payment information to the correct URL when payment method type is API', () => {
