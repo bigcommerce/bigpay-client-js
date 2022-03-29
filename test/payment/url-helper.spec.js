@@ -19,6 +19,10 @@ describe('UrlHelper', () => {
         expect(urlHelper.getPaymentUrl()).toEqual(`${host}/api/public/v1/orders/payments`);
     });
 
+    it('returns a URL for submitting PPSDK payments to a PPSDK provider', () => {
+        expect(urlHelper.getPpsdkPaymentUrl()).toEqual(`${host}/payments`);
+    });
+
     it('returns a URL for submitting payments to an offsite provider', () => {
         expect(urlHelper.getOffsitePaymentUrl()).toEqual(`${host}/pay/initialize`);
     });
