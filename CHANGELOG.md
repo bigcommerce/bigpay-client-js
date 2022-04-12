@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.17.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.16.0...v5.17.0) (2022-04-12)
+
+
+### Features
+
+* **payments:** PAYMENTS-7706 Create PPSDK payload mapper ([f218d24](https://github.com/bigcommerce/bigpay-client-js/commit/f218d24cb51137382b6a0d1bd3cc05ad0a84b1d1))
+* **payments:** PAYMENTS-7706 Update payment submitter to post SDK payments to the new PPSDK endpoint ([3d676e8](https://github.com/bigcommerce/bigpay-client-js/commit/3d676e8d366a4905da99456ae93da7a747533925))
+
 ## [5.16.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.15.1...v5.16.0) (2022-03-01)
 
 
