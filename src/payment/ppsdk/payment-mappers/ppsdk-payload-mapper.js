@@ -14,7 +14,7 @@ export default class PpsdkPayloadMapper {
      * @returns {Object}
      */
     mapToPayload(data) {
-        const { payment = {}, paymentMethod } = data;
+        const { additionalAction, payment = {}, paymentMethod } = data;
 
         return omitNil({
             instrument: {
@@ -29,6 +29,12 @@ export default class PpsdkPayloadMapper {
             },
             form_nonce: payment.hostedFormNonce,
             payment_method_id: paymentMethod.id,
+            human_verification: additionalAction ? {
+                id: 'recaptcha_v2_verification',
+                parameters: {
+                    token: additionalAction ? additionalAction.data.human_verification_token : null,
+                },
+            } : null,
         });
     }
 
