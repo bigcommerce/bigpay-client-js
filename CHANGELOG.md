@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.18.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.17.0...v5.18.0) (2022-06-15)
+
+
+### Features
+
+* **payments:** PAYMENTS-7524 Add human verification to PPSDK payment payload ([f454d89](https://github.com/bigcommerce/bigpay-client-js/commit/f454d89fe422dba7c4f7120bb1972909aa6add4b))
+
 ## [5.17.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.16.0...v5.17.0) (2022-04-12)
 
 
