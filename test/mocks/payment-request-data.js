@@ -164,4 +164,14 @@ const paymentRequestDataMock = {
     },
 };
 
+export const paymentRequestWithAdditionalActionMock = {
+    additionalAction: {
+        type: 'recaptcha_v2_verification',
+        data: {
+            human_verification_token: 'googleRecaptchaToken',
+        },
+    },
+    ...paymentRequestDataMock,
+};
+
 export default paymentRequestDataMock;
