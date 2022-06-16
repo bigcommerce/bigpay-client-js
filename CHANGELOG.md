@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.19.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.18.0...v5.19.0) (2022-06-16)
+
+
+### Features
+
+* **payments:** PAYPAL-1487 add PayPal Commerce Venmo ([a3489ac](https://github.com/bigcommerce/bigpay-client-js/commit/a3489ac94702cbffff79ddc71deca670adc20344))
+
 ## [5.18.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.17.0...v5.18.0) (2022-06-15)
 
 
