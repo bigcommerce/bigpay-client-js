@@ -1,5 +1,6 @@
 import objectAssign from 'object-assign';
 import OffsitePaymentInitializer from '../payment/offsite-payment-initializer';
+import HostedPaymentInitializer from '../payment/hosted-payment-initializer';
 import PaymentSubmitter from '../payment/payment-submitter';
 import ClientTokenGenerator from '../payment/client-token-generator';
 import StoreRequestSender from '../store/store-request-sender';
@@ -16,6 +17,7 @@ export default class Client {
         const paymentSubmitter = PaymentSubmitter.create(clientConfig);
         const clientTokenGenerator = ClientTokenGenerator.create(clientConfig);
         const storeRequestSender = StoreRequestSender.create(clientConfig);
+        const hostedPaymentInitializer = HostedPaymentInitializer.create(clientConfig);
 
         return new Client(
             clientConfig,
@@ -23,6 +25,7 @@ export default class Client {
             offsitePaymentInitializer,
             clientTokenGenerator,
             storeRequestSender,
+            hostedPaymentInitializer,
         );
     }
 
@@ -32,6 +35,7 @@ export default class Client {
      * @param {OffsitePaymentInitializer} offsitePaymentInitializer
      * @param {ClientTokenGenerator} clientTokenGenerator
      * @param {StoreRequestSender} storeRequestSender
+     * @param {HostedPaymentInitializer} hostedPaymentInitializer
      */
     constructor(
         config,
@@ -39,6 +43,7 @@ export default class Client {
         offsitePaymentInitializer,
         clientTokenGenerator,
         storeRequestSender,
+        hostedPaymentInitializer,
     ) {
         /**
          * @private
@@ -57,7 +62,11 @@ export default class Client {
          * @type {OffsitePaymentInitializer}
          */
         this.offsitePaymentInitializer = offsitePaymentInitializer;
-
+        /**
+         * @private
+         * @type {HostedPaymentInitializer}
+         */
+        this.hostedPaymentInitializer = hostedPaymentInitializer;
         /**
          * @private
          * @type {ClientTokenGenerator}
@@ -87,6 +96,14 @@ export default class Client {
      */
     initializeOffsitePayment(data, callback, target) {
         this.offsitePaymentInitializer.initializeOffsitePayment(data, callback, target);
+    }
+
+    /**
+     * @param {PaymentRequestData} data
+     * @returns {string}
+     */
+    initializeHostedPayment(data) {
+        return this.hostedPaymentInitializer.initializeHostedPayment(data);
     }
 
     /**
