@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.20.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.19.0...v5.20.0) (2022-08-25)
+
+
+### Features
+
+* **payments:** PAYPAL-1474 added paypalcommerceinline method id into payment mapper file ([685a1e0](https://github.com/bigcommerce/bigpay-client-js/commit/685a1e0d7ff18753dc25b58a681d1f5853981a1e))
+
 ## [5.19.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.18.0...v5.19.0) (2022-06-16)
 
 
