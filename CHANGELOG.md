@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.20.1](https://github.com/bigcommerce/bigpay-client-js/compare/v5.20.0...v5.20.1) (2022-12-02)
+
+
+### Bug Fixes
+
+* upgrade babel-jest from 27.4.6 to 27.5.1 ([3e8a3f9](https://github.com/bigcommerce/bigpay-client-js/commit/3e8a3f904a5c9ddded297a486410231f64041180))
+
 ## [5.20.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.19.0...v5.20.0) (2022-08-25)
 
 
