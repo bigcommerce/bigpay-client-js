@@ -111,6 +111,35 @@ describe('StoreMapper', () => {
         expect(result).toEqual(expected);
     });
 
+    it('maps the input object into an array of trusted shipping addresses object in case of multiple addresses', () => {
+        const { shippingAddress } = trustedShippingAddressDataMock;
+
+        const result = mapToTrustedShippingAddressPayload({ ...trustedShippingAddressDataMock, shippingAddress: [shippingAddress, shippingAddress] });
+
+        const expectedAddress = {
+            address_line_1: shippingAddress.addressLine1,
+            address_line_2: shippingAddress.addressLine2,
+            city: shippingAddress.city,
+            company: shippingAddress.company,
+            country_code: shippingAddress.countryCode,
+            email: shippingAddress.email,
+            first_name: shippingAddress.firstName,
+            last_name: shippingAddress.lastName,
+            phone: shippingAddress.phone,
+            postal_code: shippingAddress.postCode,
+            state: {
+                code: shippingAddress.provinceCode,
+                name: shippingAddress.province,
+            },
+        };
+
+        const expected = expect.objectContaining({
+            shipping_addresses: [expectedAddress, expectedAddress],
+        });
+
+        expect(result).toEqual(expected);
+    });
+
     it('accepts null and returns an empty shipping address object', () => {
         const result = mapToTrustedShippingAddressPayload();
         const expected = {

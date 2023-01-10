@@ -30,6 +30,12 @@ export function mapToInstrumentPayload(data = {}) {
  * @return {Object}
  */
 export function mapToTrustedShippingAddressPayload(data = {}) {
+    if (Array.isArray(data.shippingAddress)) {
+        return omitNil({
+            shipping_addresses: data.shippingAddress.map((address) => mapToAddress(address)),
+        });
+    }
+
     return omitNil({
         shipping_address: mapToAddress(data.shippingAddress),
     });
