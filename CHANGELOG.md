@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.21.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.20.3...v5.21.0) (2023-01-10)
+
+
+### Features
+
+* **payments:** PAYMENTS-8378 Allow sending multiple addresses to trusted_shipping_address endpoint ([a3a49fd](https://github.com/bigcommerce/bigpay-client-js/commit/a3a49fd78e4b4fb391dce51a06cc312602b3b71a))
+
 ### [5.20.3](https://github.com/bigcommerce/bigpay-client-js/compare/v5.20.2...v5.20.3) (2023-01-09)
 
 ### [5.20.2](https://github.com/bigcommerce/bigpay-client-js/compare/v5.20.1...v5.20.2) (2023-01-04)
