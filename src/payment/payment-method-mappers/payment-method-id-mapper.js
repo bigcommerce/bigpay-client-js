@@ -9,6 +9,7 @@ import {
     PAYPAL_COMMERCE_CREDIT,
     PAYPAL_COMMERCE_CREDIT_CARDS,
     PAYPAL_COMMERCE_ALTERNATIVE_METHODS,
+    PAYPAL_COMMERCE_ALTERNATIVE_METHODS_TEMPORARY,
     PAYPAL_COMMERCE_INLINE,
     PAYPAL_COMMERCE_VENMO,
 } from '../payment-method-ids';
@@ -71,6 +72,10 @@ export default class PaymentMethodIdMapper {
 
         if (isPaypalCommercePaymentMethod(id)) {
             return PAYPAL_COMMERCE;
+        }
+
+        if (id === PAYPAL_COMMERCE_ALTERNATIVE_METHODS_TEMPORARY) {
+            return PAYPAL_COMMERCE_ALTERNATIVE_METHODS;
         }
 
         return id;
