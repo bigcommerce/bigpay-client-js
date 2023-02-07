@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.22.1](https://github.com/bigcommerce/bigpay-client-js/compare/v5.22.0...v5.22.1) (2023-02-07)
+
+
+### Code Refactoring
+
+* **payments:** PAYPAL-1921 removed paypalcommercealternativemethods transformer ([f957b2b](https://github.com/bigcommerce/bigpay-client-js/commit/f957b2bf1c4afa46997a37b6bd0e09e269f3e635))
+
 ## [5.22.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.21.0...v5.22.0) (2023-01-23)
 
 
