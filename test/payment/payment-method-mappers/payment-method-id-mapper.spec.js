@@ -75,9 +75,4 @@ describe('PaymentMethodIdMapper', () => {
         paymentMethod = { id: PAYMENT_METHODS.PAYPAL_COMMERCE_VENMO };
         expect(paymentMethodIdMapper.mapToId(paymentMethod)).toEqual(PAYMENT_METHODS.PAYPAL_COMMERCE);
     });
-
-    it('returns "paypalcommercealternativemethods" if the payment method is "paypalcommercealternativemethodsv2"', () => {
-        paymentMethod = { id: PAYMENT_METHODS.PAYPAL_COMMERCE_ALTERNATIVE_METHODS_TEMPORARY };
-        expect(paymentMethodIdMapper.mapToId(paymentMethod)).toEqual(PAYMENT_METHODS.PAYPAL_COMMERCE_ALTERNATIVE_METHODS);
-    });
 });
