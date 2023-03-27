@@ -2,6 +2,7 @@ import objectAssign from 'object-assign';
 import { omitNil, toNumber } from '../../../common/utils';
 
 import PaymentMethodIdMapper from '../../payment-method-mappers/payment-method-id-mapper';
+import { PAYPAL_ACH } from '../../payment-method-types';
 
 export default class PaymentMapper {
     /**
@@ -51,7 +52,7 @@ export default class PaymentMapper {
         const { method } = paymentMethod;
 
         if (method) {
-            objectAssign(payload, { method });
+            objectAssign(payload, { method: this.mapToMethod(method) });
         }
 
         const nonce = payment.nonce || paymentMethod.nonce;
@@ -85,6 +86,15 @@ export default class PaymentMapper {
         }
 
         return omitNil(payload);
+    }
+
+    /**
+     * @private
+     * @param {method} method
+     * @return {string}
+     */
+    mapToMethod(method) {
+        return method === PAYPAL_ACH ? 'ach' : method;
     }
 
     /**
