@@ -9,7 +9,6 @@ import {
     PAYPAL_COMMERCE_CREDIT,
     PAYPAL_COMMERCE_CREDIT_CARDS,
     PAYPAL_COMMERCE_ALTERNATIVE_METHODS,
-    PAYPAL_COMMERCE_INLINE,
     PAYPAL_COMMERCE_VENMO,
 } from '../payment-method-ids';
 
@@ -38,7 +37,6 @@ function isPaypalCommercePaymentMethod(id) {
     case PAYPAL_COMMERCE_CREDIT:
     case PAYPAL_COMMERCE_CREDIT_CARDS:
     case PAYPAL_COMMERCE_ALTERNATIVE_METHODS:
-    case PAYPAL_COMMERCE_INLINE:
     case PAYPAL_COMMERCE_VENMO:
         return true;
     default:

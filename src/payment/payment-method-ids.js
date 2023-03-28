@@ -8,5 +8,4 @@ export const PAYPAL_COMMERCE = 'paypalcommerce';
 export const PAYPAL_COMMERCE_ALTERNATIVE_METHODS = 'paypalcommercealternativemethods';
 export const PAYPAL_COMMERCE_CREDIT = 'paypalcommercecredit';
 export const PAYPAL_COMMERCE_CREDIT_CARDS = 'paypalcommercecreditcards';
-export const PAYPAL_COMMERCE_INLINE = 'paypalcommerceinline';
 export const PAYPAL_COMMERCE_VENMO = 'paypalcommercevenmo';

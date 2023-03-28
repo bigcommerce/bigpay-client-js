@@ -66,11 +66,6 @@ describe('PaymentMethodIdMapper', () => {
         expect(paymentMethodIdMapper.mapToId(paymentMethod)).toEqual(PAYMENT_METHODS.PAYPAL_COMMERCE);
     });
 
-    it('returns "paypalcommerce" if the payment method is "paypalcommerceinline"', () => {
-        paymentMethod = { id: PAYMENT_METHODS.PAYPAL_COMMERCE_INLINE };
-        expect(paymentMethodIdMapper.mapToId(paymentMethod)).toEqual(PAYMENT_METHODS.PAYPAL_COMMERCE);
-    });
-
     it('returns "paypalcommerce" if the payment method is "paypalcommercevenmo"', () => {
         paymentMethod = { id: PAYMENT_METHODS.PAYPAL_COMMERCE_VENMO };
         expect(paymentMethodIdMapper.mapToId(paymentMethod)).toEqual(PAYMENT_METHODS.PAYPAL_COMMERCE);
