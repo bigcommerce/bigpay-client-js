@@ -10,6 +10,7 @@ import {
     PAYPAL_COMMERCE_CREDIT_CARDS,
     PAYPAL_COMMERCE_ALTERNATIVE_METHODS,
     PAYPAL_COMMERCE_VENMO,
+    BRAINTREE_ACH,
 } from '../payment-method-ids';
 
 /**
@@ -22,6 +23,7 @@ function isBraintreePaymentMethod(id) {
     case BRAINTREE_PAYPAL_CREDIT:
     case BRAINTREE_VISACHECKOUT:
     case BRAINTREE_GOOGLEPAY:
+    case BRAINTREE_ACH:
         return true;
     default:
         return false;
