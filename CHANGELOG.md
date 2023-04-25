@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.23.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.22.2...v5.23.0) (2023-04-25)
+
+
+### Features
+
+* **payments:** PAYPAL-1713 modified method for ACH ([ac86b05](https://github.com/bigcommerce/bigpay-client-js/commit/ac86b054aa8d73f788826ecb8cdc7177e1dafa91))
+
+
+### Bug Fixes
+
+* **payments:** PAYPAL-1713 removed PAYPAL_ACH ([ced1a3e](https://github.com/bigcommerce/bigpay-client-js/commit/ced1a3e548d76862955b74fb2a1c9e343be24c73))
+
 ### [5.22.2](https://github.com/bigcommerce/bigpay-client-js/compare/v5.22.1...v5.22.2) (2023-03-28)
 
 
