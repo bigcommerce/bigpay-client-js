@@ -5,6 +5,7 @@ import {
     BRAINTREE_PAYPAL,
     BRAINTREE_PAYPAL_CREDIT,
     BRAINTREE_VISACHECKOUT,
+    BRAINTREE_LOCAL_METHODS,
     PAYPAL_COMMERCE,
     PAYPAL_COMMERCE_CREDIT,
     PAYPAL_COMMERCE_CREDIT_CARDS,
@@ -24,6 +25,7 @@ function isBraintreePaymentMethod(id) {
     case BRAINTREE_VISACHECKOUT:
     case BRAINTREE_GOOGLEPAY:
     case BRAINTREE_ACH:
+    case BRAINTREE_LOCAL_METHODS:
         return true;
     default:
         return false;
