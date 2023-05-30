@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.24.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.23.0...v5.24.0) (2023-05-30)
+
+
+### Features
+
+* **payments:** PAYPAL-2449 added braintreelocalmethods ([690a9d5](https://github.com/bigcommerce/bigpay-client-js/commit/690a9d59ed5264bc4b881b9d715eec24c2f1aacc))
+
 ## [5.23.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.22.2...v5.23.0) (2023-04-25)
 
 
