@@ -5,6 +5,7 @@ export const BRAINTREE_VISACHECKOUT = 'braintreevisacheckout';
 export const BRAINTREE_LOCAL_METHODS = 'braintreelocalmethods';
 export const BRAINTREE_GOOGLEPAY = 'googlepaybraintree';
 export const BRAINTREE_ACH = 'braintreeach';
+export const BRAINTREE_ACCELERATED_CHECKOUT = 'braintreeacceleratedcheckout';
 
 export const PAYPAL_COMMERCE = 'paypalcommerce';
 export const PAYPAL_COMMERCE_ALTERNATIVE_METHODS = 'paypalcommercealternativemethods';
