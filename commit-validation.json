@@ -1,7 +1,7 @@
 {
     "scopes": [
         "common",
-        "payments",
+        "payment",
         "vaulting",
         "instrument"
     ]
