@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.25.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.24.4...v5.25.0) (2023-07-20)
+
+
+### Features
+
+* **payments:** PAYPAL-2726 added BraintreeAcceleratedCheckout to payment method mapper ([cd890a0](https://github.com/bigcommerce/bigpay-client-js/commit/cd890a0c3a23a78fb596ac962e0fdcdd1e0fbe5e))
+
 ### [5.24.4](https://github.com/bigcommerce/bigpay-client-js/compare/v5.24.3...v5.24.4) (2023-06-23)
 
 ### [5.24.3](https://github.com/bigcommerce/bigpay-client-js/compare/v5.24.2...v5.24.3) (2023-06-23)
