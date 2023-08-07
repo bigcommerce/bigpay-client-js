@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.26.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.25.1...v5.26.0) (2023-08-07)
+
+
+### Features
+
+* **payment:** PAYPAL-2737 added token_type to payment mapper ([e56b219](https://github.com/bigcommerce/bigpay-client-js/commit/e56b219c991ea9518ca7301df3b8ad926c8a7390))
+
 ### [5.25.1](https://github.com/bigcommerce/bigpay-client-js/compare/v5.25.0...v5.25.1) (2023-07-20)
 
 ## [5.25.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.24.4...v5.25.0) (2023-07-20)
