@@ -210,6 +210,7 @@ describe('PaymentMapper', () => {
                     credit_card_number_confirmation: data.payment.ccNumber,
                     three_d_secure: data.payment.three_d_secure,
                     hosted_form_nonce: data.payment.hostedFormNonce,
+                    token_type: data.payment.tokenType,
                 },
             }),
         );

@@ -120,6 +120,7 @@ export default class PaymentMapper {
             verification_nonce: payment.nonce,
             three_d_secure: payment.threeDSecure,
             hosted_form_nonce: payment.hostedFormNonce,
+            token_type: payment.tokenType,
         });
     }
 
