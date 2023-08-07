@@ -111,6 +111,7 @@ const paymentRequestDataMock = {
             token: 'aaa.bbb.ccc',
         },
         hostedFormNonce: 'fakeHostedFormNonce',
+        tokenType: 'fakeTokenType',
     },
     paymentMethod: {
         id: 'paypalprous',
