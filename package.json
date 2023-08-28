@@ -37,7 +37,7 @@
     "eslint-plugin-import": "^2.25.4",
     "gulp": "^4.0.2",
     "gulp-bump": "^3.2.0",
-    "gulp-conventional-changelog": "^3.0.0",
+    "gulp-conventional-changelog": "^4.0.0",
     "gulp-git": "^2.10.1",
     "gulp-prompt": "^1.2.0",
     "gulp-touch": "^1.0.1",
