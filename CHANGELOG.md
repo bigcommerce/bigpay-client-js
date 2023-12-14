@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.26.1](https://github.com/bigcommerce/bigpay-client-js/compare/v5.26.0...v5.26.1) (2023-12-14)
+
 ## [5.26.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.25.1...v5.26.0) (2023-08-07)
 
 
