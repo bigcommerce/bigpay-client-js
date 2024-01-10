@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.27.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.26.2...v5.27.0) (2024-01-10)
+
+
+### Features
+
+* **payment:** PAYPAL-3416 updated paypal commerce mapper gateway with paypalcommerceacceleratedcheckout methodId ([104571a](https://github.com/bigcommerce/bigpay-client-js/commit/104571aa548ca58602fdbf044018126a5c48eeb0))
+
 ### [5.26.2](https://github.com/bigcommerce/bigpay-client-js/compare/v5.26.1...v5.26.2) (2024-01-02)
 
 ### [5.26.1](https://github.com/bigcommerce/bigpay-client-js/compare/v5.26.0...v5.26.1) (2023-12-14)
