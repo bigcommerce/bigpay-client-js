@@ -8,6 +8,7 @@ export const BRAINTREE_ACH = 'braintreeach';
 export const BRAINTREE_ACCELERATED_CHECKOUT = 'braintreeacceleratedcheckout';
 
 export const PAYPAL_COMMERCE = 'paypalcommerce';
+export const PAYPAL_COMMERCE_ACCELERATED_CHECKOUT = 'paypalcommerceacceleratedcheckout';
 export const PAYPAL_COMMERCE_ALTERNATIVE_METHODS = 'paypalcommercealternativemethods';
 export const PAYPAL_COMMERCE_CREDIT = 'paypalcommercecredit';
 export const PAYPAL_COMMERCE_CREDIT_CARDS = 'paypalcommercecreditcards';
