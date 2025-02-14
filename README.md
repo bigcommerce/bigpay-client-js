@@ -4,8 +4,7 @@
 
 bigpay-client.js is a client-side library for posting payment data to BigPay.
 
-## Usage
-
+## Usage1
 In `checkout.js`
 ```js
 import { createClient } from 'bigpay-client';
