@@ -31,6 +31,36 @@ describe('PaymentMethodIdMapper', () => {
         expect(paymentMethodIdMapper.mapToId(paymentMethod)).toEqual(PAYMENT_METHODS.BRAINTREE);
     });
 
+    it('returns "bigcommerce_payments_paypal" if the payment method is "bigcommerce_payments_paypal"', () => {
+        paymentMethod = { id: PAYMENT_METHODS.BIGCOMMERCE_PAYMENTS_PAYPAL };
+        expect(paymentMethodIdMapper.mapToId(paymentMethod)).toEqual(PAYMENT_METHODS.BIGCOMMERCE_PAYMENTS_PAYPAL);
+    });
+
+    it('returns "bigcommerce_payments_paypal" if the payment method is "bigcommerce_payments_paylater"', () => {
+        paymentMethod = { id: PAYMENT_METHODS.BIGCOMMERCE_PAYMENTS_PAYLATER };
+        expect(paymentMethodIdMapper.mapToId(paymentMethod)).toEqual(PAYMENT_METHODS.BIGCOMMERCE_PAYMENTS_PAYPAL);
+    });
+
+    it('returns "bigcommerce_payments_paypal" if the payment method is "bigcommerce_payments_creditcards"', () => {
+        paymentMethod = { id: PAYMENT_METHODS.BIGCOMMERCE_PAYMENTS_CREDIT_CARDS };
+        expect(paymentMethodIdMapper.mapToId(paymentMethod)).toEqual(PAYMENT_METHODS.BIGCOMMERCE_PAYMENTS_PAYPAL);
+    });
+
+    it('returns "bigcommerce_payments_paypal" if the payment method is "bigcommerce_payments_fastlane"', () => {
+        paymentMethod = { id: PAYMENT_METHODS.BIGCOMMERCE_PAYMENTS_FASTLANE };
+        expect(paymentMethodIdMapper.mapToId(paymentMethod)).toEqual(PAYMENT_METHODS.BIGCOMMERCE_PAYMENTS_PAYPAL);
+    });
+
+    it('returns "bigcommerce_payments_paypal" if the payment method is "bigcommerce_payments_apms"', () => {
+        paymentMethod = { id: PAYMENT_METHODS.BIGCOMMERCE_PAYMENTS_APMS };
+        expect(paymentMethodIdMapper.mapToId(paymentMethod)).toEqual(PAYMENT_METHODS.BIGCOMMERCE_PAYMENTS_PAYPAL);
+    });
+
+    it('returns "bigcommerce_payments_paypal" if the payment method is "bigcommerce_payments_venmo"', () => {
+        paymentMethod = { id: PAYMENT_METHODS.BIGCOMMERCE_PAYMENTS_VENMO };
+        expect(paymentMethodIdMapper.mapToId(paymentMethod)).toEqual(PAYMENT_METHODS.BIGCOMMERCE_PAYMENTS_PAYPAL);
+    });
+
     it('returns "braintree" if the payment method is "braintreepaypal"', () => {
         paymentMethod = { id: PAYMENT_METHODS.BRAINTREE_PAYPAL };
         expect(paymentMethodIdMapper.mapToId(paymentMethod)).toEqual(PAYMENT_METHODS.BRAINTREE);
