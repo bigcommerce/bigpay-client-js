@@ -1,3 +1,10 @@
+export const BIGCOMMERCE_PAYMENTS_PAYPAL = 'bigcommerce_payments_paypal';
+export const BIGCOMMERCE_PAYMENTS_PAYLATER = 'bigcommerce_payments_paylater';
+export const BIGCOMMERCE_PAYMENTS_CREDIT_CARDS = 'bigcommerce_payments_creditcards';
+export const BIGCOMMERCE_PAYMENTS_FASTLANE = 'bigcommerce_payments_fastlane';
+export const BIGCOMMERCE_PAYMENTS_APMS = 'bigcommerce_payments_apms';
+export const BIGCOMMERCE_PAYMENTS_VENMO = 'bigcommerce_payments_venmo';
+
 export const BRAINTREE = 'braintree';
 export const BRAINTREE_PAYPAL = 'braintreepaypal';
 export const BRAINTREE_PAYPAL_CREDIT = 'braintreepaypalcredit';

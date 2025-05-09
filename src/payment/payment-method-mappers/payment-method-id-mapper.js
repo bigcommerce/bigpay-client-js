@@ -1,5 +1,11 @@
 import { MULTI_OPTION } from '../payment-method-types';
 import {
+    BIGCOMMERCE_PAYMENTS_PAYPAL,
+    BIGCOMMERCE_PAYMENTS_PAYLATER,
+    BIGCOMMERCE_PAYMENTS_CREDIT_CARDS,
+    BIGCOMMERCE_PAYMENTS_FASTLANE,
+    BIGCOMMERCE_PAYMENTS_APMS,
+    BIGCOMMERCE_PAYMENTS_VENMO,
     BRAINTREE,
     BRAINTREE_GOOGLEPAY,
     BRAINTREE_PAYPAL,
@@ -52,6 +58,23 @@ function isPaypalCommercePaymentMethod(id) {
     }
 }
 
+/**
+ * @param {string} id
+ * @return {Boolean}
+ */
+function isBigCommercePaymentsPayPalPaymentMethod(id) {
+    switch (id) {
+    case BIGCOMMERCE_PAYMENTS_PAYLATER:
+    case BIGCOMMERCE_PAYMENTS_CREDIT_CARDS:
+    case BIGCOMMERCE_PAYMENTS_FASTLANE:
+    case BIGCOMMERCE_PAYMENTS_APMS:
+    case BIGCOMMERCE_PAYMENTS_VENMO:
+        return true;
+    default:
+        return false;
+    }
+}
+
 export default class PaymentMethodIdMapper {
     /**
      * @returns {PaymentMethodIdMapper}
@@ -77,6 +100,10 @@ export default class PaymentMethodIdMapper {
 
         if (isPaypalCommercePaymentMethod(id)) {
             return PAYPAL_COMMERCE;
+        }
+
+        if (isBigCommercePaymentsPayPalPaymentMethod(id)) {
+            return BIGCOMMERCE_PAYMENTS_PAYPAL;
         }
 
         return id;
