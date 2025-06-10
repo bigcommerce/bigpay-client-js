@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "@bigcommerce/form-poster": "^1.4.2",
-    "babel-jest": "^29.7.0",
+    "babel-jest": "^30.0.0",
     "deep-assign": "^3.0.0",
     "object-assign": "^4.1.1"
   }
