@@ -1,4 +1,4 @@
-export const BIGCOMMERCE_PAYMENTS_PAYPAL = 'bigcommerce_payments_paypal';
+export const BIGCOMMERCE_PAYMENTS = 'bigcommerce_payments';
 export const BIGCOMMERCE_PAYMENTS_PAYLATER = 'bigcommerce_payments_paylater';
 export const BIGCOMMERCE_PAYMENTS_CREDIT_CARDS = 'bigcommerce_payments_creditcards';
 export const BIGCOMMERCE_PAYMENTS_FASTLANE = 'bigcommerce_payments_fastlane';
