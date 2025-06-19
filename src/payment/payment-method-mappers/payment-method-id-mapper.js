@@ -1,6 +1,6 @@
 import { MULTI_OPTION } from '../payment-method-types';
 import {
-    BIGCOMMERCE_PAYMENTS_PAYPAL,
+    BIGCOMMERCE_PAYMENTS,
     BIGCOMMERCE_PAYMENTS_PAYLATER,
     BIGCOMMERCE_PAYMENTS_CREDIT_CARDS,
     BIGCOMMERCE_PAYMENTS_FASTLANE,
@@ -62,8 +62,9 @@ function isPaypalCommercePaymentMethod(id) {
  * @param {string} id
  * @return {Boolean}
  */
-function isBigCommercePaymentsPayPalPaymentMethod(id) {
+function isBigCommercePaymentsPaymentMethod(id) {
     switch (id) {
+    case BIGCOMMERCE_PAYMENTS:
     case BIGCOMMERCE_PAYMENTS_PAYLATER:
     case BIGCOMMERCE_PAYMENTS_CREDIT_CARDS:
     case BIGCOMMERCE_PAYMENTS_FASTLANE:
@@ -102,8 +103,8 @@ export default class PaymentMethodIdMapper {
             return PAYPAL_COMMERCE;
         }
 
-        if (isBigCommercePaymentsPayPalPaymentMethod(id)) {
-            return BIGCOMMERCE_PAYMENTS_PAYPAL;
+        if (isBigCommercePaymentsPaymentMethod(id)) {
+            return BIGCOMMERCE_PAYMENTS;
         }
 
         return id;
