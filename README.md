@@ -2,7 +2,7 @@
 
 [![Build Status](https://circleci.com/gh/bigcommerce/bigpay-client-js.svg?style=svg)](https://circleci.com/gh/bigcommerce/bigpay-client-js)
 
-bigpay-client.js is a client-side library for posting payment data to BigPay.
+bigpay-client.js is a client-side library for posting payments data to BigPay.
 
 ## Usage
 
