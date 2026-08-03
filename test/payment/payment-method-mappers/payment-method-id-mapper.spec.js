@@ -61,6 +61,11 @@ describe('PaymentMethodIdMapper', () => {
         expect(paymentMethodIdMapper.mapToId(paymentMethod)).toEqual(PAYMENT_METHODS.BIGCOMMERCE_PAYMENTS);
     });
 
+    it('returns "bigcommerce_payments" if the payment method is "bigcommerce_payments_invoices"', () => {
+        paymentMethod = { id: PAYMENT_METHODS.BIGCOMMERCE_PAYMENTS_INVOICES };
+        expect(paymentMethodIdMapper.mapToId(paymentMethod)).toEqual(PAYMENT_METHODS.BIGCOMMERCE_PAYMENTS);
+    });
+
     it('returns "braintree" if the payment method is "braintreepaypal"', () => {
         paymentMethod = { id: PAYMENT_METHODS.BRAINTREE_PAYPAL };
         expect(paymentMethodIdMapper.mapToId(paymentMethod)).toEqual(PAYMENT_METHODS.BRAINTREE);
