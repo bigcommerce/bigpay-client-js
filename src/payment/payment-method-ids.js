@@ -4,6 +4,7 @@ export const BIGCOMMERCE_PAYMENTS_CREDIT_CARDS = 'bigcommerce_payments_creditcar
 export const BIGCOMMERCE_PAYMENTS_FASTLANE = 'bigcommerce_payments_fastlane';
 export const BIGCOMMERCE_PAYMENTS_APMS = 'bigcommerce_payments_apms';
 export const BIGCOMMERCE_PAYMENTS_VENMO = 'bigcommerce_payments_venmo';
+export const BIGCOMMERCE_PAYMENTS_INVOICES = 'bigcommerce_payments_invoices';
 
 export const BRAINTREE = 'braintree';
 export const BRAINTREE_PAYPAL = 'braintreepaypal';
