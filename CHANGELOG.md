@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.29.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.28.3...v5.29.0) (2026-08-03)
+
+
+### Features
+
+* **payment:** PAYPAL-6748 add bigcommerce_payments_invoice provider mapping ([75581e4](https://github.com/bigcommerce/bigpay-client-js/commit/75581e4c8ca64f0f21b99ae75d94a35b56aa09a2))
+
 ### [5.28.3](https://github.com/bigcommerce/bigpay-client-js/compare/v5.28.2...v5.28.3) (2026-01-13)
 
 ### [5.28.2](https://github.com/bigcommerce/bigpay-client-js/compare/v5.28.1...v5.28.2) (2026-01-13)

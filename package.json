@@ -1,6 +1,6 @@
 {
   "name": "@bigcommerce/bigpay-client",
-  "version": "5.28.3",
+  "version": "5.29.0",
   "description": "JavaScript client for BigPay",
   "browserslist": [
     "last 2 versions",
