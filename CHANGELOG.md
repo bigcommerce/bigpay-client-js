@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.30.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.29.0...v5.30.0) (2026-08-04)
+
+
+### Features
+
+* **payment:** PAYPAL-6748 add comments ([#474](https://github.com/bigcommerce/bigpay-client-js/issues/474)) ([90abdf5](https://github.com/bigcommerce/bigpay-client-js/commit/90abdf564387a35eaf9a5b7e1585f4b4450051c5))
+
 ## [5.29.0](https://github.com/bigcommerce/bigpay-client-js/compare/v5.28.3...v5.29.0) (2026-08-03)
 
 
