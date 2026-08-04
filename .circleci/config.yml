@@ -10,7 +10,7 @@ aliases:
   - &node_executor
       executor:
         name: node/node
-        node-version: "20.11"
+        node-version: "22.23"
 
   - &release_filter
       branches:
@@ -72,8 +72,10 @@ jobs:
   release:
     <<: *node_executor
     steps:
-      - ci/pre-setup
       - install
+      - run:
+            name: "Install npm with trusted publishing support"
+            command: sudo npm install --global npm@11.11.0
       - run:
           name: "Configure Git user"
           command: |
@@ -92,10 +94,13 @@ jobs:
           command: |
             git push --follow-tags origin $CIRCLE_BRANCH
       - run:
-          name: "Publish release to NPM"
-          command: |
-            echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" > .npmrc
-            npm publish --access public
+            name: "Publish release to npm"
+            command: |
+                export NPM_ID_TOKEN="$(
+                  circleci run oidc get \
+                    --claims '{"aud": "npm:registry.npmjs.org"}'
+                )"
+                npm publish --access public
 
 #####################################################
 # Workflows
@@ -123,6 +128,8 @@ workflows:
           requires:
             - build-and-test
       - release:
+          context:
+            - npmjs-publish
           filters:
             <<: *release_filter
           requires:
