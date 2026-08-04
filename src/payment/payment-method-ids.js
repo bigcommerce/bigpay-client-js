@@ -1,3 +1,4 @@
+//BigCommerce Payments grouped payment methods
 export const BIGCOMMERCE_PAYMENTS = 'bigcommerce_payments';
 export const BIGCOMMERCE_PAYMENTS_PAYLATER = 'bigcommerce_payments_paylater';
 export const BIGCOMMERCE_PAYMENTS_CREDIT_CARDS = 'bigcommerce_payments_creditcards';
@@ -6,6 +7,7 @@ export const BIGCOMMERCE_PAYMENTS_APMS = 'bigcommerce_payments_apms';
 export const BIGCOMMERCE_PAYMENTS_VENMO = 'bigcommerce_payments_venmo';
 export const BIGCOMMERCE_PAYMENTS_INVOICES = 'bigcommerce_payments_invoices';
 
+//Braintree grouped payment methods
 export const BRAINTREE = 'braintree';
 export const BRAINTREE_PAYPAL = 'braintreepaypal';
 export const BRAINTREE_PAYPAL_CREDIT = 'braintreepaypalcredit';
@@ -15,6 +17,7 @@ export const BRAINTREE_GOOGLEPAY = 'googlepaybraintree';
 export const BRAINTREE_ACH = 'braintreeach';
 export const BRAINTREE_ACCELERATED_CHECKOUT = 'braintreeacceleratedcheckout';
 
+//Paypal Commerce grouped payment methods
 export const PAYPAL_COMMERCE = 'paypalcommerce';
 export const PAYPAL_COMMERCE_ACCELERATED_CHECKOUT = 'paypalcommerceacceleratedcheckout';
 export const PAYPAL_COMMERCE_ALTERNATIVE_METHODS = 'paypalcommercealternativemethods';
