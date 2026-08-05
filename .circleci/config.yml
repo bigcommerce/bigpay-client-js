@@ -10,7 +10,7 @@ aliases:
   - &node_executor
       executor:
         name: node/node
-        node-version: "22.23"
+        node-version: "26.6"
 
   - &release_filter
       branches:
@@ -75,7 +75,7 @@ jobs:
       - install
       - run:
             name: "Install npm with trusted publishing support"
-            command: sudo npm install --global npm@11.11.0
+            command: sudo npm install --global npm@11.18.0
       - run:
           name: "Configure Git user"
           command: |
