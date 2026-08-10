@@ -70,6 +70,12 @@ describe('PayloadTransformer', () => {
         });
     });
 
+    it('throws if the response body is labeled as JSON but is not valid JSON', () => {
+        xhr.response = '<html>Bad Gateway</html>';
+
+        expect(() => payloadTransformer.fromResponse(xhr)).toThrow(SyntaxError);
+    });
+
     it('converts the request payload to JSON if it is JSON', () => {
         const payload = '<p>Hello world</p>';
 

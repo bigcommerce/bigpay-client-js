@@ -11,12 +11,14 @@ describe('PaymentSubmitter', () => {
     let requestSender;
     let transformedData;
     let transformedHeaders;
+    let transformedPpsdkHeaders;
     let urlHelper;
 
     beforeEach(() => {
         data = paymentRequestDataMock;
         transformedData = { body: 'hello world' };
         transformedHeaders = { AUTH_TOKEN: '123' };
+        transformedPpsdkHeaders = { AUTH_TOKEN: 'ppsdk-123' };
 
         urlHelper = {
             getPaymentUrl: jest.fn(() => '/api/public/v1/payments/payment'),
@@ -34,7 +36,7 @@ describe('PaymentSubmitter', () => {
 
         ppsdkPayloadMapper = {
             mapToPayload: jest.fn(() => transformedData),
-            mapToHeaders: jest.fn(() => transformedHeaders),
+            mapToHeaders: jest.fn(() => transformedPpsdkHeaders),
         };
 
         paymentSubmitter = new PaymentSubmitter(urlHelper, requestSender, payloadMapper, ppsdkPayloadMapper);
@@ -85,7 +87,7 @@ describe('PaymentSubmitter', () => {
 
             paymentSubmitter.submitPayment(data, callback);
 
-            expect(requestSender.postRequest).toHaveBeenCalledWith(url, transformedData, { headers: transformedHeaders }, callback);
+            expect(requestSender.postRequest).toHaveBeenCalledWith(url, transformedData, { headers: transformedPpsdkHeaders }, callback);
         });
 
         it('throws an error if the payment method is not an API provider', () => {

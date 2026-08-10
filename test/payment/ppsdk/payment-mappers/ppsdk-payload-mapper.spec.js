@@ -36,6 +36,37 @@ describe('PpsdkPayloadMapper', () => {
         });
     });
 
+    it('maps the input data into a payload with a null expiry when ccExpiry is not provided', () => {
+        const dataWithoutCcExpiry = {
+            ...data,
+            payment: {
+                ...data.payment,
+                ccExpiry: undefined,
+            },
+        };
+
+        const output = payloadMapper.mapToPayload(dataWithoutCcExpiry);
+
+        expect(output.instrument.expires).toEqual({
+            month: null,
+            year: null,
+        });
+    });
+
+    it('maps the input data into a payload with an empty instrument when payment data is not provided', () => {
+        const { payment, ...dataWithoutPayment } = data;
+
+        const output = payloadMapper.mapToPayload(dataWithoutPayment);
+
+        expect(output.instrument).toEqual({
+            expires: {
+                month: null,
+                year: null,
+            },
+            type: 'card',
+        });
+    });
+
     it('maps the input data into a payload with human verification data when required for submitting a payment', () => {
         const dataWithAdditionalAction = paymentRequestWithAdditionalActionMock;
 
