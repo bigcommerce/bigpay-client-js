@@ -67,7 +67,7 @@ export default class PaymentSubmitter {
         const payload = paymentMethod.type === SDK ? this.ppsdkPayloadMapper.mapToPayload(data) : this.payloadMapper.mapToPayload(data);
         const url = paymentMethod.type === SDK ? this.urlHelper.getPpsdkPaymentUrl() : this.urlHelper.getPaymentUrl();
         const options = {
-            headers: this.payloadMapper.mapToHeaders(data),
+            headers: paymentMethod.type === SDK ? this.ppsdkPayloadMapper.mapToHeaders(data) : this.payloadMapper.mapToHeaders(data),
         };
 
         this.requestSender.postRequest(url, payload, options, callback);
