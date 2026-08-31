@@ -29,7 +29,7 @@
   },
   "author": "BigCommerce",
   "devDependencies": {
-    "@babel/cli": "^7.27.1",
+    "@babel/cli": "^8.0.4",
     "@babel/core": "^7.27.1",
     "@babel/preset-env": "^7.27.1",
     "eslint": "^8.56.0",
